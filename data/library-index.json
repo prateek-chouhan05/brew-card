@@ -1,0 +1,1376 @@
+[
+ {
+  "id": "iac-2023-delhi",
+  "name": "IAC 2023 Delhi Winner",
+  "author": "Arne Jach",
+  "source": "Indian AeroPress Championship 2023 · Delhi round 1st",
+  "g": "champ",
+  "year": 2023,
+  "url": "https://aeroprecipe.com/recipes/indian-aeropress-championship-delhi-winner",
+  "o": "inverted",
+  "roast": "medium",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "fruity"
+  ],
+  "why": "Built to tame a wild pineapple-fermented coffee: cool water and almost no agitation keep funky fruit pleasant instead of harsh. Made for anaerobic and co-fermented lots like your Yelnoorkhan.",
+  "link": true
+ },
+ {
+  "id": "wac-2023-1st",
+  "name": "WAC 2023 Champion",
+  "author": "Tay Wipvasutt",
+  "source": "World AeroPress Championship 2023 · 1st",
+  "g": "champ",
+  "year": 2023,
+  "url": "https://aeroprecipe.com/recipes/2023-world-aeropress-championship-1st-place",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "A split dose adds a late burst of fresh aromatics on top of a sweet base. Best with expressive fruity beans.",
+  "link": true
+ },
+ {
+  "id": "iac-2022-bengaluru",
+  "name": "IAC 2022 Bengaluru",
+  "author": "Shruti Vashist",
+  "source": "Indian AeroPress Championship 2022 · Bengaluru region",
+  "g": "champ",
+  "year": 2022,
+  "url": "https://aeroprecipe.com/recipes/indian-aeropress-championship-bengaluru-region",
+  "o": "inverted",
+  "roast": "medium",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "chocolate",
+   "caramel",
+   "nutty"
+  ],
+  "why": "A long, slow immersion of a medium-dark coffee builds body with a light acidity — good for chocolaty and nutty Indian estate coffees.",
+  "link": true
+ },
+ {
+  "id": "iac-2022-1st",
+  "name": "IAC 2022 Champion",
+  "author": "Pratik Sharma",
+  "source": "Indian AeroPress Championship 2022 · 1st",
+  "g": "champ",
+  "year": 2022,
+  "country": "India",
+  "url": "https://aeroprecipe.com/recipes/2022-indian-aeropress-championship-winning-recipe",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "fruity",
+   "citrus"
+  ],
+  "why": "Two temperatures: a hotter bloom for sweetness, a cooler main pour to keep acidity crisp. Suits Indian light roasts with fruit or citrus notes.",
+  "link": true
+ },
+ {
+  "id": "wac-2022-1st",
+  "name": "WAC 2022 Champion",
+  "author": "Jibbi Little",
+  "source": "World AeroPress Championship 2022 · 1st",
+  "g": "champ",
+  "year": 2022,
+  "country": "Australia",
+  "url": "https://aeroprecipe.com/recipes/2022-world-aeropress-championship-1st-place",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "citrus",
+   "floral",
+   "fruity"
+  ],
+  "why": "Removing chaff and fines strips out bitterness and muddiness for maximum clarity — rewards bright, clean citrus and floral coffees.",
+  "link": true
+ },
+ {
+  "id": "wac-2021-1st",
+  "name": "WAC 2021 Champion",
+  "author": "Tuomas Merikanto",
+  "source": "World AeroPress Championship 2021 · 1st",
+  "g": "champ",
+  "year": 2021,
+  "country": "Finland",
+  "url": "https://aeroprecipe.com/recipes/2021-world-aeropress-champion",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "floral",
+   "citrus",
+   "fruity"
+  ],
+  "why": "Designed to avoid harsh, tannic sourness in a complex light roast: 80 °C and minimal agitation. Ideal for delicate, floral, high-acidity beans.",
+  "link": true
+ },
+ {
+  "id": "wac-2021-2nd",
+  "name": "WAC 2021 Runner-up",
+  "author": "Maru Mallee",
+  "source": "World AeroPress Championship 2021 · 2nd",
+  "g": "champ",
+  "year": 2021,
+  "url": "https://aeroprecipe.com/recipes/2021-world-aeropress-championship-2nd-place",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "A firm stir and a long steep at 93 °C extract plenty of sweetness; the swirl after flipping keeps it even. A sweet, full cup from fruity or honey beans.",
+  "link": true
+ },
+ {
+  "id": "championship-cold-water-bypass",
+  "name": "Championship Cold Water Bypass",
+  "author": "Alexander Mills",
+  "source": "Canadian AeroPress Championship 2019",
+  "g": "champ",
+  "year": 2019,
+  "url": "https://aeroprecipe.com/recipes/championship-cold-water-bypass",
+  "o": "inverted",
+  "roast": "any",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "caramel",
+   "nutty"
+  ],
+  "why": "Quick, strong and diluted with hot and room-temperature water — sweet, balanced and drinkable straight away. A forgiving pick for caramel and nutty mediums.",
+  "link": true
+ },
+ {
+  "id": "citric-sweet",
+  "name": "Citric Sweet",
+  "author": "Rama Marti",
+  "source": "Argentina AeroPress Championship 2019 · Semifinal",
+  "g": "champ",
+  "year": 2019,
+  "country": "Argentina",
+  "url": "https://aeroprecipe.com/recipes/citric-sweet",
+  "o": "inverted",
+  "roast": "any",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "citrus",
+   "caramel"
+  ],
+  "why": "A slow, gentle pour and stopping the press early keep clean citric brightness balanced by sugar sweetness — made for a washed Colombian.",
+  "link": true
+ },
+ {
+  "id": "wac-2019-1st",
+  "name": "WAC 2019 Champion",
+  "author": "Wendelien van Bunnik",
+  "source": "World AeroPress Championship 2019 · 1st",
+  "g": "champ",
+  "year": 2019,
+  "country": "Netherlands",
+  "url": "https://aeroprecipe.com/recipes/2019-wac-1st-place",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "Lots of coffee and only 40 s of contact pulls sweetness fast without bitterness, then it's cooled so sweetness reads loud. Great for juicy, sweet beans.",
+  "link": true
+ },
+ {
+  "id": "wac-2019-2nd",
+  "name": "WAC 2019 Runner-up",
+  "author": "Benja Khemacheva",
+  "source": "World AeroPress Championship 2019 · 2nd",
+  "g": "champ",
+  "year": 2019,
+  "url": "https://aeroprecipe.com/recipes/2019-wac-2nd-place",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "High dose, hot water and a pre-bypass make a round, heavy, sweet cup. Handles fruity naturals and caramel-sweet mediums well.",
+  "link": true
+ },
+ {
+  "id": "love-me-some-acid",
+  "name": "Love me some acid",
+  "author": "Kata Muhel",
+  "source": "Portugal AeroPress Championship 2018 · 1st",
+  "g": "champ",
+  "year": 2018,
+  "country": "Portugal",
+  "url": "https://aeroprecipe.com/recipes/love-me-some-acid",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "citrus",
+   "fruity",
+   "floral"
+  ],
+  "why": "Low 81 °C and a gentle swirl are designed to make acidity sing. Pick this when your bean tastes of lemon, berries or flowers.",
+  "link": true
+ },
+ {
+  "id": "wac-2018-1st",
+  "name": "WAC 2018 Champion",
+  "author": "Carolina Ibarra Garay",
+  "source": "World AeroPress Championship 2018 · 1st",
+  "g": "champ",
+  "year": 2018,
+  "country": "United States",
+  "url": "https://aeroprecipe.com/recipes/2018-wac-1st-place",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "An extreme 35 g concentrate topped up with hot and room-temperature water — dense sweetness and body. Best with sweet naturals and honey-process beans.",
+  "link": true
+ },
+ {
+  "id": "wac-2018-2nd",
+  "name": "WAC 2018 Runner-up",
+  "author": "Xiaobo Zhang",
+  "source": "World AeroPress Championship 2018 · 2nd",
+  "g": "champ",
+  "year": 2018,
+  "country": "China",
+  "url": "https://aeroprecipe.com/recipes/2018-wac-2nd-place",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "fruity",
+   "floral",
+   "citrus"
+  ],
+  "why": "Low 80 °C and a coarse grind keep it bright and clean, with a sprinkle of fines for body. Suits delicate, fruity light roasts.",
+  "link": true
+ },
+ {
+  "id": "wac-2018-3rd",
+  "name": "WAC 2018 Third Place",
+  "author": "Evgeni Pinchukov",
+  "source": "World AeroPress Championship 2018 · 3rd",
+  "g": "champ",
+  "year": 2018,
+  "country": "Belarus",
+  "url": "https://aeroprecipe.com/recipes/2018-wac-3rd-place",
+  "o": "standard",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "citrus",
+   "floral"
+  ],
+  "why": "Low dose, low temperature and an early stop to the press — a light, tea-like cup for bright washed coffees.",
+  "link": true
+ },
+ {
+  "id": "wac-2017-1st",
+  "name": "WAC 2017 Champion",
+  "author": "Paulina 'Panda' Miczka",
+  "source": "World AeroPress Championship 2017 · 1st",
+  "g": "champ",
+  "year": 2017,
+  "url": "https://aeroprecipe.com/recipes/2017-wac-1st-place",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "citrus",
+   "fruity"
+  ],
+  "why": "Built on a Kenyan AA. A strong concentrate diluted afterwards keeps the vivid citrus and blackcurrant while staying sweet.",
+  "link": true
+ },
+ {
+  "id": "wac-2017-2nd",
+  "name": "WAC 2017 Runner-up",
+  "author": "Yusuke Narisawa",
+  "source": "World AeroPress Championship 2017 · 2nd",
+  "g": "champ",
+  "year": 2017,
+  "url": "https://aeroprecipe.com/recipes/2017-wac-2nd-place",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "floral",
+   "fruity"
+  ],
+  "why": "Two paper filters and a coarse grind make an exceptionally clean cup; the pinch of fines adds body back. Clarity-first, so delicate florals and fruit shine.",
+  "link": true
+ },
+ {
+  "id": "wac-2016-1st",
+  "name": "WAC 2016 Champion",
+  "author": "Filip Kucharczyk",
+  "source": "World AeroPress Championship 2016 · 1st",
+  "g": "champ",
+  "year": 2016,
+  "url": "https://aeroprecipe.com/recipes/2016-wac-1st-place",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "A huge dose brewed short, then diluted: lots of sweetness and body without bitterness. Makes juicy, syrupy cups from fruity and honey-process beans.",
+  "link": true
+ },
+ {
+  "id": "wac-2015-1st",
+  "name": "WAC 2015 Champion",
+  "author": "Lukas Zahradnik",
+  "source": "World AeroPress Championship 2015 · 1st",
+  "g": "champ",
+  "year": 2015,
+  "country": "Slovakia",
+  "url": "https://aeroprecipe.com/recipes/2015-wac-1st-place",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "citrus",
+   "fruity"
+  ],
+  "why": "Cool water plus a hard stir, built on a washed Kenyan: bright blackcurrant and citrus with sweetness but no harshness.",
+  "link": true
+ },
+ {
+  "id": "wac-2015-2nd-nick-hatch",
+  "name": "WAC 2015 Runner-up",
+  "author": "Nick Hatch",
+  "source": "World AeroPress Championship 2015 · 2nd",
+  "g": "champ",
+  "year": 2015,
+  "url": "https://aeroprecipe.com/recipes/nick-hatch-2015-wac-2nd-place",
+  "o": "standard",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "fruity",
+   "caramel",
+   "floral"
+  ],
+  "why": "Moderate temperature and a long, slow 60 s press give a balanced, sweet cup. A good all-rounder for light-medium beans with fruit and sugar notes.",
+  "link": true
+ },
+ {
+  "id": "wac-2014-1st",
+  "name": "WAC 2014 Champion",
+  "author": "Shuichi Sasaki",
+  "source": "World AeroPress Championship 2014 · 1st",
+  "g": "champ",
+  "year": 2014,
+  "country": "Japan",
+  "url": "https://aeroprecipe.com/recipes/2014-wac-1st-place",
+  "o": "standard",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "floral",
+   "citrus",
+   "fruity"
+  ],
+  "why": "Very low 78 °C water and stopping before the dregs avoid bitterness completely, so floral and citrus notes stand out. Too gentle for chocolaty beans — they taste flat.",
+  "link": true
+ },
+ {
+  "id": "wac-2012-1st",
+  "name": "WAC 2012 Champion",
+  "author": "Charlene De Buysere",
+  "source": "World AeroPress Championship 2012 · 1st",
+  "g": "champ",
+  "year": 2012,
+  "url": "https://aeroprecipe.com/recipes/2012-world-aeropress-championship-1st-place",
+  "o": "standard",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "fruity",
+   "citrus",
+   "caramel"
+  ],
+  "why": "No stirring, a short bloom and a press that stops early keep the cup clean and sweet. A gentle method that won't strip a light, bright bean's fruit.",
+  "link": true
+ },
+ {
+  "id": "a-fruity-perspective",
+  "name": "A Fruity Perspective",
+  "author": "Div",
+  "source": "Barista",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/a-fruity-perspective",
+  "o": "inverted",
+  "roast": "medium",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "fruity",
+   "chocolate"
+  ],
+  "why": "Coaxes fruit out of medium and medium-dark beans — a long, heavy steep that brings dark fruit out alongside chocolate.",
+  "link": true
+ },
+ {
+  "id": "vietnamese-aeropress-official",
+  "name": "AeroPress Vietnamese Iced Coffee",
+  "author": "AeroPress",
+  "source": "AeroPress official recipe",
+  "g": "pro",
+  "url": "https://aeropress.com/blogs/aeropress-recipes/aeropress-vietnamese-iced-coffee",
+  "o": "standard",
+  "roast": "dark",
+  "st": [
+   "milk",
+   "iced",
+   "vietnamese"
+  ],
+  "fl": [
+   "bold",
+   "chocolate"
+  ],
+  "why": "Built for robusta: heavy, bitter-chocolate coffee that stands up to sweet condensed milk and ice.",
+  "kw": "vietnamese viet vietnam ca phe sua da cà phê sữa đá condensed milk robusta phin sweet iced official",
+  "link": true
+ },
+ {
+  "id": "aero-tonic",
+  "name": "AeroTonic",
+  "author": "Clem InTheCoffee",
+  "source": "Barista",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/aero-tonic",
+  "o": "standard",
+  "roast": "any",
+  "st": [
+   "iced",
+   "mixer",
+   "concentrate"
+  ],
+  "fl": [
+   "citrus",
+   "fruity",
+   "floral"
+  ],
+  "why": "Tonic is bitter and citrusy, so bright beans pair best — lemon, berry and floral notes turn into a sparkling coffee spritz. Very roasty beans can taste medicinal with tonic.",
+  "kw": "tonic espresso tonic coffee tonic spritz sparkling fizzy soda mixer lemon lime",
+  "link": true
+ },
+ {
+  "id": "adler-cold-brew",
+  "name": "Alan Adler Cold Brew",
+  "author": "Alan Adler",
+  "source": "AeroPress inventor",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/alan-adler-cold-brew-aeropress-recipe",
+  "o": "standard",
+  "roast": "any",
+  "st": [
+   "iced",
+   "concentrate"
+  ],
+  "fl": [
+   "chocolate",
+   "nutty",
+   "caramel"
+  ],
+  "why": "Cold water pulls sweetness and body but very little acidity. Chocolaty, nutty beans taste smooth and sweet; bright fruity ones taste flat.",
+  "link": true
+ },
+ {
+  "id": "adler-original",
+  "name": "Alan Adler Original",
+  "author": "Alan Adler",
+  "source": "AeroPress inventor",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/alan-adler-original",
+  "o": "standard",
+  "roast": "any",
+  "st": [
+   "concentrate"
+  ],
+  "fl": [
+   "chocolate",
+   "nutty",
+   "caramel"
+  ],
+  "why": "The inventor's original: cool 80 °C water and a fast press keep bitterness low on everyday darker roasts. Smooth and low-acid from chocolaty and nutty beans.",
+  "link": true
+ },
+ {
+  "id": "blue-bottle",
+  "name": "Blue Bottle",
+  "author": "Blue Bottle Coffee",
+  "source": "Barista",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/blue-bottle-recipe",
+  "o": "inverted",
+  "roast": "medium",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "caramel",
+   "chocolate",
+   "nutty"
+  ],
+  "why": "A vigorous stir at 1:00 and fuller extraction give a round, sweet, medium-bodied cup — the classic for balanced medium roasts.",
+  "link": true
+ },
+ {
+  "id": "coffee-collective",
+  "name": "Coffee Collective Brew Guide",
+  "author": "Coffee Collective (Elliot Stølegaard)",
+  "source": "Barista",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/coffee-collective-brew-guide",
+  "o": "standard",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "fruity",
+   "floral"
+  ],
+  "why": "Coffee Collective roasts light and fruity; a short sealed steep with a second stir keeps clarity while building sweetness.",
+  "link": true
+ },
+ {
+  "id": "april-coffee",
+  "name": "Coffee with April",
+  "author": "April Coffee",
+  "source": "Barista",
+  "g": "pro",
+  "country": "Denmark",
+  "url": "https://aeroprecipe.com/recipes/coffee-with-april",
+  "o": "standard",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "citrus",
+   "floral",
+   "fruity"
+  ],
+  "why": "A low dose and cooler 88 °C water make a light, juicy, low-bitterness cup — designed for Kenyan and Ethiopian coffees.",
+  "link": true
+ },
+ {
+  "id": "evp-iced-coffee",
+  "name": "EVP's Iced Coffee",
+  "author": "Peter (EVP Coffee)",
+  "source": "Roaster",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/evp-iced-coffee",
+  "o": "standard",
+  "roast": "medium",
+  "st": [
+   "iced"
+  ],
+  "fl": [
+   "chocolate",
+   "caramel",
+   "nutty"
+  ],
+  "why": "A medium-dark Colombian over ice gives a smooth, cold-brew-like but syrupy cup — chocolaty and caramel beans taste best.",
+  "kw": "iced smooth cold brew style syrupy colombian medium dark",
+  "link": true
+ },
+ {
+  "id": "hoffmann-milk",
+  "name": "Hoffmann AeroPress for Milk Drinks",
+  "author": "James Hoffmann",
+  "source": "Barista",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/james-hoffmann",
+  "o": "inverted",
+  "roast": "dark",
+  "st": [
+   "milk"
+  ],
+  "fl": [
+   "chocolate",
+   "nutty",
+   "caramel"
+  ],
+  "why": "A 1:5 concentrate made to carry milk. Chocolaty and nutty beans keep their flavour under milk; light fruity ones disappear or turn sour.",
+  "link": true
+ },
+ {
+  "id": "hoffmann-iced",
+  "name": "Hoffmann Iced AeroPress",
+  "author": "James Hoffmann",
+  "source": "Barista",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/james-hoffmann-iced-aeropress",
+  "o": "standard",
+  "roast": "light",
+  "st": [
+   "iced"
+  ],
+  "fl": [
+   "fruity",
+   "citrus",
+   "floral"
+  ],
+  "why": "Brewed hot and flash-chilled on ice, which locks in aromatics — iced coffee that still tastes of fruit and flowers, not flat cold brew.",
+  "link": true
+ },
+ {
+  "id": "hoffmann-ultimate",
+  "name": "Hoffmann Ultimate (original, 99 °C)",
+  "author": "James Hoffmann",
+  "source": "Barista",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/james-hoffmann-aeropress-recipe",
+  "o": "standard",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "floral",
+   "citrus",
+   "fruity"
+  ],
+  "why": "A lean ratio and near-boiling water extract fully without stirring — a clear, tea-like cup that shows off delicate light roasts.",
+  "link": true
+ },
+ {
+  "id": "lance-hedrick-very-good",
+  "name": "Lance Hedrick — A Very Good Recipe",
+  "author": "Lance Hedrick",
+  "source": "Barista",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/lance-hedrick-a-very-good-aeropress-recipe-and-3-simple-tips",
+  "o": "standard",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "caramel",
+   "nutty"
+  ],
+  "why": "Built to cut bitterness and astringency with a gentle press — a safe, balanced recipe for medium beans with caramel and nut notes.",
+  "link": true
+ },
+ {
+  "id": "lance-hedrick-different-dark",
+  "name": "Lance Hedrick — Dark Roast & Decaf",
+  "author": "Lance Hedrick",
+  "source": "Barista",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/a-different-aeropress-recipe-by-lance-hedrick-dark-roast-version",
+  "o": "inverted",
+  "roast": "dark",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "chocolate",
+   "bold",
+   "nutty"
+  ],
+  "why": "Very cool water and a coarse grind on dark, decaf or aged coffee keep the chocolate and roast and drop the ashy bitterness.",
+  "link": true
+ },
+ {
+  "id": "lance-hedrick-different-light",
+  "name": "Lance Hedrick — Light Roast Concentrate",
+  "author": "Lance Hedrick",
+  "source": "Barista",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/a-different-aeropress-recipe-by-lance-hedrick-lighter-roast-version",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "fruity",
+   "citrus"
+  ],
+  "why": "Designed to cut woody, vegetal notes from light roasts and boost acidity and body — makes fruity light roasts taste juicy.",
+  "link": true
+ },
+ {
+  "id": "market-lane",
+  "name": "Market Lane",
+  "author": "Huw @ Market Lane (Market Lane Coffee)",
+  "source": "Barista",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/market-lane-aeropress",
+  "o": "inverted",
+  "roast": "any",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "A simple steep where more stirring makes a stronger cup — easy to tune to a fruity or sweet bean.",
+  "link": true
+ },
+ {
+  "id": "stumptown-on-the-road",
+  "name": "On the Road with Stumptown",
+  "author": "Stumptown Coffee Roasters",
+  "source": "Barista",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/on-the-road-with-stumptown",
+  "o": "standard",
+  "roast": "any",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "chocolate",
+   "caramel",
+   "nutty"
+  ],
+  "why": "Hot water and two stirs make a full, sweet, hearty cup — great for chocolaty, nutty and caramel beans, and travel-proof.",
+  "link": true
+ },
+ {
+  "id": "rueller",
+  "name": "Ralf Rüller Personal",
+  "author": "Ralf Rüller",
+  "source": "Barista · The Barn, Berlin",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/ralf-ruellers-personal-aeropress-recipe",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "Aimed at a juicy cup with a creamy mouthfeel: fruity beans get their juiciness, honey-process beans their sweetness.",
+  "link": true
+ },
+ {
+  "id": "sightglass",
+  "name": "Sightglass Coffee",
+  "author": "Devan Holt (Sightglass Coffee)",
+  "source": "Barista",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/aeropress-recipe-by-sightglass-coffee",
+  "o": "standard",
+  "roast": "any",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "caramel",
+   "nutty"
+  ],
+  "why": "Fine grind and hot water extract fast — a sweet, well-rounded cup in about a minute. Works with most beans; best with caramel-sweet mediums.",
+  "link": true
+ },
+ {
+  "id": "kasuya",
+  "name": "Tetsu Kasuya Pour-Over",
+  "author": "Tetsu Kasuya",
+  "source": "Barista",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/tetsu-kasuya-aeropress-recipe",
+  "o": "standard",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "floral",
+   "citrus"
+  ],
+  "why": "Percolation like a V60 rather than immersion — clean and bright, for floral and citrusy light roasts.",
+  "link": true
+ },
+ {
+  "id": "wendelboe",
+  "name": "Tim Wendelboe",
+  "author": "Tim Wendelboe",
+  "source": "Barista · Tim Wendelboe, Oslo",
+  "g": "pro",
+  "country": "Norway",
+  "url": "https://aeroprecipe.com/recipes/tim-wendelboe",
+  "o": "standard",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "floral",
+   "citrus",
+   "fruity"
+  ],
+  "why": "Short steep, precise stirring, light ratio. Tim Wendelboe roasts very light, and this recipe is built to show clean floral and fruity acidity.",
+  "link": true
+ },
+ {
+  "id": "wendelboe-stronger",
+  "name": "Tim Wendelboe, Stronger",
+  "author": "Tim Wendelboe",
+  "source": "Barista · Tim Wendelboe, Oslo",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/tim-wendelboe-stronger",
+  "o": "standard",
+  "roast": "dark",
+  "st": [
+   "concentrate"
+  ],
+  "fl": [
+   "chocolate",
+   "bold"
+  ],
+  "why": "A moka-style strong cup from espresso-roasted coffee — dense, chocolaty and roasty. Too intense for light fruity beans.",
+  "link": true
+ },
+ {
+  "id": "tylers-bypass",
+  "name": "Tyler's Bypass",
+  "author": "Tyler Duncan (Topeca Coffee)",
+  "source": "Barista",
+  "g": "pro",
+  "url": "https://aeroprecipe.com/recipes/tylers-bypass",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "floral",
+   "fruity"
+  ],
+  "why": "Skimming the oils off, cupping-style, gives a very clean cup that shows delicate florals and stone fruit — made for an Ethiopian Guji.",
+  "link": true
+ },
+ {
+  "id": "aeropress-espresso",
+  "name": "AeroPress Espresso",
+  "author": "Coffee Lovers TV",
+  "source": "Enthusiast · YouTube",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/aeropress-espresso",
+  "o": "standard",
+  "roast": "dark",
+  "st": [
+   "concentrate"
+  ],
+  "fl": [
+   "chocolate",
+   "bold"
+  ],
+  "why": "A short, hot, hard extraction. Dark, chocolaty beans give a thick espresso-like shot; light beans turn sour.",
+  "link": true
+ },
+ {
+  "id": "aeropress-iced-latte",
+  "name": "AeroPress Iced Latte",
+  "author": "Mark C",
+  "source": "Enthusiast",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/aeropress-iced-latte",
+  "o": "inverted",
+  "roast": "dark",
+  "st": [
+   "milk",
+   "iced"
+  ],
+  "fl": [
+   "chocolate",
+   "bold",
+   "nutty"
+  ],
+  "why": "Built on Indian Monsooned Malabar — low-acid, heavy and chocolaty, exactly what iced milk needs. Great for your Truffle Twilight.",
+  "link": true
+ },
+ {
+  "id": "flash-brew-iced",
+  "name": "Flash Brew Iced Coffee",
+  "author": "Marc Werle",
+  "source": "Enthusiast",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/flash-brew-iced-coffee",
+  "o": "standard",
+  "roast": "light",
+  "st": [
+   "iced"
+  ],
+  "fl": [
+   "fruity",
+   "citrus",
+   "floral"
+  ],
+  "why": "Flash-brewed hot onto ice to keep a light roast's character with little dilution — the iced choice for bright, fruity beans.",
+  "kw": "flash brew iced japanese style hot onto ice light",
+  "link": true
+ },
+ {
+  "id": "freddo-espresso",
+  "name": "Freddo Espresso",
+  "author": "Minas Pitsos",
+  "source": "Enthusiast",
+  "g": "fan",
+  "country": "Greece",
+  "url": "https://aeroprecipe.com/recipes/freddo-espresso",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "iced",
+   "concentrate"
+  ],
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "A long-steeped light-to-medium concentrate shaken with ice — sweet, frothy and bright. Fruity and caramel beans keep their sweetness when chilled.",
+  "kw": "freddo greek shaken frothy iced espresso summer",
+  "link": true
+ },
+ {
+  "id": "fresh-orange-iced-coffee",
+  "name": "Fresh Orange Iced Coffee",
+  "author": "Victor Bacega",
+  "source": "Enthusiast · Experimental",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/fresh-orange-ice-coffee",
+  "o": "standard",
+  "roast": "any",
+  "st": [
+   "iced",
+   "mixer"
+  ],
+  "fl": [
+   "fruity",
+   "citrus",
+   "chocolate"
+  ],
+  "why": "Orange and a hard shake make a frothy, citrusy iced coffee. Fruity beans go orange-berry; chocolaty beans make a chocolate-orange.",
+  "kw": "orange citrus fruit shaken shaker frothy iced experimental",
+  "link": true
+ },
+ {
+  "id": "fruity-press",
+  "name": "Fruity Press",
+  "author": "Yker Valerio",
+  "source": "Enthusiast",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/fruity-press",
+  "o": "standard",
+  "roast": "medium",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "Made for natural and honey-process medium roasts; a rest after pressing opens up aroma and sweetness.",
+  "link": true
+ },
+ {
+  "id": "vietnamese-long-steep-thien-le",
+  "name": "Fuller Flavour Vietnamese Style",
+  "author": "Thien Le",
+  "source": "Enthusiast",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/fuller-flavour-profile-vietnamese-style",
+  "o": "standard",
+  "roast": "dark",
+  "st": [
+   "milk",
+   "concentrate",
+   "vietnamese"
+  ],
+  "fl": [
+   "bold",
+   "chocolate",
+   "nutty"
+  ],
+  "why": "A 9-minute steep builds the heavy body of a phin brew; made for robusta-heavy or dark blends that stand up to condensed milk.",
+  "kw": "vietnamese viet vietnam ca phe sua nong cà phê sữa nóng condensed milk robusta arabica blend long steep hot egg coconut palm sugar ginger",
+  "link": true
+ },
+ {
+  "id": "greek-freddo-espresso",
+  "name": "Greek Freddo Espresso",
+  "author": "Serafeim Davranis",
+  "source": "Enthusiast",
+  "g": "fan",
+  "country": "Greece",
+  "url": "https://aeroprecipe.com/recipes/aeropress-freddo-espresso",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "iced",
+   "concentrate"
+  ],
+  "fl": [
+   "fruity",
+   "citrus",
+   "floral"
+  ],
+  "why": "Built on a light Ethiopian for a sweet, tangy freddo. Shaking adds froth, and the cold makes fruit taste crisp.",
+  "kw": "freddo greek shaken frothy iced espresso ethiopia summer",
+  "link": true
+ },
+ {
+  "id": "hello-darkness",
+  "name": "Hello Darkness, My Old Friend",
+  "author": "Peter Do",
+  "source": "Enthusiast",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/hello-darkness-my-old-friend",
+  "o": "inverted",
+  "roast": "dark",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "chocolate",
+   "bold",
+   "nutty"
+  ],
+  "why": "Low temperature and a low dose made for dark roasts — balances bitterness and acidity for a smooth daily dark cup.",
+  "link": true
+ },
+ {
+  "id": "iced-americano",
+  "name": "Iced Americano",
+  "author": "Carl Miranda",
+  "source": "Enthusiast · based on Hoffmann",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/iced-americano",
+  "o": "standard",
+  "roast": "light",
+  "st": [
+   "iced"
+  ],
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "Hoffmann's method pressed onto ice — clean and sweet. The author uses a guava-noted mild roast; fruity and caramel beans suit it.",
+  "kw": "iced americano hoffmann simple light",
+  "link": true
+ },
+ {
+  "id": "brown-sugar-oat-shaken",
+  "name": "Iced Brown Sugar Oat Shaken Aeropresso",
+  "author": "Michael Gordon",
+  "source": "Enthusiast",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/iced-brown-sugar-oat-shaken-aeropresso",
+  "o": "inverted",
+  "roast": "light",
+  "st": [
+   "milk",
+   "iced",
+   "concentrate"
+  ],
+  "fl": [
+   "caramel",
+   "nutty",
+   "fruity"
+  ],
+  "why": "Brown sugar, cinnamon and oat milk love caramel and nutty beans. The author also found light roasts work, adding a fruity lift.",
+  "kw": "brown sugar cinnamon oat milk shaken starbucks copycat sweet iced syrup",
+  "link": true
+ },
+ {
+  "id": "iced-coconut-aeropress",
+  "name": "Iced Coconut AeroPress",
+  "author": "Yunus Yanin",
+  "source": "Enthusiast",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/iced-coconut-aeropress",
+  "o": "standard",
+  "roast": "medium",
+  "st": [
+   "iced",
+   "mixer",
+   "concentrate"
+  ],
+  "fl": [
+   "nutty",
+   "chocolate",
+   "caramel"
+  ],
+  "why": "Coconut water is mildly sweet and nutty — it pairs with nutty, chocolaty and caramel beans, like a coconut chocolate bar. Very acidic beans can taste sour against it.",
+  "kw": "coconut water tropical iced mixer quick",
+  "link": true
+ },
+ {
+  "id": "gagne",
+  "name": "Jonathan Gagné 10-Minute",
+  "author": "Jonathan Gagné",
+  "source": "Enthusiast · Coffee ad Astra",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/jonathan-gagne",
+  "o": "standard",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "floral",
+   "fruity"
+  ],
+  "why": "Very high extraction — fine grind, boiling water, 9 minutes. Dense light roasts turn sweet and complex; darker roasts would go bitter.",
+  "link": true
+ },
+ {
+  "id": "orange-aeropress-coffee",
+  "name": "Orange AeroPress Coffee",
+  "author": "giii_muu",
+  "source": "Enthusiast · Experimental",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/orange-aeropress-coffee",
+  "o": "inverted",
+  "roast": "any",
+  "st": [
+   "iced",
+   "mixer"
+  ],
+  "fl": [
+   "citrus",
+   "fruity"
+  ],
+  "why": "Brewed through an orange slice. The author asks for beans with bright acidity, so citrusy coffee and orange amplify each other.",
+  "kw": "orange citrus fruit filter slice iced juice mixer experimental",
+  "link": true
+ },
+ {
+  "id": "rule-of-thirds",
+  "name": "Rule of Thirds",
+  "author": "Tyler Laseter",
+  "source": "Enthusiast",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/rule-of-thirds",
+  "o": "inverted",
+  "roast": "any",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "caramel",
+   "fruity"
+  ],
+  "why": "A neutral, balanced recipe the author uses to taste every new coffee — a good first brew for an unfamiliar bag.",
+  "link": true
+ },
+ {
+  "id": "spanish-latte",
+  "name": "Spanish Latte",
+  "author": "phbrewer",
+  "source": "Enthusiast",
+  "g": "fan",
+  "country": "Philippines",
+  "url": "https://aeroprecipe.com/recipes/spanish-latte",
+  "o": "inverted",
+  "roast": "medium",
+  "st": [
+   "milk",
+   "iced"
+  ],
+  "fl": [
+   "nutty",
+   "caramel",
+   "chocolate"
+  ],
+  "why": "Condensed milk adds caramelised sweetness. The author uses a nutty, brown-sugar medium roast — nutty and caramel beans taste like dulce de leche.",
+  "kw": "spanish latte condensed milk sweet creamy nutty brown sugar iced",
+  "link": true
+ },
+ {
+  "id": "sweet-bright-iced",
+  "name": "Sweet, Bright and Iced!",
+  "author": "Shy Foreman",
+  "source": "Enthusiast",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/sweet-acidic-and-cold",
+  "o": "standard",
+  "roast": "light",
+  "st": [
+   "iced"
+  ],
+  "fl": [
+   "fruity",
+   "citrus"
+  ],
+  "why": "Made for a natural light roast at 99 °C and pressed over ice — keeps the sweetness and juicy acidity the name promises.",
+  "kw": "iced natural light bright sweet juicy",
+  "link": true
+ },
+ {
+  "id": "aeropress-flat-white",
+  "name": "The AeroPress Flat White",
+  "author": "European Coffee Trip",
+  "source": "Enthusiast · European Coffee Trip",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/aeropress-flat-white",
+  "o": "standard",
+  "roast": "any",
+  "st": [
+   "milk"
+  ],
+  "fl": [
+   "chocolate",
+   "fruity"
+  ],
+  "why": "The author suggests an African natural — berry sweetness in milk tastes like strawberry-chocolate. Chocolaty beans work just as well.",
+  "link": true
+ },
+ {
+  "id": "only-aeropress-recipe",
+  "name": "The Only AeroPress Recipe You'll Ever Need",
+  "author": "The Coffee Compass",
+  "source": "Enthusiast",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/the-only-aeropress-recipe-you-will-ever-need",
+  "o": "standard",
+  "roast": "any",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "caramel",
+   "nutty"
+  ],
+  "why": "A long, sealed steep with near-boiling water — full extraction and sweetness, smooth and forgiving. Good for everyday nutty and caramel beans.",
+  "link": true
+ },
+ {
+  "id": "v60-style-dark",
+  "name": "V60 Style AeroPress (dark roast)",
+  "author": "u/skelathon0703",
+  "source": "Enthusiast · r/AeroPress",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/v60-style-aeropress-dark",
+  "o": "standard",
+  "roast": "dark",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "chocolate",
+   "bold"
+  ],
+  "why": "Cooler water and a concentrate diluted afterwards keep a dark roast's chocolate while avoiding ash.",
+  "link": true
+ },
+ {
+  "id": "v60-style-light",
+  "name": "V60 Style AeroPress (light roast)",
+  "author": "u/skelathon0703",
+  "source": "Enthusiast · r/AeroPress",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/v60-style-aeropress-light",
+  "o": "standard",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "floral",
+   "citrus"
+  ],
+  "why": "Short, no-stir and V60-like — highlights delicate florals and citrus in light roasts.",
+  "link": true
+ },
+ {
+  "id": "vietnamese-iced-steven-le",
+  "name": "Vietnamese Iced Coffee (Cà Phê Sữa Đá)",
+  "author": "Steven Le",
+  "source": "Enthusiast",
+  "g": "fan",
+  "url": "https://aeroprecipe.com/recipes/vietnamese-iced-coffee",
+  "o": "inverted",
+  "roast": "dark",
+  "st": [
+   "milk",
+   "iced",
+   "concentrate",
+   "vietnamese"
+  ],
+  "fl": [
+   "chocolate",
+   "bold"
+  ],
+  "why": "A small, strong dark-roast concentrate with condensed milk — smoky, chocolaty espresso roasts like your Truffle Twilight fit perfectly.",
+  "kw": "vietnamese viet vietnam ca phe sua da cà phê sữa đá condensed milk sweet iced smoky dark",
+  "link": true
+ }
+]

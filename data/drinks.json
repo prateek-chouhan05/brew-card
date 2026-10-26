@@ -1,0 +1,1709 @@
+[
+ {
+  "id": "affogato",
+  "emoji": "🍨",
+  "name": "Affogato",
+  "aka": "Coffee 'drowned' ice cream",
+  "origin": "Italy",
+  "temp": "hot",
+  "time": "2 min",
+  "st": [
+   "dessert",
+   "concentrate"
+  ],
+  "fl": [
+   "chocolate",
+   "nutty",
+   "caramel"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "Vanilla ice cream needs a bitter, roasty partner — chocolaty and nutty beans taste like a coffee sundae. Bright fruity beans clash with the dairy and taste sour.",
+  "desc": "A hot, strong shot poured over cold vanilla ice cream. Half dessert, half coffee, eaten with a spoon.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1 shot · about 45 ml, hot"
+   },
+   {
+    "id": "my-moka",
+    "amt": "45 ml, hot"
+   }
+  ],
+  "ing": [
+   [
+    "1–2 scoops",
+    "vanilla ice cream (about 80 g)"
+   ],
+   [
+    "optional",
+    "dark chocolate shavings or crushed almonds or hazelnuts"
+   ]
+  ],
+  "steps": [
+   "Chill a small glass or bowl in the freezer for 5 minutes.",
+   "Scoop the ice cream into it and put it back in the freezer while you brew.",
+   "Brew the base and pour it over the ice cream straight away, while it's hot.",
+   "Top with chocolate or nuts and eat it with a spoon before it melts."
+  ],
+  "tips": [
+   "The hot–cold contrast is the point, so don't chill the shot.",
+   "Chocolate or salted-caramel ice cream works too."
+  ],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": ""
+ },
+ {
+  "id": "americano",
+  "emoji": "☕",
+  "name": "Americano",
+  "aka": "Caffè americano",
+  "origin": "Italy",
+  "temp": "hot",
+  "time": "2 min",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "chocolate",
+   "caramel",
+   "nutty"
+  ],
+  "bestFor": [
+   "medlight",
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "Diluting a strong shot keeps its body and roast sweetness, so chocolaty and caramel beans shine. For a fruity bean, your ✨ Bypass Brew is the better version of the same idea.",
+  "desc": "A strong shot lengthened with hot water — the body of espresso at the size of a normal cup.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1 shot · about 45 ml"
+   },
+   {
+    "id": "my-moka",
+    "amt": "60 ml"
+   }
+  ],
+  "ing": [
+   [
+    "120–150 ml",
+    "hot water, just off the boil"
+   ]
+  ],
+  "steps": [
+   "Pour the hot water into the mug first.",
+   "Brew the base and pour it on top.",
+   "Taste, and add more water if it's too strong."
+  ],
+  "tips": [
+   "Water first, coffee second keeps the aroma on top.",
+   "For a cold one, see Iced Americano."
+  ],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": ""
+ },
+ {
+  "id": "cappuccino",
+  "emoji": "🫧",
+  "name": "Cappuccino",
+  "origin": "Italy",
+  "temp": "hot",
+  "time": "4 min",
+  "st": [
+   "milk"
+  ],
+  "fl": [
+   "chocolate",
+   "nutty",
+   "caramel"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "A third coffee, a third milk, a third foam — the coffee has to come through a lot of dairy, so chocolaty and nutty beans work best.",
+  "desc": "Equal parts coffee, hot milk and thick foam, often dusted with cocoa.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1 shot · about 45 ml"
+   },
+   {
+    "id": "my-moka",
+    "amt": "45–60 ml"
+   }
+  ],
+  "ing": [
+   [
+    "120 ml",
+    "whole milk"
+   ],
+   [
+    "pinch",
+    "cocoa powder or cinnamon (optional)"
+   ]
+  ],
+  "steps": [
+   "Heat the milk to 60–65 °C — steaming and too hot to sip, never boiling.",
+   "Froth it until it roughly doubles: pump a French press 20–30 times, or use a handheld frother.",
+   "Let it sit 30 seconds, then tap and swirl to pop the big bubbles.",
+   "Brew the base into a 150–180 ml cup.",
+   "Pour in the milk, then spoon thick foam on top.",
+   "Dust with cocoa or cinnamon."
+  ],
+  "tips": [
+   "Whole milk, cold from the fridge, makes the most stable foam."
+  ],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "latte",
+  "emoji": "🥛",
+  "name": "Caffè Latte",
+  "origin": "Italy",
+  "temp": "hot",
+  "time": "4 min",
+  "st": [
+   "milk"
+  ],
+  "fl": [
+   "chocolate",
+   "nutty",
+   "caramel"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "Mostly milk, so the bean's sweetness has to survive dilution — chocolate, nut and caramel notes come through, while fruity beans fade.",
+  "desc": "Coffee with plenty of hot, lightly frothed milk and a thin layer of foam. Mild and creamy.",
+  "base": [
+   {
+    "id": "my-milk",
+    "amt": "the whole recipe · it already includes the milk amount"
+   },
+   {
+    "id": "my-espresso",
+    "amt": "1 shot · about 45 ml"
+   },
+   {
+    "id": "my-moka",
+    "amt": "60 ml"
+   }
+  ],
+  "ing": [
+   [
+    "180–200 ml",
+    "whole milk"
+   ]
+  ],
+  "steps": [
+   "Heat the milk to 60–65 °C.",
+   "Froth it lightly — a thin, silky layer, not stiff foam. 10–15 French press pumps is enough.",
+   "Brew the base into a big mug.",
+   "Pour the milk in steadily from a little height, then lower the jug to finish with a thin layer of foam."
+  ],
+  "tips": [
+   "For a sweet latte, stir 1–2 tsp sugar or honey into the coffee before the milk."
+  ],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "flat-white",
+  "emoji": "🤍",
+  "name": "Flat White",
+  "origin": "Australia / New Zealand",
+  "temp": "hot",
+  "time": "4 min",
+  "st": [
+   "milk"
+  ],
+  "fl": [
+   "chocolate",
+   "caramel",
+   "fruity"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark"
+  ],
+  "why": "Less milk and a stronger shot than a latte, so the coffee leads. Chocolaty beans are the classic; a sweet natural also works and tastes like berry chocolate.",
+  "desc": "A strong shot with a small amount of glossy, velvety milk — smaller and stronger than a latte.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1 strong shot · set the dose to 22 g"
+   },
+   {
+    "id": "my-moka",
+    "amt": "60 ml"
+   }
+  ],
+  "ing": [
+   [
+    "120 ml",
+    "whole milk"
+   ]
+  ],
+  "steps": [
+   "Heat the milk to about 60 °C.",
+   "Froth it very lightly — 8–10 pumps — so it looks glossy like wet paint.",
+   "Swirl the jug until the milk shines.",
+   "Brew the base into a 150–160 ml cup.",
+   "Pour the milk in a steady, thin stream so the foam folds in and stays flat."
+  ],
+  "tips": [],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "cortado",
+  "emoji": "🥃",
+  "name": "Cortado",
+  "origin": "Spain",
+  "temp": "hot",
+  "time": "3 min",
+  "st": [
+   "milk"
+  ],
+  "fl": [
+   "chocolate",
+   "caramel",
+   "nutty"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "Equal coffee and milk — small and strong. Caramel and chocolaty beans turn it into something like coffee toffee.",
+  "desc": "A shot 'cut' with the same amount of warm milk. Small, strong and smooth.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1 shot · about 45 ml"
+   },
+   {
+    "id": "my-moka",
+    "amt": "45 ml"
+   }
+  ],
+  "ing": [
+   [
+    "45 ml",
+    "whole milk"
+   ]
+  ],
+  "steps": [
+   "Warm the milk to about 60 °C and froth it just a little.",
+   "Brew the base into a small glass.",
+   "Add the same amount of warm milk."
+  ],
+  "tips": [
+   "Serve it in a small glass of about 100–120 ml."
+  ],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "macchiato",
+  "emoji": "☁️",
+  "name": "Espresso Macchiato",
+  "origin": "Italy",
+  "temp": "hot",
+  "time": "2 min",
+  "st": [
+   "milk",
+   "concentrate"
+  ],
+  "fl": [
+   "chocolate",
+   "bold",
+   "caramel"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "Just a spoon of foam 'marks' the coffee, so it's nearly a straight shot — pick a bean that tastes good strong: chocolaty or bold.",
+  "desc": "A strong shot 'marked' with a spoonful of milk foam.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1 shot · about 45 ml"
+   },
+   {
+    "id": "my-moka",
+    "amt": "45 ml"
+   }
+  ],
+  "ing": [
+   [
+    "2 tbsp",
+    "milk foam (froth about 50 ml milk)"
+   ]
+  ],
+  "steps": [
+   "Froth a little hot milk until thick.",
+   "Brew the base into a small cup.",
+   "Spoon a dollop of foam on top."
+  ],
+  "tips": [
+   "This isn't the café 'caramel macchiato' — that one is a latte with vanilla and caramel sauce."
+  ],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "mocha",
+  "emoji": "🍫",
+  "name": "Caffè Mocha",
+  "origin": "Italy / USA",
+  "temp": "hot",
+  "time": "5 min",
+  "st": [
+   "milk",
+   "dessert"
+  ],
+  "fl": [
+   "chocolate",
+   "nutty",
+   "bold"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "Chocolate plus coffee — a chocolaty bean doubles down, and nutty beans make it taste like hazelnut spread.",
+  "desc": "A latte with melted dark chocolate stirred in. Rich, sweet and indulgent.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1 shot · about 45 ml"
+   },
+   {
+    "id": "my-moka",
+    "amt": "60 ml"
+   }
+  ],
+  "ing": [
+   [
+    "15–20 g",
+    "dark chocolate, chopped (or 1 tbsp cocoa + 2 tsp sugar)"
+   ],
+   [
+    "150 ml",
+    "whole milk"
+   ],
+   [
+    "optional",
+    "whipped cream"
+   ]
+  ],
+  "steps": [
+   "Put the chocolate (or cocoa and sugar) in the mug.",
+   "Brew the base onto it and stir until it's fully melted and smooth.",
+   "Heat and froth the milk.",
+   "Pour the milk in, stir once, and add whipped cream if you like."
+  ],
+  "tips": [
+   "Iced mocha: melt the chocolate in the hot coffee first, then pour over ice and cold milk."
+  ],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "con-panna",
+  "emoji": "🍦",
+  "name": "Espresso Con Panna",
+  "origin": "Italy",
+  "temp": "hot",
+  "time": "3 min",
+  "st": [
+   "concentrate",
+   "dessert"
+  ],
+  "fl": [
+   "chocolate",
+   "bold",
+   "caramel"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "A strong shot under sweet whipped cream — the bitter-sweet contrast suits chocolaty and bold beans.",
+  "desc": "A strong shot topped with a dollop of lightly sweetened whipped cream.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1 shot · about 45 ml"
+   },
+   {
+    "id": "my-moka",
+    "amt": "45 ml"
+   }
+  ],
+  "ing": [
+   [
+    "2–3 tbsp",
+    "whipped cream, lightly sweetened"
+   ]
+  ],
+  "steps": [
+   "Whip cream with a little sugar to soft peaks.",
+   "Brew the base into a small cup.",
+   "Spoon the cream on top and drink through it."
+  ],
+  "tips": [],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "cafe-bombon",
+  "emoji": "🍯",
+  "name": "Café Bombón",
+  "origin": "Spain",
+  "temp": "hot",
+  "time": "2 min",
+  "st": [
+   "milk",
+   "dessert",
+   "concentrate"
+  ],
+  "fl": [
+   "chocolate",
+   "caramel",
+   "bold"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "Condensed milk is very sweet, so it needs a strong, roasty bean to balance it.",
+  "desc": "A shot layered over sweetened condensed milk in a small glass — stir before drinking.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1 shot · about 45 ml"
+   },
+   {
+    "id": "my-moka",
+    "amt": "45 ml"
+   }
+  ],
+  "ing": [
+   [
+    "30 ml (2 tbsp)",
+    "sweetened condensed milk"
+   ]
+  ],
+  "steps": [
+   "Spoon the condensed milk into a small clear glass.",
+   "Brew the base and pour it slowly over the back of a spoon so it sits on top in a layer.",
+   "Serve layered, and stir before drinking."
+  ],
+  "tips": [],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "spanish-latte-home",
+  "emoji": "🇪🇸",
+  "name": "Spanish Latte",
+  "aka": "Café con leche condensada",
+  "origin": "Spain / Middle East",
+  "temp": "iced",
+  "time": "4 min",
+  "st": [
+   "milk",
+   "iced"
+  ],
+  "fl": [
+   "nutty",
+   "caramel",
+   "chocolate"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark"
+  ],
+  "why": "Condensed milk adds caramelised sweetness, so nutty and caramel beans taste like dulce de leche.",
+  "desc": "Coffee sweetened with condensed milk and topped with milk. Works hot or iced.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1 shot · about 45 ml"
+   },
+   {
+    "id": "my-moka",
+    "amt": "60 ml"
+   }
+  ],
+  "ing": [
+   [
+    "30 ml (2 tbsp)",
+    "sweetened condensed milk"
+   ],
+   [
+    "120 ml",
+    "whole milk"
+   ],
+   [
+    "optional",
+    "a glass of ice for the iced version"
+   ]
+  ],
+  "steps": [
+   "Brew the base onto the condensed milk and stir until it dissolves.",
+   "Hot: add hot frothed milk. Iced: pour over a glass of ice, then add cold milk.",
+   "Stir and serve."
+  ],
+  "tips": [
+   "The aeroprecipe.com Spanish Latte in the library is another take on this."
+  ],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": ""
+ },
+ {
+  "id": "iced-latte-home",
+  "emoji": "🧊",
+  "name": "Iced Latte",
+  "origin": "Everywhere",
+  "temp": "iced",
+  "time": "3 min",
+  "st": [
+   "milk",
+   "iced"
+  ],
+  "fl": [
+   "chocolate",
+   "nutty",
+   "caramel"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "Cold dulls flavour and milk mutes acidity, so a bold, chocolaty bean holds up best.",
+  "desc": "Coffee poured over ice and cold milk.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1 shot · about 45 ml"
+   },
+   {
+    "id": "my-moka",
+    "amt": "60 ml"
+   },
+   {
+    "id": "my-coldbrew",
+    "amt": "60 ml concentrate"
+   }
+  ],
+  "ing": [
+   [
+    "1 glass",
+    "ice"
+   ],
+   [
+    "150 ml",
+    "cold milk"
+   ],
+   [
+    "optional",
+    "1–2 tsp sugar syrup"
+   ]
+  ],
+  "steps": [
+   "Fill a tall glass with ice and pour in the cold milk.",
+   "Brew the base. If you're sweetening it, stir the sugar into the hot coffee now.",
+   "Pour the coffee slowly over the milk so it layers, then stir."
+  ],
+  "tips": [],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "iced-americano-home",
+  "emoji": "🧊",
+  "name": "Iced Americano",
+  "origin": "Everywhere",
+  "temp": "iced",
+  "time": "2 min",
+  "st": [
+   "iced",
+   "black"
+  ],
+  "fl": [
+   "caramel",
+   "chocolate",
+   "fruity"
+  ],
+  "bestFor": [
+   "medlight",
+   "medium",
+   "meddark"
+  ],
+  "why": "Clean and refreshing. Caramel and chocolaty beans taste sweet when cold, and a sweet fruity bean makes it juicy.",
+  "desc": "A strong shot over ice and cold water.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1 shot · about 45 ml"
+   },
+   {
+    "id": "my-bypass",
+    "amt": "concentrate only, pressed onto the ice"
+   }
+  ],
+  "ing": [
+   [
+    "1 glass",
+    "ice"
+   ],
+   [
+    "120 ml",
+    "cold water"
+   ]
+  ],
+  "steps": [
+   "Fill a glass with ice and add the cold water.",
+   "Brew the base and pour it over the top.",
+   "Stir and drink."
+  ],
+  "tips": [],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "espresso-tonic",
+  "emoji": "🍋",
+  "name": "Espresso Tonic",
+  "origin": "Sweden",
+  "temp": "iced",
+  "time": "3 min",
+  "st": [
+   "iced",
+   "mixer"
+  ],
+  "fl": [
+   "citrus",
+   "fruity",
+   "floral"
+  ],
+  "bestFor": [
+   "light",
+   "medlight",
+   "medium"
+  ],
+  "why": "Tonic is bitter and citrusy, so bright, fruity beans turn it into a sparkling spritz. Very roasty beans can taste medicinal with it.",
+  "desc": "Cold coffee floated over tonic water and ice — fizzy, bitter-sweet and refreshing.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1 shot, chilled"
+   },
+   {
+    "id": "my-bypass",
+    "amt": "concentrate only, chilled"
+   }
+  ],
+  "ing": [
+   [
+    "1 glass",
+    "ice"
+   ],
+   [
+    "120–150 ml",
+    "tonic water, cold"
+   ],
+   [
+    "1",
+    "slice of orange or lime"
+   ]
+  ],
+  "steps": [
+   "Chill the coffee first: press it onto 2–3 ice cubes and stir.",
+   "Fill a glass with ice and pour in the tonic.",
+   "Pour the cold coffee slowly on top so it layers instead of fizzing over.",
+   "Add the citrus slice."
+  ],
+  "tips": [
+   "Hot coffee into tonic foams over — always chill it first."
+  ],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "shakerato",
+  "emoji": "🍸",
+  "name": "Shakerato",
+  "origin": "Italy",
+  "temp": "iced",
+  "time": "3 min",
+  "st": [
+   "iced",
+   "concentrate"
+  ],
+  "fl": [
+   "caramel",
+   "chocolate",
+   "fruity"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark"
+  ],
+  "why": "Shaking with sugar and ice makes it frothy and sweet — caramel and chocolaty beans taste like coffee candy.",
+  "desc": "A hot shot shaken hard with ice and sugar until frothy, served chilled. No alcohol.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1 shot, hot"
+   },
+   {
+    "id": "my-moka",
+    "amt": "45–60 ml"
+   }
+  ],
+  "ing": [
+   [
+    "10–15 ml",
+    "sugar syrup (or 2 tsp sugar)"
+   ],
+   [
+    "6–8",
+    "ice cubes"
+   ]
+  ],
+  "steps": [
+   "Put the ice and syrup in a shaker or a jar with a tight lid.",
+   "Brew the base and pour it in while hot.",
+   "Shake hard for 15–20 seconds until frothy.",
+   "Strain into a chilled glass — a martini or wine glass is traditional."
+  ],
+  "tips": [
+   "Syrup: dissolve equal parts sugar and hot water."
+  ],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "freddo-cappuccino",
+  "emoji": "🇬🇷",
+  "name": "Freddo Cappuccino",
+  "origin": "Greece",
+  "temp": "iced",
+  "time": "4 min",
+  "st": [
+   "iced",
+   "milk"
+  ],
+  "fl": [
+   "chocolate",
+   "caramel",
+   "nutty"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "A shaken iced coffee under thick cold milk foam — chocolaty and caramel beans stay rich when cold.",
+  "desc": "Shaken iced coffee topped with thick, cold milk foam.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1 shot · about 45 ml"
+   },
+   {
+    "id": "my-moka",
+    "amt": "60 ml"
+   }
+  ],
+  "ing": [
+   [
+    "4–5",
+    "ice cubes"
+   ],
+   [
+    "80 ml",
+    "cold milk (low-fat foams best cold)"
+   ],
+   [
+    "optional",
+    "sugar"
+   ]
+  ],
+  "steps": [
+   "Shake the hot coffee (with sugar, if using) with 2 ice cubes until frothy, then pour over fresh ice in a glass.",
+   "Froth the cold milk with a handheld frother, or shake it hard in a jar, until thick.",
+   "Spoon the cold foam on top."
+  ],
+  "tips": [
+   "The Freddo Espresso recipes in the library are the version without milk."
+  ],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "espresso-martini",
+  "emoji": "🍸",
+  "name": "Espresso Martini",
+  "origin": "UK",
+  "temp": "iced",
+  "time": "4 min",
+  "st": [
+   "iced",
+   "alcohol",
+   "mixer"
+  ],
+  "fl": [
+   "chocolate",
+   "caramel",
+   "bold"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "alcohol": true,
+  "why": "Coffee liqueur and vodka want a rich, chocolaty coffee — and a strong shot gives the best foam.",
+  "desc": "Coffee, vodka and coffee liqueur shaken hard with ice until foamy.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1 shot, hot or chilled"
+   },
+   {
+    "id": "my-moka",
+    "amt": "45 ml"
+   }
+  ],
+  "ing": [
+   [
+    "45 ml",
+    "vodka"
+   ],
+   [
+    "20 ml",
+    "coffee liqueur"
+   ],
+   [
+    "10 ml",
+    "sugar syrup"
+   ],
+   [
+    "1 cup",
+    "ice"
+   ],
+   [
+    "3",
+    "coffee beans to garnish"
+   ]
+  ],
+  "steps": [
+   "Fill a shaker with ice.",
+   "Add the coffee, vodka, coffee liqueur and syrup.",
+   "Shake very hard for 15–20 seconds — that makes the foam.",
+   "Strain into a chilled glass and float 3 beans on top."
+  ],
+  "tips": [],
+  "warn": "",
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "irish-coffee",
+  "emoji": "☘️",
+  "name": "Irish Coffee",
+  "origin": "Ireland",
+  "temp": "hot",
+  "time": "5 min",
+  "st": [
+   "alcohol",
+   "dessert"
+  ],
+  "fl": [
+   "chocolate",
+   "caramel",
+   "nutty"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark"
+  ],
+  "alcohol": true,
+  "why": "Brown sugar, whiskey and cream love caramel and chocolaty beans.",
+  "desc": "Hot coffee with brown sugar and Irish whiskey under a layer of floated cream.",
+  "base": [
+   {
+    "id": "my-everyday",
+    "amt": "120 ml · make the cup and use part of it"
+   },
+   {
+    "id": "my-bypass",
+    "amt": "120 ml"
+   }
+  ],
+  "ing": [
+   [
+    "40 ml",
+    "Irish whiskey"
+   ],
+   [
+    "1–2 tsp",
+    "brown sugar"
+   ],
+   [
+    "40 ml",
+    "heavy or fresh cream, lightly whipped"
+   ]
+  ],
+  "steps": [
+   "Warm a heatproof glass with hot water, then empty it.",
+   "Add the brown sugar and hot coffee and stir until it dissolves.",
+   "Stir in the whiskey.",
+   "Pour the lightly whipped cream over the back of a spoon so it floats. Don't stir — drink through the cream."
+  ],
+  "tips": [
+   "Whip the cream only until it just thickens; stiff cream won't float smoothly."
+  ],
+  "warn": "",
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "ca-phe-sua-da",
+  "emoji": "🇻🇳",
+  "name": "Vietnamese Iced Coffee",
+  "aka": "Cà phê sữa đá",
+  "origin": "Vietnam",
+  "temp": "iced",
+  "time": "4 min",
+  "st": [
+   "iced",
+   "milk",
+   "vietnamese"
+  ],
+  "fl": [
+   "bold",
+   "chocolate"
+  ],
+  "bestFor": [
+   "meddark",
+   "dark"
+  ],
+  "why": "Traditionally made with dark-roasted robusta. Any bold, chocolaty bean stands up to the sweet condensed milk.",
+  "desc": "Strong dark coffee sweetened with condensed milk and poured over ice.",
+  "base": [
+   {
+    "id": "my-moka",
+    "amt": "60 ml"
+   },
+   {
+    "id": "my-espresso",
+    "amt": "1 shot · about 45 ml"
+   }
+  ],
+  "ing": [
+   [
+    "1–2 tbsp",
+    "sweetened condensed milk"
+   ],
+   [
+    "1 tall glass",
+    "ice"
+   ]
+  ],
+  "steps": [
+   "Put the condensed milk in a heatproof glass.",
+   "Brew the base onto it and stir until there's no syrup left on the bottom.",
+   "Taste, and add more condensed milk now if you want it sweeter.",
+   "Pour over a tall glass of ice, stir, and wait 30 seconds."
+  ],
+  "tips": [
+   "The library has three AeroPress versions too — search 'vietnamese'."
+  ],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": ""
+ },
+ {
+  "id": "bac-xiu",
+  "emoji": "🇻🇳",
+  "name": "Bạc Xỉu",
+  "aka": "Vietnamese milk coffee",
+  "origin": "Vietnam",
+  "temp": "iced",
+  "time": "4 min",
+  "st": [
+   "iced",
+   "milk",
+   "vietnamese"
+  ],
+  "fl": [
+   "chocolate",
+   "nutty",
+   "bold"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "The milky Vietnamese version — more milk, less coffee — so chocolaty and nutty beans keep it from tasting flat.",
+  "desc": "Mostly milk and condensed milk over ice, with a little strong coffee on top.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1 shot · about 45 ml"
+   },
+   {
+    "id": "my-moka",
+    "amt": "45–60 ml"
+   }
+  ],
+  "ing": [
+   [
+    "1 tbsp",
+    "sweetened condensed milk"
+   ],
+   [
+    "60–80 ml",
+    "milk"
+   ],
+   [
+    "1 glass",
+    "ice"
+   ]
+  ],
+  "steps": [
+   "Stir the condensed milk and milk together in a glass.",
+   "Add the ice.",
+   "Brew the base, pour it over the top, and stir."
+  ],
+  "tips": [],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": ""
+ },
+ {
+  "id": "egg-coffee",
+  "emoji": "🥚",
+  "name": "Egg Coffee",
+  "aka": "Cà phê trứng",
+  "origin": "Hanoi, Vietnam",
+  "temp": "hot",
+  "time": "6 min",
+  "st": [
+   "dessert",
+   "vietnamese",
+   "concentrate"
+  ],
+  "fl": [
+   "bold",
+   "chocolate",
+   "caramel"
+  ],
+  "bestFor": [
+   "meddark",
+   "dark"
+  ],
+  "why": "A thick egg-and-condensed-milk cream sits on strong, dark coffee — bold beans cut through the sweetness.",
+  "desc": "Strong hot coffee under a whipped custard-like cream of egg yolk and condensed milk.",
+  "base": [
+   {
+    "id": "my-moka",
+    "amt": "45–60 ml, hot"
+   },
+   {
+    "id": "my-espresso",
+    "amt": "1 shot, hot"
+   }
+  ],
+  "ing": [
+   [
+    "1",
+    "egg yolk — very fresh, pasteurised if you can"
+   ],
+   [
+    "2 tbsp",
+    "sweetened condensed milk"
+   ],
+   [
+    "1 tsp",
+    "sugar (optional)"
+   ]
+  ],
+  "steps": [
+   "Whisk the egg yolk, condensed milk and sugar for 3–5 minutes until pale, thick and doubled. A handheld frother makes it quicker.",
+   "Stand the cup in a bowl of hot water to keep it warm.",
+   "Brew the base into the cup.",
+   "Spoon the egg cream on top. Eat the cream with a spoon, then drink."
+  ],
+  "warn": "🥚 Uses raw egg yolk. Use the freshest eggs you can, pasteurised if available, and skip it for anyone pregnant, very young, elderly or unwell.",
+  "tips": [],
+  "alcohol": false,
+  "baseNote": ""
+ },
+ {
+  "id": "filter-kaapi",
+  "emoji": "🇮🇳",
+  "name": "South Indian Filter Coffee",
+  "aka": "Filter kaapi",
+  "origin": "South India",
+  "temp": "hot",
+  "time": "6 min",
+  "st": [
+   "milk"
+  ],
+  "fl": [
+   "chocolate",
+   "nutty",
+   "bold"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "Kaapi is strong decoction with boiled milk and sugar — chocolaty, nutty Indian beans (and a chicory blend) give the classic taste.",
+  "desc": "Strong coffee decoction with boiled milk and sugar, frothed by pouring between a tumbler and dabara.",
+  "base": [
+   {
+    "id": "my-moka",
+    "amt": "60 ml — the closest thing to decoction"
+   },
+   {
+    "id": "my-espresso",
+    "amt": "1–2 shots"
+   }
+  ],
+  "ing": [
+   [
+    "120–150 ml",
+    "whole milk"
+   ],
+   [
+    "1–2 tsp",
+    "sugar"
+   ],
+   [
+    "optional",
+    "coffee with 20–30% chicory for the traditional taste"
+   ]
+  ],
+  "steps": [
+   "Bring the milk just to a boil in a pan.",
+   "Put the sugar in a steel tumbler and add the coffee.",
+   "Add the hot milk.",
+   "Pour back and forth between the tumbler and a dabara (or two cups) from a height 3–4 times to cool and froth it."
+  ],
+  "tips": [
+   "A traditional South Indian filter makes the real decoction: 2–3 tbsp of fine coffee, hot water poured on top, left to drip for 15–20 minutes."
+  ],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": ""
+ },
+ {
+  "id": "dalgona",
+  "emoji": "🌀",
+  "name": "Dalgona Coffee",
+  "aka": "Whipped coffee",
+  "origin": "South Korea / India",
+  "temp": "iced",
+  "time": "8 min",
+  "st": [
+   "milk",
+   "iced",
+   "dessert"
+  ],
+  "fl": [
+   "caramel",
+   "chocolate"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "It's made with instant coffee, so your bean doesn't matter much here — it tastes like caramel-coffee cream.",
+  "desc": "Instant coffee, sugar and hot water whipped into a thick cream and spooned over iced milk.",
+  "base": [],
+  "baseNote": "Uses instant coffee, not a brew from this card — brewed coffee won't whip.",
+  "ing": [
+   [
+    "2 tbsp",
+    "instant coffee"
+   ],
+   [
+    "2 tbsp",
+    "sugar"
+   ],
+   [
+    "2 tbsp",
+    "hot water"
+   ],
+   [
+    "200 ml",
+    "cold milk"
+   ],
+   [
+    "1 glass",
+    "ice"
+   ]
+  ],
+  "steps": [
+   "Whisk the instant coffee, sugar and hot water hard for 3–5 minutes (2 with a frother) until thick, pale and holding peaks.",
+   "Fill a glass with ice and the cold milk.",
+   "Spoon the whipped coffee on top. Stir before drinking."
+  ],
+  "tips": [
+   "India's 'beaten coffee' is the same trick, stirred into hot milk."
+  ],
+  "warn": "",
+  "alcohol": false
+ },
+ {
+  "id": "cold-brew-drink",
+  "emoji": "🫙",
+  "name": "Cold Brew",
+  "origin": "Everywhere",
+  "temp": "iced",
+  "time": "2 min",
+  "st": [
+   "iced",
+   "black"
+  ],
+  "fl": [
+   "chocolate",
+   "caramel",
+   "nutty"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "Cold water pulls sweetness and body but little acidity — chocolaty, nutty beans taste smooth and sweet; bright fruity ones go flat.",
+  "desc": "Overnight cold brew concentrate, diluted over ice.",
+  "base": [
+   {
+    "id": "my-coldbrew",
+    "amt": "60–100 ml concentrate"
+   }
+  ],
+  "ing": [
+   [
+    "1 glass",
+    "ice"
+   ],
+   [
+    "60–100 ml",
+    "cold water or milk"
+   ]
+  ],
+  "steps": [
+   "Fill a glass with ice.",
+   "Pour in the concentrate.",
+   "Top with the same amount of cold water or milk and stir."
+  ],
+  "tips": [
+   "Start at 1:1 and adjust — the concentrate is strong."
+  ],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "sweet-cream-cold-brew",
+  "emoji": "🍦",
+  "name": "Vanilla Sweet Cream Cold Brew",
+  "origin": "USA",
+  "temp": "iced",
+  "time": "3 min",
+  "st": [
+   "iced",
+   "milk",
+   "dessert"
+  ],
+  "fl": [
+   "chocolate",
+   "caramel",
+   "nutty"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "Vanilla cream on smooth cold brew — chocolaty and caramel beans make it taste like a coffee float.",
+  "desc": "Cold brew over ice with a pour of vanilla-sweetened cream on top.",
+  "base": [
+   {
+    "id": "my-coldbrew",
+    "amt": "100 ml concentrate"
+   }
+  ],
+  "ing": [
+   [
+    "30 ml",
+    "fresh cream"
+   ],
+   [
+    "30 ml",
+    "milk"
+   ],
+   [
+    "1–2 tsp",
+    "vanilla syrup (or sugar and a drop of vanilla essence)"
+   ],
+   [
+    "1 glass",
+    "ice"
+   ]
+  ],
+  "steps": [
+   "Froth or whisk the cream, milk and vanilla together until slightly thick.",
+   "Fill a glass with ice, add the concentrate and 50 ml cold water.",
+   "Pour the vanilla cream on top so it cascades down."
+  ],
+  "tips": [],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "coffee-lemonade",
+  "emoji": "🍋",
+  "name": "Coffee Lemonade",
+  "aka": "Mazagran",
+  "origin": "Portugal / Algeria",
+  "temp": "iced",
+  "time": "3 min",
+  "st": [
+   "iced",
+   "mixer"
+  ],
+  "fl": [
+   "citrus",
+   "fruity",
+   "floral"
+  ],
+  "bestFor": [
+   "light",
+   "medlight"
+  ],
+  "why": "Lemon amplifies citrus and fruit notes, so bright washed or fruity light roasts taste like a coffee soda. Dark roasts clash with it.",
+  "desc": "Cold coffee with lemon, a little sugar and water or soda over ice.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1 shot, chilled"
+   },
+   {
+    "id": "my-bypass",
+    "amt": "concentrate only, chilled"
+   }
+  ],
+  "ing": [
+   [
+    "20 ml",
+    "fresh lemon juice"
+   ],
+   [
+    "15 ml",
+    "sugar syrup"
+   ],
+   [
+    "100 ml",
+    "cold water or soda water"
+   ],
+   [
+    "1 glass",
+    "ice"
+   ],
+   [
+    "1",
+    "lemon slice"
+   ]
+  ],
+  "steps": [
+   "Chill the coffee on 2–3 ice cubes.",
+   "Stir the lemon juice, syrup and water (or soda) together over ice.",
+   "Pour the coffee on top slowly and add the lemon slice."
+  ],
+  "tips": [],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": ""
+ },
+ {
+  "id": "cafe-au-lait",
+  "emoji": "🥐",
+  "name": "Café au Lait",
+  "origin": "France",
+  "temp": "hot",
+  "time": "4 min",
+  "st": [
+   "milk"
+  ],
+  "fl": [
+   "nutty",
+   "caramel",
+   "chocolate"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark"
+  ],
+  "why": "Brewed coffee with hot milk, half and half — softer than a latte. Nutty and caramel beans taste like breakfast pastry.",
+  "desc": "Brewed coffee and hot milk in equal parts, traditionally in a wide cup.",
+  "base": [
+   {
+    "id": "my-everyday",
+    "amt": "120 ml · half the cup"
+   },
+   {
+    "id": "my-moka",
+    "amt": "60 ml topped up with 60 ml hot water"
+   }
+  ],
+  "ing": [
+   [
+    "120 ml",
+    "hot whole milk"
+   ]
+  ],
+  "steps": [
+   "Heat the milk until steaming.",
+   "Pour equal parts coffee and hot milk into a wide cup, at the same time if you can."
+  ],
+  "tips": [],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "red-eye",
+  "emoji": "👁️",
+  "name": "Red Eye",
+  "origin": "USA",
+  "temp": "hot",
+  "time": "4 min",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "chocolate",
+   "bold",
+   "caramel"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "A full cup with an extra shot — strong and roasty. Chocolaty beans keep it smooth.",
+  "desc": "A cup of brewed coffee with an extra shot added.",
+  "base": [
+   {
+    "id": "my-everyday",
+    "amt": "the full cup · 200 ml"
+   },
+   {
+    "id": "my-espresso",
+    "amt": "plus 1 shot · about 45 ml"
+   }
+  ],
+  "ing": [],
+  "steps": [
+   "Brew the Everyday Cup.",
+   "Brew one Espresso-Style shot.",
+   "Pour the shot into the cup."
+  ],
+  "tips": [
+   "That's two brews' worth of caffeine — go easy."
+  ],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "cafe-de-olla",
+  "emoji": "🇲🇽",
+  "name": "Café de Olla",
+  "origin": "Mexico",
+  "temp": "hot",
+  "time": "8 min",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "chocolate",
+   "caramel",
+   "nutty"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "Brewed with cinnamon and unrefined sugar — chocolaty and caramel beans pair with the spice. Jaggery is a great stand-in for piloncillo.",
+  "desc": "Coffee brewed with water simmered with cinnamon and unrefined sugar.",
+  "base": [
+   {
+    "id": "my-everyday",
+    "amt": "brew it with the spiced water below"
+   },
+   {
+    "id": "my-moka",
+    "amt": "60 ml + 120 ml of the spiced water"
+   }
+  ],
+  "ing": [
+   [
+    "250 ml",
+    "water"
+   ],
+   [
+    "1 small",
+    "cinnamon stick"
+   ],
+   [
+    "15–20 g",
+    "jaggery or dark brown sugar"
+   ],
+   [
+    "optional",
+    "1 clove or a strip of orange peel"
+   ]
+  ],
+  "steps": [
+   "Simmer the water with the cinnamon and jaggery (and clove or orange) for 5 minutes, then take it off the heat.",
+   "Let it cool to the brewing temperature — about 1 minute for 92 °C.",
+   "Take out the cinnamon and use this water to brew the base.",
+   "Serve it black in a mug."
+  ],
+  "tips": [],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ },
+ {
+  "id": "coffee-frappe",
+  "emoji": "🥤",
+  "name": "Blended Coffee Frappé",
+  "origin": "Everywhere",
+  "temp": "iced",
+  "time": "4 min",
+  "st": [
+   "iced",
+   "milk",
+   "dessert"
+  ],
+  "fl": [
+   "chocolate",
+   "caramel",
+   "nutty"
+  ],
+  "bestFor": [
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "Blended with milk, ice and sugar, it needs a strong, chocolaty base to still taste of coffee.",
+  "desc": "Coffee blended with milk, ice and sugar until thick — a coffee milkshake.",
+  "base": [
+   {
+    "id": "my-espresso",
+    "amt": "1–2 shots, chilled"
+   },
+   {
+    "id": "my-coldbrew",
+    "amt": "80 ml concentrate"
+   }
+  ],
+  "ing": [
+   [
+    "150 ml",
+    "cold milk"
+   ],
+   [
+    "1 cup",
+    "ice"
+   ],
+   [
+    "1–2 tbsp",
+    "sugar or syrup"
+   ],
+   [
+    "optional",
+    "1 scoop vanilla ice cream or chocolate sauce"
+   ]
+  ],
+  "steps": [
+   "Chill the coffee.",
+   "Blend the coffee, milk, ice and sugar (and ice cream) until smooth and thick.",
+   "Pour into a tall glass, and top with chocolate sauce or whipped cream if you like."
+  ],
+  "tips": [],
+  "warn": "",
+  "alcohol": false,
+  "baseNote": "",
+  "aka": ""
+ }
+]
