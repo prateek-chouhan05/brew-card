@@ -698,19 +698,25 @@ path.da-glass{fill:none}
 .brew-anim .ba-spoon ellipse{fill:#7d7277}
 .brew-anim .ba-bubbles circle{fill:rgba(255,255,255,.7)}
 .brew-anim .ba-steam path{fill:none;stroke:#bcaeb3;stroke-width:2.5;stroke-linecap:round;opacity:.8}
+/* every loop moves by transform or opacity only, runs only while the brew runs,
+   and is left out entirely under reduced motion (the drawing then steps phase by phase) */
 @media (prefers-reduced-motion:no-preference){
-  .brew-anim .ba-stream.on{animation:baFlow .5s linear infinite}
-  .brew-anim .ba-drip.on{animation:baFlow .7s linear infinite}
-  .brew-anim .ba-spoon.on{transform-origin:100px 30px;animation:baStir .6s ease-in-out infinite alternate}
-  .brew-anim .ba-wobble.on{transform-box:view-box;transform-origin:100px 150px;animation:baSwirl .5s ease-in-out infinite alternate}
-  .brew-anim .ba-bubbles.on circle{animation:baBubble 2.4s ease-in infinite}
+  .brew-anim .ba-stream.on{animation:baFall .5s linear infinite}
+  .brew-anim .ba-drip.on{animation:baFall .7s linear infinite}
+  .brew-anim .ba-spoon.on{transform-box:fill-box;transform-origin:50% 0;animation:baStir .6s cubic-bezier(.76,0,.24,1) infinite alternate}
+  .brew-anim .ba-wobble.on{transform-box:view-box;transform-origin:100px 150px;animation:baSwirl .5s cubic-bezier(.76,0,.24,1) infinite alternate}
+  .brew-anim .ba-bubbles.on circle{animation:baBubble 2.4s cubic-bezier(.22,1,.36,1) infinite}
   .brew-anim .ba-bubbles.on circle:nth-child(2){animation-delay:.8s}
   .brew-anim .ba-bubbles.on circle:nth-child(3){animation-delay:1.6s}
-  .brew-anim .ba-steam path{animation:daSteam 2.8s ease-in-out infinite}
+  /* steam rises a few times when the brew is done, then rests */
+  .brew-anim .ba-steam path{animation:daSteam 2.8s ease-in-out 3}
   .brew-anim .ba-steam path:nth-child(2){animation-delay:.6s}
   .brew-anim .ba-steam path:nth-child(3){animation-delay:1.2s}
 }
-@keyframes baFlow{to{stroke-dashoffset:-22}}
+/* scrolled out of view: hold the loops where they are */
+.brew-anim.ba-off *{animation-play-state:paused}
+/* one dash period (11) per cycle, twice: the dashes slide down the line */
+@keyframes baFall{from{transform:translateY(-22px)}to{transform:translateY(0)}}
 @keyframes baStir{from{transform:rotate(-14deg)}to{transform:rotate(14deg)}}
 @keyframes baSwirl{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
 @keyframes baBubble{0%{transform:translateY(0);opacity:0}20%{opacity:.9}100%{transform:translateY(-34px);opacity:0}}
