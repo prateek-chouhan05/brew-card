@@ -66,6 +66,12 @@ export function BrewConsole({ id }: { id: string }) {
           {prefs.favs.includes(entry.id) ? "★ Saved" : "☆ Save"}
         </button>
         {entry.kind !== "house" && <p className="byline" id="rByline">{entrySub(entry)}{entry.kind === "drink" ? " · " + entry.time : ""}</p>}
+        {entry.kind === "library" && (
+          <p className="cite" id="rCite">
+            📖 Recipe by <b>{entry.author}</b> · cited from{" "}
+            <a href={entry.url} target="_blank" rel="noopener">{hostOf(entry.url)} ↗</a>
+          </p>
+        )}
         {brew.notes && <p className="notes" id="rNotes">{brew.notes}</p>}
       </div>
 
@@ -248,7 +254,7 @@ export function BrewConsole({ id }: { id: string }) {
     if (entry.kind !== "library" || entry.link || !entry.segs) return null;
     return (
       <div className="provenance" id="provenance">
-        <a href={entry.url} target="_blank" rel="noopener">🔗 Original recipe on {hostOf(entry.url)} ↗</a>
+        <a href={entry.url} target="_blank" rel="noopener">🔗 Source: {entry.name} by {entry.author}, on {hostOf(entry.url)} ↗</a>
         {entry.issues && <details><summary>Transcription notes</summary><p>{entry.issues}</p></details>}
       </div>
     );
@@ -405,7 +411,7 @@ function TimerPanel({ tb, finish }: { tb: TimerBrew; finish: string }) {
       <div className="tl-key"><span id="keyLeft">Phase {s.idx + 1} of {tb.segs.length}</span><span id="keyRight">Total {mmss(s.total)}</span></div>
       <div className="dial-zone">
         <div className="anim-row">
-        <BrewAnimation m={{ segs: tb.segs, marks: s.marks, idx: s.idx, into, started: !!s.startedAt, finished: s.finished, running: s.running, inverted: tb.o === "inverted" }} />
+        <BrewAnimation tb={tb} />
         <div className={"dial" + (sg.k === "wait" ? " waiting" : "") + (s.startedAt && !s.finished && sg.k === "flip" ? " flipping" : "")} id="dial">
           <svg viewBox="0 0 128 128" aria-hidden="true">
             <circle className="track" cx="64" cy="64" r="56" />

@@ -7,7 +7,7 @@ A brew companion for the AeroPress and moka pot. Tell it your grinder, your bean
 ## What it does
 
 **Find a recipe**
-- **105 recipes:** 8 house methods that adapt to your roast, 30 classic coffee drinks (affogato, Vietnamese iced coffee, filter kaapi, espresso tonic…), and an index of 67 championship, barista and enthusiast AeroPress recipes.
+- **105 recipes:** 8 house methods that adapt to your roast, 30 classic coffee drinks (affogato, Vietnamese iced coffee, filter kaapi, espresso tonic…), and 67 championship, barista and enthusiast AeroPress recipes you can brew with the timer, each credited to its author and source.
 - **Search and filter:** search with synonyms ("citrus", "iced", "quick"), collections, and refine options for brewer, AeroPress orientation, hot/iced, drink type and strength.
 - **Match my coffee:** ranks or filters recipes by your roast and bean flavour.
 - **Illustrations:** every recipe has one — each drink in its own glass with its layers, plus your methods and the AeroPress.
@@ -75,7 +75,7 @@ lib/
   journal.ts             bean rest windows, ratings and dial-in advice
   timer.ts               the timer engine (outside React, so it survives navigation) + cue events
   audio.ts               cue tones and the screen wake lock
-data/                    drinks.json, library-index.json
+data/                    drinks.json, library.json
 public/                  icons, manifest.webmanifest, sw.js
 tests/                   app.spec.ts (layout, discovery, keyboard), features.spec.ts (new features)
 ```
@@ -96,6 +96,6 @@ Settings use `localStorage` keys starting with `brewcard.`. The setup, roast, fl
 
 ## About the recipe data
 
-The AeroPress library recipes belong to their authors and the sites that publish them, mostly [aeroprecipe.com](https://aeroprecipe.com/recipes). This project keeps only an index: name, author, event, link, and Brew Card's own flavour tags and notes. Doses, temperatures and steps stay on the original pages.
+The AeroPress library recipes belong to their authors and the sites that publish them, mostly [aeroprecipe.com](https://aeroprecipe.com/recipes). Brew Card shows each recipe's dose, water, temperature, grind and timed steps (summarised in its own words) so you can brew it with the timer, and credits the author with a link to the original page on every recipe. The flavour tags and notes are Brew Card's own.
 
 Grinder settings are derived from [brewmark.io](https://brewmark.io/grinders)'s published charts. The Clean & Clear method follows James Hoffmann's Ultimate AeroPress recipe.

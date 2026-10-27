@@ -33,9 +33,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <footer className="site-foot">
               <InstallButton />
               <p>
-                The recipe library is an index: each recipe links to its original page on{" "}
-                <a href="https://aeroprecipe.com/recipes" target="_blank" rel="noopener">aeroprecipe.com</a> (or aeropress.com), where the full recipe
-                and its author&apos;s credit live. The flavour tags and notes are my own. Grinder settings are derived from{" "}
+                AeroPress library recipes are credited to their authors and cited from{" "}
+                <a href="https://aeroprecipe.com/recipes" target="_blank" rel="noopener">aeroprecipe.com</a> (or aeropress.com) — each recipe links to
+                its original page. The steps are summarised in Brew Card&apos;s own words. The flavour tags and notes are my own. Grinder settings are derived from{" "}
                 <a href="https://brewmark.io/grinders" target="_blank" rel="noopener">brewmark.io</a>&apos;s published charts. The Clean &amp; Clear method
                 follows James Hoffmann&apos;s Ultimate AeroPress recipe, with water temperature set by your roast. Every setting is a starting point, not a rule.
               </p>

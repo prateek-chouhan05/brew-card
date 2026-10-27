@@ -158,12 +158,14 @@ test("drink → base → back to the drink", async ({ page: p }) => {
   await expect(p.locator("#returnBar")).toHaveCount(0);
 });
 
-test("link-only recipes point to the original page", async ({ page: p }) => {
+test("library recipes show the full recipe and cite the source", async ({ page: p }) => {
   await p.goto("/recipes/wac-2023-1st/");
   await p.click("#suCancel");
-  await expect(p.locator("#rPrep a.linkbtn")).toHaveAttribute("href", /aeroprecipe\.com/);
-  await p.locator("#rPrep .nearbtn").click();
-  await expect(p).toHaveURL(/\/recipes\/my-/);
+  await expect(p.locator("#rCite a")).toHaveAttribute("href", /aeroprecipe\.com/);
+  await expect(p.locator("#rCite")).toContainText("Tay Wipvasutt");
+  await expect(p.locator("#rPrep")).toContainText("Grind as written");
+  await expect(p.locator("#go")).toBeVisible();
+  await expect(p.locator("#provenance a")).toHaveAttribute("href", /aeroprecipe\.com/);
 });
 
 test("inverted switch adds a flip and is remembered", async ({ page: p }) => {

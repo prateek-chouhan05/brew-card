@@ -1,5 +1,6 @@
 "use client";
-import { useId } from "react";
+import { useEffect, useId, useState } from "react";
+import { timer, useTimer, type TimerBrew } from "@/lib/timer";
 import type { TimedSeg } from "@/lib/types";
 
 /** Where the brew is right now; computed by the timer panel. */
@@ -29,7 +30,47 @@ const IN_TOP = 62, IN_BOT = 158, IN_H = IN_BOT - IN_TOP;
  * An AeroPress that follows the timer: water fills as you pour, the spoon moves while you stir,
  * the brew darkens while it steeps, it turns over at the flip, and the plunger presses coffee into the mug.
  */
-export function BrewAnimation({ m, size = "md" }: { m: BrewMoment; size?: "md" | "lg" }) {
+export function BrewAnimation({ tb, size = "md" }: { tb: TimerBrew; size?: "md" | "lg" }) {
+  useTimer();
+  const owns = timer.owns(tb);
+  const running = owns && timer.running;
+  useFrames(running);
+  return <BrewDrawing m={momentFor(tb)} size={size} />;
+}
+
+/** Re-render every display frame while the brew runs, so the motion is smooth (the timer itself ticks 10×/s). */
+function useFrames(active: boolean) {
+  const [, setFrame] = useState(0);
+  useEffect(() => {
+    if (!active) return;
+    let reduce = false;
+    try { reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch {}
+    if (reduce) return;
+    let id = 0;
+    const loop = () => { setFrame((n) => (n + 1) % 1e6); id = requestAnimationFrame(loop); };
+    id = requestAnimationFrame(loop);
+    return () => cancelAnimationFrame(id);
+  }, [active]);
+}
+
+/** Where a brew is right now, read straight from the timer. */
+export function momentFor(tb: TimerBrew): BrewMoment {
+  const owns = timer.owns(tb);
+  const marks: number[] = [];
+  let total = 0;
+  for (const s of tb.segs) { marks.push(total); total += s.dur; }
+  const t = Math.min(owns ? timer.elapsed() : 0, total);
+  let idx = 0;
+  marks.forEach((m, i) => { if (t + 0.0001 >= m) idx = i; });
+  const into = Math.min(tb.segs[idx].dur, Math.max(0, t - marks[idx]));
+  return {
+    segs: tb.segs, marks, idx, into,
+    started: owns && timer.startedAt > 0, finished: owns && timer.finished, running: owns && timer.running,
+    inverted: tb.o === "inverted",
+  };
+}
+
+function BrewDrawing({ m, size }: { m: BrewMoment; size: "md" | "lg" }) {
   const { segs, marks, idx, into, started, finished, running, inverted } = m;
   const cur = segs[idx];
   const p = cur && cur.dur ? Math.min(1, into / cur.dur) : 0;

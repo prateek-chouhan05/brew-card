@@ -1,5 +1,5 @@
 import drinksJson from "@/data/drinks.json";
-import libraryJson from "@/data/library-index.json";
+import libraryJson from "@/data/library.json";
 import { HOUSE as RAW_HOUSE } from "./data/house";
 import { FLAVOURS, HOUSE_PAIR } from "./data/flavours";
 import { ROASTS } from "./data/roasts";

@@ -166,7 +166,7 @@ export function HandsFree({ tb, onClose }: { tb: TimerBrew; onClose: () => void 
       </div>
       <div className="hf-main">
         <div className="hf-anim">
-          <BrewAnimation size="lg" m={{ segs: tb.segs, marks, idx, into, started, finished, running, inverted: tb.o === "inverted" }} />
+          <BrewAnimation size="lg" tb={tb} />
         </div>
         <div className="hf-info">
           <p className="hf-kind">{finished ? "Done" : started ? (running ? KIND_LABEL[sg.k] : "Paused · " + KIND_LABEL[sg.k]) : KIND_LABEL[tb.segs[0].k] + " first"}</p>

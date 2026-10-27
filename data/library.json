@@ -1,0 +1,4516 @@
+[
+ {
+  "id": "iac-2023-delhi",
+  "name": "IAC 2023 Delhi Winner",
+  "author": "Arne Jach",
+  "source": "Indian AeroPress Championship 2023 · Delhi round 1st",
+  "g": "champ",
+  "year": 2023,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/indian-aeropress-championship-delhi-winner",
+  "o": "inverted",
+  "dose": 18,
+  "water": 185,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 80,
+  "grind": "Medium, 70 clicks on a 1Zpresso Q2",
+  "clicks": 15,
+  "filter": "2 paper",
+  "roast": "medium",
+  "st": [
+   "black"
+  ],
+  "total": 135,
+  "notes": "Low temperature, short steep and almost no agitation (just pushing the grounds down) to tame a harsh, bitter pineapple-fermentation coffee; two paper filters.",
+  "issues": "Page starts the timer after the 15 s pour and flips at 1:30 of immersion; timeline here starts at the pour so the stated 2:15 total holds, with flip at ~1:40. Water given as 185 g / 185 ml. Author country not stated. Roast not stated (inferred medium: Caarabi Barbara Estate pineapple fermentation). Push-down (5 s) and flip (5 s) durations estimated.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 185 g at 80°C quickly, no bloom",
+    15
+   ],
+   [
+    "stir",
+    "Push grounds down 3-4 times with stirrer, don't stir",
+    5
+   ],
+   [
+    "wait",
+    "Fit 2 hot-rinsed paper filters in cap; steep",
+    80
+   ],
+   [
+    "flip",
+    "Place AeroPress on cup at 1:30 immersion",
+    5
+   ],
+   [
+    "press",
+    "Press slowly ~30 s",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "fruity"
+  ],
+  "why": "Built to tame a wild pineapple-fermented coffee: cool water and almost no agitation keep funky fruit pleasant instead of harsh. Made for anaerobic and co-fermented lots like many Indian specialty micro-lots."
+ },
+ {
+  "id": "wac-2023-1st",
+  "name": "WAC 2023 Champion",
+  "author": "Tay Wipvasutt",
+  "source": "World AeroPress Championship 2023 · 1st",
+  "g": "champ",
+  "year": 2023,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/2023-world-aeropress-championship-1st-place",
+  "o": "inverted",
+  "dose": 18,
+  "water": 100,
+  "byp": 80,
+  "bypT": "cold water",
+  "temp": 89,
+  "grind": "Coarse. 1Zpresso ZP6 at 65 clicks, or Comandante C40 at 29 clicks",
+  "clicks": 19,
+  "filter": "1 paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 125,
+  "notes": "Unusual split dose: 16 g brewed first, with the last 2 g of coffee added at 0:45; concentrate diluted with 40 g room-temp then 40 g hot water.",
+  "issues": "Page title credits Tay Wipvasutt but lists creator as 'Dag Press'. Country not stated. Bypass is mixed: +40 g room-temperature water (to 115 g) then +40 g hot water (to ~155 g, to taste); bypass_type set to 'cold water' as the closest single value. Roast not stated (inferred light: washed Kenya AB, Fieldwork Coffee). Pour (10 s), the 2 g add (10 s), and flip (5 s) durations estimated; 'add coffee' isn't an allowed action so it is a wait step.",
+  "fin": "Add 80 g room-temperature water.",
+  "segs": [
+   [
+    "pour",
+    "Add 16 g coffee, pour 100 g at 89°C",
+    10
+   ],
+   [
+    "wait",
+    "Steep",
+    20
+   ],
+   [
+    "stir",
+    "Circular stir 5 s with one side of a chopstick",
+    5
+   ],
+   [
+    "wait",
+    "Steep",
+    10
+   ],
+   [
+    "wait",
+    "At 0:45 add remaining 2 g coffee",
+    10
+   ],
+   [
+    "stir",
+    "Stir 5 s",
+    5
+   ],
+   [
+    "wait",
+    "Push plunger up to expel air, cap",
+    30
+   ],
+   [
+    "flip",
+    "Flip",
+    5
+   ],
+   [
+    "press",
+    "Press at 1:35 for ~30 s, ~75 g yield",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "A split dose adds a late burst of fresh aromatics on top of a sweet base. Best with expressive fruity beans."
+ },
+ {
+  "id": "iac-2022-bengaluru",
+  "name": "IAC 2022 Bengaluru",
+  "author": "Shruti Vashist",
+  "source": "Indian AeroPress Championship 2022 · Bengaluru region",
+  "g": "champ",
+  "year": 2022,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/indian-aeropress-championship-bengaluru-region",
+  "o": "inverted",
+  "dose": 18,
+  "water": 206,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 89,
+  "grind": "Fine-medium (steps say medium-fine); Baratza Encore listed as equipment, no setting given",
+  "clicks": 12,
+  "filter": "1 paper",
+  "roast": "medium",
+  "st": [
+   "black"
+  ],
+  "total": 270,
+  "notes": "A long, slow immersion of a medium-dark coffee with a 70 g bloom pour and gentle cross stir, giving good body and a slightly acidic note.",
+  "issues": "Placement not stated (regional entry). Roast stated as medium-dark (mapped to medium). Most timings not on page: only the 30 s bloom pour and 10 s wait are given; second pour (15 s), stir (10 s), flip (10 s), press (30 s) estimated and the long steep sized to fit the stated 4:30 total. Water given as 206 g / 206 mL. Filter count implied as one. Country not stated (Indian event).",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 70 g over 30 s (bloom)",
+    30
+   ],
+   [
+    "pour",
+    "Pour to 206 g",
+    15
+   ],
+   [
+    "stir",
+    "Stir gently 2x side-side, 2x up-down",
+    10
+   ],
+   [
+    "wait",
+    "Wait 10 s, attach rinsed filter cap; steep",
+    175
+   ],
+   [
+    "flip",
+    "Place cup over cap, invert",
+    10
+   ],
+   [
+    "press",
+    "Plunge steadily until hiss",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "chocolate",
+   "caramel",
+   "nutty"
+  ],
+  "why": "A long, slow immersion of a medium-dark coffee builds body with a light acidity — good for chocolaty and nutty Indian estate coffees."
+ },
+ {
+  "id": "iac-2022-1st",
+  "name": "IAC 2022 Champion",
+  "author": "Pratik Sharma",
+  "source": "Indian AeroPress Championship 2022 · 1st",
+  "g": "champ",
+  "year": 2022,
+  "country": "India",
+  "url": "https://aeroprecipe.com/recipes/2022-indian-aeropress-championship-winning-recipe",
+  "o": "inverted",
+  "dose": 18,
+  "water": 185,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 81,
+  "grind": "Medium-coarse",
+  "clicks": 17,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 135,
+  "notes": "Two-temperature pour: a 45 g bloom at 85°C then the remaining 140 g at a cooler 81°C, with gentle cross stirring.",
+  "issues": "Temperature split 85°C (45 g) then 81°C (140 g); temp_c shows 81 (main pour). Page shows a broken '°F' value (NaN). Country inferred from event name. Roast not stated (inferred light from double-washed specialty coffee). Grinder setting not given (a Timemore C2 is in the equipment list). Filter count not stated. Stir (10 s), second pour (15 s) and aerate (5 s) durations estimated.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 45 g at 85°C over 10-12 s",
+    12
+   ],
+   [
+    "wait",
+    "Let it sit",
+    8
+   ],
+   [
+    "stir",
+    "Stir gently 3x front-back, 3x left-right",
+    10
+   ],
+   [
+    "pour",
+    "Slowly pour remaining 140 g at 81°C",
+    15
+   ],
+   [
+    "wait",
+    "Cap on, wait to 1:30",
+    45
+   ],
+   [
+    "flip",
+    "Flip at 1:30",
+    10
+   ],
+   [
+    "press",
+    "Plunge 1:40-2:10",
+    30
+   ],
+   [
+    "swirl",
+    "Aerate before serving",
+    5
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "citrus"
+  ],
+  "why": "Two temperatures: a hotter bloom for sweetness, a cooler main pour to keep acidity crisp. Suits Indian light roasts with fruit or citrus notes."
+ },
+ {
+  "id": "wac-2022-1st",
+  "name": "WAC 2022 Champion",
+  "author": "Jibbi Little",
+  "source": "World AeroPress Championship 2022 · 1st",
+  "g": "champ",
+  "year": 2022,
+  "country": "Australia",
+  "url": "https://aeroprecipe.com/recipes/2022-world-aeropress-championship-1st-place",
+  "o": "inverted",
+  "dose": 18,
+  "water": 94,
+  "byp": 90,
+  "bypT": "hot water",
+  "temp": 90,
+  "grind": "Two-step grind: first very coarse on a Timemore grinder and blow out the silverskins; then regrind at setting 4 on a Kinu Classic (roughly medium-fine). Sift out fines of about 100-200 microns if possible. Grind slightly finer for washed coffee.",
+  "clicks": 13,
+  "filter": "1 paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 130,
+  "notes": "A double grind (coarse, remove chaff, regrind, sift fines) and a 35-stir concentrate pressed over frozen chilling balls, then topped up with 90°C water to 150 g; target TDS 1.3-1.35.",
+  "issues": "Bypass amount ambiguous: page says 'bypass with 90°C water to 150g total' after ~58-64 g concentrate, so ~86-92 g (90 used here); the page's '150g total water' figure would instead imply 56 g. Optional ice: 4 frozen chilling balls (3 under, 1 on top) during the press, not counted as bypass. Roast not stated (inferred light: natural Striped Red Bourbon, Colombia). Pour (10 s) and stir (30 s) durations estimated. Perfect Coffee Water used in competition.",
+  "fin": "Add 90 g hot water.",
+  "segs": [
+   [
+    "pour",
+    "Pour 94 g at 90°C",
+    10
+   ],
+   [
+    "stir",
+    "Stir gently 35 times with small-bowled spoon",
+    30
+   ],
+   [
+    "wait",
+    "At 1:20 screw on cap, press out remaining air",
+    50
+   ],
+   [
+    "flip",
+    "Flip at 1:30 onto iced chilling balls",
+    10
+   ],
+   [
+    "press",
+    "Press for 30 s (1:40-2:10), ~58-64 g concentrate",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "citrus",
+   "floral",
+   "fruity"
+  ],
+  "why": "Removing chaff and fines strips out bitterness and muddiness for maximum clarity — rewards bright, clean citrus and floral coffees."
+ },
+ {
+  "id": "wac-2021-1st",
+  "name": "WAC 2021 Champion",
+  "author": "Tuomas Merikanto",
+  "source": "World AeroPress Championship 2021 · 1st",
+  "g": "champ",
+  "year": 2021,
+  "country": "Finland",
+  "url": "https://aeroprecipe.com/recipes/2021-world-aeropress-champion",
+  "o": "inverted",
+  "dose": 18,
+  "water": 200,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 80,
+  "grind": "Medium-coarse; Comandante at 27 clicks (\"quite a rough guess\" against Macap reference templates)",
+  "clicks": 18,
+  "filter": "2 paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 150,
+  "notes": "Low 80°C water, coarser grind and minimal agitation to avoid harsh, tannic sourness in a light, complex coffee; brewed with Third Wave Water (espresso profile) on distilled water.",
+  "issues": "",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 50 g at 80°C",
+    10
+   ],
+   [
+    "stir",
+    "Stir gently 3 times back and forth",
+    5
+   ],
+   [
+    "pour",
+    "Pour to 200 g",
+    15
+   ],
+   [
+    "wait",
+    "Steep",
+    20
+   ],
+   [
+    "stir",
+    "Stir gently 3 times",
+    5
+   ],
+   [
+    "wait",
+    "At 1:00 push out air, attach cap; wait until 1:35",
+    40
+   ],
+   [
+    "flip",
+    "Place pitcher, flip at 1:40",
+    5
+   ],
+   [
+    "press",
+    "Press right away",
+    20
+   ],
+   [
+    "swirl",
+    "Swirl, then pour from height into second pitcher",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "floral",
+   "citrus",
+   "fruity"
+  ],
+  "why": "Designed to avoid harsh, tannic sourness in a complex light roast: 80 °C and minimal agitation. Ideal for delicate, floral, high-acidity beans."
+ },
+ {
+  "id": "wac-2021-2nd",
+  "name": "WAC 2021 Runner-up",
+  "author": "Maru Mallee",
+  "source": "World AeroPress Championship 2021 · 2nd",
+  "g": "champ",
+  "year": 2021,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/2021-world-aeropress-championship-2nd-place",
+  "o": "inverted",
+  "dose": 18,
+  "water": 150,
+  "byp": 36,
+  "bypT": "cold water",
+  "temp": 93,
+  "grind": "Medium, 23 clicks on a Comandante C40 Mk3 Nitro Blade",
+  "clicks": 15,
+  "filter": "1 paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 150,
+  "notes": "Firm stir, then a rao-spin-style swirl and tap after flipping to flatten the bed before a gentle press; finished with a small room-temperature bypass. Water was 75% classic / 25% distilled.",
+  "issues": "Water given in ml (150 ml + 36 ml), treated as grams. Brewer country not stated. Bypass is room-temperature water. Flip/swirl split within the page's 1:50-1:55 window estimated; final bypass+swirl step (10 s) estimated to reach the stated 2:30 total.",
+  "fin": "Add 36 g room-temperature water.",
+  "segs": [
+   [
+    "pour",
+    "Pour 150 g at 93°C",
+    12
+   ],
+   [
+    "stir",
+    "Stir firmly ~20 times",
+    13
+   ],
+   [
+    "wait",
+    "Attach cap, press out air, place carafe on top; steep to 1:50",
+    85
+   ],
+   [
+    "flip",
+    "Flip brewer and carafe together",
+    2
+   ],
+   [
+    "swirl",
+    "Swirl 3 times, tap down twice (rao-spin style)",
+    3
+   ],
+   [
+    "press",
+    "Press gently until plunger touches puck",
+    20
+   ],
+   [
+    "wait",
+    "Remove brewer, shake gently to release last drops",
+    5
+   ],
+   [
+    "swirl",
+    "Add 36 g room-temp water, swirl to cool",
+    10
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "A firm stir and a long steep at 93 °C extract plenty of sweetness; the swirl after flipping keeps it even. A sweet, full cup from fruity or honey beans."
+ },
+ {
+  "id": "championship-cold-water-bypass",
+  "name": "Championship Cold Water Bypass",
+  "author": "Alexander Mills",
+  "source": "Canadian AeroPress Championship 2019",
+  "g": "champ",
+  "year": 2019,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/championship-cold-water-bypass",
+  "o": "inverted",
+  "dose": 25,
+  "water": 150,
+  "byp": 100,
+  "bypT": "hot water",
+  "temp": 85,
+  "grind": "Medium/Fine",
+  "clicks": 13,
+  "filter": "2 paper",
+  "roast": "any",
+  "st": [
+   "black"
+  ],
+  "total": 90,
+  "notes": "Short 1:00 brew of a 25 g dose, then an 80 g hot-water bypass plus 20 g room-temperature water so the cup reaches drinking temperature fast for judges.",
+  "issues": "Placement not stated. Bypass is mixed: 80 g at 85°C then 20 g room-temperature water (from a shot glass); page's 250 g total = 50+100+80+20. Roast not stated; page says any natural or full-bodied washed coffee. Grinder not specified. Pour durations (10 s) estimated; flip (5 s) taken from the stated 30 s press so it ends at the 1:30 total. Country not stated.",
+  "fin": "Add 100 g hot water.",
+  "segs": [
+   [
+    "pour",
+    "Pour 50 g at 85°C",
+    10
+   ],
+   [
+    "stir",
+    "Stir thoroughly 20 s",
+    20
+   ],
+   [
+    "pour",
+    "Pour 100 g, cap",
+    10
+   ],
+   [
+    "wait",
+    "Press lightly to remove air",
+    20
+   ],
+   [
+    "flip",
+    "Flip onto room-temp vessel at 1:00",
+    5
+   ],
+   [
+    "press",
+    "Press steadily",
+    25
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "caramel",
+   "nutty"
+  ],
+  "why": "Quick, strong and diluted with hot and room-temperature water — sweet, balanced and drinkable straight away. A forgiving pick for caramel and nutty mediums."
+ },
+ {
+  "id": "citric-sweet",
+  "name": "Citric Sweet",
+  "author": "Rama Marti",
+  "source": "Argentina AeroPress Championship 2019 · Semifinal",
+  "g": "champ",
+  "year": 2019,
+  "country": "Argentina",
+  "url": "https://aeroprecipe.com/recipes/citric-sweet",
+  "o": "inverted",
+  "dose": 20,
+  "water": 240,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 92,
+  "grind": "Coarse",
+  "clicks": 19,
+  "filter": "paper",
+  "roast": "any",
+  "st": [
+   "black"
+  ],
+  "total": 260,
+  "notes": "Slow, gentle championship recipe with a 90-second controlled gooseneck pour and an early stop to the press; Colombian Risaralda coffee.",
+  "issues": "Roast not stated, set to 'any'. Bloom pour (10 s), stir (10 s) and flip (10 s) durations estimated. Final stir of the glass not included as a step.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Bloom pour 60 g",
+    10
+   ],
+   [
+    "wait",
+    "Bloom to 0:30",
+    20
+   ],
+   [
+    "pour",
+    "Slowly add remaining 180 g to 240 g, swirling, until 2:00",
+    90
+   ],
+   [
+    "stir",
+    "Stir gently 5 times, cross-direction strokes",
+    10
+   ],
+   [
+    "wait",
+    "Attach filter cap, rest to 3:20",
+    70
+   ],
+   [
+    "flip",
+    "Flip onto glass",
+    10
+   ],
+   [
+    "press",
+    "Press very gently to 4:20, stop at ~95% (don't press through)",
+    50
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "citrus",
+   "caramel"
+  ],
+  "why": "A slow, gentle pour and stopping the press early keep clean citric brightness balanced by sugar sweetness — made for a washed Colombian."
+ },
+ {
+  "id": "wac-2019-1st",
+  "name": "WAC 2019 Champion",
+  "author": "Wendelien van Bunnik",
+  "source": "World AeroPress Championship 2019 · 1st",
+  "g": "champ",
+  "year": 2019,
+  "country": "Netherlands",
+  "url": "https://aeroprecipe.com/recipes/2019-wac-1st-place",
+  "o": "inverted",
+  "dose": 30,
+  "water": 100,
+  "byp": 120,
+  "bypT": "hot water",
+  "temp": 92,
+  "grind": "Coarse",
+  "clicks": 20,
+  "filter": "1 paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 75,
+  "notes": "A big 30 g dose of coarse coffee in only 100 g water, pressed at just 0:40, then diluted with 120 g hot water and cooled by pouring between pitchers to serve at ~60°C.",
+  "issues": "Roast not stated (inferred light: washed El Salvador Pacas by Ozone, competition coffee). Pour (10 s), stir (15 s), flip (5 s) and press (30 s) durations estimated to fit the stated 1:15 total. Filter count not explicit (one rinsed filter implied). Bypass 120 g at 92°C added after pressing, then cooled by pouring between pitchers (untimed).",
+  "fin": "Add 120 g hot water.",
+  "segs": [
+   [
+    "pour",
+    "Pour 100 g soft water at 92°C, start timer",
+    10
+   ],
+   [
+    "stir",
+    "Stir vigorously ~20 times with paddle",
+    15
+   ],
+   [
+    "wait",
+    "Cap with rinsed paper filter, push out excess air",
+    15
+   ],
+   [
+    "flip",
+    "Flip onto pitcher at 0:40, quickly",
+    5
+   ],
+   [
+    "press",
+    "Press quickly",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "Lots of coffee and only 40 s of contact pulls sweetness fast without bitterness, then it's cooled so sweetness reads loud. Great for juicy, sweet beans."
+ },
+ {
+  "id": "wac-2019-2nd",
+  "name": "WAC 2019 Runner-up",
+  "author": "Benja Khemacheva",
+  "source": "World AeroPress Championship 2019 · 2nd",
+  "g": "champ",
+  "year": 2019,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/2019-wac-2nd-place",
+  "o": "inverted",
+  "dose": 35,
+  "water": 100,
+  "byp": 100,
+  "bypT": "hot water",
+  "temp": 94,
+  "grind": "Coarse, about 30 clicks on a Comandante C40 Mk3 Nitro Blade",
+  "clicks": 20,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 105,
+  "notes": "Very high 35 g dose brewed as a concentrate in 100 g water and pressed into a server pre-loaded with 100 g of 94°C water (pre-bypass).",
+  "issues": "Bypass is a pre-bypass: 100 g hot water put in the server before pressing. Intro says 110 g pre-bypass but steps say 100 g (page total 210 g). Brewer country not stated. Roast not stated (inferred light: washed El Salvador Pacas, Ozone). Filter count not stated. Pour duration (10 s) estimated; cap+flip placed at 1:10-1:15 so the 30 s press ends at the stated 1:45 total.",
+  "fin": "Add 100 g hot water.",
+  "segs": [
+   [
+    "pour",
+    "Pour 100 g water at 94°C onto 35 g coffee",
+    10
+   ],
+   [
+    "stir",
+    "Stir for 15 s",
+    15
+   ],
+   [
+    "swirl",
+    "Turbulent wiggle for 10 s",
+    10
+   ],
+   [
+    "wait",
+    "Steep",
+    35
+   ],
+   [
+    "flip",
+    "Put filter cap on and flip at 1:15 onto server holding 100 g pre-bypass",
+    5
+   ],
+   [
+    "press",
+    "Press with your elbow for 30 s",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "High dose, hot water and a pre-bypass make a round, heavy, sweet cup. Handles fruity naturals and caramel-sweet mediums well."
+ },
+ {
+  "id": "love-me-some-acid",
+  "name": "Love me some acid",
+  "author": "Kata Muhel",
+  "source": "Portugal AeroPress Championship 2018 · 1st",
+  "g": "champ",
+  "year": 2018,
+  "country": "Portugal",
+  "url": "https://aeroprecipe.com/recipes/love-me-some-acid",
+  "o": "inverted",
+  "dose": 20,
+  "water": 230,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 81,
+  "grind": "Medium, EK43 at 6.5",
+  "clicks": 13,
+  "filter": "2 paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 105,
+  "notes": "Low-temperature (81°C) championship recipe designed to highlight vibrant, acidic fruitiness, with a 15 s swirl and short 15 s press.",
+  "issues": "Roast inferred as light (page says 'something vibrant, light'). Page starts the timer after the 70 g pour; pour durations (10 s each) estimated and included in the timeline. Championship placement taken from description as '2018 Portuguese AeroPress champion'.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 70 g",
+    10
+   ],
+   [
+    "swirl",
+    "Swirl 15 s",
+    15
+   ],
+   [
+    "pour",
+    "Add remaining 160 g to 230 g",
+    10
+   ],
+   [
+    "wait",
+    "Steep to 1:00",
+    25
+   ],
+   [
+    "wait",
+    "Attach rinsed filter cap at 1:00, wait to 1:20",
+    20
+   ],
+   [
+    "flip",
+    "Flip upright onto cup at 1:20",
+    10
+   ],
+   [
+    "press",
+    "Plunge 1:30-1:45",
+    15
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "citrus",
+   "fruity",
+   "floral"
+  ],
+  "why": "Low 81 °C and a gentle swirl are designed to make acidity sing. Pick this when your bean tastes of lemon, berries or flowers."
+ },
+ {
+  "id": "wac-2018-1st",
+  "name": "WAC 2018 Champion",
+  "author": "Carolina Ibarra Garay",
+  "source": "World AeroPress Championship 2018 · 1st",
+  "g": "champ",
+  "year": 2018,
+  "country": "United States",
+  "url": "https://aeroprecipe.com/recipes/2018-wac-1st-place",
+  "o": "inverted",
+  "dose": 34.9,
+  "water": 100,
+  "byp": 100,
+  "bypT": "hot water",
+  "temp": 85,
+  "grind": "Medium to coarse",
+  "clicks": 18,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 100,
+  "notes": "Very concentrated 34.9 g / 100 g brew, pressed into an unheated server and topped up with 60 g of 85 °C water plus 40 g of room-temperature water.",
+  "issues": "Bypass is mixed: 60 g hot (85 °C) plus 40 g room-temperature water, recorded as 100 g hot water. Page total is 1:30, but 30 s sit + 30 s stir + 30 s press plus a flip runs to about 1:40. Pour (10 s) and flip (10 s) durations estimated. Roast and filter count not stated; roast inferred light (Kenyan finals coffee).",
+  "fin": "Add 100 g hot water.",
+  "segs": [
+   [
+    "pour",
+    "Pour 100 g",
+    10
+   ],
+   [
+    "wait",
+    "Let sit until 0:30",
+    20
+   ],
+   [
+    "stir",
+    "Stir vigorously but carefully with chopsticks 30 s",
+    30
+   ],
+   [
+    "flip",
+    "Fit filter cap, flip onto unheated glass server",
+    10
+   ],
+   [
+    "press",
+    "Press 30 s",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "An extreme 35 g concentrate topped up with hot and room-temperature water — dense sweetness and body. Best with sweet naturals and honey-process beans."
+ },
+ {
+  "id": "wac-2018-2nd",
+  "name": "WAC 2018 Runner-up",
+  "author": "Xiaobo Zhang",
+  "source": "World AeroPress Championship 2018 · 2nd",
+  "g": "champ",
+  "year": 2018,
+  "country": "China",
+  "url": "https://aeroprecipe.com/recipes/2018-wac-2nd-place",
+  "o": "inverted",
+  "dose": 31,
+  "water": 170,
+  "byp": 50,
+  "bypT": "hot water",
+  "temp": 80,
+  "grind": "Quite coarse; plus 1 g ground very fine (roughly espresso-fine)",
+  "clicks": 21,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 90,
+  "notes": "Adds 1 g of espresso-fine coffee on top of a coarse 30 g bed just before flipping, then tops up with 50 g of water after pressing.",
+  "issues": "Dose shown as 31 g in details but 30 g in steps (30 g coarse + 1 g fine = 31 g). Second pour (10 s) and flip (5 s) durations estimated. Bypass water temperature not stated (assumed hot). Roast and filter count not stated; roast inferred light (Kenyan finals coffee).",
+  "fin": "Add 50 g hot water.",
+  "segs": [
+   [
+    "pour",
+    "Pour 100 g over 15 s",
+    15
+   ],
+   [
+    "stir",
+    "Stir 15 s",
+    15
+   ],
+   [
+    "pour",
+    "Pour 70 g (to 170 g), then add 1 g very fine coffee",
+    10
+   ],
+   [
+    "flip",
+    "Attach filter cap, flip",
+    5
+   ],
+   [
+    "press",
+    "Press 45 s",
+    45
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "floral",
+   "citrus"
+  ],
+  "why": "Low 80 °C and a coarse grind keep it bright and clean, with a sprinkle of fines for body. Suits delicate, fruity light roasts."
+ },
+ {
+  "id": "wac-2018-3rd",
+  "name": "WAC 2018 Third Place",
+  "author": "Evgeni Pinchukov",
+  "source": "World AeroPress Championship 2018 · 3rd",
+  "g": "champ",
+  "year": 2018,
+  "country": "Belarus",
+  "url": "https://aeroprecipe.com/recipes/2018-wac-3rd-place",
+  "o": "standard",
+  "dose": 15,
+  "water": 230,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 80,
+  "grind": "Medium-coarse",
+  "clicks": 17,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 130,
+  "notes": "Low-dose 15 g standard brew at 80 °C with two stirs; stop pressing when the grounds just break the surface.",
+  "issues": "Pour (10 s each), stir (5 s each), and press (60 s, set to reach the stated 2:10 total) durations estimated. Roast and filter count not stated; roast inferred light (Kenyan finals coffee).",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 50 g to bloom",
+    10
+   ],
+   [
+    "stir",
+    "Stir",
+    5
+   ],
+   [
+    "wait",
+    "Wait 30 s",
+    30
+   ],
+   [
+    "pour",
+    "Pour 180 g (to 230 g)",
+    10
+   ],
+   [
+    "wait",
+    "Steep until 1:05",
+    10
+   ],
+   [
+    "stir",
+    "Stir at 1:05",
+    5
+   ],
+   [
+    "press",
+    "Insert plunger, press until grounds just visible above water line",
+    60
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "citrus",
+   "floral"
+  ],
+  "why": "Low dose, low temperature and an early stop to the press — a light, tea-like cup for bright washed coffees."
+ },
+ {
+  "id": "wac-2017-1st",
+  "name": "WAC 2017 Champion",
+  "author": "Paulina 'Panda' Miczka",
+  "source": "World AeroPress Championship 2017 · 1st",
+  "g": "champ",
+  "year": 2017,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/2017-wac-1st-place",
+  "o": "inverted",
+  "dose": 35,
+  "water": 150,
+  "byp": 200,
+  "bypT": "hot water",
+  "temp": 84,
+  "grind": "Coarse",
+  "clicks": 20,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 95,
+  "notes": "Two-cup concentrate (35 g Kenya Kamwangi AA, ~4.5% TDS) diluted with 160–200 g hot water; the page also gives a smaller version at 24 g per 100 ml plus ~120 ml after pressing.",
+  "issues": "Bypass given as a 160–200 g range (200 used); page's 370 g total implies 220 g, which is inconsistent. Flip duration (5 s) estimated; page says press starts at 1:05 and ends at 1:35. Brewer country, roast, and filter count not stated; roast inferred light (Kenya AA competition coffee).",
+  "fin": "Add 200 g hot water.",
+  "segs": [
+   [
+    "pour",
+    "Pour 150 g",
+    15
+   ],
+   [
+    "stir",
+    "Stir continuously",
+    20
+   ],
+   [
+    "wait",
+    "At 0:35 attach pre-wet filter cap; wait to 1:05",
+    30
+   ],
+   [
+    "flip",
+    "Flip onto server",
+    5
+   ],
+   [
+    "press",
+    "Press, stop at 1:35 (~90 ml concentrate)",
+    25
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "citrus",
+   "fruity"
+  ],
+  "why": "Built on a Kenyan AA. A strong concentrate diluted afterwards keeps the vivid citrus and blackcurrant while staying sweet."
+ },
+ {
+  "id": "wac-2017-2nd",
+  "name": "WAC 2017 Runner-up",
+  "author": "Yusuke Narisawa",
+  "source": "World AeroPress Championship 2017 · 2nd",
+  "g": "champ",
+  "year": 2017,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/2017-wac-2nd-place",
+  "o": "inverted",
+  "dose": 29.5,
+  "water": 170,
+  "byp": 75,
+  "bypT": "hot water",
+  "temp": 85,
+  "grind": "Coarse with a sprinkle of fine grounds (~28 g coarse + 1.5 g very fine)",
+  "clicks": 20,
+  "filter": "2 paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 110,
+  "notes": "Mixes two grind sizes (mostly coarse plus 1.5 g very fine) and uses a doubled paper filter for a cleaner cup, then adds 75 g hot water.",
+  "issues": "Pour (10 s each), stir (15 s), and flip (10 s) durations estimated; page only gives the 1:50 end of the press. Roast stated as 'light to medium'; mapped to light. Bypass water temperature not specified. Brewer country not stated (event was in Seoul).",
+  "fin": "Add 75 g hot water.",
+  "segs": [
+   [
+    "pour",
+    "Pour 70 g",
+    10
+   ],
+   [
+    "stir",
+    "Stir 20 times",
+    15
+   ],
+   [
+    "pour",
+    "Pour 100 g (to 170 g)",
+    10
+   ],
+   [
+    "flip",
+    "Attach cap with 2 wet paper filters, flip",
+    10
+   ],
+   [
+    "press",
+    "Press slowly until 1:50",
+    65
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "floral",
+   "fruity"
+  ],
+  "why": "Two paper filters and a coarse grind make an exceptionally clean cup; the pinch of fines adds body back. Clarity-first, so delicate florals and fruit shine."
+ },
+ {
+  "id": "wac-2016-1st",
+  "name": "WAC 2016 Champion",
+  "author": "Filip Kucharczyk",
+  "source": "World AeroPress Championship 2016 · 1st",
+  "g": "champ",
+  "year": 2016,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/2016-wac-1st-place",
+  "o": "inverted",
+  "dose": 35,
+  "water": 150,
+  "byp": 100,
+  "bypT": "hot water",
+  "temp": 84,
+  "grind": "Coarse",
+  "clicks": 20,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 100,
+  "notes": "High-dose 35 g concentrate brewed with only 150 g, then diluted with 100–120 g water to taste; designed to be easy without special tools.",
+  "issues": "Bypass given as a 100–120 g range (100 used); its temperature isn't stated (assumed hot). Page total is 1:30, but the stated flip at 1:00 plus a 30 s press and flip/swirl time runs to about 1:40. Flip (5 s) and swirl (5 s) durations estimated. Brewer country (event was in Dublin), roast, and filter count not stated; roast inferred light.",
+  "fin": "Add 100 g hot water.",
+  "segs": [
+   [
+    "pour",
+    "Pour 150 g over 15 s",
+    15
+   ],
+   [
+    "stir",
+    "Stir 20 s with chopsticks",
+    20
+   ],
+   [
+    "wait",
+    "Steep until 1:00",
+    25
+   ],
+   [
+    "flip",
+    "Fit cap, flip onto cup",
+    5
+   ],
+   [
+    "swirl",
+    "Give a slight swirl",
+    5
+   ],
+   [
+    "press",
+    "Press 30 s",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "A huge dose brewed short, then diluted: lots of sweetness and body without bitterness. Makes juicy, syrupy cups from fruity and honey-process beans."
+ },
+ {
+  "id": "wac-2015-1st",
+  "name": "WAC 2015 Champion",
+  "author": "Lukas Zahradnik",
+  "source": "World AeroPress Championship 2015 · 1st",
+  "g": "champ",
+  "year": 2015,
+  "country": "Slovakia",
+  "url": "https://aeroprecipe.com/recipes/2015-wac-1st-place",
+  "o": "inverted",
+  "dose": 20,
+  "water": 260,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 79,
+  "grind": "Grind size is a bit coarser than automatic espresso machine",
+  "clicks": 11,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 95,
+  "notes": "Vigorous 15 s stir in a 60 g bloom, with all parts preheated in 79 °C water; ratio 1:13 (page says 1:35, likely a typo). Uses a light-to-medium washed Kenyan.",
+  "issues": "Total time not stated on page (computed 1:35). Second pour (10 s) and flip (10 s) durations estimated. Roast stated as 'light-to-medium'; mapped to light. Page lists ratio 1:35, which doesn't match 20 g:260 g (1:13). Name spelled both Lukas and Lucas. Filter count not stated.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 60 g within 5 s",
+    5
+   ],
+   [
+    "stir",
+    "Stir vigorously 15 s",
+    15
+   ],
+   [
+    "wait",
+    "Rest 10 s",
+    10
+   ],
+   [
+    "pour",
+    "Pour remaining 200 g to the top",
+    10
+   ],
+   [
+    "flip",
+    "Attach rinsed filter cap, flip immediately",
+    10
+   ],
+   [
+    "press",
+    "Plunge 45 s",
+    45
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "citrus",
+   "fruity"
+  ],
+  "why": "Cool water plus a hard stir, built on a washed Kenyan: bright blackcurrant and citrus with sweetness but no harshness."
+ },
+ {
+  "id": "wac-2015-2nd-nick-hatch",
+  "name": "WAC 2015 Runner-up",
+  "author": "Nick Hatch",
+  "source": "World AeroPress Championship 2015 · 2nd",
+  "g": "champ",
+  "year": 2015,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/nick-hatch-2015-wac-2nd-place",
+  "o": "standard",
+  "dose": 17,
+  "water": 260,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 85,
+  "grind": "Medium-fine",
+  "clicks": 12,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 105,
+  "notes": "Quick pour and short steep followed by a long 60 s press; page says it works even better with an Aesir filter or two paper filters.",
+  "issues": "Bloom pour (10 s) and stir (5 s) durations estimated; 25 s bloom treated as counting from 0:00 so the timeline matches the stated 1:45. Bloom amount given as a 50–60 g range. Country and roast not stated; roast inferred light. Filter count not stated.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 50–60 g",
+    10
+   ],
+   [
+    "stir",
+    "Stir 5 times",
+    5
+   ],
+   [
+    "wait",
+    "Bloom to 0:25",
+    10
+   ],
+   [
+    "pour",
+    "Pour remaining water to 260 g within 20 s",
+    20
+   ],
+   [
+    "press",
+    "Press slowly 60 s",
+    60
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "caramel",
+   "floral"
+  ],
+  "why": "Moderate temperature and a long, slow 60 s press give a balanced, sweet cup. A good all-rounder for light-medium beans with fruit and sugar notes."
+ },
+ {
+  "id": "wac-2014-1st",
+  "name": "WAC 2014 Champion",
+  "author": "Shuichi Sasaki",
+  "source": "World AeroPress Championship 2014 · 1st",
+  "g": "champ",
+  "year": 2014,
+  "country": "Japan",
+  "url": "https://aeroprecipe.com/recipes/2014-wac-1st-place",
+  "o": "standard",
+  "dose": 16.5,
+  "water": 250,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 78,
+  "grind": "Medium to coarse",
+  "clicks": 17,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 120,
+  "notes": "Low 78 °C water and a very slow 75 s press that stops with about 45 g of slurry left in the chamber.",
+  "issues": "Page lists total time 1:40, but a 25 s bloom plus a 75 s press already fills 1:40 before the stirs and second pour, so the timeline runs to 2:00. Pour durations (5 s, 10 s) and stir durations (5 s each) estimated; bloom assumed to include the first pour. Filter count and roast not stated; roast inferred light.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 40 g",
+    5
+   ],
+   [
+    "wait",
+    "Bloom to 0:25",
+    20
+   ],
+   [
+    "stir",
+    "Stir 5 times",
+    5
+   ],
+   [
+    "pour",
+    "Pour remaining 210 g (to 250 g)",
+    10
+   ],
+   [
+    "stir",
+    "Stir once",
+    5
+   ],
+   [
+    "press",
+    "Press very slowly 75 s, stop with ~45 g slurry left",
+    75
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "floral",
+   "citrus",
+   "fruity"
+  ],
+  "why": "Very low 78 °C water and stopping before the dregs avoid bitterness completely, so floral and citrus notes stand out. Too gentle for chocolaty beans — they taste flat."
+ },
+ {
+  "id": "wac-2012-1st",
+  "name": "WAC 2012 Champion",
+  "author": "Charlene De Buysere",
+  "source": "World AeroPress Championship 2012 · 1st",
+  "g": "champ",
+  "year": 2012,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/2012-world-aeropress-championship-1st-place",
+  "o": "standard",
+  "dose": 18.3,
+  "water": 250,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 85,
+  "grind": "Coarse (grind setting listed as \"All\"; no grinder named)",
+  "clicks": 20,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 90,
+  "notes": "A simple no-stir recipe: short bloom, quick top-up, and a partial 30 s press.",
+  "issues": "Bloom pour duration estimated (10 s). Filter count not stated. Roast not stated; inferred light (competition specialty coffee). Grind setting shown as 'All', which is unclear. Brewer country not stated on page.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour ~40 g to bloom",
+    10
+   ],
+   [
+    "wait",
+    "Bloom until 0:30",
+    20
+   ],
+   [
+    "pour",
+    "Pour remaining water to 250 g within 30 s",
+    30
+   ],
+   [
+    "press",
+    "At 1:00 press 30 s, don't press all the way down",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "citrus",
+   "caramel"
+  ],
+  "why": "No stirring, a short bloom and a press that stops early keep the cup clean and sweet. A gentle method that won't strip a light, bright bean's fruit."
+ },
+ {
+  "id": "a-fruity-perspective",
+  "name": "A Fruity Perspective",
+  "author": "Div",
+  "source": "Barista",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/a-fruity-perspective",
+  "o": "inverted",
+  "dose": 15,
+  "water": 210,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 90,
+  "grind": "Medium, Hario V60 electric grinder setting 18 (EK-5 also listed)",
+  "clicks": 14,
+  "filter": "paper",
+  "roast": "medium",
+  "st": [
+   "black"
+  ],
+  "total": 300,
+  "notes": "Tiny 20 g dense-slurry 'bloom' then a long 3.5-minute inverted steep, built to coax fruit notes from medium/medium-dark beans.",
+  "issues": "Roast given as 'Medium or Medium-Dark'; mapped to 'medium'. Pour (10 s), slurry stir (10 s), flip (10 s) and swirl (5 s) durations estimated. Filter count not stated. Final 30 s rest happens off the brewer but included to match the page's 5:00 total.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 20 g ('weird bloom')",
+    10
+   ],
+   [
+    "stir",
+    "Mix into slurry, flatten bed with stirrer",
+    10
+   ],
+   [
+    "wait",
+    "Wait to 1:00",
+    40
+   ],
+   [
+    "pour",
+    "Add remaining 190 g to 210 g",
+    10
+   ],
+   [
+    "wait",
+    "Steep to 2:20",
+    70
+   ],
+   [
+    "wait",
+    "Attach filter cap at 2:20, push out excess air, steep to 3:30",
+    70
+   ],
+   [
+    "flip",
+    "Flip onto cup",
+    10
+   ],
+   [
+    "swirl",
+    "Swirl to mix fully",
+    5
+   ],
+   [
+    "press",
+    "Press slowly, finish by 4:30",
+    45
+   ],
+   [
+    "wait",
+    "Rest coffee 30 s, swirl and serve",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "chocolate"
+  ],
+  "why": "Coaxes fruit out of medium and medium-dark beans — a long, heavy steep that brings dark fruit out alongside chocolate."
+ },
+ {
+  "id": "vietnamese-aeropress-official",
+  "name": "AeroPress Vietnamese Iced Coffee",
+  "author": "AeroPress",
+  "source": "AeroPress official recipe",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeropress.com/blogs/aeropress-recipes/aeropress-vietnamese-iced-coffee",
+  "o": "standard",
+  "dose": 20,
+  "water": 150,
+  "byp": null,
+  "bypT": "condensed",
+  "temp": 95,
+  "grind": "Medium (robusta, \"ground on medium setting\")",
+  "clicks": 14,
+  "filter": "2 paper",
+  "roast": "dark",
+  "st": [
+   "milk",
+   "iced",
+   "vietnamese"
+  ],
+  "total": 140,
+  "notes": "The AeroPress company's own adaptation of the Vietnamese phin: 100% robusta pressed directly onto condensed milk, then iced. Can also be served hot.",
+  "issues": "Orientation isn't stated; the Flow Control cap and pressing into the glass imply standard. Press duration isn't given (estimated 30 s). The page names robusta but no roast level; set to dark because Vietnamese robusta is traditionally dark-roasted. Ice and milk are 'to taste'.",
+  "fin": "Add ice, and top with milk if you like. The condensed milk is already in the glass.",
+  "segs": [
+   [
+    "pour",
+    "Pour 150 g at 95 °C",
+    10
+   ],
+   [
+    "stir",
+    "Stir 10 times",
+    10
+   ],
+   [
+    "wait",
+    "Brew 90 seconds",
+    90
+   ],
+   [
+    "press",
+    "Press straight into the condensed milk",
+    30
+   ]
+  ],
+  "kw": "vietnamese viet vietnam ca phe sua da cà phê sữa đá condensed milk robusta phin sweet iced official",
+  "pre": "Put 2 tablespoons of sweetened condensed milk in a glass wide enough for the AeroPress to sit on. Use 20 g robusta.",
+  "add": "2 tbsp",
+  "mix": "",
+  "fl": [
+   "bold",
+   "chocolate"
+  ],
+  "why": "Built for robusta: heavy, bitter-chocolate coffee that stands up to sweet condensed milk and ice."
+ },
+ {
+  "id": "aero-tonic",
+  "name": "AeroTonic",
+  "author": "Clem InTheCoffee",
+  "source": "Barista",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/aero-tonic",
+  "o": "standard",
+  "dose": 20,
+  "water": 60,
+  "byp": 90,
+  "bypT": "mixer",
+  "temp": 83,
+  "grind": "Medium-fine",
+  "clicks": 12,
+  "filter": "paper",
+  "roast": "any",
+  "st": [
+   "iced",
+   "mixer",
+   "concentrate"
+  ],
+  "total": 140,
+  "notes": "A concentrated, low-temperature 1:3 shot poured over ice and tonic for a bright, fizzy coffee tonic; the page describes it as chocolatey and rich.",
+  "issues": "Tonic given as 80–100 ml; bypass_g uses midpoint 90. Pour (10s) and press (30s) durations estimated; stir 10–20s taken as 15s and steep shortened to 85s so pour+stir+steep matches the stated 1:50 brew time. Ice amount listed confusingly as '80–100ml'. Simple syrup amount not given. Roast not stated.",
+  "fin": "Slowly pour the pressed coffee over the ice and tonic. Optionally add lemon or lime wedges and simple syrup to taste.",
+  "segs": [
+   [
+    "pour",
+    "Pour 60 g water over 20 g coffee",
+    10
+   ],
+   [
+    "stir",
+    "Stir for 10–20 seconds",
+    15
+   ],
+   [
+    "wait",
+    "Steep about 1:30 (until 1:50 brew time)",
+    85
+   ],
+   [
+    "press",
+    "Insert plunger and press",
+    30
+   ]
+  ],
+  "kw": "tonic espresso tonic coffee tonic spritz sparkling fizzy soda mixer lemon lime",
+  "pre": "Fill a cup with ice and add 80–100 ml tonic water.",
+  "add": "80–100 ml",
+  "mix": "tonic",
+  "fl": [
+   "citrus",
+   "fruity",
+   "floral"
+  ],
+  "why": "Tonic is bitter and citrusy, so bright beans pair best — lemon, berry and floral notes turn into a sparkling coffee spritz. Very roasty beans can taste medicinal with tonic."
+ },
+ {
+  "id": "adler-cold-brew",
+  "name": "Alan Adler Cold Brew",
+  "author": "Alan Adler",
+  "source": "AeroPress inventor",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/alan-adler-cold-brew-aeropress-recipe",
+  "o": "standard",
+  "dose": 15,
+  "water": 70,
+  "byp": null,
+  "bypT": "ice",
+  "temp": 20,
+  "grind": "Fine (Comandante C40 Mk3 Nitro Blade grinder listed, no setting)",
+  "clicks": 11,
+  "filter": "paper",
+  "roast": "any",
+  "st": [
+   "iced",
+   "concentrate"
+  ],
+  "total": 130,
+  "notes": "A 2-minute 'cold brew' using room-temperature water and 60 s of continuous stirring, then diluted with ice water or ice to taste.",
+  "issues": "Dilution with ice water or ice cubes 'to taste' — no amount given (bypass_g null). Pour duration estimated (10 s); headline 2:00 covers only stir + press. Water 70 g in details vs '~60-70 g' in steps. Roast not stated (Alan recommends Ethiopian Yirgacheffe), set to any. Page doesn't describe Adler; 'AeroPress inventor' from context. Filter count not stated.",
+  "fin": "Dilute with ice or ice water to taste.",
+  "segs": [
+   [
+    "pour",
+    "Add room-temp water to level 1 (~60-70 g)",
+    10
+   ],
+   [
+    "stir",
+    "Stir continuously 60 s",
+    60
+   ],
+   [
+    "press",
+    "Press gently 60 s",
+    60
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "chocolate",
+   "nutty",
+   "caramel"
+  ],
+  "why": "Cold water pulls sweetness and body but very little acidity. Chocolaty, nutty beans taste smooth and sweet; bright fruity ones taste flat."
+ },
+ {
+  "id": "adler-original",
+  "name": "Alan Adler Original",
+  "author": "Alan Adler",
+  "source": "AeroPress inventor",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/alan-adler-original",
+  "o": "standard",
+  "dose": 15,
+  "water": 90,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 80,
+  "grind": "Fine (step 3: 'fine drip grind')",
+  "clicks": 11,
+  "filter": "1 paper",
+  "roast": "any",
+  "st": [
+   "concentrate"
+  ],
+  "total": 50,
+  "notes": "The inventor's original method: low 80°C water, a 10 s stir and immediate press, yielding a concentrate to dilute.",
+  "issues": "Headline total 1:30 but steps total ~50 s (10 s stir + 20-40 s press); pour duration estimated (10 s), press set to 30 s. Optional hot-water top-up for an Americano with no amount, so bypass recorded as none. Roast not stated ('whatever suits your fancy'), set to any. Dose given as '1 scoop' in steps; water as fill level. Page categorizes it as 'From an Enthusiast' but calls Adler the AeroPress inventor. Header 176°F vs 175°F in step 5.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Add 80°C water to level 1-1.5 (~90 g)",
+    10
+   ],
+   [
+    "stir",
+    "Stir 10 s",
+    10
+   ],
+   [
+    "press",
+    "Insert plunger, press gently 20-40 s",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "chocolate",
+   "nutty",
+   "caramel"
+  ],
+  "why": "The inventor's original: cool 80 °C water and a fast press keep bitterness low on everyday darker roasts. Smooth and low-acid from chocolaty and nutty beans."
+ },
+ {
+  "id": "blue-bottle",
+  "name": "Blue Bottle",
+  "author": "Blue Bottle Coffee",
+  "source": "Barista",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/blue-bottle-recipe",
+  "o": "inverted",
+  "dose": 15,
+  "water": 200,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 94,
+  "grind": "Medium-Fine",
+  "clicks": 12,
+  "filter": "paper",
+  "roast": "medium",
+  "st": [
+   "black"
+  ],
+  "total": 100,
+  "notes": "Blue Bottle's standard inverted recipe: small 30 g bloom, top up, then a vigorous 10-stir agitation at 1:00 before pressing. Add 2–3 g coffee for a stronger cup.",
+  "issues": "Roast listed as 'Light / Medium'; set to medium. Pour, stir, flip and press durations estimated; unclear whether the 30 s rest runs from the pour or after the stir (taken as after). Steps say ~200°F (93°C) vs 94°C/201°F in the header. Posted by shariar joy.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 30 g",
+    10
+   ],
+   [
+    "stir",
+    "Stir gently to saturate",
+    5
+   ],
+   [
+    "wait",
+    "Let sit 30 s",
+    30
+   ],
+   [
+    "pour",
+    "Add remaining water to 200 g",
+    10
+   ],
+   [
+    "wait",
+    "Wait until 1:00",
+    5
+   ],
+   [
+    "stir",
+    "Stir 10 times",
+    10
+   ],
+   [
+    "flip",
+    "Place rinsed cap and flip",
+    10
+   ],
+   [
+    "press",
+    "Press, finish 1:30–1:45",
+    20
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "caramel",
+   "chocolate",
+   "nutty"
+  ],
+  "why": "A vigorous stir at 1:00 and fuller extraction give a round, sweet, medium-bodied cup — the classic for balanced medium roasts."
+ },
+ {
+  "id": "coffee-collective",
+  "name": "Coffee Collective Brew Guide",
+  "author": "Coffee Collective (Elliot Stølegaard)",
+  "source": "Barista",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/coffee-collective-brew-guide",
+  "o": "standard",
+  "dose": 16,
+  "water": 230,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 93,
+  "grind": "Medium (adjust on your own grinder)",
+  "clicks": 14,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 90,
+  "notes": "Short standard-orientation brew with a vacuum-sealed steep and a second front-to-back stir at 1:00. XL variant: 32 g to 460 g, plunge finishing at 1:50.",
+  "issues": "Pour and first stir durations estimated. Page doesn't state a grinder setting. Country (Denmark) not stated on the page.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 230 g",
+    10
+   ],
+   [
+    "stir",
+    "Stir to fully wet",
+    5
+   ],
+   [
+    "wait",
+    "Insert plunger, lift slightly for vacuum; wait to 1:00",
+    45
+   ],
+   [
+    "stir",
+    "Remove plunger, stir 3 times front to back",
+    10
+   ],
+   [
+    "press",
+    "Reinsert plunger, off scale, press slowly to 1:30",
+    20
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "floral"
+  ],
+  "why": "Coffee Collective roasts light and fruity; a short sealed steep with a second stir keeps clarity while building sweetness."
+ },
+ {
+  "id": "april-coffee",
+  "name": "Coffee with April",
+  "author": "April Coffee",
+  "source": "Barista",
+  "g": "pro",
+  "year": null,
+  "country": "Denmark",
+  "url": "https://aeroprecipe.com/recipes/coffee-with-april",
+  "o": "standard",
+  "dose": 13,
+  "water": 200,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 88,
+  "grind": "Medium-coarse, 25-27 clicks on a Comandante",
+  "clicks": 17,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 120,
+  "notes": "Low dose (13 g) and low 88°C water for a light, juicy cup with low bitterness; designed for Kenyan or Ethiopian coffees.",
+  "issues": "Roast not stated; inferred light from the Kenyan/Ethiopian coffee and 'light and juicy' description. Pour and stir durations estimated.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 50 g quickly",
+    10
+   ],
+   [
+    "stir",
+    "Stir gently",
+    5
+   ],
+   [
+    "wait",
+    "Plunger on to stop drip; wait to 0:30",
+    15
+   ],
+   [
+    "pour",
+    "Remove plunger, pour remaining 150 g to 200 g",
+    10
+   ],
+   [
+    "wait",
+    "Reinsert plunger, steep until 1:30",
+    50
+   ],
+   [
+    "press",
+    "Press slowly, stop at hiss, by 2:00",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "citrus",
+   "floral",
+   "fruity"
+  ],
+  "why": "A low dose and cooler 88 °C water make a light, juicy, low-bitterness cup — designed for Kenyan and Ethiopian coffees."
+ },
+ {
+  "id": "evp-iced-coffee",
+  "name": "EVP's Iced Coffee",
+  "author": "Peter (EVP Coffee)",
+  "source": "Roaster",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/evp-iced-coffee",
+  "o": "standard",
+  "dose": 15,
+  "water": 200,
+  "byp": 200,
+  "bypT": "ice",
+  "temp": 93,
+  "grind": "Medium-fine",
+  "clicks": 12,
+  "filter": "paper",
+  "roast": "medium",
+  "st": [
+   "iced"
+  ],
+  "total": 120,
+  "notes": "Medium-dark coffee (the author prefers Colombian) pressed onto ice — smooth like cold brew with a syrupy body.",
+  "issues": "The author says medium-dark; set to medium on the card's three-level scale.",
+  "fin": "Swirl and drink — smooth like cold brew, but with a thicker, syrupy body.",
+  "segs": [
+   [
+    "pour",
+    "Pour 20 g to bloom",
+    10
+   ],
+   [
+    "wait",
+    "Bloom until 0:30",
+    20
+   ],
+   [
+    "pour",
+    "Pour the remaining 180 g",
+    10
+   ],
+   [
+    "wait",
+    "Steep until 1:30",
+    50
+   ],
+   [
+    "press",
+    "Press into the iced mug, about 30 s",
+    30
+   ]
+  ],
+  "kw": "iced smooth cold brew style syrupy colombian medium dark",
+  "pre": "Put 200 g ice in the mug and set the AeroPress on top.",
+  "add": "200 g ice",
+  "mix": "",
+  "fl": [
+   "chocolate",
+   "caramel",
+   "nutty"
+  ],
+  "why": "A medium-dark Colombian over ice gives a smooth, cold-brew-like but syrupy cup — chocolaty and caramel beans taste best."
+ },
+ {
+  "id": "hoffmann-milk",
+  "name": "Hoffmann AeroPress for Milk Drinks",
+  "author": "James Hoffmann",
+  "source": "Barista",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/james-hoffmann",
+  "o": "inverted",
+  "dose": 18,
+  "water": 90,
+  "byp": null,
+  "bypT": "milk",
+  "temp": 100,
+  "grind": "Fine - Medium Fine (slightly coarser than espresso but finer than drip; 'powdered sugar versus salt')",
+  "clicks": 11,
+  "filter": "paper",
+  "roast": "dark",
+  "st": [
+   "milk"
+  ],
+  "total": 150,
+  "notes": "A small, strong 1:5 concentrate (~65-70 g) brewed as the 'espresso' base for a milk drink, then topped with warm steamed/frothed milk.",
+  "issues": "Milk amount not given (bypass_g null). Headline time 2:00 but steps only specify the 90 s steep; pour (10 s), stir (5 s), flip (10 s), swirl (5 s) and press (30 s) durations estimated, giving 2:30. Roast stated as 'darker roast' / espresso blend, mapped to dark. Water 90 g in details vs 90 ml in steps. Filter count not stated.",
+  "fin": "Top with warm milk to taste.",
+  "segs": [
+   [
+    "pour",
+    "Pour 90 g just-off-boil water onto 18 g (preheated, inverted, plunger halfway)",
+    10
+   ],
+   [
+    "stir",
+    "Stir vigorously to wet all grounds and break clumps",
+    5
+   ],
+   [
+    "wait",
+    "Add cap, steep 90 s",
+    90
+   ],
+   [
+    "flip",
+    "Flip onto cup",
+    10
+   ],
+   [
+    "swirl",
+    "Swirl to dislodge grounds from sides",
+    5
+   ],
+   [
+    "press",
+    "Press slowly and gently until after the hiss (~65-70 g out)",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "chocolate",
+   "nutty",
+   "caramel"
+  ],
+  "why": "A 1:5 concentrate made to carry milk. Chocolaty and nutty beans keep their flavour under milk; light fruity ones disappear or turn sour."
+ },
+ {
+  "id": "hoffmann-iced",
+  "name": "Hoffmann Iced AeroPress",
+  "author": "James Hoffmann",
+  "source": "Barista",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/james-hoffmann-iced-aeropress",
+  "o": "standard",
+  "dose": 22,
+  "water": 240,
+  "byp": 160,
+  "bypT": "ice",
+  "temp": 100,
+  "grind": "Finer end of medium, finer than pour-over",
+  "clicks": 13,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "iced"
+  ],
+  "total": 320,
+  "notes": "Scaled-up Ultimate technique with 160 g ice in the decanter as bypass (400 g total liquid), served over more ice.",
+  "issues": "Posted by user 'Sidechain W', credited to Hoffmann. Headline 4:30 covers only the 4:00 + 0:30 waits; pour (10 s), swirls (5 s each) and press (30 s) estimated. Ice listed as 160 g in steps but 160 ml in notes. Notes say to use as much hot water as possible (creator used 270 ml) vs 240 ml in steps. Filter count not stated.",
+  "fin": "Add 160 g ice.",
+  "segs": [
+   [
+    "pour",
+    "Pour ~240 g just-boiled water over 22 g, wetting all coffee",
+    10
+   ],
+   [
+    "wait",
+    "Insert plunger a few mm; steep 4 min",
+    240
+   ],
+   [
+    "swirl",
+    "Gently swirl brewer (holding plunger)",
+    5
+   ],
+   [
+    "wait",
+    "Rest 30 s",
+    30
+   ],
+   [
+    "press",
+    "Press gently all the way onto 160 g ice",
+    30
+   ],
+   [
+    "swirl",
+    "Swirl decanter to melt ice; serve over fresh ice",
+    5
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "citrus",
+   "floral"
+  ],
+  "why": "Brewed hot and flash-chilled on ice, which locks in aromatics — iced coffee that still tastes of fruit and flowers, not flat cold brew."
+ },
+ {
+  "id": "hoffmann-ultimate",
+  "name": "Hoffmann Ultimate (original, 99 °C)",
+  "author": "James Hoffmann",
+  "source": "Barista",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/james-hoffmann-aeropress-recipe",
+  "o": "standard",
+  "dose": 11,
+  "water": 200,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 99,
+  "grind": "Finer end of medium",
+  "clicks": 13,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 180,
+  "notes": "Low 11 g dose with no filter rinse or preheat; plunger seated immediately as a vacuum seal and a swirl instead of a stir.",
+  "issues": "Headline says 3:20 but the steps add to 3:00 (steep to 2:00, rest 30 s, press 30 s); used 3:00. Pour and swirl durations estimated (10 s, 5 s). Water given as 200 g in details but 200 mL in steps. Filter count not stated. Page also lists many user-submitted grinder settings (e.g. Comandante 11-16, 1Zpresso JX 42-48 clicks, Baratza Encore 12-14), not part of the author's grind text.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 200 g, wetting all coffee; seat plunger ~1 cm to stop drips",
+    10
+   ],
+   [
+    "wait",
+    "Steep until 2:00",
+    110
+   ],
+   [
+    "swirl",
+    "Gently swirl brewer (holding plunger)",
+    5
+   ],
+   [
+    "wait",
+    "Rest until 2:30",
+    25
+   ],
+   [
+    "press",
+    "Press gently all the way, ~30 s",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "floral",
+   "citrus",
+   "fruity"
+  ],
+  "why": "A lean ratio and near-boiling water extract fully without stirring — a clear, tea-like cup that shows off delicate light roasts."
+ },
+ {
+  "id": "lance-hedrick-very-good",
+  "name": "Lance Hedrick — A Very Good Recipe",
+  "author": "Lance Hedrick",
+  "source": "Barista",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/lance-hedrick-a-very-good-aeropress-recipe-and-3-simple-tips",
+  "o": "standard",
+  "dose": 15,
+  "water": 250,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 92,
+  "grind": "Medium-fine (start coarser, French press / pour-over-like, and move finer until balanced)",
+  "clicks": 13,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 150,
+  "notes": "Standard-orientation bloom-and-swirl recipe aimed at cutting bitterness and astringency: slow gentle press, stop before the hiss, modest 92°C water. Dose scales with roast (15 g light, 16 g medium, 17 g dark) and temps drop for darker roasts (~88°C medium, 82–84°C dark).",
+  "issues": "Bloom water amount not stated. Pour (bloom and main) durations, the 5 s swirls, and the 30 s press are estimated; page's 2:00 brew time is the steep before pressing. Page lists 250 g water but step says 'up to 250 mL'. Roast listed as light washed; 16 g/17 g given for medium/dark.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Level bed, pour slowly a small bloom",
+    10
+   ],
+   [
+    "swirl",
+    "Swirl to saturate",
+    5
+   ],
+   [
+    "wait",
+    "Bloom until 0:45",
+    30
+   ],
+   [
+    "pour",
+    "Pour normally to 250 g",
+    10
+   ],
+   [
+    "swirl",
+    "Place plunger to stop drip, move off scale, swirl",
+    5
+   ],
+   [
+    "wait",
+    "Steep until 2:00",
+    60
+   ],
+   [
+    "press",
+    "Press gently, stop before the hiss; pull plunger up slightly",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "caramel",
+   "nutty"
+  ],
+  "why": "Built to cut bitterness and astringency with a gentle press — a safe, balanced recipe for medium beans with caramel and nut notes."
+ },
+ {
+  "id": "lance-hedrick-different-dark",
+  "name": "Lance Hedrick — Dark Roast & Decaf",
+  "author": "Lance Hedrick",
+  "source": "Barista",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/a-different-aeropress-recipe-by-lance-hedrick-dark-roast-version",
+  "o": "inverted",
+  "dose": 30,
+  "water": 120,
+  "byp": 100,
+  "bypT": "hot water",
+  "temp": 80,
+  "grind": "Coarse, around 1200 micron (~800 burr movement); about 35 clicks on a Comandante or 65 clicks on a 1ZPRESSO ZP6",
+  "clicks": 22,
+  "filter": "paper",
+  "roast": "dark",
+  "st": [
+   "black"
+  ],
+  "total": 130,
+  "notes": "Very high dose (1:4) concentrate at only 80°C with a coarse grind, then diluted; meant for decaf, dark, baked or aged coffee past its prime.",
+  "issues": "Bypass is a range of 80–120 g; 100 g (midpoint) used. Bypass water temperature not stated (assumed hot). Pour and flip durations estimated; page lists 2:00 brew time but steps total ~2:10. Page title says 'Decaf and Dark Roast Version'; shared by Cpt Tziank.",
+  "fin": "Add 100 g hot water.",
+  "segs": [
+   [
+    "pour",
+    "Pour all 120 g at once",
+    10
+   ],
+   [
+    "stir",
+    "Stir vigorously 10 s",
+    10
+   ],
+   [
+    "wait",
+    "Steep until 1:00",
+    40
+   ],
+   [
+    "flip",
+    "At 1:00 add lid (cap) and flip",
+    10
+   ],
+   [
+    "press",
+    "Press for 1 minute",
+    60
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "chocolate",
+   "bold",
+   "nutty"
+  ],
+  "why": "Very cool water and a coarse grind on dark, decaf or aged coffee keep the chocolate and roast and drop the ashy bitterness."
+ },
+ {
+  "id": "lance-hedrick-different-light",
+  "name": "Lance Hedrick — Light Roast Concentrate",
+  "author": "Lance Hedrick",
+  "source": "Barista",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/a-different-aeropress-recipe-by-lance-hedrick-lighter-roast-version",
+  "o": "inverted",
+  "dose": 20,
+  "water": 120,
+  "byp": 80,
+  "bypT": "hot water",
+  "temp": 85,
+  "grind": "Medium-coarse, around 1000 micron (650 or so burr movement)",
+  "clicks": 18,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 130,
+  "notes": "Concentrated 1:6 inverted brew at a low 85°C with a coarse grind, then diluted with bypass water; designed to cut woody/vegetal notes and boost acidity and body in lighter roasts.",
+  "issues": "Bypass is a range of 60–100 g; 80 g (midpoint) used. Bypass water temperature not stated (assumed hot). Pour and flip durations estimated; page lists 2:00 brew time but 1:00 steep + 1:00 press plus flip gives ~2:10. Posted by Rina Zhang, not Lance himself.",
+  "fin": "Add 80 g hot water.",
+  "segs": [
+   [
+    "pour",
+    "Pour all 120 g at once",
+    10
+   ],
+   [
+    "stir",
+    "Stir 10 s",
+    10
+   ],
+   [
+    "wait",
+    "Steep until 1:00",
+    40
+   ],
+   [
+    "flip",
+    "At 1:00 add lid (cap) and flip",
+    10
+   ],
+   [
+    "press",
+    "Press for 1 minute",
+    60
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "citrus"
+  ],
+  "why": "Designed to cut woody, vegetal notes from light roasts and boost acidity and body — makes fruity light roasts taste juicy."
+ },
+ {
+  "id": "market-lane",
+  "name": "Market Lane",
+  "author": "Huw @ Market Lane (Market Lane Coffee)",
+  "source": "Barista",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/market-lane-aeropress",
+  "o": "inverted",
+  "dose": 15,
+  "water": 200,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 95,
+  "grind": "Medium to coarse (steps say 'grind 15g at a medium setting'; Porlex Mini hand grinder listed)",
+  "clicks": 16,
+  "filter": "paper",
+  "roast": "any",
+  "st": [
+   "black"
+  ],
+  "total": 120,
+  "notes": "Simple inverted steep with no bloom; strength is tuned via how much you stir at 1:00.",
+  "issues": "Roast not stated ('something nice and fresh'); set to any. Pour, stir and flip durations estimated. Grind given as 'medium to coarse' in header vs 'medium' in steps. Water 200 g vs 200 ml in steps.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 200 g",
+    10
+   ],
+   [
+    "wait",
+    "Steep until 1:00",
+    50
+   ],
+   [
+    "stir",
+    "Stir (more stirring = stronger)",
+    10
+   ],
+   [
+    "wait",
+    "Wait until 1:30",
+    20
+   ],
+   [
+    "flip",
+    "Add rinsed cap and flip",
+    10
+   ],
+   [
+    "press",
+    "Plunge, finish ~2:00",
+    20
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "A simple steep where more stirring makes a stronger cup — easy to tune to a fruity or sweet bean."
+ },
+ {
+  "id": "stumptown-on-the-road",
+  "name": "On the Road with Stumptown",
+  "author": "Stumptown Coffee Roasters",
+  "source": "Barista",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/on-the-road-with-stumptown",
+  "o": "standard",
+  "dose": 17,
+  "water": 220,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 96,
+  "grind": "Medium-fine (hand grinder, Porlex Mini shown)",
+  "clicks": 12,
+  "filter": "paper",
+  "roast": "any",
+  "st": [
+   "black"
+  ],
+  "total": 110,
+  "notes": "Travel-friendly standard recipe: fill to the level-4 mark, plunger-seal the steep, and stir twice. Total 1:45–1:55.",
+  "issues": "Roast not stated ('Something from Stumptown!'); set to any. Stir durations and 25 s press estimated to land within the stated 1:45–1:55 total.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour to level 4 (220 g) within 10 s, rotating brewer",
+    10
+   ],
+   [
+    "stir",
+    "Stir",
+    5
+   ],
+   [
+    "wait",
+    "Plunger on, pull up to seal; wait to 1:15",
+    60
+   ],
+   [
+    "stir",
+    "Remove plunger, stir again",
+    10
+   ],
+   [
+    "press",
+    "Press slowly, stop at hiss",
+    25
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "chocolate",
+   "caramel",
+   "nutty"
+  ],
+  "why": "Hot water and two stirs make a full, sweet, hearty cup — great for chocolaty, nutty and caramel beans, and travel-proof."
+ },
+ {
+  "id": "rueller",
+  "name": "Ralf Rüller Personal",
+  "author": "Ralf Rüller",
+  "source": "Barista · The Barn, Berlin",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/ralf-ruellers-personal-aeropress-recipe",
+  "o": "inverted",
+  "dose": 15,
+  "water": 230,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 95,
+  "grind": "Medium (Comandante C40 Mk3 Nitro Blade grinder listed, no setting)",
+  "clicks": 15,
+  "filter": "2 paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 120,
+  "notes": "Inverted, V60-style bloom-and-stir then a short 1:30 immersion through two rinsed papers, aiming for a juicy cup with creamy mouthfeel.",
+  "issues": "Bloom pour (10 s), stir (5 s), main pour (10 s) and flip (10 s) durations estimated; with the ~20 s press this lands on the 2:00 headline. Two filters are 'for a cleaner brew' (optional). 'Below number 4' in step 2 is ambiguous. Name spelled 'Rueller' on the page. Country not stated (The Barn is in Berlin).",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 40-50 g to bloom",
+    10
+   ],
+   [
+    "stir",
+    "Stir ~5 times",
+    5
+   ],
+   [
+    "wait",
+    "Bloom until 0:30",
+    15
+   ],
+   [
+    "pour",
+    "Pour remaining water to 230 g",
+    10
+   ],
+   [
+    "wait",
+    "Steep; at 1:00 attach cap with 2 rinsed filters and gently push out air",
+    50
+   ],
+   [
+    "flip",
+    "Flip onto cup at 1:30",
+    10
+   ],
+   [
+    "press",
+    "Press slowly ~20 s",
+    20
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "Aimed at a juicy cup with a creamy mouthfeel: fruity beans get their juiciness, honey-process beans their sweetness."
+ },
+ {
+  "id": "sightglass",
+  "name": "Sightglass Coffee",
+  "author": "Devan Holt (Sightglass Coffee)",
+  "source": "Barista",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/aeropress-recipe-by-sightglass-coffee",
+  "o": "standard",
+  "dose": 17,
+  "water": 220,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 97,
+  "grind": "Fine (table salt) — 1Zpresso K-Ultra at 5.5 as a starting point",
+  "clicks": 12,
+  "filter": "paper",
+  "roast": "any",
+  "st": [
+   "black"
+  ],
+  "total": 75,
+  "notes": "Very fast brew: fine grind and near-boiling 97°C water with only a 45 s steep before pressing.",
+  "issues": "Roast not stated; page says 'any coffee', so set to any. Pour, stir and press durations estimated; page's 0:45 brew time is the steep before pressing.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Level bed, pour 220 g",
+    10
+   ],
+   [
+    "stir",
+    "Quick gentle stir to immerse",
+    5
+   ],
+   [
+    "wait",
+    "Insert plunger to seal; wait to 0:45",
+    30
+   ],
+   [
+    "press",
+    "Press gently and steadily, stop at hiss",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "caramel",
+   "nutty"
+  ],
+  "why": "Fine grind and hot water extract fast — a sweet, well-rounded cup in about a minute. Works with most beans; best with caramel-sweet mediums."
+ },
+ {
+  "id": "kasuya",
+  "name": "Tetsu Kasuya Pour-Over",
+  "author": "Tetsu Kasuya",
+  "source": "Barista",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/tetsu-kasuya-aeropress-recipe",
+  "o": "standard",
+  "dose": 20,
+  "water": 300,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 93,
+  "grind": "Medium",
+  "clicks": 15,
+  "filter": "2 paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 200,
+  "notes": "Uses the AeroPress as a pour-over dripper: bloom, then pulse pours of 300 g draining through before a final 20 s plunge — good for larger volumes.",
+  "issues": "Bloom pour duration estimated (10 s). Filter count from the notes (Tetsu uses 2 papers); details just say paper. No grinder/setting given. Notes suggest 82-85°C for dark roasts.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 40 g to bloom",
+    10
+   ],
+   [
+    "wait",
+    "Bloom until 0:30",
+    20
+   ],
+   [
+    "pour",
+    "Pulse-pour ~40 g at a time to 300 g by 3:00",
+    150
+   ],
+   [
+    "press",
+    "Plunge 20 s, stop at hiss",
+    20
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "floral",
+   "citrus"
+  ],
+  "why": "Percolation like a V60 rather than immersion — clean and bright, for floral and citrusy light roasts."
+ },
+ {
+  "id": "wendelboe",
+  "name": "Tim Wendelboe",
+  "author": "Tim Wendelboe",
+  "source": "Barista · Tim Wendelboe, Oslo",
+  "g": "pro",
+  "year": null,
+  "country": "Norway",
+  "url": "https://aeroprecipe.com/recipes/tim-wendelboe",
+  "o": "standard",
+  "dose": 14,
+  "water": 200,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 96,
+  "grind": "Medium; Tim recommends 15-20 clicks on a Comandante grinder (step 2: 'fine filter ground')",
+  "clicks": 12,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 110,
+  "notes": "Short 60 s steep bracketed by two precise 3-stroke back-to-front stirs; the page warns more or fewer stirs shifts extraction.",
+  "issues": "Headline total 1:30 but only the 60 s steep is timed; pour (10 s), stirs (5 s) and press (30 s) estimated, giving 1:50. Grind 'Medium' in header vs 'fine filter ground' in steps. Country inferred from 'his Oslo café'. Filter count not stated.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 200 g at ~96°C over 14 g (filter rinsed)",
+    10
+   ],
+   [
+    "stir",
+    "Stir 3 times back to front; place plunger to stop drainage",
+    5
+   ],
+   [
+    "wait",
+    "Steep 60 s",
+    60
+   ],
+   [
+    "stir",
+    "Remove plunger, stir 3 times back to front",
+    5
+   ],
+   [
+    "press",
+    "Replace plunger, press with body weight",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "floral",
+   "citrus",
+   "fruity"
+  ],
+  "why": "Short steep, precise stirring, light ratio. Tim Wendelboe roasts very light, and this recipe is built to show clean floral and fruity acidity."
+ },
+ {
+  "id": "wendelboe-stronger",
+  "name": "Tim Wendelboe, Stronger",
+  "author": "Tim Wendelboe",
+  "source": "Barista · Tim Wendelboe, Oslo",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/tim-wendelboe-stronger",
+  "o": "standard",
+  "dose": 20,
+  "water": 99,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 96,
+  "grind": "Very Fine (step 2: espresso-roasted coffee ground for Bialetti moka pots, 'quite fine')",
+  "clicks": 11,
+  "filter": "paper",
+  "roast": "dark",
+  "st": [
+   "concentrate"
+  ],
+  "total": 60,
+  "notes": "Moka-pot-style strong cup: 20 g of fine, darker espresso-roast coffee with only ~100 g water and no steep beyond the stir.",
+  "issues": "Very sparse page. Water 99 g in details vs 100-150 g in steps (used 99). Temp 96°C in details vs 'brought to a boil' in steps. No steep or press durations given; pour (10 s), stir (10 s), plunger insert (10 s) and press (30 s) estimated to fit the 1:00 headline. Roast 'something a bit darker' mapped to dark. Filter count not stated.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour ~100 g boiling water over 20 g",
+    10
+   ],
+   [
+    "stir",
+    "Stir vigorously 3 times",
+    10
+   ],
+   [
+    "wait",
+    "Insert plunger",
+    10
+   ],
+   [
+    "press",
+    "Press with body weight",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "chocolate",
+   "bold"
+  ],
+  "why": "A moka-style strong cup from espresso-roasted coffee — dense, chocolaty and roasty. Too intense for light fruity beans."
+ },
+ {
+  "id": "tylers-bypass",
+  "name": "Tyler's Bypass",
+  "author": "Tyler Duncan (Topeca Coffee)",
+  "source": "Barista",
+  "g": "pro",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/tylers-bypass",
+  "o": "inverted",
+  "dose": 15,
+  "water": 180,
+  "byp": 20,
+  "bypT": "hot water",
+  "temp": 94,
+  "grind": "Medium-fine",
+  "clicks": 12,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 180,
+  "notes": "Cupping-inspired method: surface oils are skimmed off before pressing, then a 10% (20 g) hot-water bypass is added. Suggested with an Ethiopian Guji.",
+  "issues": "Page total is 2:45 but stir/swirl/flip (estimated) plus the stated ~30 s plunge after 2:15 give ~3:00. Roast not stated; inferred light from the Ethiopian Guji suggestion. Skimming is recorded as a 'wait' step (10 s estimated). Bypass water temperature assumed same 94°C water.",
+  "fin": "Add 20 g hot water.",
+  "segs": [
+   [
+    "pour",
+    "Pour 60 g",
+    10
+   ],
+   [
+    "stir",
+    "Stir vigorously",
+    10
+   ],
+   [
+    "wait",
+    "Wait until 0:30",
+    10
+   ],
+   [
+    "pour",
+    "Pour 120 g (to 180 g)",
+    10
+   ],
+   [
+    "stir",
+    "Stir again",
+    10
+   ],
+   [
+    "wait",
+    "Wait until 1:30",
+    40
+   ],
+   [
+    "wait",
+    "Skim oils off the surface",
+    10
+   ],
+   [
+    "wait",
+    "Wait until 2:15",
+    35
+   ],
+   [
+    "stir",
+    "Stir to loosen grounds on plunger",
+    5
+   ],
+   [
+    "swirl",
+    "Cap on, swirl 1–2 times",
+    5
+   ],
+   [
+    "flip",
+    "Flip immediately",
+    5
+   ],
+   [
+    "press",
+    "Plunge ~30 s",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "floral",
+   "fruity"
+  ],
+  "why": "Skimming the oils off, cupping-style, gives a very clean cup that shows delicate florals and stone fruit — made for an Ethiopian Guji."
+ },
+ {
+  "id": "aeropress-espresso",
+  "name": "AeroPress Espresso",
+  "author": "Coffee Lovers TV",
+  "source": "Enthusiast · YouTube",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/aeropress-espresso",
+  "o": "standard",
+  "dose": 20,
+  "water": 60,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 98,
+  "grind": "Fine, like sand",
+  "clicks": 9,
+  "filter": "paper",
+  "roast": "dark",
+  "st": [
+   "concentrate"
+  ],
+  "total": 30,
+  "notes": "1:3 espresso-style concentrate: fine grind, minimal contact time and a hard, fast plunge.",
+  "issues": "Roast is 'medium-to-dark' on the page; mapped to 'dark'. Press duration (10 s) estimated to fit the listed 0:30 total. Filter count not stated (author suggests also trying metal).",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Add 60 g boiling water within 10 s",
+    10
+   ],
+   [
+    "stir",
+    "Stir 10 s to saturate all grounds",
+    10
+   ],
+   [
+    "press",
+    "Remove from scale, plunge as fast as possible",
+    10
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "chocolate",
+   "bold"
+  ],
+  "why": "A short, hot, hard extraction. Dark, chocolaty beans give a thick espresso-like shot; light beans turn sour."
+ },
+ {
+  "id": "aeropress-iced-latte",
+  "name": "AeroPress Iced Latte",
+  "author": "Mark C",
+  "source": "Enthusiast",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/aeropress-iced-latte",
+  "o": "inverted",
+  "dose": 18,
+  "water": 60,
+  "byp": 130,
+  "bypT": "milk",
+  "temp": 92,
+  "grind": "Medium Fine, Porlex Mini 5 clicks",
+  "clicks": 12,
+  "filter": "1 paper",
+  "roast": "dark",
+  "st": [
+   "milk",
+   "iced"
+  ],
+  "total": 140,
+  "notes": "Strong 1:3.3 Monsooned Malabar concentrate pressed straight onto 5 ice cubes and 130 ml milk for a full-bodied iced latte.",
+  "issues": "Roast not stated; inferred dark from Monsooned Malabar and 'dark chocolate, full bodied' notes. Bypass is 130 ml milk (treated as 130 g) plus 5 ice cubes (ice weight not given, not counted). Pour (5 s) and flip (10 s) durations estimated. Water given as 60 g in details and 60 ml in steps.",
+  "fin": "Add 130 g milk.",
+  "segs": [
+   [
+    "pour",
+    "Add 60 g hot water",
+    5
+   ],
+   [
+    "stir",
+    "Stir continuously to 0:40",
+    35
+   ],
+   [
+    "wait",
+    "Cap and brew; put 5 ice cubes + 130 ml milk in mug",
+    70
+   ],
+   [
+    "flip",
+    "Flip onto mug",
+    10
+   ],
+   [
+    "press",
+    "Plunge 20 s from 2:00",
+    20
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "chocolate",
+   "bold",
+   "nutty"
+  ],
+  "why": "Built on Indian Monsooned Malabar — low-acid, heavy and chocolaty, exactly what iced milk needs. Great for dark, chocolaty Indian roasts."
+ },
+ {
+  "id": "flash-brew-iced",
+  "name": "Flash Brew Iced Coffee",
+  "author": "Marc Werle",
+  "source": "Enthusiast",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/flash-brew-iced-coffee",
+  "o": "standard",
+  "dose": 22,
+  "water": 170,
+  "byp": 150,
+  "bypT": "ice",
+  "temp": 95,
+  "grind": "Fine",
+  "clicks": 12,
+  "filter": "2 paper",
+  "roast": "light",
+  "st": [
+   "iced"
+  ],
+  "total": 150,
+  "notes": "Hot-brewed and pressed straight onto ice ('flash brew') to keep a light roast's character with little dilution or bitterness.",
+  "issues": "The page lists 2:10 total but also a 2:00 steep plus a ~30 s press; the timer follows the steps (2:30).",
+  "fin": "Swirl the cup to melt and mix, then drink.",
+  "segs": [
+   [
+    "pour",
+    "Pour 170 g, saturating all grounds",
+    10
+   ],
+   [
+    "swirl",
+    "Swirl 8–10 s",
+    10
+   ],
+   [
+    "wait",
+    "Steep until 2:00",
+    100
+   ],
+   [
+    "press",
+    "Press onto the ice, about 30 s",
+    30
+   ]
+  ],
+  "kw": "flash brew iced japanese style hot onto ice light",
+  "pre": "Put 150 g ice in the cup or carafe. Two paper filters. The author uses a Flow Control/Prismo cap; with the normal cap, push the plunger in 1 cm after pouring to stop drips.",
+  "add": "150 g ice",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "citrus",
+   "floral"
+  ],
+  "why": "Flash-brewed hot onto ice to keep a light roast's character with little dilution — the iced choice for bright, fruity beans."
+ },
+ {
+  "id": "freddo-espresso",
+  "name": "Freddo Espresso",
+  "author": "Minas Pitsos",
+  "source": "Enthusiast",
+  "g": "fan",
+  "year": null,
+  "country": "Greece",
+  "url": "https://aeroprecipe.com/recipes/freddo-espresso",
+  "o": "inverted",
+  "dose": 22,
+  "water": 80,
+  "byp": null,
+  "bypT": "ice",
+  "temp": 94,
+  "grind": "Coarser end of fine",
+  "clicks": 11,
+  "filter": "metal",
+  "roast": "light",
+  "st": [
+   "iced",
+   "concentrate"
+  ],
+  "total": 255,
+  "notes": "A Greek freddo: a long-steeped concentrate shaken hard with ice until frothy. For a stronger cup the author uses 25 g with 90 g water.",
+  "issues": "The page gives ranges: 22–25 g coffee, 80–90 g water, 93–95 °C (90 °C for dark roasts, which also brew 20–30 s shorter). Set to 22 g, 80 g, 94 °C. Pour and flip durations estimated.",
+  "fin": "Add sugar now if you like and swirl to dissolve. Shake with 2–3 large ice cubes, then serve over 2–3 more.",
+  "segs": [
+   [
+    "pour",
+    "Pour 80 g, wetting all the grounds",
+    10
+   ],
+   [
+    "stir",
+    "Stir about 45 s (plastic spoon)",
+    45
+   ],
+   [
+    "wait",
+    "Cap on; steep until 2:00",
+    65
+   ],
+   [
+    "swirl",
+    "Hold brewer and plunger, swirl gently",
+    5
+   ],
+   [
+    "flip",
+    "Flip onto a cup",
+    10
+   ],
+   [
+    "wait",
+    "Wait until 3:45",
+    90
+   ],
+   [
+    "press",
+    "Press gently all the way, about 30 s",
+    30
+   ]
+  ],
+  "kw": "freddo greek shaken frothy iced espresso summer",
+  "pre": "Have a shaker or lidded jar and 4–6 large ice cubes ready. No rinse or preheat.",
+  "add": "2–3 cubes",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "A long-steeped light-to-medium concentrate shaken with ice — sweet, frothy and bright. Fruity and caramel beans keep their sweetness when chilled."
+ },
+ {
+  "id": "fresh-orange-iced-coffee",
+  "name": "Fresh Orange Iced Coffee",
+  "author": "Victor Bacega",
+  "source": "Enthusiast · Experimental",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/fresh-orange-ice-coffee",
+  "o": "standard",
+  "dose": 18,
+  "water": 250,
+  "byp": 150,
+  "bypT": "ice",
+  "temp": 90,
+  "grind": "Medium-coarse (Timemore C2)",
+  "clicks": 17,
+  "filter": "paper + an orange slice",
+  "roast": "any",
+  "st": [
+   "iced",
+   "mixer"
+  ],
+  "total": 150,
+  "notes": "Orange slices in the carafe and on the filter, then the coffee is shaken hard with ice — frothy, citrusy and cold. The author asks for 'something fruity'.",
+  "issues": "The first pour is given 5 s inside the 30 s stir. 250 g fills a standard AeroPress to the brim. No roast level is stated.",
+  "fin": "Stir the coffee in the carafe, pour it into the shaker with 150 g ice and shake hard for 30 seconds. Serve over ice with an orange slice.",
+  "segs": [
+   [
+    "pour",
+    "Pour 50 g",
+    5
+   ],
+   [
+    "stir",
+    "Stir gently until 0:30",
+    25
+   ],
+   [
+    "pour",
+    "Pour the remaining 200 g",
+    10
+   ],
+   [
+    "wait",
+    "Wait until 1:00",
+    20
+   ],
+   [
+    "press",
+    "Press slowly, finishing at 2:30",
+    90
+   ]
+  ],
+  "kw": "orange citrus fruit shaken shaker frothy iced experimental",
+  "pre": "Put three 1 cm orange slices in the carafe and one on top of the paper filter (the cap must still close). Have a cocktail shaker or lidded jar with 150 g ice ready.",
+  "add": "150 g ice",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "citrus",
+   "chocolate"
+  ],
+  "why": "Orange and a hard shake make a frothy, citrusy iced coffee. Fruity beans go orange-berry; chocolaty beans make a chocolate-orange."
+ },
+ {
+  "id": "fruity-press",
+  "name": "Fruity Press",
+  "author": "Yker Valerio",
+  "source": "Enthusiast",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/fruity-press",
+  "o": "standard",
+  "dose": 10,
+  "water": 120,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 90,
+  "grind": "Medium-fine",
+  "clicks": 12,
+  "filter": "paper",
+  "roast": "medium",
+  "st": [
+   "black"
+  ],
+  "total": 90,
+  "notes": "Small 10 g, 1:12 brew for natural/honey-process medium roasts, inspired by Hoffmann's method; the cup rests 20 s after pressing to open aroma and sweetness.",
+  "issues": "Swirl durations (5 s each) estimated. The 20 s post-press rest in the cup is not included as a step. For light roasts the author suggests finer grind or hotter water. Filter count not stated.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 120 g slowly over ~10 s",
+    10
+   ],
+   [
+    "swirl",
+    "Swirl gently",
+    5
+   ],
+   [
+    "wait",
+    "Rest 20 s",
+    20
+   ],
+   [
+    "swirl",
+    "Swirl again",
+    5
+   ],
+   [
+    "wait",
+    "Rest 20 s",
+    20
+   ],
+   [
+    "press",
+    "Insert plunger, press slowly 30 s, pull up slightly to stop drips",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "Made for natural and honey-process medium roasts; a rest after pressing opens up aroma and sweetness."
+ },
+ {
+  "id": "vietnamese-long-steep-thien-le",
+  "name": "Fuller Flavour Vietnamese Style",
+  "author": "Thien Le",
+  "source": "Enthusiast",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/fuller-flavour-profile-vietnamese-style",
+  "o": "standard",
+  "dose": 20,
+  "water": 100,
+  "byp": null,
+  "bypT": "condensed",
+  "temp": 100,
+  "grind": "Medium-fine",
+  "clicks": 12,
+  "filter": "1 paper, dry",
+  "roast": "dark",
+  "st": [
+   "milk",
+   "concentrate",
+   "vietnamese"
+  ],
+  "total": 600,
+  "notes": "A long 9-minute immersion that builds the heavy body of a Vietnamese phin brew, then gets condensed milk. Drink it hot as cà phê sữa nóng or pour it over ice.",
+  "issues": "The page gives a dose range of 18–25 g (set to 20 g) and water at 95–100 °C (set to 100 °C, since the step says boiling). It says to press 'at about 9:00 or later' and lists 12:00 total; the timer presses 9:00–10:00. Press duration is estimated. Condensed milk, sugar and ice amounts aren't given.",
+  "fin": "Add sweetened condensed milk to taste, a pinch of sugar if you like, and ice in summer. Variations: palm sugar, beaten egg yolk, coconut milk or ginger instead of condensed milk.",
+  "segs": [
+   [
+    "pour",
+    "Pour boiling water to about the ② mark (100 g)",
+    15
+   ],
+   [
+    "stir",
+    "Stir back and forth from bottom to top, no circles",
+    10
+   ],
+   [
+    "swirl",
+    "Swirl to level the bed, then seat the plunger",
+    5
+   ],
+   [
+    "wait",
+    "Steep until 5:00",
+    270
+   ],
+   [
+    "swirl",
+    "Swirl thoroughly",
+    5
+   ],
+   [
+    "wait",
+    "Steep until 9:00",
+    235
+   ],
+   [
+    "press",
+    "Press gently",
+    60
+   ]
+  ],
+  "kw": "vietnamese viet vietnam ca phe sua nong cà phê sữa nóng condensed milk robusta arabica blend long steep hot egg coconut palm sugar ginger",
+  "pre": "Dry filter, cap screwed on tight. Level the coffee in the chamber. A 30% arabica / 70% robusta blend is recommended; all-arabica also works.",
+  "add": "to taste",
+  "mix": "",
+  "fl": [
+   "bold",
+   "chocolate",
+   "nutty"
+  ],
+  "why": "A 9-minute steep builds the heavy body of a phin brew; made for robusta-heavy or dark blends that stand up to condensed milk."
+ },
+ {
+  "id": "greek-freddo-espresso",
+  "name": "Greek Freddo Espresso",
+  "author": "Serafeim Davranis",
+  "source": "Enthusiast",
+  "g": "fan",
+  "year": null,
+  "country": "Greece",
+  "url": "https://aeroprecipe.com/recipes/aeropress-freddo-espresso",
+  "o": "inverted",
+  "dose": 18,
+  "water": 50,
+  "byp": null,
+  "bypT": "ice",
+  "temp": 94,
+  "grind": "Medium",
+  "clicks": 14,
+  "filter": "1 paper, rinsed",
+  "roast": "light",
+  "st": [
+   "iced",
+   "concentrate"
+  ],
+  "total": 90,
+  "notes": "A tiny 1:2.8 shot from a light Ethiopian, shaken with ice for a sweet, tangy, frothy freddo.",
+  "issues": "The page gives 1:10–1:30 for flip plus a 20 s press; the flip was given 5 s and the press 15 s to fit.",
+  "fin": "Pour into the shaker with one big ice cube, shake hard for froth, and strain over the ice in your glass.",
+  "segs": [
+   [
+    "pour",
+    "Add 50 g water",
+    10
+   ],
+   [
+    "stir",
+    "Stir back and forth, side to side",
+    20
+   ],
+   [
+    "wait",
+    "Push plunger up to the rim, rinse filter, cap on",
+    40
+   ],
+   [
+    "flip",
+    "Flip onto a sturdy mug",
+    5
+   ],
+   [
+    "press",
+    "Press gently, about 20 s",
+    15
+   ]
+  ],
+  "kw": "freddo greek shaken frothy iced espresso ethiopia summer",
+  "pre": "Put 4 big ice cubes in your glass. Have a cocktail shaker (with strainer) and one more big cube ready.",
+  "add": "4 cubes + 1",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "citrus",
+   "floral"
+  ],
+  "why": "Built on a light Ethiopian for a sweet, tangy freddo. Shaking adds froth, and the cold makes fruit taste crisp."
+ },
+ {
+  "id": "hello-darkness",
+  "name": "Hello Darkness, My Old Friend",
+  "author": "Peter Do",
+  "source": "Enthusiast",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/hello-darkness-my-old-friend",
+  "o": "inverted",
+  "dose": 12.5,
+  "water": 205,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 85,
+  "grind": "Medium-coarse",
+  "clicks": 17,
+  "filter": "paper",
+  "roast": "dark",
+  "st": [
+   "black"
+  ],
+  "total": 210,
+  "notes": "Low-temperature (85°C), low-dose dark-roast daily brew with a bidirectional stir, aimed at balancing bitterness and acidity.",
+  "issues": "Pour (20 s), stir (10 s) and flip (10 s) durations estimated. Filter count not stated.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Slowly pour 205 g",
+    20
+   ],
+   [
+    "wait",
+    "Steep to 1:00",
+    40
+   ],
+   [
+    "stir",
+    "Stir 3 times clockwise, 3 times counterclockwise",
+    10
+   ],
+   [
+    "wait",
+    "Attach rinsed filter cap, brew to 2:30",
+    80
+   ],
+   [
+    "flip",
+    "Flip onto cup",
+    10
+   ],
+   [
+    "press",
+    "Press very slowly to bottom, ~3:30",
+    50
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "chocolate",
+   "bold",
+   "nutty"
+  ],
+  "why": "Low temperature and a low dose made for dark roasts — balances bitterness and acidity for a smooth daily dark cup."
+ },
+ {
+  "id": "iced-americano",
+  "name": "Iced Americano",
+  "author": "Carl Miranda",
+  "source": "Enthusiast · based on Hoffmann",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/iced-americano",
+  "o": "standard",
+  "dose": 12,
+  "water": 120,
+  "byp": 110,
+  "bypT": "ice",
+  "temp": 97,
+  "grind": "Fine, similar to a filter brew",
+  "clicks": 13,
+  "filter": "paper",
+  "roast": "light",
+  "st": [
+   "iced"
+  ],
+  "total": 160,
+  "notes": "Hoffmann's method shrunk to 12 g and pressed straight onto ice. The author uses a mild Vietnamese arabica with ripe guava notes.",
+  "issues": "The page lists 2:30 total and then a ~10 s press, so the timer runs to 2:40. 'Mild roast' read as light.",
+  "fin": "Swirl and drink — the ice is already in the glass.",
+  "segs": [
+   [
+    "pour",
+    "Pour 120 g freshly boiled water",
+    5
+   ],
+   [
+    "stir",
+    "Stir gently 5 s",
+    5
+   ],
+   [
+    "wait",
+    "Steep until 2:00",
+    110
+   ],
+   [
+    "swirl",
+    "Swirl gently 5 s",
+    5
+   ],
+   [
+    "wait",
+    "Steep until 2:30",
+    25
+   ],
+   [
+    "press",
+    "Press onto the ice, about 10 s",
+    10
+   ]
+  ],
+  "kw": "iced americano hoffmann simple light",
+  "pre": "Put 100–120 g ice in the glass. The author uses a Fellow Prismo cap; with the normal cap, push the plunger in 1 cm right after pouring to stop drips.",
+  "add": "100–120 g ice",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "caramel"
+  ],
+  "why": "Hoffmann's method pressed onto ice — clean and sweet. The author uses a guava-noted mild roast; fruity and caramel beans suit it."
+ },
+ {
+  "id": "brown-sugar-oat-shaken",
+  "name": "Iced Brown Sugar Oat Shaken Aeropresso",
+  "author": "Michael Gordon",
+  "source": "Enthusiast",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/iced-brown-sugar-oat-shaken-aeropresso",
+  "o": "inverted",
+  "dose": 25,
+  "water": 200,
+  "byp": null,
+  "bypT": "mixer",
+  "temp": 95,
+  "grind": "Espresso-fine (Timemore C2, 8 clicks)",
+  "clicks": 9,
+  "filter": "metal (or 2 paper)",
+  "roast": "light",
+  "st": [
+   "milk",
+   "iced",
+   "concentrate"
+  ],
+  "total": 235,
+  "notes": "A strong, triple-shot-style base shaken with brown-sugar cinnamon syrup and ice, topped with oat milk — a home version of Starbucks' Iced Brown Sugar Oat Shaken Espresso.",
+  "issues": "The page lists 5:00 total; its steps finish around 3:55 (press set to 75 s, the middle of 60–90 s). For dark roasts the author uses 20 g and 80–85 °C. Ice and oat milk amounts aren't given.",
+  "fin": "Add the warm syrup and the coffee to the ice, shake hard, pour into a glass and top with oat milk to taste.",
+  "segs": [
+   [
+    "pour",
+    "Pour 200 g slowly, wetting all the grounds",
+    15
+   ],
+   [
+    "stir",
+    "Stir 10 s",
+    10
+   ],
+   [
+    "wait",
+    "Rest until 2:00",
+    95
+   ],
+   [
+    "flip",
+    "Cap on, flip onto a cup",
+    10
+   ],
+   [
+    "swirl",
+    "Swirl gently 10 s",
+    10
+   ],
+   [
+    "wait",
+    "Rest 20 s",
+    20
+   ],
+   [
+    "press",
+    "Press for 60–90 s",
+    75
+   ]
+  ],
+  "kw": "brown sugar cinnamon oat milk shaken starbucks copycat sweet iced syrup",
+  "pre": "Make the syrup: 25 g brown sugar, 20 g water and a dash of cinnamon, microwaved until dissolved (watch it doesn't boil over). Fill a lidded container with ice. Wet the filter in the cap during the steep.",
+  "add": "to taste",
+  "mix": "oat milk",
+  "fl": [
+   "caramel",
+   "nutty",
+   "fruity"
+  ],
+  "why": "Brown sugar, cinnamon and oat milk love caramel and nutty beans. The author also found light roasts work, adding a fruity lift."
+ },
+ {
+  "id": "iced-coconut-aeropress",
+  "name": "Iced Coconut AeroPress",
+  "author": "Yunus Yanin",
+  "source": "Enthusiast",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/iced-coconut-aeropress",
+  "o": "standard",
+  "dose": 20,
+  "water": 70,
+  "byp": 150,
+  "bypT": "mixer",
+  "temp": 100,
+  "grind": "Medium-fine (Comandante 20 clicks)",
+  "clicks": 13,
+  "filter": "paper",
+  "roast": "medium",
+  "st": [
+   "iced",
+   "mixer",
+   "concentrate"
+  ],
+  "total": 35,
+  "notes": "A 30-second boiling-water shot pressed straight into cold coconut water over ice — light, mildly sweet and tropical.",
+  "issues": "",
+  "fin": "Stir the coffee into the coconut water and ice.",
+  "segs": [
+   [
+    "pour",
+    "Pour 70 g within 10 s",
+    10
+   ],
+   [
+    "stir",
+    "Stir 15 times",
+    20
+   ],
+   [
+    "press",
+    "Plunger in, press fast (about 5 s)",
+    5
+   ]
+  ],
+  "kw": "coconut water tropical iced mixer quick",
+  "pre": "Put 100 g ice and 150 ml cold coconut water in your glass, and set the AeroPress on it.",
+  "add": "150 ml",
+  "mix": "coconut water",
+  "fl": [
+   "nutty",
+   "chocolate",
+   "caramel"
+  ],
+  "why": "Coconut water is mildly sweet and nutty — it pairs with nutty, chocolaty and caramel beans, like a coconut chocolate bar. Very acidic beans can taste sour against it."
+ },
+ {
+  "id": "gagne",
+  "name": "Jonathan Gagné 10-Minute",
+  "author": "Jonathan Gagné",
+  "source": "Enthusiast · Coffee ad Astra",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/jonathan-gagne",
+  "o": "standard",
+  "dose": 18,
+  "water": 260,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 100,
+  "grind": "Fine",
+  "clicks": 11,
+  "filter": "1 paper",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 610,
+  "notes": "A 'radical' long-steep recipe: fine grind, boiling water and a ~9 minute immersion before a slow press, with swirls at the start and at 5:00.",
+  "issues": "Headline 10:00 but pressing starts at 9:00 'or later' and takes 'a bit more than 1 minute' (set to 70 s, total 10:10). Pour (15 s), stir (5 s), plunger seating (10 s) and swirl (5 s) durations estimated. No grinder/setting given. Fellow Prismo listed in equipment but not used in steps. Year not on page (linked blog post is from 2021).",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Pour 100°C water to fill brewer, ~260 g",
+    15
+   ],
+   [
+    "stir",
+    "Stir back and forth bottom to top (no circular stirs)",
+    5
+   ],
+   [
+    "wait",
+    "Seat plunger a few mm deep",
+    10
+   ],
+   [
+    "swirl",
+    "Swirl to level the bed",
+    5
+   ],
+   [
+    "wait",
+    "Steep until 5:00",
+    265
+   ],
+   [
+    "swirl",
+    "Swirl thoroughly",
+    5
+   ],
+   [
+    "wait",
+    "Steep until 9:00",
+    235
+   ],
+   [
+    "press",
+    "Press gently, a bit over 1 min",
+    70
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "floral",
+   "fruity"
+  ],
+  "why": "Very high extraction — fine grind, boiling water, 9 minutes. Dense light roasts turn sweet and complex; darker roasts would go bitter."
+ },
+ {
+  "id": "orange-aeropress-coffee",
+  "name": "Orange AeroPress Coffee",
+  "author": "giii_muu",
+  "source": "Enthusiast · Experimental",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/orange-aeropress-coffee",
+  "o": "inverted",
+  "dose": 18,
+  "water": 120,
+  "byp": 100,
+  "bypT": "ice",
+  "temp": 85,
+  "grind": "Fine (Porlex Mini setting 4)",
+  "clicks": 11,
+  "filter": "1 paper + an orange slice",
+  "roast": "any",
+  "st": [
+   "iced",
+   "mixer"
+  ],
+  "total": 150,
+  "notes": "The coffee is pressed through a slice of orange sitting on the paper filter, then over ice — a citrus-infused iced coffee. The author asks for beans with bright acidity.",
+  "issues": "Pour and stir durations estimated. The page says press for 1 minute and lists 2:30 total; the flip is given 5 s inside that window. No roast level is given, only 'beans with bright acidity'.",
+  "fin": "Pour over a glass of ice and add an orange slice. A splash of orange juice or orange syrup is optional.",
+  "segs": [
+   [
+    "pour",
+    "Pour 30 g to bloom",
+    10
+   ],
+   [
+    "stir",
+    "Stir well",
+    5
+   ],
+   [
+    "wait",
+    "Bloom until 0:30",
+    15
+   ],
+   [
+    "pour",
+    "Pour the remaining 90 g",
+    10
+   ],
+   [
+    "stir",
+    "Stir a little",
+    5
+   ],
+   [
+    "wait",
+    "Steep until 1:30",
+    45
+   ],
+   [
+    "flip",
+    "Cap (with the orange slice) on, flip onto the iced server",
+    5
+   ],
+   [
+    "press",
+    "Press for about 1 minute",
+    55
+   ]
+  ],
+  "kw": "orange citrus fruit filter slice iced juice mixer experimental",
+  "pre": "Wet a paper filter in the cap and lay a thin orange slice on top of it — check the cap still screws on. Put 100 g ice in the server.",
+  "add": "100 g ice",
+  "mix": "",
+  "fl": [
+   "citrus",
+   "fruity"
+  ],
+  "why": "Brewed through an orange slice. The author asks for beans with bright acidity, so citrusy coffee and orange amplify each other."
+ },
+ {
+  "id": "rule-of-thirds",
+  "name": "Rule of Thirds",
+  "author": "Tyler Laseter",
+  "source": "Enthusiast",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/rule-of-thirds",
+  "o": "inverted",
+  "dose": 20,
+  "water": 225,
+  "byp": 30,
+  "bypT": "hot water",
+  "temp": 94,
+  "grind": "Medium",
+  "clicks": 14,
+  "filter": "2 paper",
+  "roast": "any",
+  "st": [
+   "black"
+  ],
+  "total": 130,
+  "notes": "Three-stage pour in an inverted brewer, then 30 g just-off-boil water added to the cup; the author's benchmark recipe for tasting new coffees.",
+  "issues": "'Wait 30 seconds' after the first pour is ambiguous with 'wait until 0:50'; bloom interpreted as ending ~0:30. Pour durations (10 s), stir (5 s) and flip (10 s) estimated. Page total is 2:25 (includes adding 30 g dilution and stirring); timeline ends at press finish 2:10. Page lists 260 g total water but steps sum to 255 g (225 + 30). Roast not stated ('any coffee').",
+  "fin": "Add 30 g hot water.",
+  "segs": [
+   [
+    "pour",
+    "Pour 50 g",
+    10
+   ],
+   [
+    "stir",
+    "Stir until all grounds saturated",
+    5
+   ],
+   [
+    "wait",
+    "Bloom to ~0:30",
+    15
+   ],
+   [
+    "pour",
+    "Pour to 100 g",
+    10
+   ],
+   [
+    "wait",
+    "Wait to 0:50",
+    10
+   ],
+   [
+    "pour",
+    "Pour to 225 g, attach rinsed filter cap",
+    10
+   ],
+   [
+    "wait",
+    "Steep to 1:30",
+    30
+   ],
+   [
+    "flip",
+    "Flip onto preheated mug",
+    10
+   ],
+   [
+    "press",
+    "Plunge 30-40 s, finish by 2:00-2:10",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "caramel",
+   "fruity"
+  ],
+  "why": "A neutral, balanced recipe the author uses to taste every new coffee — a good first brew for an unfamiliar bag."
+ },
+ {
+  "id": "spanish-latte",
+  "name": "Spanish Latte",
+  "author": "phbrewer",
+  "source": "Enthusiast",
+  "g": "fan",
+  "year": null,
+  "country": "Philippines",
+  "url": "https://aeroprecipe.com/recipes/spanish-latte",
+  "o": "inverted",
+  "dose": 16,
+  "water": 125,
+  "byp": null,
+  "bypT": "condensed",
+  "temp": 95,
+  "grind": "Fine-medium",
+  "clicks": 12,
+  "filter": "paper",
+  "roast": "medium",
+  "st": [
+   "milk",
+   "iced"
+  ],
+  "total": 150,
+  "notes": "Coffee pressed onto condensed milk, then topped with full-cream milk — sweet and creamy. The author uses a nutty, brown-sugar medium roast and says any nutty medium-dark works.",
+  "issues": "Pour duration estimated. The page's timer says 3:00 but its steps finish around 2:30.",
+  "fin": "Stir until the condensed milk dissolves, then add 125 ml full-cream milk. For an iced one, add 100 g ice.",
+  "segs": [
+   [
+    "pour",
+    "Pour 125 g at 95 °C",
+    10
+   ],
+   [
+    "stir",
+    "Stir gently for 30 s, then leave it",
+    30
+   ],
+   [
+    "wait",
+    "Steep until 2:00",
+    80
+   ],
+   [
+    "flip",
+    "Flip onto the cup with condensed milk",
+    5
+   ],
+   [
+    "press",
+    "Press gently, stop at the hiss",
+    25
+   ]
+  ],
+  "kw": "spanish latte condensed milk sweet creamy nutty brown sugar iced",
+  "pre": "Put 35 ml sweetened condensed milk in the cup you'll press into.",
+  "add": "35 ml",
+  "mix": "",
+  "fl": [
+   "nutty",
+   "caramel",
+   "chocolate"
+  ],
+  "why": "Condensed milk adds caramelised sweetness. The author uses a nutty, brown-sugar medium roast — nutty and caramel beans taste like dulce de leche."
+ },
+ {
+  "id": "sweet-bright-iced",
+  "name": "Sweet, Bright and Iced!",
+  "author": "Shy Foreman",
+  "source": "Enthusiast",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/sweet-acidic-and-cold",
+  "o": "standard",
+  "dose": 20,
+  "water": 150,
+  "byp": 150,
+  "bypT": "ice",
+  "temp": 99,
+  "grind": "Medium/fine (Comandante C40 13 clicks)",
+  "clicks": 10,
+  "filter": "paper (or 2 paper)",
+  "roast": "light",
+  "st": [
+   "iced"
+  ],
+  "total": 180,
+  "notes": "A natural-process light roast brewed at 99 °C and pressed over ice — sweet and juicy. Swirls instead of stirs so the paper filter can't tear.",
+  "issues": "Swirl durations estimated.",
+  "fin": "Swirl the carafe so it cools evenly, then serve in a chilled glass.",
+  "segs": [
+   [
+    "pour",
+    "Pour 50 g",
+    10
+   ],
+   [
+    "swirl",
+    "Swirl to break up clumps",
+    5
+   ],
+   [
+    "wait",
+    "Bloom until 0:30",
+    15
+   ],
+   [
+    "pour",
+    "Pour the remaining 100 g in circles",
+    10
+   ],
+   [
+    "swirl",
+    "Swirl, then set the plunger on top",
+    5
+   ],
+   [
+    "wait",
+    "Steep until 2:30",
+    105
+   ],
+   [
+    "press",
+    "Press over the ice, stop before the hiss",
+    30
+   ]
+  ],
+  "kw": "iced natural light bright sweet juicy",
+  "pre": "Put 150 g ice in a carafe or glass and set the AeroPress on top.",
+  "add": "150 g ice",
+  "mix": "",
+  "fl": [
+   "fruity",
+   "citrus"
+  ],
+  "why": "Made for a natural light roast at 99 °C and pressed over ice — keeps the sweetness and juicy acidity the name promises."
+ },
+ {
+  "id": "aeropress-flat-white",
+  "name": "The AeroPress Flat White",
+  "author": "European Coffee Trip",
+  "source": "Enthusiast · European Coffee Trip",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/aeropress-flat-white",
+  "o": "standard",
+  "dose": 14,
+  "water": 70,
+  "byp": 100,
+  "bypT": "milk",
+  "temp": 93,
+  "grind": "Espresso-fine (same size as for espresso)",
+  "clicks": 9,
+  "filter": "paper",
+  "roast": "any",
+  "st": [
+   "milk"
+  ],
+  "total": 60,
+  "notes": "Concentrated 1:5 shot (~50 g) topped with 100 ml full-fat milk heated to 60°C and frothed in a small French press; African natural coffee suggested.",
+  "issues": "Roast not stated (only 'freshly roasted'), set to 'any'. Pour (10 s) and press (30 s) durations estimated to fit listed 1:00 brew time. Milk given as 100 ml, treated as 100 g. Filter count not stated.",
+  "fin": "Add 100 g milk.",
+  "segs": [
+   [
+    "pour",
+    "Add 70 g water at 93°C",
+    10
+   ],
+   [
+    "stir",
+    "Stir ~20 s",
+    20
+   ],
+   [
+    "press",
+    "Press slowly for ~50 g strong coffee",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "chocolate",
+   "fruity"
+  ],
+  "why": "The author suggests an African natural — berry sweetness in milk tastes like strawberry-chocolate. Chocolaty beans work just as well."
+ },
+ {
+  "id": "only-aeropress-recipe",
+  "name": "The Only AeroPress Recipe You'll Ever Need",
+  "author": "The Coffee Compass",
+  "source": "Enthusiast",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/the-only-aeropress-recipe-you-will-ever-need",
+  "o": "standard",
+  "dose": 15,
+  "water": 225,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 98,
+  "grind": "Medium (Comandante C40 Mk3 Nitro Blade listed, no click setting given)",
+  "clicks": 14,
+  "filter": "2 paper",
+  "roast": "any",
+  "st": [
+   "black"
+  ],
+  "total": 270,
+  "notes": "Low-dose 1:15 long steep under vacuum with a single crust break at 1:00; double rinsed paper filters reduce sediment.",
+  "issues": "Pour (10 s), crust-break (10 s) and press (30 s) durations estimated; total matches page's 4:30. Roast not stated (page says any bean) so 'any'. Page lists 225 g but steps say 225 ml.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Quickly pour 225 g boiling water, insert plunger for vacuum",
+    10
+   ],
+   [
+    "wait",
+    "Steep to 1:00",
+    50
+   ],
+   [
+    "stir",
+    "Remove plunger, gently break crust with spoon, reinsert plunger",
+    10
+   ],
+   [
+    "wait",
+    "Steep to 4:00",
+    170
+   ],
+   [
+    "press",
+    "Press slowly",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "caramel",
+   "nutty"
+  ],
+  "why": "A long, sealed steep with near-boiling water — full extraction and sweetness, smooth and forgiving. Good for everyday nutty and caramel beans."
+ },
+ {
+  "id": "v60-style-dark",
+  "name": "V60 Style AeroPress (dark roast)",
+  "author": "u/skelathon0703",
+  "source": "Enthusiast · r/AeroPress",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/v60-style-aeropress-dark",
+  "o": "standard",
+  "dose": 17,
+  "water": 160,
+  "byp": 100,
+  "bypT": "hot water",
+  "temp": 85,
+  "grind": "Fine",
+  "clicks": 11,
+  "filter": "2 paper (or 1 Aesir)",
+  "roast": "dark",
+  "st": [
+   "black"
+  ],
+  "total": 100,
+  "notes": "Dark-roast variant: cooler water, longer steep and a concentrated 160 g brew diluted with 100 g water.",
+  "issues": "Pour duration (10 s) estimated; page lists total 1:30 but 60 s steep + 30 s press + pour gives ~1:40. Temperature listed 85°C in details, 80-85°C in steps. Bypass water temperature not stated (assumed hot). Page's 'light roast version' link points back to this dark page.",
+  "fin": "Add 100 g hot water.",
+  "segs": [
+   [
+    "pour",
+    "Quickly add 160 g water, no stir, no bloom",
+    10
+   ],
+   [
+    "wait",
+    "Insert plunger for vacuum, steep 60 s",
+    60
+   ],
+   [
+    "press",
+    "Press 30 s, stop before the hiss",
+    30
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "chocolate",
+   "bold"
+  ],
+  "why": "Cooler water and a concentrate diluted afterwards keep a dark roast's chocolate while avoiding ash."
+ },
+ {
+  "id": "v60-style-light",
+  "name": "V60 Style AeroPress (light roast)",
+  "author": "u/skelathon0703",
+  "source": "Enthusiast · r/AeroPress",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/v60-style-aeropress-light",
+  "o": "standard",
+  "dose": 17,
+  "water": 260,
+  "byp": 0,
+  "bypT": "none",
+  "temp": 95,
+  "grind": "Fine",
+  "clicks": 11,
+  "filter": "2 paper (or 1 Aesir)",
+  "roast": "light",
+  "st": [
+   "black"
+  ],
+  "total": 80,
+  "notes": "Short 50 s no-stir, no-bloom steep with a fine grind at 1:15, aimed at a clean V60-like cup.",
+  "issues": "Page gives no total time; pour duration (10 s) estimated. Temperature listed as 95°C in details but 95-100°C in steps.",
+  "fin": "",
+  "segs": [
+   [
+    "pour",
+    "Quickly add 260 g water, no stir, no bloom",
+    10
+   ],
+   [
+    "wait",
+    "Insert plunger for vacuum, steep 50 s",
+    50
+   ],
+   [
+    "press",
+    "Press 20 s, stop before the hiss",
+    20
+   ]
+  ],
+  "kw": "",
+  "pre": "",
+  "add": "",
+  "mix": "",
+  "fl": [
+   "floral",
+   "citrus"
+  ],
+  "why": "Short, no-stir and V60-like — highlights delicate florals and citrus in light roasts."
+ },
+ {
+  "id": "vietnamese-iced-steven-le",
+  "name": "Vietnamese Iced Coffee (Cà Phê Sữa Đá)",
+  "author": "Steven Le",
+  "source": "Enthusiast",
+  "g": "fan",
+  "year": null,
+  "country": null,
+  "url": "https://aeroprecipe.com/recipes/vietnamese-iced-coffee",
+  "o": "inverted",
+  "dose": 17,
+  "water": 90,
+  "byp": null,
+  "bypT": "condensed",
+  "temp": 90,
+  "grind": "Fine",
+  "clicks": 11,
+  "filter": "1 paper, pre-wet",
+  "roast": "dark",
+  "st": [
+   "milk",
+   "iced",
+   "concentrate",
+   "vietnamese"
+  ],
+  "total": 150,
+  "notes": "A small, strong dark-roast concentrate sweetened with a little condensed milk and poured over ice — the AeroPress take on cà phê sữa đá. The author uses a smoky dark espresso roast.",
+  "issues": "The page gives no amount of ice. It lists the press as about 30 s after the 2:00 steep; the flip was given 5 s within that window so the brew ends at the page's 2:30 timer.",
+  "fin": "Stir in about 1 teaspoon of sweetened condensed milk, then add ice and serve.",
+  "segs": [
+   [
+    "pour",
+    "Pour 90 g at 90 °C",
+    10
+   ],
+   [
+    "stir",
+    "Stir to wet all the grounds",
+    5
+   ],
+   [
+    "wait",
+    "Steep until 2:00",
+    105
+   ],
+   [
+    "flip",
+    "Cap with the pre-wet filter and flip onto your glass",
+    5
+   ],
+   [
+    "press",
+    "Press gently, about 30 s",
+    25
+   ]
+  ],
+  "kw": "vietnamese viet vietnam ca phe sua da cà phê sữa đá condensed milk sweet iced smoky dark",
+  "pre": "Have sweetened condensed milk and a glass of ice ready.",
+  "add": "1 tsp",
+  "mix": "",
+  "fl": [
+   "chocolate",
+   "bold"
+  ],
+  "why": "A small, strong dark-roast concentrate with condensed milk — smoky, chocolaty espresso roasts fit perfectly."
+ }
+]
