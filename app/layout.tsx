@@ -4,13 +4,15 @@ import "@fontsource-variable/jetbrains-mono";
 import "./globals.css";
 import { Providers } from "@/components/providers";
 import { AppShell } from "@/components/AppShell";
+import { InstallButton } from "@/components/Pwa";
 
 export const metadata: Metadata = {
   title: { default: "Brew Card", template: "%s · Brew Card" },
   description:
     "AeroPress and moka pot brew card: recipes matched to your bean's roast and flavour, grind settings for 16 grinders, and a phase-by-phase timer.",
-  appleWebApp: { capable: true, title: "Brew Card" },
-  icons: { icon: "/icon.svg" },
+  appleWebApp: { capable: true, title: "Brew Card", statusBarStyle: "default" },
+  manifest: "/manifest.webmanifest",
+  icons: { icon: [{ url: "/icon.svg", type: "image/svg+xml" }, { url: "/icon-192.png", sizes: "192x192", type: "image/png" }], apple: "/apple-touch-icon.png" },
 };
 
 export const viewport: Viewport = {
@@ -29,6 +31,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <AppShell>
             {children}
             <footer className="site-foot">
+              <InstallButton />
               <p>
                 The recipe library is an index: each recipe links to its original page on{" "}
                 <a href="https://aeroprecipe.com/recipes" target="_blank" rel="noopener">aeroprecipe.com</a> (or aeropress.com), where the full recipe

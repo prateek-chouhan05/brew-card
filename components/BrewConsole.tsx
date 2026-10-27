@@ -11,13 +11,19 @@ import { timer, useTimer, type TimerBrew } from "@/lib/timer";
 import type { Brew, Entry, HouseMethod } from "@/lib/types";
 import { useBrewPrefs, useSetup } from "./providers";
 import { StdArt, InvArt } from "./Art";
+import { RecipeArt } from "./DrinkArt";
+import { BrewAnimation } from "./BrewAnimation";
+import { HandsFree, RateBrew } from "./BrewExtras";
+import { beanStatus } from "@/lib/journal";
+import { useState } from "react";
 
 const CHAMBER_ML = 250, RING_LEN = 351.86;
 
 export function BrewConsole({ id }: { id: string }) {
   const entry = entryById(id) as Entry;
   const prefs = useBrewPrefs();
-  const { grinder, roast, flavour } = useSetup();
+  const { grinder, roast, flavour, activeBean } = useSetup();
+  const grindAdj = prefs.grindAdj(entry.id);
   const router = useRouter();
 
   const inverted = prefs.inverted(entry.id);
@@ -53,8 +59,12 @@ export function BrewConsole({ id }: { id: string }) {
           <button type="button" id="returnBtn" onClick={() => { prefs.setReturnTo(null); go(returnDrink.id); }}>↩ Back to {returnDrink.name}</button>
         </div>
       )}
-      <div className="console-head">
-        <h2><span className="emoji" id="rEmoji">{brew.emoji}</span><span id="rName">{brew.name}</span></h2>
+      <div className="console-head with-art">
+        <RecipeArt entry={entry} className="head-art" />
+        <h2><span id="rName">{brew.name}</span></h2>
+        <button type="button" className="fav" id="favBtn" aria-pressed={prefs.favs.includes(entry.id)} onClick={() => prefs.toggleFav(entry.id)}>
+          {prefs.favs.includes(entry.id) ? "★ Saved" : "☆ Save"}
+        </button>
         {entry.kind !== "house" && <p className="byline" id="rByline">{entrySub(entry)}{entry.kind === "drink" ? " · " + entry.time : ""}</p>}
         {brew.notes && <p className="notes" id="rNotes">{brew.notes}</p>}
       </div>
@@ -77,16 +87,24 @@ export function BrewConsole({ id }: { id: string }) {
       {timerBrew && <TimerPanel tb={timerBrew} finish={brew.finish} />}
 
       {Steps({ brew })}
+      {(entry.kind === "house" || (entry.kind === "library" && !entry.link && entry.segs)) && (
+        <RateBrew entry={entry} tb={timerBrew} dose={dose} grindNow={grindLabel()} />
+      )}
       {Provenance({ entry })}
     </section>
   );
 
   /* ---------------- pieces (plain render helpers, so they don't remount and lose focus) ---------------- */
+  function grindLabel(): string {
+    if (entry.kind === "house") return numG(toGrinder(hGrind(entry, roast, grindAdj), grinder), grinder) + " " + unitG(grinder);
+    if (entry.kind === "library" && !entry.link) { const lg = libGrind(entry, grinder); return lg.num + " " + lg.unit; }
+    return "";
+  }
   function Specs({ entry, dose }: { entry: Entry; dose: number }) {
     if (entry.kind === "drink" || (entry.kind === "library" && (entry.link || !entry.segs))) return null;
     const cells: [string, string, string][] = [];
     if (entry.kind === "house") {
-      cells.push(["Grind", numG(toGrinder(hGrind(entry, roast), grinder), grinder), unitG(grinder)]);
+      cells.push([grindAdj ? `Grind · dialled ${grindAdj > 0 ? "coarser" : "finer"}` : "Grind", numG(toGrinder(hGrind(entry, roast, grindAdj), grinder), grinder), unitG(grinder)]);
       if (entry.timed) {
         cells.push(["Temp", String(roast.temp), "°C"], ["Dose", String(dose), "g"], ["Water", String(hWater(entry, dose)), "ml"]);
         if (hBypass(entry, dose)) cells.push(["Bypass", String(hBypass(entry, dose)), "ml"]);
@@ -136,6 +154,10 @@ export function BrewConsole({ id }: { id: string }) {
 
   function Warnings({ entry, brew, dose }: { entry: Entry; brew: Brew; dose: number }) {
     const msgs: string[] = [];
+    if (activeBean && entry.kind !== "drink") {
+      const st = beanStatus(activeBean);
+      if (st.tone === "rest") msgs.push(`🫘 Your ${activeBean.name} is still resting (day ${st.day}). Expect a muted, uneven cup until about ${st.label.replace(/^Resting · ready in /, "")} from now.`);
+    }
     if (entry.kind === "drink") {
       if (entry.alcohol) msgs.push("🍸 Contains alcohol.");
       if (entry.warn) msgs.push(entry.warn);
@@ -242,7 +264,14 @@ export function BrewConsole({ id }: { id: string }) {
             const key = brew.id + ":" + i, on = !!prefs.checked[key];
             return (
               <button type="button" className="check" key={key} aria-pressed={on}
-                onClick={() => { ensureAudio(); if (prefs.toggleCheck(key)) tickTone(); }}>
+                onClick={() => {
+                  ensureAudio();
+                  if (prefs.toggleCheck(key)) {
+                    tickTone();
+                    const all = brew.checks.every((_, j) => j === i || prefs.checked[brew.id + ":" + j]);
+                    if (all) prefs.recordBrew(brew.id);
+                  }
+                }}>
                 <span className="box" aria-hidden="true">✓</span>
                 <span><span className="lbl">{sg.ic && <span className="emoji">{sg.ic}</span>} {sg.lbl}</span>{sg.det && <span className="det">{sg.det}</span>}</span>
               </button>
@@ -332,6 +361,7 @@ function phaseState(tb: TimerBrew) {
 function TimerPanel({ tb, finish }: { tb: TimerBrew; finish: string }) {
   useTimer();
   const prefs = useBrewPrefs();
+  const [handsFree, setHandsFree] = useState(false);
   const s = phaseState(tb);
   const sg = tb.segs[s.idx];
   const into = Math.min(sg.dur, Math.max(0, s.clamped - s.marks[s.idx]));
@@ -374,6 +404,8 @@ function TimerPanel({ tb, finish }: { tb: TimerBrew; finish: string }) {
       </div>
       <div className="tl-key"><span id="keyLeft">Phase {s.idx + 1} of {tb.segs.length}</span><span id="keyRight">Total {mmss(s.total)}</span></div>
       <div className="dial-zone">
+        <div className="anim-row">
+        <BrewAnimation m={{ segs: tb.segs, marks: s.marks, idx: s.idx, into, started: !!s.startedAt, finished: s.finished, running: s.running, inverted: tb.o === "inverted" }} />
         <div className={"dial" + (sg.k === "wait" ? " waiting" : "") + (s.startedAt && !s.finished && sg.k === "flip" ? " flipping" : "")} id="dial">
           <svg viewBox="0 0 128 128" aria-hidden="true">
             <circle className="track" cx="64" cy="64" r="56" />
@@ -386,6 +418,7 @@ function TimerPanel({ tb, finish }: { tb: TimerBrew; finish: string }) {
             <div className="total" id="total">{mmss(s.clamped)} / {mmss(s.total)}</div>
           </div>
         </div>
+        </div>
         <p className="now" id="now" aria-live="polite">{s.finished ? "Brew complete" : sg.lbl}</p>
         <p className="now-detail" id="nowDetail">{s.finished ? finishText : sg.det}</p>
         <p className={"upnext" + (alert ? " alert" : "")} id="upnext">{up}</p>
@@ -397,7 +430,11 @@ function TimerPanel({ tb, finish }: { tb: TimerBrew; finish: string }) {
         <button className="btn" id="reset" type="button" onClick={() => { if (s.owns) timer.reset(); }}>Reset</button>
         <button className="btn icon" id="mute" type="button" title="Cue volume — tap to change"
           onClick={() => { prefs.cycleVolume(); setTimeout(testTone, 0); }}>{VOLUMES[prefs.volIdx].label}</button>
+        <button className="btn icon" id="voice" type="button" aria-pressed={prefs.voice} title="Spoken cues for each phase"
+          onClick={() => prefs.setVoice(!prefs.voice)}>{prefs.voice ? "🗣️ Voice" : "🔇 Voice"}</button>
+        <button className="btn ghost hf-open" id="handsFreeBtn" type="button" onClick={() => setHandsFree(true)}>⛶ Hands-free</button>
       </div>
+      {handsFree && <HandsFree tb={tb} onClose={() => setHandsFree(false)} />}
     </div>
   );
 }

@@ -4,17 +4,20 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ALL, FL } from "@/lib/catalog";
 import { GROUPS } from "@/lib/data/labels";
 import { grinderShort } from "@/lib/grind";
-import { entryIcon, entryRoastIcon, entryRoastTitle, entryStats, entrySub, entryTime, orientPill } from "@/lib/brew";
+import { entryRoastIcon, entryRoastTitle, entryStats, entrySub, entryTime, orientPill } from "@/lib/brew";
 import { FACETS, FGROUPS, activeRefineCount, countWhere, emptyRefine, matchBadge, optLabel, orientBlocked, results, type GroupKey, type MatchMode, type Query } from "@/lib/discover";
 import { searchScores } from "@/lib/search";
 import type { Entry } from "@/lib/types";
 import { PAGE, useBrewPrefs, useDiscover, useSetup } from "./providers";
 import { useModal } from "./useModal";
+import { RecipeArt } from "./DrinkArt";
+import { entryById } from "@/lib/catalog";
+import { beanStatus } from "@/lib/journal";
 
 const SUGGEST = ["affogato", "vietnamese", "tonic", "hoffmann", "quick"];
 
 export function Discover() {
-  const { grinder, roast, flavour, openSetup } = useSetup();
+  const { grinder, roast, flavour, openSetup, activeBean } = useSetup();
   const { filters, setFilters, mode, setMode, shown, setShown } = useDiscover();
   const brewPrefs = useBrewPrefs();
   const [qText, setQText] = useState(filters.q);
@@ -134,6 +137,8 @@ export function Discover() {
         {SUGGEST.map((s) => <button type="button" key={s} onClick={() => setQuery(s)}>{s}</button>)}
       </p>
 
+      {!filters.q && <Shelf />}
+
       <fieldset className="collections">
         <legend>Collection</legend>
         <div className="seg-track" id="colTrack">
@@ -169,6 +174,7 @@ export function Discover() {
             <div className="mb-top">
               <h2 id="mbH"><span className="emoji" aria-hidden="true">🎯</span>Match my coffee</h2>
               <span className="mb-chips">
+                {activeBean && <span className={"mb-tag bean " + beanStatus(activeBean).tone} title={beanStatus(activeBean).detail}>🫘 {activeBean.name} · {beanStatus(activeBean).label}</span>}
                 <span className="mb-tag">{roast.emoji} {roast.label}</span>
                 {f ? <span className="mb-tag">{f.emoji} {f.label}</span> : <span className="mb-tag muted">Any flavour</span>}
               </span>
@@ -268,7 +274,7 @@ function Card({ e, badge, current }: { e: Entry; badge: string; current: boolean
   return (
     <li>
       <Link href={`/recipes/${e.id}`} className="card" aria-current={current ? "true" : undefined}>
-        <span className="c-ic emoji" aria-hidden="true">{entryIcon(e)}</span>
+        <span className="c-ic" aria-hidden="true"><RecipeArt entry={e} /></span>
         <span className="c-main">
           <span className="c-title">{e.name}</span>
           <span className="c-sub">{entrySub(e)}</span>
@@ -276,10 +282,10 @@ function Card({ e, badge, current }: { e: Entry; badge: string; current: boolean
             <span className={"pill" + (pill.inv ? " inv" : "")}>{pill.text}</span>
             {badge && <span className="mbadge">{badge}</span>}
           </span>
-          <span className="c-stats">{entryStats(e, { grinder, roast, dose: prefs.dose })}</span>
+          <span className="c-stats">{entryStats(e, { grinder, roast, dose: prefs.dose, grindAdj: prefs.grindAdj })}</span>
         </span>
         <span className="c-side">
-          <span className="c-time"><span className="sr-only">Time </span>{entryTime(e)}</span>
+          <span className="c-time">{prefs.favs.includes(e.id) && <span className="c-fav" role="img" aria-label="Saved">★</span>}<span className="sr-only">Time </span>{entryTime(e)}</span>
           <span className="c-fl">
             <span className="emoji" role="img" aria-label={entryRoastTitle(e)} title={entryRoastTitle(e)}>{entryRoastIcon(e, roast)}</span>
             {fl.length > 0 && <span className="emoji" role="img" aria-label={`Best with ${flNames} beans`} title={"Best with: " + flNames}>{fl.map((id) => FL[id].emoji).join("")}</span>}
@@ -311,3 +317,32 @@ function Empty({ filters, mode, nRefine, onFix }: { filters: { q: string; col: s
   );
 }
 
+
+/** Your favourites and what you brewed lately, one tap away — one compact row. */
+function Shelf() {
+  const { favs, recent } = useBrewPrefs();
+  const items: { id: string; fav: boolean }[] = favs.map((id) => ({ id, fav: true }));
+  for (const r of recent) if (!favs.includes(r.id)) items.push({ id: r.id, fav: false });
+  if (!items.length) return null;
+  const title = favs.length && recent.length ? "★ Favourites & 🕘 brewed recently" : favs.length ? "★ Favourites" : "🕘 Brewed recently";
+  return (
+    <section className="shelf" aria-labelledby="shelfH">
+      <h2 className="shelf-h" id="shelfH">{title}</h2>
+      <ul className="shelf-track">
+        {items.slice(0, 14).map(({ id, fav }) => {
+          const e = entryById(id);
+          if (!e) return null;
+          return (
+            <li key={id}>
+              <Link href={`/recipes/${id}`} className="shelf-item">
+                {fav && <span className="shelf-badge" aria-label="Favourite">★</span>}
+                <span className="shelf-art" aria-hidden="true"><RecipeArt entry={e} /></span>
+                <span className="shelf-name">{e.name}</span>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </section>
+  );
+}

@@ -33,4 +33,12 @@ export const KEYS = {
   inv: "brewcard.inv",
   volume: "brewcard.volume",
   muted: "brewcard.muted",
+  doses: "brewcard.doses",
+  grindAdj: "brewcard.grindAdj",
+  favs: "brewcard.favs",
+  recent: "brewcard.recent",
+  log: "brewcard.log",
+  beans: "brewcard.beans",
+  activeBean: "brewcard.activeBean",
+  voice: "brewcard.voice",
 } as const;

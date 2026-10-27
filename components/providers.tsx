@@ -8,12 +8,18 @@ import { setVolume } from "@/lib/audio";
 import { emptyRefine, type Filters, type MatchMode } from "@/lib/discover";
 import { KEYS, load, loadJSON, save } from "@/lib/storage";
 import type { FlavourId, Grinder, HouseMethod, Roast } from "@/lib/types";
+import type { Bean, LogEntry } from "@/lib/journal";
+import { timer } from "@/lib/timer";
 
 /* ============ coffee setup: persistent facts about what you're brewing ============ */
 export interface Setup { grinder: Grinder; roast: Roast; flavour: FlavourId | "" }
+export interface SetupDraft { grinder: string; roast: string; flavour: string; beans: Bean[]; activeBean: string }
 interface SetupCtx extends Setup {
   hydrated: boolean;
-  apply: (next: { grinder: string; roast: string; flavour: string }) => void;
+  /** saved bags, and the one you're brewing now ("" = none) */
+  beans: Bean[];
+  activeBean: Bean | null;
+  apply: (next: SetupDraft) => void;
   dialog: { open: boolean; firstRun: boolean };
   openSetup: (firstRun?: boolean) => void;
   closeSetup: () => void;
@@ -46,6 +52,17 @@ interface BrewCtx {
   rememberEntry: (id: string) => void;
   volIdx: number;
   cycleVolume: () => void;
+  /** grind adjustment for a recipe, in C3S steps, from "dial in" */
+  grindAdj: (id: string) => number;
+  tweak: (id: string, t: { grind?: number; dose?: number }, h?: HouseMethod) => void;
+  favs: string[];
+  toggleFav: (id: string) => void;
+  recent: { id: string; at: string }[];
+  recordBrew: (id: string) => void;
+  log: Record<string, LogEntry[]>;
+  addLog: (e: LogEntry) => void;
+  voice: boolean;
+  setVoice: (on: boolean) => void;
 }
 const BrewContext = createContext<BrewCtx | null>(null);
 
@@ -56,6 +73,8 @@ export function Providers({ children }: { children: ReactNode }) {
   const [flavour, setFlavour] = useState<FlavourId | "">("");
   const [hydrated, setHydrated] = useState(false);
   const [dialog, setDialog] = useState({ open: false, firstRun: false });
+  const [beans, setBeans] = useState<Bean[]>([]);
+  const [activeBeanId, setActiveBeanId] = useState("");
 
   /* ---- discovery ---- */
   const [filters, setFilters] = useState<Filters>({ q: "", col: "", f: emptyRefine() });
@@ -69,6 +88,11 @@ export function Providers({ children }: { children: ReactNode }) {
   const [returnTo, setReturnTo] = useState<string | null>(null);
   const [lastEntry, setLastEntry] = useState(DEFAULT_ENTRY_ID);
   const [volIdx, setVolIdx] = useState(0);
+  const [grindAdjs, setGrindAdjs] = useState<Record<string, number>>({});
+  const [favs, setFavs] = useState<string[]>([]);
+  const [recent, setRecent] = useState<{ id: string; at: string }[]>([]);
+  const [log, setLog] = useState<Record<string, LogEntry[]>>({});
+  const [voice, setVoiceState] = useState(true);
 
   useEffect(() => {
     setGrinder(grinderById(load(KEYS.grinder, "c3s")) ?? GRINDERS[0]);
@@ -86,6 +110,14 @@ export function Providers({ children }: { children: ReactNode }) {
     if (!v && load(KEYS.muted, "0") === "1") v = "off";
     const vi = Math.max(0, VOLUMES.findIndex((x) => x.id === v));
     setVolIdx(vi); setVolume(vi);
+    setDoses(loadJSON<Record<string, number>>(KEYS.doses, {}));
+    setGrindAdjs(loadJSON<Record<string, number>>(KEYS.grindAdj, {}));
+    setFavs(loadJSON<string[]>(KEYS.favs, []).filter((id) => entryById(id)));
+    setRecent(loadJSON<{ id: string; at: string }[]>(KEYS.recent, []).filter((r) => entryById(r.id)));
+    setLog(loadJSON<Record<string, LogEntry[]>>(KEYS.log, {}));
+    setBeans(loadJSON<Bean[]>(KEYS.beans, []));
+    setActiveBeanId(load(KEYS.activeBean, ""));
+    setVoiceState(load(KEYS.voice, "1") !== "0");
     setHydrated(true);
     // First run: nothing saved yet → ask, with sensible defaults preselected.
     if (load(KEYS.setupDone, "") !== "1" && load(KEYS.grinder, "") === "") {
@@ -93,23 +125,38 @@ export function Providers({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const apply = useCallback((next: { grinder: string; roast: string; flavour: string }) => {
+  const apply = useCallback((next: SetupDraft) => {
     const g = grinderById(next.grinder) ?? GRINDERS[0];
     const r = roastById(next.roast) ?? ROASTS[2];
-    const f = next.flavour in FL ? (next.flavour as FlavourId) : "";
+    const f: FlavourId | "" = next.flavour in FL ? (next.flavour as FlavourId) : "";
     setGrinder(g); setRoast(r); setFlavour(f);
     save(KEYS.grinder, g.id); save(KEYS.roast, r.id); save(KEYS.flavour, f); save(KEYS.setupDone, "1");
+    // the active bag follows whatever roast and flavour you saved
+    const bs = next.beans.map((b) => (b.id === next.activeBean ? { ...b, roast: r.id, flavour: f } : b));
+    const active = bs.some((b) => b.id === next.activeBean) ? next.activeBean : "";
+    setBeans(bs); setActiveBeanId(active);
+    save(KEYS.beans, JSON.stringify(bs)); save(KEYS.activeBean, active);
   }, []);
   const openSetup = useCallback((firstRun = false) => setDialog({ open: true, firstRun }), []);
   const closeSetup = useCallback(() => { save(KEYS.setupDone, "1"); setDialog({ open: false, firstRun: false }); }, []);
 
   const setMode = useCallback((m: MatchMode) => { setModeState(m); save(KEYS.matchMode, m); }, []);
 
+  // anything that finishes on the timer counts as brewed
+  const recordBrew = useCallback((id: string) => {
+    setRecent((p) => {
+      const n = [{ id, at: new Date().toISOString() }, ...p.filter((r) => r.id !== id)].slice(0, 12);
+      save(KEYS.recent, JSON.stringify(n));
+      return n;
+    });
+  }, []);
+  useEffect(() => timer.onFinish((id) => recordBrew(id)), [recordBrew]);
+
   const brew = useMemo<BrewCtx>(() => ({
     inverted: (id) => !!invPref[id],
     setInverted: (id, on) => setInvPref((p) => { const n = { ...p, [id]: on }; save(KEYS.inv, JSON.stringify(n)); return n; }),
     dose: (h) => doses[h.id] ?? h.dose,
-    setDose: (id, d) => setDoses((p) => ({ ...p, [id]: d })),
+    setDose: (id, d) => setDoses((p) => { const n = { ...p, [id]: d }; save(KEYS.doses, JSON.stringify(n)); return n; }),
     checked,
     toggleCheck: (key) => { const on = !checked[key]; setChecked((p) => ({ ...p, [key]: on })); return on; },
     returnTo, setReturnTo,
@@ -120,10 +167,27 @@ export function Providers({ children }: { children: ReactNode }) {
       const i = (volIdx + 1) % VOLUMES.length;
       setVolIdx(i); setVolume(i); save(KEYS.volume, VOLUMES[i].id);
     },
-  }), [invPref, doses, checked, returnTo, lastEntry, volIdx]);
+    grindAdj: (id) => grindAdjs[id] ?? 0,
+    tweak: (id, t, h) => {
+      if (t.grind) setGrindAdjs((p) => { const n = { ...p, [id]: (p[id] ?? 0) + t.grind! }; save(KEYS.grindAdj, JSON.stringify(n)); return n; });
+      if (t.dose && h) setDoses((p) => {
+        const cur = p[id] ?? h.dose;
+        const d = Math.max(h.doseMin ?? 1, Math.min(h.doseMax ?? 99, cur + t.dose!));
+        const n = { ...p, [id]: d }; save(KEYS.doses, JSON.stringify(n)); return n;
+      });
+    },
+    favs,
+    toggleFav: (id) => setFavs((p) => { const n = p.includes(id) ? p.filter((x) => x !== id) : [id, ...p]; save(KEYS.favs, JSON.stringify(n)); return n; }),
+    recent, recordBrew,
+    log,
+    addLog: (e) => setLog((p) => { const n = { ...p, [e.id]: [e, ...(p[e.id] || [])].slice(0, 20) }; save(KEYS.log, JSON.stringify(n)); return n; }),
+    voice,
+    setVoice: (on) => { setVoiceState(on); save(KEYS.voice, on ? "1" : "0"); },
+  }), [invPref, doses, checked, returnTo, lastEntry, volIdx, grindAdjs, favs, recent, recordBrew, log, voice]);
 
-  const setup = useMemo<SetupCtx>(() => ({ grinder, roast, flavour, hydrated, apply, dialog, openSetup, closeSetup }),
-    [grinder, roast, flavour, hydrated, apply, dialog, openSetup, closeSetup]);
+  const activeBean = beans.find((b) => b.id === activeBeanId) ?? null;
+  const setup = useMemo<SetupCtx>(() => ({ grinder, roast, flavour, hydrated, beans, activeBean, apply, dialog, openSetup, closeSetup }),
+    [grinder, roast, flavour, hydrated, beans, activeBean, apply, dialog, openSetup, closeSetup]);
   const discover = useMemo<DiscoverCtx>(() => ({ filters, setFilters, mode, setMode, shown, setShown }), [filters, mode, setMode, shown]);
 
   return (

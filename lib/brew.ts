@@ -35,7 +35,8 @@ export function roastNudge(e: LibraryEntry, roast: Roast): string {
 }
 
 /* ---------------- house method numbers ---------------- */
-export const hGrind = (h: HouseMethod, roast: Roast) => Math.max(6, h.grindBase + roast.adj);
+/** grind on the C3S scale: the method's base, shifted for the roast and for any dial-in you applied */
+export const hGrind = (h: HouseMethod, roast: Roast, adj = 0) => Math.max(6, h.grindBase + roast.adj + adj);
 export const hWater = (h: HouseMethod, dose: number) => (h.ratios.water ? Math.round(dose * h.ratios.water) : 0);
 export const hBypass = (h: HouseMethod, dose: number) => (h.ratios.bypass ? Math.round(dose * h.ratios.bypass) : 0);
 export const hMilk = (h: HouseMethod, dose: number) => (h.ratios.milk ? Math.round(dose * h.ratios.milk) : 0);
@@ -150,7 +151,7 @@ export function esc(s: unknown): string {
 }
 
 /* ---------------- card text ---------------- */
-export interface Ctx { grinder: Grinder; roast: Roast; dose: (h: HouseMethod) => number }
+export interface Ctx { grinder: Grinder; roast: Roast; dose: (h: HouseMethod) => number; grindAdj?: (id: string) => number }
 
 export function entryStats(e: Entry, c: Ctx): string {
   if (e.kind === "drink") {
@@ -161,12 +162,13 @@ export function entryStats(e: Entry, c: Ctx): string {
   }
   if (e.kind === "library" && (e.link || !e.segs)) return "Full recipe on " + hostOf(e.url) + " ↗";
   if (e.kind === "house") {
-    if (!e.timed) return grindText(hGrind(e, c.roast), c.grinder) + " · " + (e.statsNote || "");
+    const gr = grindText(hGrind(e, c.roast, c.grindAdj?.(e.id) ?? 0), c.grinder);
+    if (!e.timed) return gr + " · " + (e.statsNote || "");
     const d = c.dose(e), w = hWater(e, d), b = hBypass(e, d), m = hMilk(e, d), x = hMixer(e, d);
     let vol = w + (b ? "+" + b : "") + " g";
     if (m) vol += " + " + m + " ml milk";
     if (x) vol += " + " + x + " ml " + e.mixerName;
-    return `${d} g → ${vol} · ${c.roast.temp} °C · ${grindText(hGrind(e, c.roast), c.grinder)}`;
+    return `${d} g → ${vol} · ${c.roast.temp} °C · ${gr}`;
   }
   const water = e.water ?? 0;
   let vol2 = water + (e.byp ? "+" + g1(e.byp) : "") + " g";

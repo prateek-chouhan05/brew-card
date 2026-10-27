@@ -8,6 +8,8 @@ import { mmss } from "@/lib/brew";
 import { useTimer } from "@/lib/timer";
 import { useBrewPrefs, useSetup } from "./providers";
 import { SetupDialog } from "./SetupDialog";
+import { VoiceCues } from "./BrewExtras";
+import { useServiceWorker } from "./Pwa";
 
 type View = "recipes" | "brew" | "guides";
 function viewOf(path: string): View {
@@ -63,6 +65,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const cur = useRef<string | null>(null);
   useEffect(() => { prevPath = cur.current; cur.current = path; }, [path]);
   const nav = useNav();
+  useServiceWorker();
   return (
     <>
       <header className="topbar">
@@ -99,6 +102,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         ))}
       </nav>
       <SetupDialog />
+      <VoiceCues />
     </>
   );
 }
