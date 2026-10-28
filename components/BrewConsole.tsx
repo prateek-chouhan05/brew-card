@@ -12,12 +12,12 @@ import type { Brew, Entry, HouseMethod } from "@/lib/types";
 import { useBrewPrefs, useSetup } from "./providers";
 import { StdArt, InvArt } from "./Art";
 import { RecipeArt } from "./DrinkArt";
-import { BrewAnimation } from "./BrewAnimation";
+import { BrewCanvas } from "./BrewCanvas";
 import { HandsFree, RateBrew } from "./BrewExtras";
 import { beanStatus } from "@/lib/journal";
 import { useState } from "react";
 
-const CHAMBER_ML = 250, RING_LEN = 351.86;
+const CHAMBER_ML = 250;
 
 export function BrewConsole({ id }: { id: string }) {
   const entry = entryById(id) as Entry;
@@ -35,6 +35,7 @@ export function BrewConsole({ id }: { id: string }) {
     [brew, tbKey],
   );
   useSpaceToggle(timerBrew);
+  const brewWater = entry.kind === "house" ? (entry.timed ? Math.round(hWater(entry, dose)) : undefined) : entry.kind === "library" ? entry.water : undefined;
 
   // remember the last recipe opened, for the Brew tab
   const { rememberEntry } = prefs;
@@ -90,7 +91,7 @@ export function BrewConsole({ id }: { id: string }) {
       {Warnings({ entry, brew, dose })}
       {Prep({ entry, onBase: (base) => { prefs.setReturnTo(entry.id); go(base); }, onLoad: go })}
 
-      {timerBrew && <TimerPanel tb={timerBrew} finish={brew.finish} />}
+      {timerBrew && <TimerPanel tb={timerBrew} finish={brew.finish} water={brewWater} />}
 
       {Steps({ brew })}
       {(entry.kind === "house" || (entry.kind === "library" && !entry.link && entry.segs)) && (
@@ -364,7 +365,7 @@ function phaseState(tb: TimerBrew) {
   return { owns, marks, total, startedAt, finished, running, clamped, idx };
 }
 
-function TimerPanel({ tb, finish }: { tb: TimerBrew; finish: string }) {
+function TimerPanel({ tb, finish, water }: { tb: TimerBrew; finish: string; water?: number }) {
   useTimer();
   const prefs = useBrewPrefs();
   const [handsFree, setHandsFree] = useState(false);
@@ -374,19 +375,8 @@ function TimerPanel({ tb, finish }: { tb: TimerBrew; finish: string }) {
   const left = Math.max(0, sg.dur - into);
   const other = timer.active && !s.owns ? timer.brew : null;
 
-  let badge: string, badgeCls = "badge", big: ReactNode, icon: string;
-  if (s.finished) { icon = ICON.serve; badge = "Done"; big = "✓"; }
-  else if (!s.startedAt) {
-    const f0 = tb.segs[0];
-    icon = ICON[f0.k]; badge = KIND_LABEL[f0.k] + " first";
-    big = f0.dur >= 60 ? mmss(f0.dur) : <>{f0.dur}<small>s</small></>;
-  } else {
-    icon = ICON[sg.k]; badge = (s.running ? "" : "Paused · ") + KIND_LABEL[sg.k];
-    badgeCls += sg.k === "wait" ? " wait" : sg.k === "flip" ? " flip" : "";
-    const sec = Math.ceil(left);
-    big = sec >= 60 ? mmss(sec) : <>{sec}<small>s</small></>;
-  }
-  const offset = s.finished ? 0 : RING_LEN * (1 - (sg.dur ? into / sg.dur : 0));
+  const status = s.finished ? "Done" : !s.startedAt ? KIND_LABEL[tb.segs[0].k] + " first" : (s.running ? "" : "Paused · ") + KIND_LABEL[sg.k];
+  const secs = s.finished ? 0 : !s.startedAt ? tb.segs[0].dur : Math.ceil(left);
   const nxt = tb.segs[s.idx + 1];
   let up = "", alert = false;
   if (s.finished) up = "";
@@ -402,28 +392,16 @@ function TimerPanel({ tb, finish }: { tb: TimerBrew; finish: string }) {
       {other && (
         <p className="other-run">⏱ {other.emoji} {other.name} is {timer.running ? "brewing" : "paused"} ({mmss(timer.elapsed())}). <Link href={`/recipes/${other.id}`}>Go to it</Link> — starting here replaces it.</p>
       )}
-      <div className="timeline" id="timeline">
-        {tb.segs.map((g, i) => {
-          const f = s.clamped <= s.marks[i] ? 0 : s.clamped >= s.marks[i] + g.dur ? 1 : (s.clamped - s.marks[i]) / g.dur;
-          return <div key={i} className={"tl-seg" + (g.k === "wait" ? " wait" : "")} style={{ flexGrow: g.dur, flexBasis: 0 }}><i style={{ width: f * 100 + "%" }} /></div>;
-        })}
+      {/* Brew line: what's in the brewer and the mug over the whole brew */}
+      <div className="brewline" id="timeline">
+        <BrewCanvas tb={tb} kind="line" water={water}
+          label={`Brew line: phase ${s.idx + 1} of ${tb.segs.length}, ${mmss(s.clamped)} of ${mmss(s.total)}`} />
       </div>
-      <div className="tl-key"><span id="keyLeft">Phase {s.idx + 1} of {tb.segs.length}</span><span id="keyRight">Total {mmss(s.total)}</span></div>
       <div className="dial-zone">
-        <div className="anim-row">
-        <BrewAnimation tb={tb} />
-        <div className={"dial" + (sg.k === "wait" ? " waiting" : "") + (s.startedAt && !s.finished && sg.k === "flip" ? " flipping" : "")} id="dial">
-          <svg viewBox="0 0 128 128" aria-hidden="true">
-            <circle className="track" cx="64" cy="64" r="56" />
-            <circle className="prog" id="ring" cx="64" cy="64" r="56" strokeDasharray={RING_LEN} strokeDashoffset={offset} />
-          </svg>
-          <div className="dial-face">
-            <div className="phase-icon emoji" id="phaseIcon">{icon}</div>
-            <div className={badgeCls} id="badge">{badge}</div>
-            <div className="bignum" id="bignum">{big}</div>
-            <div className="total" id="total">{mmss(s.clamped)} / {mmss(s.total)}</div>
-          </div>
-        </div>
+        {/* Chamber clock: the AeroPress with its moulded numbers lighting up, and the countdown */}
+        <div className="clock-wrap" id="clock">
+          <BrewCanvas tb={tb} kind="clock" label={`${status}${s.finished ? "" : `, ${secs} seconds left`}`} />
+          <span className="sr-only" id="badge">{status}</span>
         </div>
         <p className="now" id="now" aria-live="polite">{s.finished ? "Brew complete" : sg.lbl}</p>
         <p className="now-detail" id="nowDetail">{s.finished ? finishText : sg.det}</p>

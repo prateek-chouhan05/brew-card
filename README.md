@@ -13,9 +13,10 @@ A brew companion for the AeroPress and moka pot. Tell it your grinder, your bean
 - **Illustrations:** every recipe has one — each drink in its own glass with its layers, plus your methods and the AeroPress.
 
 **Brew it**
-- **Animated brew:** an AeroPress that follows the timer. It fills as you pour, stirs, darkens while it steeps, flips over (inverted recipes), and presses coffee into the mug.
+- **Chamber clock:** an AeroPress that follows the timer, with the big countdown beside it. It fills as you pour, stirs, darkens while it steeps, flips over (inverted recipes, standing on a scale until then) and presses coffee into a glass mug. The numbers 1–4 moulded on the chamber light up as each quarter of the brew passes.
+- **Brew line:** above the timer, a chart of how much is in the brewer and in your mug over the whole brew, coloured by how long it has steeped, with a playhead for now.
 - **Phase timer:** audio cues, a 10-second flip warning, the screen kept awake, and Space to start or pause. It keeps running while you browse other pages.
-- **Hands-free mode:** full-screen, big type, and optional spoken cues ("Pour all the water. 15 seconds.").
+- **Hands-free mode:** full-screen, with the countdown drawn as **Count in coffee**: the numbers fill with water as you pour, darken as it steeps, slosh when you stir, turn over at the flip and drain as you press. Optional spoken cues ("Pour all the water. 15 seconds.").
 - **Adjustable recipes:** a dose stepper, an on-the-mug or inverted switch for your methods, and drinks that send you to brew their base and then bring you back to finish.
 
 **Get better cups**
@@ -62,7 +63,7 @@ components/
   SetupDialog.tsx        grinder, saved bean bags, roast and flavour
   Discover.tsx           the recipe finder and your shelf
   BrewConsole.tsx        specs, dose, orientation, steps and the timer panel
-  BrewAnimation.tsx      the AeroPress animation synced to the timer
+  BrewCanvas.tsx         canvas drawings that follow the timer: Chamber clock, Brew line, Count in coffee
   BrewExtras.tsx         rate & dial in, hands-free mode, spoken cues
   DrinkArt.tsx           illustrations for every drink and method
   Guides.tsx, Pwa.tsx, Art.tsx, BackLink.tsx, useModal.ts
@@ -73,6 +74,7 @@ lib/
   grind.ts               grinder conversion (brewmark.io anchors)
   search.ts, discover.ts search scoring; refine facets and match modes
   journal.ts             bean rest windows, ratings and dial-in advice
+  brewDraw.ts            the three brew drawings, as pure functions of one moment of the brew
   timer.ts               the timer engine (outside React, so it survives navigation) + cue events
   audio.ts               cue tones and the screen wake lock
 data/                    drinks.json, library.json

@@ -30,21 +30,63 @@ test("favourites appear on the shelf and on cards", async ({ page: p }) => {
   await expect(p.locator(".shelf")).toContainText("Caffè Latte"); // favourites persist
 });
 
-test("the brew animation follows the timer, and a finished brew asks for a rating", async ({ page: p }) => {
+test("the chamber clock and brew line follow the timer, and a finished brew asks for a rating", async ({ page: p }) => {
   await p.clock.install();
   await skipSetup(p, "/recipes/my-espresso/");
   await p.clock.runFor(500);
-  await expect(p.locator(".brew-anim")).toBeVisible();
+  const clock = p.locator("#clock canvas"), line = p.locator("#timeline canvas");
+  await expect(clock).toBeVisible();
+  await expect(line).toBeVisible();
+  await expect(clock).toHaveAttribute("data-phase", "ready");
+  const before = await clock.screenshot();
   await p.click("#go");
   await p.clock.runFor(2000);
-  await expect(p.locator(".brew-anim .ba-kettle")).toBeVisible(); // pouring
+  await expect(clock).toHaveAttribute("data-phase", "pour");
+  await expect(line).toHaveAttribute("data-phase", "pour");
+  expect((await clock.screenshot()).equals(before)).toBe(false); // the drawing moved on
   await p.clock.runFor(70_000);
-  await expect(p.locator(".brew-anim .ba-drip")).toHaveCount(1); // pressing (a vertical line has no width, so check it exists)
+  await expect(clock).toHaveAttribute("data-phase", "press");
   await p.clock.runFor(40_000);
+  await expect(clock).toHaveAttribute("data-phase", "done");
   await expect(p.locator("#badge")).toHaveText("Done");
   await expect(p.locator("#rate")).toHaveAttribute("open", "");
   await p.goto("/");
   await expect(p.locator(".shelf")).toContainText("Espresso-Style Concentrate");
+});
+
+test("inverted brew: the whole flow end to end, with the flip", async ({ page: p }) => {
+  await p.clock.install();
+  await skipSetup(p, "/recipes/my-everyday/");
+  await p.clock.runFor(500);
+  await p.click("#oInv");
+  const clock = p.locator("#clock canvas");
+  // pour 15 · settle 15 · stir 5 · steep 55 · flip 10 · press 30 = 2:10
+  await expect(clock).toHaveAttribute("data-left", "15");
+  await p.click("#go");
+  const at = async (sec: number, phase: string, left?: string) => {
+    await p.clock.runFor(sec * 1000);
+    await expect(clock).toHaveAttribute("data-phase", phase);
+    if (left) await expect(clock).toHaveAttribute("data-left", left);
+  };
+  await at(5, "pour", "10");
+  await at(15, "wait");                 // 0:20, settling
+  await at(12, "stir");                 // 0:32
+  await at(20, "wait");                 // 0:52, steeping
+  await expect(p.locator("#now")).toHaveText("Steep");
+  await at(40, "flip");                 // 1:32
+  const midFlip = await clock.screenshot();
+  await p.clock.runFor(7000);           // the brewer turns over in the last part of the flip
+  expect((await clock.screenshot()).equals(midFlip)).toBe(false);
+  await at(5, "press");                 // 1:44
+  // pause holds the drawing still
+  await p.click("#go");
+  const paused = await clock.screenshot();
+  await p.clock.runFor(5000);
+  expect((await clock.screenshot()).equals(paused)).toBe(true);
+  await expect(p.locator("#badge")).toContainText("Paused");
+  await p.click("#go");
+  await at(30, "done", "0");
+  await expect(p.locator("#timeline canvas")).toHaveAttribute("data-phase", "done");
 });
 
 test("rate & dial in gives a fix and can apply it", async ({ page: p }) => {
@@ -103,9 +145,12 @@ test("hands-free mode and voice toggle", async ({ page: p }) => {
   await p.click("#handsFreeBtn");
   const hf = p.locator(".handsfree");
   await expect(hf).toBeVisible();
-  await expect(hf.locator(".brew-anim")).toBeVisible();
+  const count = hf.locator(".hf-count canvas");
+  await expect(count).toBeVisible();
+  await expect(count).toHaveAttribute("data-phase", "ready");
   await hf.locator(".hf-go").click();
   await expect(hf.locator(".hf-go")).toHaveText("Pause");
+  await expect(count).toHaveAttribute("data-phase", "pour");
   await hf.getByRole("button", { name: /Voice/ }).click();
   expect(await p.evaluate(() => localStorage.getItem("brewcard.voice"))).toBe("0");
   await p.keyboard.press("Escape");

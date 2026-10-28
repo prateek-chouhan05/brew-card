@@ -16,6 +16,9 @@
   --flag-line:#ecd3a6;
   --coffee:#6b3f2a;
   --good:#2f6b4f;
+  /* brew drawings (Chamber clock, Brew line, Count in coffee) */
+  --bc-steel:#5b4a50; --bc-plunger:#ece6e8; --bc-cap:#2b2326; --bc-on-accent:#ffffff;
+  --bc-pale:#cfa877; --bc-coffee:#3f2416; --bc-grounds:#5a3a24; --bc-crema:#c99a63; --bc-water:#8fbad6;
   --display:'Archivo Variable','Archivo',ui-sans-serif,system-ui,sans-serif;
   --mono:'JetBrains Mono Variable','JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
   color-scheme:light;
@@ -231,33 +234,17 @@ h1{font-size:33px;line-height:1.1;font-weight:700;letter-spacing:-.02em}
 .nearbtn{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:3px 10px;font-weight:600;color:var(--fg);font-size:13px}
 
 /* ---- timeline ---- */
-.timeline{display:flex;gap:3px;padding:14px 18px 0;align-items:stretch}
-.tl-seg{position:relative;height:7px;border-radius:4px;overflow:hidden;background:var(--track);min-width:4px}
-.tl-seg i{display:block;height:100%;width:0;border-radius:4px;background:var(--accent);transition:width .18s linear}
-.tl-seg.wait i{background:var(--wait)}
-@media (prefers-reduced-motion:reduce){.tl-seg i{transition:none}}
-.tl-key{display:flex;justify-content:space-between;gap:10px;padding:7px 18px 0;font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-variant-numeric:tabular-nums}
-
-/* ---- dial ---- */
+/* Brew line above the timer */
+.brewline{position:relative;height:120px;margin:14px 18px 0}
+.brewline .brew-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+@media (min-width:700px){ .brewline{height:140px} }
 .dial-zone{padding:12px 18px 16px;display:flex;flex-direction:column;align-items:center;gap:5px}
-.dial{position:relative;width:196px;height:196px;max-width:100%}
-.dial svg{width:100%;height:100%;transform:rotate(-90deg);display:block}
-.dial .track{fill:none;stroke:var(--track);stroke-width:8}
-.dial .prog{fill:none;stroke:var(--accent);stroke-width:8;stroke-linecap:round;transition:stroke-dashoffset .18s linear}
-.dial.waiting .prog{stroke:var(--wait)}
-@media (prefers-reduced-motion:reduce){.dial .prog{transition:none}}
-.dial-face{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;text-align:center;padding:0 20px}
-.phase-icon{font-size:24px;line-height:1}
 .badge{font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--accent)}
 .badge.wait{color:var(--wait)}
-.bignum{font-family:var(--mono);font-size:48px;font-weight:700;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
-.bignum small{font-size:18px;font-weight:500;color:var(--muted);letter-spacing:0}
-.total{font-family:var(--mono);font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;letter-spacing:.06em}
 .now{text-align:center;font-size:16px;font-weight:600;line-height:1.3;min-height:1.3em;padding:0 6px;max-width:44ch}
 .now-detail{text-align:center;color:var(--muted);font-size:13.5px;line-height:1.4;min-height:1.4em;padding:0 6px;max-width:44ch}
 .upnext{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:center;min-height:1.2em;max-width:52ch}
 .upnext.alert{color:var(--flag);font-weight:700;font-size:12px}
-.dial.flipping .prog{stroke:var(--flag)}
 .badge.flip{color:var(--flag)}
 
 /* ---- controls ---- */
@@ -679,52 +666,9 @@ path.da-glass{fill:none}
 .console-head.with-art > .head-art{grid-column:2;grid-row:1 / span 4;width:108px;align-self:center}
 @media (max-width:420px){ .console-head.with-art{grid-template-columns:minmax(0,1fr) 84px} .console-head.with-art > .head-art{width:84px} }
 
-/* ---------- brew animation ---------- */
-.brew-anim{display:block;width:100%;height:auto}
-.brew-anim .ba-chamber{fill:rgba(255,255,255,.28);stroke:#5b4a50;stroke-width:2.5}
-.brew-anim .ba-tick{stroke:#8f8086;stroke-width:1.2}
-.brew-anim .ba-cap{fill:#2b2326}
-.brew-anim .ba-plunger{fill:rgba(236,230,232,.92);stroke:#5b4a50;stroke-width:2}
-.brew-anim .ba-flange{fill:#d9d1d4;stroke:#5b4a50;stroke-width:2}
-.brew-anim .ba-seal{fill:#2b2326}
-.brew-anim .ba-mug{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2.5}
-.brew-anim .ba-mug-line{stroke:var(--accent);stroke-width:3}
-.brew-anim .ba-scale{fill:#8f8086}
-.brew-anim .ba-kettle path:first-child{fill:#e8e2e4;stroke:#5b4a50;stroke-width:2}
-.brew-anim .ba-spout{stroke:#5b4a50;stroke-width:4;stroke-linecap:round;fill:none}
-.brew-anim .ba-stream{stroke:#9cc3dc;stroke-width:3.5;stroke-linecap:round;stroke-dasharray:6 5}
-.brew-anim .ba-drip{stroke:#3f2416;stroke-width:3;stroke-linecap:round;stroke-dasharray:5 6}
-.brew-anim .ba-spoon line{stroke:#7d7277;stroke-width:3;stroke-linecap:round}
-.brew-anim .ba-spoon ellipse{fill:#7d7277}
-.brew-anim .ba-bubbles circle{fill:rgba(255,255,255,.7)}
-.brew-anim .ba-steam path{fill:none;stroke:#bcaeb3;stroke-width:2.5;stroke-linecap:round;opacity:.8}
-/* every loop moves by transform or opacity only, runs only while the brew runs,
-   and is left out entirely under reduced motion (the drawing then steps phase by phase) */
-@media (prefers-reduced-motion:no-preference){
-  .brew-anim .ba-stream.on{animation:baFall .5s linear infinite}
-  .brew-anim .ba-drip.on{animation:baFall .7s linear infinite}
-  .brew-anim .ba-spoon.on{transform-box:fill-box;transform-origin:50% 0;animation:baStir .6s cubic-bezier(.76,0,.24,1) infinite alternate}
-  .brew-anim .ba-wobble.on{transform-box:view-box;transform-origin:100px 150px;animation:baSwirl .5s cubic-bezier(.76,0,.24,1) infinite alternate}
-  .brew-anim .ba-bubbles.on circle{animation:baBubble 2.4s cubic-bezier(.22,1,.36,1) infinite}
-  .brew-anim .ba-bubbles.on circle:nth-child(2){animation-delay:.8s}
-  .brew-anim .ba-bubbles.on circle:nth-child(3){animation-delay:1.6s}
-  /* steam rises a few times when the brew is done, then rests */
-  .brew-anim .ba-steam path{animation:daSteam 2.8s ease-in-out 3}
-  .brew-anim .ba-steam path:nth-child(2){animation-delay:.6s}
-  .brew-anim .ba-steam path:nth-child(3){animation-delay:1.2s}
-}
-/* scrolled out of view: hold the loops where they are */
-.brew-anim.ba-off *{animation-play-state:paused}
-/* one dash period (11) per cycle, twice: the dashes slide down the line */
-@keyframes baFall{from{transform:translateY(-22px)}to{transform:translateY(0)}}
-@keyframes baStir{from{transform:rotate(-14deg)}to{transform:rotate(14deg)}}
-@keyframes baSwirl{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
-@keyframes baBubble{0%{transform:translateY(0);opacity:0}20%{opacity:.9}100%{transform:translateY(-34px);opacity:0}}
-
-.dial-zone .anim-row{display:flex;align-items:center;justify-content:center;gap:clamp(8px,3vw,18px);width:100%}
-.dial-zone .anim-row .brew-anim.md{width:clamp(104px,30vw,148px);flex:0 0 auto}
-.dial-zone .anim-row .dial{width:clamp(150px,44vw,196px);height:auto;aspect-ratio:1}
-@media (min-width:1024px){ .dial-zone .anim-row .brew-anim.md{width:132px} .dial-zone .anim-row .dial{width:180px} }
+/* ---------- Chamber clock ---------- */
+.clock-wrap{position:relative;width:min(100%,380px);aspect-ratio:10 / 9;margin:0 auto}
+.clock-wrap .brew-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 
 /* ---------- beans in setup ---------- */
 .radio-cards.bags{grid-template-columns:minmax(0,1fr);margin-bottom:10px}
@@ -802,11 +746,11 @@ path.da-glass{fill:none}
 .hf-name{font-weight:700;font-size:16px}
 .hf-top .x{margin-left:auto;width:var(--tap);height:var(--tap);border:0;border-radius:10px;background:var(--raised);font-size:22px}
 .hf-main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:0}
-.hf-anim{width:min(52vw,260px,38vh)}
+.hf-count{position:relative;width:min(94vw,980px);aspect-ratio:1.5 / 1;max-height:40vh}
+.hf-count .brew-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+@media (min-width:700px){ .hf-count{aspect-ratio:2.4 / 1;max-height:44vh} }
 .hf-info{text-align:center;display:flex;flex-direction:column;gap:4px;max-width:36ch}
 .hf-kind{font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700}
-.hf-big{font-family:var(--mono);font-size:clamp(64px,18vw,120px);font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
-.hf-big small{font-size:.35em;color:var(--muted)}
 .hf-now{font-size:clamp(18px,4.6vw,24px);font-weight:700;line-height:1.25}
 .hf-det{color:var(--muted);font-size:15px}
 .hf-next{font-family:var(--mono);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
@@ -815,7 +759,7 @@ path.da-glass{fill:none}
 .hf-controls .btn{min-height:52px;font-size:16px}
 .hf-controls .hf-go{min-width:160px}
 .hf-hint{text-align:center;font-size:12px;color:var(--muted);margin-top:8px}
-@media (min-width:900px){ .hf-main{flex-direction:row;gap:48px} .hf-anim{width:min(30vw,300px)} .hf-info{text-align:left} }
+
 .install{margin:0 0 10px}
 .install-how{display:block;margin-top:6px}
 .mb-top .mb-chips{order:3;flex-basis:100%}

@@ -6,7 +6,7 @@ import { advise, STRENGTHS, TASTES, type Advice, type Strength, type Taste } fro
 import { timer, useTimer, type Cue, type TimerBrew } from "@/lib/timer";
 import { testTone } from "@/lib/audio";
 import type { Entry, HouseMethod } from "@/lib/types";
-import { BrewAnimation } from "./BrewAnimation";
+import { BrewCanvas } from "./BrewCanvas";
 import { useBrewPrefs, useSetup } from "./providers";
 
 const fmtDate = (iso: string) => new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "short" });
@@ -165,12 +165,18 @@ export function HandsFree({ tb, onClose }: { tb: TimerBrew; onClose: () => void 
         <button type="button" className="x" aria-label="Exit hands-free" onClick={onClose}>×</button>
       </div>
       <div className="hf-main">
-        <div className="hf-anim">
-          <BrewAnimation size="lg" tb={tb} />
+        {/* Count in coffee: the countdown numbers fill, darken, slosh, turn over and drain with the brew */}
+        <div className="hf-count">
+          <BrewCanvas tb={tb} kind="count"
+            label={finished ? "Done" : `${started ? left : tb.segs[0].dur} seconds`} />
         </div>
         <div className="hf-info">
-          <p className="hf-kind">{finished ? "Done" : started ? (running ? KIND_LABEL[sg.k] : "Paused · " + KIND_LABEL[sg.k]) : KIND_LABEL[tb.segs[0].k] + " first"}</p>
-          <p className="hf-big" aria-live="off">{finished ? "✓" : started ? (left >= 60 ? mmss(left) : left) : (tb.segs[0].dur >= 60 ? mmss(tb.segs[0].dur) : tb.segs[0].dur)}<small>{!finished && (started ? left : tb.segs[0].dur) < 60 ? "s" : ""}</small></p>
+          {(() => {
+            const kind = finished ? "Done" : started ? (running ? KIND_LABEL[sg.k] : "Paused · " + KIND_LABEL[sg.k]) : KIND_LABEL[tb.segs[0].k] + " first";
+            const now = finished ? "Brew complete" : sg.lbl;
+            // skip the small label when it would only repeat the step ("Press" over "Press")
+            return kind.toLowerCase() === now.toLowerCase() ? null : <p className="hf-kind">{kind}</p>;
+          })()}
           <p className="hf-now" aria-live="polite">{finished ? "Brew complete" : sg.lbl}</p>
           {!finished && sg.det && <p className="hf-det">{sg.det}</p>}
           {!finished && nxt && started && <p className="hf-next">Then — {KIND_LABEL[nxt.k]}: {nxt.lbl}</p>}
