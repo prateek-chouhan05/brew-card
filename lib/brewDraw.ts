@@ -1,7 +1,7 @@
 /*
- * Canvas drawings that follow the brew timer: the Chamber clock (brew screen), the Brew line
- * (the timeline above it) and Count in coffee (hands-free). Pure functions of one moment of the
- * brew, so the same moment always draws the same picture.
+ * Canvas drawings that follow the brew timer: the Chamber clock (brew screen and hands-free)
+ * and the Brew line (the timeline above it). Pure functions of one moment of the brew, so the
+ * same moment always draws the same picture.
  */
 import type { SegKind, TimedSeg } from "./types";
 
@@ -104,7 +104,7 @@ export function readPalette(el: Element): Palette {
 }
 
 type Ctx = CanvasRenderingContext2D;
-export interface DrawEnv { P: Palette; family: string; reduced: boolean; amb: number }
+export interface DrawEnv { P: Palette; family: string; reduced: boolean; amb: number; /** grams of water in the recipe, for the scale */ water?: number }
 const F = (e: DrawEnv, weight: number, px: number) => `${weight} ${px}px ${e.family}`;
 function rr(c: Ctx, x: number, y: number, w: number, h: number, r: number) { c.beginPath(); if (c.roundRect) c.roundRect(x, y, w, h, r); else c.rect(x, y, w, h); }
 function wrapText(c: Ctx, text: string, x: number, y: number, maxW: number, lh: number) {
@@ -124,10 +124,12 @@ function statusLabel(m: Moment) {
 export function drawChamberClock(c: Ctx, w: number, h: number, m: Moment, e: DrawEnv) {
   const { P, amb } = e;
   const S = Math.min(w, h);
-  const cx = w * 0.6, cw = S * 0.24, chH = S * 0.34, y1 = h * 0.7, y0 = y1 - chH;
+  const cx = w * 0.6, cw = S * 0.24, chH = S * 0.34, y1 = h * 0.655, y0 = y1 - chH;
   const capH = S * 0.024, lipH = S * 0.016, L = S * 0.26, sealH = S * 0.02;
-  const ground = y1 + capH + S * 0.012;
-  const py = (ground + y0 - L) / 2;
+  // stack from the bottom up: the scale is always there; on it the glass mug, and on that the brewer
+  const mugH = S * 0.17, ground = y1 + capH + S * 0.012, scaleTop = ground + mugH;
+  // inverted, the brewer stands on its plunger on the scale; this pivot turns it onto the mug
+  const py = (scaleTop + y0 - L) / 2;
   const swirl = m.k === "swirl" && !e.reduced ? Math.sin(amb * 12) * 0.06 : 0;
   const angle = (m.inverted ? -Math.PI * (1 - m.turn) : 0) + swirl;
   const upside = m.inverted && m.turn < 0.5;
@@ -141,10 +143,10 @@ export function drawChamberClock(c: Ctx, w: number, h: number, m: Moment, e: Dra
   c.font = F(e, 600, S * 0.05); c.fillStyle = m.started && !m.running && !m.finished ? P.muted : P.fg;
   wrapText(c, statusLabel(m), w * 0.05, h * 0.285, Math.max(S * 0.2, x0 - w * 0.1), S * 0.06);
 
-  // the scale while inverted, the glass mug after the flip
-  const scaleA = m.inverted ? 1 - clamp((m.turn - 0.15) / 0.3) : 0;
-  const mugSurface = glassMug(c, { x: cx - S * 0.15, y: ground, w: S * 0.3, h: S * 0.17 }, m.mug, S, 1 - scaleA, m.finished, e);
-  if (scaleA > 0) kitchenScale(c, cx, ground, S, scaleA, e);
+  // the scale, always, reading the water poured; the mug on it (inverted, the mug arrives for the flip)
+  kitchenScale(c, cx, scaleTop, S, e.water ? Math.round(m.fill * e.water) : null, e);
+  const mugA = m.inverted ? clamp((m.turn - 0.15) / 0.3) : 1;
+  const mugSurface = glassMug(c, { x: cx - S * 0.15, y: ground, w: S * 0.3, h: mugH }, m.mug, S, mugA, m.finished, e);
 
   // the brewer, in its own turning frame
   c.save();
@@ -262,14 +264,22 @@ function glassMug(c: Ctx, mg: { x: number; y: number; w: number; h: number }, fi
   c.restore();
   return surface;
 }
-function kitchenScale(c: Ctx, cx: number, top: number, S: number, a: number, e: DrawEnv) {
+/** A kitchen scale with its display: the grams of water poured so far. */
+function kitchenScale(c: Ctx, cx: number, top: number, S: number, grams: number | null, e: DrawEnv) {
   const { P } = e;
-  c.save(); c.globalAlpha = a;
-  const w = S * 0.46, x = cx - w / 2;
+  c.save();
+  const w = S * 0.5, x = cx - w / 2;
   c.fillStyle = P.steel; rr(c, x + S * 0.02, top, w - S * 0.04, S * 0.012, S * 0.004); c.fill();
   c.fillStyle = P.raised; c.strokeStyle = P.steel; c.lineWidth = S * 0.006;
-  rr(c, x, top + S * 0.012, w, S * 0.06, S * 0.014); c.fill(); c.stroke();
-  c.fillStyle = P.cap; rr(c, cx - S * 0.075, top + S * 0.024, S * 0.15, S * 0.036, S * 0.006); c.fill();
+  rr(c, x, top + S * 0.012, w, S * 0.07, S * 0.014); c.fill(); c.stroke();
+  const dw = S * 0.2, dh = S * 0.046, dx = cx - dw / 2, dy = top + S * 0.024;
+  c.fillStyle = P.cap; rr(c, dx, dy, dw, dh, S * 0.008); c.fill();
+  c.fillStyle = P.water; c.textBaseline = "middle";
+  c.font = F(e, 700, S * 0.034); c.textAlign = "right";
+  c.fillText(grams == null ? "0" : String(grams), dx + dw * 0.72, dy + dh / 2 + S * 0.002);
+  c.font = F(e, 600, S * 0.024); c.textAlign = "left";
+  c.fillText("g", dx + dw * 0.76, dy + dh / 2 + S * 0.003);
+  c.textAlign = "left"; c.textBaseline = "alphabetic";
   c.restore();
 }
 function gooseneck(c: Ctx, tx: number, ty: number, S: number, e: DrawEnv) {
@@ -378,46 +388,4 @@ export function drawBrewLine(c: Ctx, w: number, h: number, m: Moment, e: DrawEnv
       c.fillText(lab, xNow + 8 + lw > w - Rm ? xNow - 8 - lw : xNow + 8, Math.max(T + 12, yy - 6));
     }
   }
-}
-
-/* =====================================================================
-   Count in coffee: the countdown numbers are the cup
-   ===================================================================== */
-export function drawCount(c: Ctx, w: number, h: number, m: Moment, e: DrawEnv) {
-  const { P, amb, reduced } = e;
-  const text = m.finished ? "Done" : m.left >= 60 ? mmss(m.left) : String(m.left);
-  const cx = w / 2, cy = h / 2;
-  let size = h * 0.9;
-  c.font = F(e, 900, size);
-  const tw = c.measureText(text).width;
-  if (tw > w * 0.92) size *= (w * 0.92) / tw;
-  const font = F(e, 900, size);
-  let sy = 1;
-  if (m.inverted && m.k === "flip") sy = Math.cos(Math.PI * m.turn) || 0.001;
-  const sy2 = Math.sign(sy) * Math.max(0.03, Math.abs(sy));
-  const capH = size * 0.72, bot = cy + capH / 2;
-  const lv = m.finished ? 1 : m.level;
-  const surface = bot - lv * capH;
-  let amp = 0, freq = 2.2, speed = 2;
-  if (!reduced) {
-    if (m.k === "pour") { amp = size * 0.03; freq = 3.2; speed = 5; }
-    else if (m.k === "wait") { amp = size * (m.bloom ? 0.01 : 0.006); speed = 1.2; }
-    else if (m.k === "stir" || m.k === "swirl") { amp = size * 0.06; freq = 1.4; speed = 7; }
-    else if (m.k === "flip") { amp = size * 0.05 * (1 - Math.abs(sy)); freq = 1.2; speed = 4; }
-    else if (m.k === "press") { amp = size * 0.01; }
-  }
-  const glyphs = () => { c.save(); c.translate(cx, cy); c.scale(1, sy2); c.font = font; c.textAlign = "center"; c.textBaseline = "alphabetic"; };
-  if (lv > 0.001) {
-    c.fillStyle = m.finished ? P.coffee : m.k === "pour" ? pourColour(P, m.fill) : brew(P, m.dark);
-    c.beginPath(); c.moveTo(0, h);
-    for (let x = 0; x <= w; x += 6) c.lineTo(x, surface + Math.sin((x / w) * Math.PI * 2 * freq + amb * speed) * amp);
-    c.lineTo(w, h); c.closePath(); c.fill();
-    if (m.finished || m.k === "press") { c.fillStyle = P.crema; c.fillRect(0, surface - size * 0.006, w, size * 0.03); }
-  }
-  c.globalCompositeOperation = "destination-in";
-  glyphs(); c.fillStyle = "#000"; c.fillText(text, 0, capH / 2); c.restore();
-  c.globalCompositeOperation = "destination-over";
-  glyphs(); c.fillStyle = P.raised; c.fillText(text, 0, capH / 2); c.restore();
-  c.globalCompositeOperation = "source-over";
-  glyphs(); c.lineWidth = Math.max(1.5, size * 0.008); c.strokeStyle = P.steel; c.lineJoin = "round"; c.strokeText(text, 0, capH / 2); c.restore();
 }

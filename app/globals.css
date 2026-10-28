@@ -16,7 +16,7 @@
   --flag-line:#ecd3a6;
   --coffee:#6b3f2a;
   --good:#2f6b4f;
-  /* brew drawings (Chamber clock, Brew line, Count in coffee) */
+  /* brew drawings (Chamber clock, Brew line) */
   --bc-steel:#5b4a50; --bc-plunger:#ece6e8; --bc-cap:#2b2326; --bc-on-accent:#ffffff;
   --bc-pale:#cfa877; --bc-coffee:#3f2416; --bc-grounds:#5a3a24; --bc-crema:#c99a63; --bc-water:#8fbad6;
   --display:'Archivo Variable','Archivo',ui-sans-serif,system-ui,sans-serif;
@@ -746,9 +746,9 @@ path.da-glass{fill:none}
 .hf-name{font-weight:700;font-size:16px}
 .hf-top .x{margin-left:auto;width:var(--tap);height:var(--tap);border:0;border-radius:10px;background:var(--raised);font-size:22px}
 .hf-main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:0}
-.hf-count{position:relative;width:min(94vw,980px);aspect-ratio:1.5 / 1;max-height:40vh}
-.hf-count .brew-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
-@media (min-width:700px){ .hf-count{aspect-ratio:2.4 / 1;max-height:44vh} }
+.hf-clock{position:relative;height:min(58vh,92vw);aspect-ratio:10 / 9;max-width:100%}
+.hf-clock .brew-canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+@media (min-width:900px){ .hf-main{flex-direction:row;gap:48px} .hf-clock{height:min(72vh,46vw)} .hf-info{text-align:left} }
 .hf-info{text-align:center;display:flex;flex-direction:column;gap:4px;max-width:36ch}
 .hf-kind{font-family:var(--mono);font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700}
 .hf-now{font-size:clamp(18px,4.6vw,24px);font-weight:700;line-height:1.25}

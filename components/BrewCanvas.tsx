@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import { timer, type TimerBrew } from "@/lib/timer";
-import { drawBrewLine, drawChamberClock, drawCount, moment, readPalette, type DrawEnv, type Moment, type Palette } from "@/lib/brewDraw";
+import { drawBrewLine, drawChamberClock, moment, readPalette, type DrawEnv, type Moment, type Palette } from "@/lib/brewDraw";
 
-export type BrewCanvasKind = "clock" | "line" | "count";
+export type BrewCanvasKind = "clock" | "line";
 
 function useReducedMotion() {
   return useSyncExternalStore(
@@ -53,13 +53,12 @@ export function BrewCanvas({ tb, kind, water, className, label }: { tb: TimerBre
     const draw = () => {
       if (!w || !h) return;
       const m = now();
-      const env: DrawEnv = { P, family, reduced, amb };
+      const env: DrawEnv = { P, family, reduced, amb, water };
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.globalCompositeOperation = "source-over";
       ctx.clearRect(0, 0, w, h);
       if (kind === "clock") drawChamberClock(ctx, w, h, m, env);
-      else if (kind === "line") drawBrewLine(ctx, w, h, m, env, water);
-      else drawCount(ctx, w, h, m, env);
+      else drawBrewLine(ctx, w, h, m, env, water);
       const phase = m.finished ? "done" : m.started ? m.seg.k : "ready";
       if (cv.dataset.phase !== phase) cv.dataset.phase = phase;
       const left = String(m.left);

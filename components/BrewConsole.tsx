@@ -400,7 +400,7 @@ function TimerPanel({ tb, finish, water }: { tb: TimerBrew; finish: string; wate
       <div className="dial-zone">
         {/* Chamber clock: the AeroPress with its moulded numbers lighting up, and the countdown */}
         <div className="clock-wrap" id="clock">
-          <BrewCanvas tb={tb} kind="clock" label={`${status}${s.finished ? "" : `, ${secs} seconds left`}`} />
+          <BrewCanvas tb={tb} kind="clock" water={water} label={`${status}${s.finished ? "" : `, ${secs} seconds left`}`} />
           <span className="sr-only" id="badge">{status}</span>
         </div>
         <p className="now" id="now" aria-live="polite">{s.finished ? "Brew complete" : sg.lbl}</p>
@@ -418,7 +418,7 @@ function TimerPanel({ tb, finish, water }: { tb: TimerBrew; finish: string; wate
           onClick={() => prefs.setVoice(!prefs.voice)}>{prefs.voice ? "🗣️ Voice" : "🔇 Voice"}</button>
         <button className="btn ghost hf-open" id="handsFreeBtn" type="button" onClick={() => setHandsFree(true)}>⛶ Hands-free</button>
       </div>
-      {handsFree && <HandsFree tb={tb} onClose={() => setHandsFree(false)} />}
+      {handsFree && <HandsFree tb={tb} water={water} onClose={() => setHandsFree(false)} />}
     </div>
   );
 }

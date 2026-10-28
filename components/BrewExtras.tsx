@@ -124,7 +124,7 @@ export function VoiceCues() {
 }
 
 /* ============ hands-free: full screen, big type, the animation ============ */
-export function HandsFree({ tb, onClose }: { tb: TimerBrew; onClose: () => void }) {
+export function HandsFree({ tb, water, onClose }: { tb: TimerBrew; water?: number; onClose: () => void }) {
   useTimer();
   const prefs = useBrewPrefs();
   const ref = useRef<HTMLDivElement>(null);
@@ -165,10 +165,10 @@ export function HandsFree({ tb, onClose }: { tb: TimerBrew; onClose: () => void 
         <button type="button" className="x" aria-label="Exit hands-free" onClick={onClose}>×</button>
       </div>
       <div className="hf-main">
-        {/* Count in coffee: the countdown numbers fill, darken, slosh, turn over and drain with the brew */}
-        <div className="hf-count">
-          <BrewCanvas tb={tb} kind="count"
-            label={finished ? "Done" : `${started ? left : tb.segs[0].dur} seconds`} />
+        {/* the Chamber clock, large: countdown, the brewer, the mug and the scale with its reading */}
+        <div className="hf-clock">
+          <BrewCanvas tb={tb} kind="clock" water={water}
+            label={finished ? "Done" : `${started ? left : tb.segs[0].dur} seconds left`} />
         </div>
         <div className="hf-info">
           {(() => {

@@ -145,12 +145,12 @@ test("hands-free mode and voice toggle", async ({ page: p }) => {
   await p.click("#handsFreeBtn");
   const hf = p.locator(".handsfree");
   await expect(hf).toBeVisible();
-  const count = hf.locator(".hf-count canvas");
-  await expect(count).toBeVisible();
-  await expect(count).toHaveAttribute("data-phase", "ready");
+  const clock = hf.locator(".hf-clock canvas");
+  await expect(clock).toBeVisible();
+  await expect(clock).toHaveAttribute("data-phase", "ready");
   await hf.locator(".hf-go").click();
   await expect(hf.locator(".hf-go")).toHaveText("Pause");
-  await expect(count).toHaveAttribute("data-phase", "pour");
+  await expect(clock).toHaveAttribute("data-phase", "pour");
   await hf.getByRole("button", { name: /Voice/ }).click();
   expect(await p.evaluate(() => localStorage.getItem("brewcard.voice"))).toBe("0");
   await p.keyboard.press("Escape");
