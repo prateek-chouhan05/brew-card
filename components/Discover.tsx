@@ -4,8 +4,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { ALL, FL } from "@/lib/catalog";
 import { GROUPS } from "@/lib/data/labels";
 import { grinderShort } from "@/lib/grind";
-import { entryRoastIcon, entryRoastTitle, entryStats, entrySub, entryTime, orientPill } from "@/lib/brew";
-import { FACETS, FGROUPS, activeRefineCount, countWhere, emptyRefine, matchBadge, optLabel, orientBlocked, results, type GroupKey, type MatchMode, type Query } from "@/lib/discover";
+import { entryRoastTitle, entryStats, entrySub, entryTime, orientPill } from "@/lib/brew";
+import { FACETS, FGROUPS, activeRefineCount, countWhere, emptyRefine, matchBadge, optOf, orientBlocked, results, type GroupKey, type MatchMode, type Query } from "@/lib/discover";
 import { searchScores } from "@/lib/search";
 import type { Entry } from "@/lib/types";
 import { PAGE, useBrewPrefs, useDiscover, useSetup } from "./providers";
@@ -13,6 +13,8 @@ import { useModal } from "./useModal";
 import { RecipeArt } from "./DrinkArt";
 import { entryById } from "@/lib/catalog";
 import { beanStatus } from "@/lib/journal";
+import type { IconName } from "@/lib/icons";
+import { Icon, RoastSwatch, TasteMark } from "./Icon";
 
 const SUGGEST = ["affogato", "vietnamese", "tonic", "hoffmann", "quick"];
 
@@ -69,11 +71,11 @@ export function Discover() {
   };
 
   /* ---------- active filter chips ---------- */
-  const chips: { label: string; clear: () => void }[] = [];
+  const chips: { icon?: IconName; label: string; clear: () => void }[] = [];
   if (filters.q) chips.push({ label: `Search: “${filters.q}”`, clear: () => setQuery("") });
-  if (filters.col) { const gr = GROUPS.find((x) => x.id === filters.col)!; chips.push({ label: gr.emoji + " " + gr.label, clear: () => update((f) => ({ ...f, col: "" })) }); }
-  for (const g of FGROUPS) for (const v of filters.f[g.id]) chips.push({ label: optLabel(g.id, v), clear: () => toggle(g.id, v, false) });
-  if (mode === "only") chips.push({ label: "🎯 Only matches", clear: () => setMode("first") });
+  if (filters.col) { const gr = GROUPS.find((x) => x.id === filters.col)!; chips.push({ icon: gr.icon || undefined, label: gr.label, clear: () => update((f) => ({ ...f, col: "" })) }); }
+  for (const g of FGROUPS) for (const v of filters.f[g.id]) chips.push({ icon: optOf(g.id, v).icon, label: optOf(g.id, v).label, clear: () => toggle(g.id, v, false) });
+  if (mode === "only") chips.push({ icon: "match", label: "Only matches", clear: () => setMode("first") });
 
   /* ---------- refine groups (rendered in the desktop sidebar and the phone sheet) ---------- */
   const refine = (prefix: "d" | "s") => FGROUPS.map((g) => {
@@ -90,7 +92,7 @@ export function Discover() {
               <label className="fchip" key={o.id}>
                 <input type="checkbox" id={`${prefix}-${g.id}-${o.id}`} value={o.id} checked={on} disabled={disabled}
                   onChange={(e) => toggle(g.id, o.id, e.target.checked)} />
-                <span><span className="emoji" aria-hidden="true">{o.emoji}</span>{o.label} <small>{counts[o.id]}</small></span>
+                <span><Icon name={o.icon} />{o.label} <small>{counts[o.id]}</small></span>
               </label>
             );
           })}
@@ -123,7 +125,7 @@ export function Discover() {
       </div>
 
       <div className="search" role="search">
-        <span className="s-ic emoji" aria-hidden="true">🔍</span>
+        <Icon name="search" className="s-ic" />
         <input id="q" ref={qRef} type="search" autoComplete="off" enterKeyHint="search" spellCheck={false}
           placeholder="Drink, brewer, country, flavour…" aria-label="Search recipes" aria-describedby="suggest"
           value={qText} onChange={(e) => setQText(e.target.value)}
@@ -131,7 +133,7 @@ export function Discover() {
             if (e.key === "Escape" && qText) { e.preventDefault(); setQuery(""); }
             if (e.key === "Enter") { e.preventDefault(); (e.target as HTMLInputElement).blur(); }
           }} />
-        {qText && <button type="button" className="s-clear" id="qClear" aria-label="Clear search" onClick={() => { setQuery(""); qRef.current?.focus(); }}>×</button>}
+        {qText && <button type="button" className="s-clear" id="qClear" aria-label="Clear search" onClick={() => { setQuery(""); qRef.current?.focus(); }}><Icon name="close" /></button>}
       </div>
       <p className="suggest" id="suggest"><span>Try</span>
         {SUGGEST.map((s) => <button type="button" key={s} onClick={() => setQuery(s)}>{s}</button>)}
@@ -146,7 +148,7 @@ export function Discover() {
             <label className="seg-opt" key={gr.id || "all"}>
               <input type="radio" name="collection" value={gr.id} checked={filters.col === gr.id} onChange={() => update((x) => ({ ...x, col: gr.id }))} />
               <span>
-                {gr.emoji && <span className="emoji" aria-hidden="true">{gr.emoji}</span>}
+                {gr.icon && <Icon name={gr.icon} />}
                 {gr.label} <small>{countWhere(query, "col", (e) => !gr.id || e.g === gr.id)}</small>
               </span>
             </label>
@@ -156,7 +158,7 @@ export function Discover() {
 
       <div className="refine-row">
         <button type="button" className="filters-btn" id="filtersBtn" aria-haspopup="dialog" aria-label={"Refine" + (nRefine ? `, ${nRefine} active` : "")} onClick={() => setSheetOpen(true)}>
-          <span className="emoji" aria-hidden="true">🎚️</span>Refine {nRefine > 0 && <span className="n" id="filtersN">{nRefine}</span>}
+          <Icon name="refine" />Refine {nRefine > 0 && <span className="n" id="filtersN">{nRefine}</span>}
         </button>
       </div>
 
@@ -172,11 +174,11 @@ export function Discover() {
         <div className="results-col">
           <section className="matchbar" aria-labelledby="mbH">
             <div className="mb-top">
-              <h2 id="mbH"><span className="emoji" aria-hidden="true">🎯</span>Match my coffee</h2>
+              <h2 id="mbH"><Icon name="match" />Match my coffee</h2>
               <span className="mb-chips">
-                {activeBean && <span className={"mb-tag bean " + beanStatus(activeBean).tone} title={beanStatus(activeBean).detail}>🫘 {activeBean.name} · {beanStatus(activeBean).label}</span>}
-                <span className="mb-tag">{roast.emoji} {roast.label}</span>
-                {f ? <span className="mb-tag">{f.emoji} {f.label}</span> : <span className="mb-tag muted">Any flavour</span>}
+                {activeBean && <span className={"mb-tag bean " + beanStatus(activeBean).tone} title={beanStatus(activeBean).detail}><Icon name="bean" />{activeBean.name} · {beanStatus(activeBean).label}</span>}
+                <span className="mb-tag"><RoastSwatch id={roast.id} />{roast.label}</span>
+                {f ? <span className="mb-tag"><TasteMark id={f.id} />{f.label}</span> : <span className="mb-tag muted">Any flavour</span>}
               </span>
               <button type="button" className="linkbtn" aria-label="Edit coffee setup" onClick={() => openSetup(false)}>Edit<span className="wide">&nbsp;setup</span></button>
             </div>
@@ -211,8 +213,8 @@ export function Discover() {
               <ul className="achips" aria-label="Active filters">
                 {chips.map((c) => (
                   <li className="achip" key={c.label}>
-                    <span className="at">{c.label}</span>
-                    <button type="button" aria-label={"Remove " + c.label} onClick={() => { c.clear(); qRef.current?.focus({ preventScroll: true }); }}>×</button>
+                    <span className="at">{c.icon && <Icon name={c.icon} />}{c.label}</span>
+                    <button type="button" aria-label={"Remove " + c.label} onClick={() => { c.clear(); qRef.current?.focus({ preventScroll: true }); }}><Icon name="close" /></button>
                   </li>
                 ))}
               </ul>
@@ -243,7 +245,7 @@ export function Discover() {
         <div className="sheet">
           <div className="sheet-h">
             <h2 id="fdH">Refine</h2>
-            <button type="button" className="x" aria-label="Close" onClick={() => setSheetOpen(false)}>×</button>
+            <button type="button" className="x" aria-label="Close" onClick={() => setSheetOpen(false)}><Icon name="close" /></button>
           </div>
           <div className="sheet-b" id="refineSheet">
             <p className="sheet-intro">Results update as you choose. Options within a group widen the list; different groups narrow it.</p>
@@ -279,16 +281,18 @@ function Card({ e, badge, current }: { e: Entry; badge: string; current: boolean
           <span className="c-title">{e.name}</span>
           <span className="c-sub">{entrySub(e)}</span>
           <span className="c-tags">
-            <span className={"pill" + (pill.inv ? " inv" : "")}>{pill.text}</span>
-            {badge && <span className="mbadge">{badge}</span>}
+            <span className={"pill" + (pill.inv ? " inv" : "")}><Icon name={pill.icon} />{pill.text}</span>
+            {badge && <span className="mbadge"><Icon name="check" />{badge}</span>}
           </span>
           <span className="c-stats">{entryStats(e, { grinder, roast, dose: prefs.dose, grindAdj: prefs.grindAdj })}</span>
         </span>
         <span className="c-side">
-          <span className="c-time">{prefs.favs.includes(e.id) && <span className="c-fav" role="img" aria-label="Saved">★</span>}<span className="sr-only">Time </span>{entryTime(e)}</span>
+          <span className="c-time">{prefs.favs.includes(e.id) && <Icon name="saved" className="c-fav" label="Saved" />}{entryTime(e) ? <><span className="sr-only">Time </span>{entryTime(e)}</> : <Icon name="external" label="Recipe on its original site" />}</span>
           <span className="c-fl">
-            <span className="emoji" role="img" aria-label={entryRoastTitle(e)} title={entryRoastTitle(e)}>{entryRoastIcon(e, roast)}</span>
-            {fl.length > 0 && <span className="emoji" role="img" aria-label={`Best with ${flNames} beans`} title={"Best with: " + flNames}>{fl.map((id) => FL[id].emoji).join("")}</span>}
+            {e.kind === "drink"
+              ? <Icon name={e.temp === "hot" ? "hot" : "iced"} className="c-serve" label={entryRoastTitle(e)} />
+              : <RoastSwatch id={e.kind === "house" ? roast.id : undefined} lib={e.kind === "library" ? e.roast : undefined} label={entryRoastTitle(e)} />}
+            {fl.length > 0 && <span className="c-tastes" role="img" aria-label={`Best with ${flNames} beans`} title={"Best with: " + flNames}>{fl.map((id) => <TasteMark key={id} id={id} />)}</span>}
           </span>
         </span>
       </Link>
@@ -324,10 +328,10 @@ function Shelf() {
   const items: { id: string; fav: boolean }[] = favs.map((id) => ({ id, fav: true }));
   for (const r of recent) if (!favs.includes(r.id)) items.push({ id: r.id, fav: false });
   if (!items.length) return null;
-  const title = favs.length && recent.length ? "★ Favourites & 🕘 brewed recently" : favs.length ? "★ Favourites" : "🕘 Brewed recently";
+  const title = favs.length && recent.length ? "Favourites & brewed recently" : favs.length ? "Favourites" : "Brewed recently";
   return (
     <section className="shelf" aria-labelledby="shelfH">
-      <h2 className="shelf-h" id="shelfH">{title}</h2>
+      <h2 className="shelf-h" id="shelfH">{favs.length > 0 && <Icon name="saved" />}{recent.length > 0 && <Icon name="recent" />}{title}</h2>
       <ul className="shelf-track">
         {items.slice(0, 14).map(({ id, fav }) => {
           const e = entryById(id);
@@ -335,7 +339,7 @@ function Shelf() {
           return (
             <li key={id}>
               <Link href={`/recipes/${id}`} className="shelf-item">
-                {fav && <span className="shelf-badge" aria-label="Favourite">★</span>}
+                {fav && <Icon name="saved" className="shelf-badge" label="Favourite" />}
                 <span className="shelf-art" aria-hidden="true"><RecipeArt entry={e} /></span>
                 <span className="shelf-name">{e.name}</span>
               </Link>

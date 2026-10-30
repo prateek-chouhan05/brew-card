@@ -2,6 +2,7 @@
 import { useSyncExternalStore } from "react";
 import { acquireWake, endTone, ensureAudio, releaseWake, tickTone, toneFor } from "./audio";
 import type { Orientation, TimedSeg } from "./types";
+import type { IconName } from "./icons";
 
 export interface Cue { type: "phase" | "flipSoon" | "done"; seg: TimedSeg; idx: number }
 
@@ -9,7 +10,7 @@ export interface Cue { type: "phase" | "flipSoon" | "done"; seg: TimedSeg; idx: 
 export interface TimerBrew {
   id: string;
   name: string;
-  emoji: string;
+  icon: IconName;
   segs: TimedSeg[];
   o: Orientation;
   /** changes when dose or orientation changes, so a stale run is reset */

@@ -10,6 +10,7 @@ import { useBrewPrefs, useSetup } from "./providers";
 import { SetupDialog } from "./SetupDialog";
 import { VoiceCues } from "./BrewExtras";
 import { useServiceWorker } from "./Pwa";
+import { BrandMark, Icon, RoastSwatch, TasteMark } from "./Icon";
 
 type View = "recipes" | "brew" | "guides";
 function viewOf(path: string): View {
@@ -18,11 +19,11 @@ function viewOf(path: string): View {
   return "recipes";
 }
 
-/** "⏱ 1:23" while a brew is running or paused, so it's never lost while browsing. */
+/** "1:23" with a timer (or pause) icon while a brew is running or paused, so it's never lost while browsing. */
 function LiveBadge() {
   const t = useTimer();
   if (!t.active) return null;
-  return <span className="live">{(t.running ? "⏱ " : "⏸ ") + mmss(t.elapsed())}</span>;
+  return <span className="live"><Icon name={t.running ? "timer" : "pause"} />{mmss(t.elapsed())}</span>;
 }
 
 function useNav() {
@@ -30,9 +31,9 @@ function useNav() {
   const { lastEntry } = useBrewPrefs();
   const brewHref = "/recipes/" + (t.active && t.brew ? t.brew.id : lastEntry);
   return [
-    { id: "recipes" as const, href: "/", label: "Recipes", emoji: "🔍" },
-    { id: "brew" as const, href: brewHref, label: "Brew", emoji: "⏱️" },
-    { id: "guides" as const, href: "/guides", label: "Guides", emoji: "📖" },
+    { id: "recipes" as const, href: "/", label: "Recipes", icon: "search" as const },
+    { id: "brew" as const, href: brewHref, label: "Brew", icon: "timer" as const },
+    { id: "guides" as const, href: "/guides", label: "Guides", icon: "guides" as const },
   ];
 }
 
@@ -42,13 +43,13 @@ function SetupChip() {
   const label = `Coffee setup: ${grinder.name}, ${roast.label} roast${f ? ", " + f.label + " beans" : ", no flavour preference"}. Change setup`;
   return (
     <button type="button" className="setup-chip" id="setupBtn" aria-haspopup="dialog" aria-label={label} onClick={() => openSetup(false)}>
-      <span className="emoji" aria-hidden="true">⚙️</span>
+      <Icon name="setup" />
       <span className="sc-txt">
         <span className="sc-lbl">Setup</span>{" "}
         <span id="setupSum">
-          {grinderShort(grinder)} · {roast.emoji}
+          {grinderShort(grinder)} · <RoastSwatch id={roast.id} />
           <span className="sc-long"> {roast.label}</span>
-          {f && (<> · {f.emoji}<span className="sc-long"> {f.label}</span></>)}
+          {f && (<> · <TasteMark id={f.id} /><span className="sc-long"> {f.label}</span></>)}
         </span>
       </span>
     </button>
@@ -71,13 +72,13 @@ export function AppShell({ children }: { children: ReactNode }) {
       <header className="topbar">
         <div className="shell">
           <Link href="/" className="brand" aria-label="Brew Card, go to Recipes">
-            <span className="emoji" aria-hidden="true">☕</span>
+            <BrandMark />
             <span className="b-name">Brew Card</span>
           </Link>
           <nav className="mainnav" aria-label="Main">
             {nav.map((n) => (
               <Link key={n.id} href={n.href} data-go={n.id} aria-current={view === n.id ? "page" : undefined}>
-                <span className="emoji" aria-hidden="true">{n.emoji}</span>
+                <Icon name={n.icon} />
                 {n.label}
                 {n.id === "brew" && <LiveBadge />}
               </Link>
@@ -92,7 +93,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <nav className="tabbar" aria-label="Main">
         {nav.map((n) => (
           <Link key={n.id} href={n.href} data-go={n.id} aria-current={view === n.id ? "page" : undefined}>
-            <span className="emoji" aria-hidden="true">{n.emoji}</span>
+            <Icon name={n.icon} />
             <span>
               {n.label}
               {n.id === "brew" && <LiveBadge />}

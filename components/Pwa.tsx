@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { Icon } from "./Icon";
 
 /** Offline support: register the service worker in production builds. */
 export function useServiceWorker() {
@@ -33,10 +34,10 @@ export function InstallButton() {
   return (
     <p className="install">
       {evt ? (
-        <button type="button" className="panel-act" onClick={async () => { await evt.prompt(); setEvt(null); }}>📲 Install Brew Card</button>
+        <button type="button" className="panel-act" onClick={async () => { await evt.prompt(); setEvt(null); }}><Icon name="install" />Install Brew Card</button>
       ) : (
         <>
-          <button type="button" className="panel-act" aria-expanded={showHow} onClick={() => setShowHow(!showHow)}>📲 Add to Home Screen</button>
+          <button type="button" className="panel-act" aria-expanded={showHow} onClick={() => setShowHow(!showHow)}><Icon name="install" />Add to Home Screen</button>
           {showHow && <span className="install-how">In Safari, tap <b>Share</b> → <b>Add to Home Screen</b>. It opens full-screen and works offline for recipes you&apos;ve viewed.</span>}
         </>
       )}

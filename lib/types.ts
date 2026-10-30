@@ -1,3 +1,5 @@
+import type { IconName } from "./icons";
+
 export type RoastId = "light" | "medlight" | "medium" | "meddark" | "dark";
 export type FlavourId = "fruity" | "citrus" | "floral" | "caramel" | "nutty" | "chocolate" | "bold";
 export type SegKind = "pour" | "wait" | "swirl" | "stir" | "press" | "flip";
@@ -6,7 +8,6 @@ export type GroupId = "mine" | "drink" | "champ" | "pro" | "fan";
 export interface Roast {
   id: RoastId;
   label: string;
-  emoji: string;
   temp: number;
   adj: number;
   rank: number;
@@ -15,7 +16,6 @@ export interface Roast {
 
 export interface Flavour {
   id: FlavourId;
-  emoji: string;
   label: string;
   notes: string;
   beans: string;
@@ -44,7 +44,7 @@ export interface TimedSeg {
 }
 /** An untimed checklist step (moka pot, cold brew, drinks) */
 export interface CheckSeg {
-  ic: string;
+  ic: IconName | "";
   lbl: string;
   det: string;
 }
@@ -52,7 +52,7 @@ export interface CheckSeg {
 /** House method as written in data/house.ts */
 export interface RawHouse {
   id: string;
-  emoji: string;
+  icon: IconName;
   name: string;
   tagline: string;
   notes: string;
@@ -86,7 +86,6 @@ export interface Drink {
   g: "drink";
   o: "none";
   id: string;
-  emoji: string;
   name: string;
   aka: string;
   origin: string;
@@ -151,7 +150,7 @@ export type Orientation = "standard" | "inverted" | "moka" | "jar" | "none";
 export interface Brew {
   id: string;
   name: string;
-  emoji: string;
+  icon: IconName;
   notes: string;
   timed: boolean;
   segs: TimedSeg[];

@@ -1,7 +1,6 @@
 [
  {
   "id": "affogato",
-  "emoji": "🍨",
   "name": "Affogato",
   "aka": "Coffee 'drowned' ice cream",
   "origin": "Italy",
@@ -59,7 +58,6 @@
  },
  {
   "id": "americano",
-  "emoji": "☕",
   "name": "Americano",
   "aka": "Caffè americano",
   "origin": "Italy",
@@ -79,7 +77,7 @@
    "meddark",
    "dark"
   ],
-  "why": "Diluting a strong shot keeps its body and roast sweetness, so chocolaty and caramel beans shine. For a fruity bean, your ✨ Bypass Brew is the better version of the same idea.",
+  "why": "Diluting a strong shot keeps its body and roast sweetness, so chocolaty and caramel beans shine. For a fruity bean, your Bypass Brew is the better version of the same idea.",
   "desc": "A strong shot lengthened with hot water — the body of espresso at the size of a normal cup.",
   "base": [
    {
@@ -112,7 +110,6 @@
  },
  {
   "id": "cappuccino",
-  "emoji": "🫧",
   "name": "Cappuccino",
   "origin": "Italy",
   "temp": "hot",
@@ -170,7 +167,6 @@
  },
  {
   "id": "latte",
-  "emoji": "🥛",
   "name": "Caffè Latte",
   "origin": "Italy",
   "temp": "hot",
@@ -226,7 +222,6 @@
  },
  {
   "id": "flat-white",
-  "emoji": "🤍",
   "name": "Flat White",
   "origin": "Australia / New Zealand",
   "temp": "hot",
@@ -276,7 +271,6 @@
  },
  {
   "id": "cortado",
-  "emoji": "🥃",
   "name": "Cortado",
   "origin": "Spain",
   "temp": "hot",
@@ -327,7 +321,6 @@
  },
  {
   "id": "macchiato",
-  "emoji": "☁️",
   "name": "Espresso Macchiato",
   "origin": "Italy",
   "temp": "hot",
@@ -379,7 +372,6 @@
  },
  {
   "id": "mocha",
-  "emoji": "🍫",
   "name": "Caffè Mocha",
   "origin": "Italy / USA",
   "temp": "hot",
@@ -440,7 +432,6 @@
  },
  {
   "id": "con-panna",
-  "emoji": "🍦",
   "name": "Espresso Con Panna",
   "origin": "Italy",
   "temp": "hot",
@@ -490,7 +481,6 @@
  },
  {
   "id": "cafe-bombon",
-  "emoji": "🍯",
   "name": "Café Bombón",
   "origin": "Spain",
   "temp": "hot",
@@ -541,7 +531,6 @@
  },
  {
   "id": "spanish-latte-home",
-  "emoji": "🇪🇸",
   "name": "Spanish Latte",
   "aka": "Café con leche condensada",
   "origin": "Spain / Middle East",
@@ -600,7 +589,6 @@
  },
  {
   "id": "iced-latte-home",
-  "emoji": "🧊",
   "name": "Iced Latte",
   "origin": "Everywhere",
   "temp": "iced",
@@ -662,7 +650,6 @@
  },
  {
   "id": "iced-americano-home",
-  "emoji": "🧊",
   "name": "Iced Americano",
   "origin": "Everywhere",
   "temp": "iced",
@@ -716,7 +703,6 @@
  },
  {
   "id": "espresso-tonic",
-  "emoji": "🍋",
   "name": "Espresso Tonic",
   "origin": "Sweden",
   "temp": "iced",
@@ -777,7 +763,6 @@
  },
  {
   "id": "shakerato",
-  "emoji": "🍸",
   "name": "Shakerato",
   "origin": "Italy",
   "temp": "iced",
@@ -833,7 +818,6 @@
  },
  {
   "id": "freddo-cappuccino",
-  "emoji": "🇬🇷",
   "name": "Freddo Cappuccino",
   "origin": "Greece",
   "temp": "iced",
@@ -893,7 +877,6 @@
  },
  {
   "id": "espresso-martini",
-  "emoji": "🍸",
   "name": "Espresso Martini",
   "origin": "UK",
   "temp": "iced",
@@ -961,7 +944,6 @@
  },
  {
   "id": "irish-coffee",
-  "emoji": "☘️",
   "name": "Irish Coffee",
   "origin": "Ireland",
   "temp": "hot",
@@ -1021,7 +1003,6 @@
  },
  {
   "id": "ca-phe-sua-da",
-  "emoji": "🇻🇳",
   "name": "Vietnamese Iced Coffee",
   "aka": "Cà phê sữa đá",
   "origin": "Vietnam",
@@ -1077,7 +1058,6 @@
  },
  {
   "id": "bac-xiu",
-  "emoji": "🇻🇳",
   "name": "Bạc Xỉu",
   "aka": "Vietnamese milk coffee",
   "origin": "Vietnam",
@@ -1136,7 +1116,6 @@
  },
  {
   "id": "egg-coffee",
-  "emoji": "🥚",
   "name": "Egg Coffee",
   "aka": "Cà phê trứng",
   "origin": "Hanoi, Vietnam",
@@ -1188,14 +1167,13 @@
    "Brew the base into the cup.",
    "Spoon the egg cream on top. Eat the cream with a spoon, then drink."
   ],
-  "warn": "🥚 Uses raw egg yolk. Use the freshest eggs you can, pasteurised if available, and skip it for anyone pregnant, very young, elderly or unwell.",
+  "warn": "Uses raw egg yolk. Use the freshest eggs you can, pasteurised if available, and skip it for anyone pregnant, very young, elderly or unwell.",
   "tips": [],
   "alcohol": false,
   "baseNote": ""
  },
  {
   "id": "filter-kaapi",
-  "emoji": "🇮🇳",
   "name": "South Indian Filter Coffee",
   "aka": "Filter kaapi",
   "origin": "South India",
@@ -1255,7 +1233,6 @@
  },
  {
   "id": "dalgona",
-  "emoji": "🌀",
   "name": "Dalgona Coffee",
   "aka": "Whipped coffee",
   "origin": "South Korea / India",
@@ -1314,7 +1291,6 @@
  },
  {
   "id": "cold-brew-drink",
-  "emoji": "🫙",
   "name": "Cold Brew",
   "origin": "Everywhere",
   "temp": "iced",
@@ -1366,7 +1342,6 @@
  },
  {
   "id": "sweet-cream-cold-brew",
-  "emoji": "🍦",
   "name": "Vanilla Sweet Cream Cold Brew",
   "origin": "USA",
   "temp": "iced",
@@ -1425,7 +1400,6 @@
  },
  {
   "id": "coffee-lemonade",
-  "emoji": "🍋",
   "name": "Coffee Lemonade",
   "aka": "Mazagran",
   "origin": "Portugal / Algeria",
@@ -1490,7 +1464,6 @@
  },
  {
   "id": "cafe-au-lait",
-  "emoji": "🥐",
   "name": "Café au Lait",
   "origin": "France",
   "temp": "hot",
@@ -1537,7 +1510,6 @@
  },
  {
   "id": "red-eye",
-  "emoji": "👁️",
   "name": "Red Eye",
   "origin": "USA",
   "temp": "hot",
@@ -1583,7 +1555,6 @@
  },
  {
   "id": "cafe-de-olla",
-  "emoji": "🇲🇽",
   "name": "Café de Olla",
   "origin": "Mexico",
   "temp": "hot",
@@ -1645,7 +1616,6 @@
  },
  {
   "id": "coffee-frappe",
-  "emoji": "🥤",
   "name": "Blended Coffee Frappé",
   "origin": "Everywhere",
   "temp": "iced",

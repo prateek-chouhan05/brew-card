@@ -169,3 +169,14 @@ test("installable: manifest, icons and offline worker", async ({ page: p }) => {
   const scope = await p.evaluate(async () => (await navigator.serviceWorker.ready).scope);
   expect(scope).toMatch(/\/$/);
 });
+
+test("the interface uses drawn icons, not emoji", async ({ page: p }) => {
+  await skipSetup(p, "/");
+  await p.evaluate(() => { localStorage.setItem("brewcard.flavour", "chocolate"); localStorage.setItem("brewcard.favs", JSON.stringify(["my-moka"])); });
+  for (const url of ["/", "/recipes/my-moka/", "/recipes/my-everyday/", "/recipes/spanish-latte/", "/recipes/adler-original/", "/guides/"]) {
+    await p.goto(url);
+    await expect(p.locator("svg.ic").first()).toBeVisible();
+    const text = await p.locator("body").innerText();
+    expect(text.match(/\p{Extended_Pictographic}/gu), url).toBeNull();
+  }
+});

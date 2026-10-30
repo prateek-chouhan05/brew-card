@@ -99,13 +99,13 @@ export function advise(taste: Taste, strength: Strength, h: HouseMethod | null, 
   return { text: "Nailed it. Keep these settings — they're saved with this brew." };
 }
 
-export const TASTES: { id: Taste; emoji: string; label: string }[] = [
-  { id: "sour", emoji: "😬", label: "Sour, thin" },
-  { id: "balanced", emoji: "😋", label: "Balanced" },
-  { id: "bitter", emoji: "😖", label: "Bitter, harsh" },
+export const TASTES: { id: Taste; pos: 0 | 1 | 2; label: string }[] = [
+  { id: "sour", pos: 0, label: "Sour, thin" },
+  { id: "balanced", pos: 1, label: "Balanced" },
+  { id: "bitter", pos: 2, label: "Bitter, harsh" },
 ];
-export const STRENGTHS: { id: Strength; emoji: string; label: string }[] = [
-  { id: "weak", emoji: "💧", label: "Weak" },
-  { id: "right", emoji: "👌", label: "Just right" },
-  { id: "strong", emoji: "💪", label: "Too strong" },
+export const STRENGTHS: { id: Strength; k: 1 | 2 | 3; label: string }[] = [
+  { id: "weak", k: 1, label: "Weak" },
+  { id: "right", k: 2, label: "Just right" },
+  { id: "strong", k: 3, label: "Too strong" },
 ];

@@ -10,14 +10,12 @@ import { beanStatus, newId, type Bean } from "@/lib/journal";
 import type { FlavourId, RoastId } from "@/lib/types";
 import { useSetup, type SetupDraft } from "./providers";
 import { useModal } from "./useModal";
+import { ROAST_SWATCH } from "@/lib/icons";
+import { Icon, TasteMark } from "./Icon";
 
 const BRANDS = Array.from(new Set(GRINDERS.map((g) => g.brand)));
 
-/** The colour of the beans at each roast level, light to dark. */
-export const ROAST_SWATCH: Record<RoastId, string> = { light: "#c49a6c", medlight: "#a8754a", medium: "#87573a", meddark: "#5e3a24", dark: "#35201a" };
 const ROAST_SHORT: Record<RoastId, string> = { light: "Light", medlight: "Med-light", medium: "Medium", meddark: "Med-dark", dark: "Dark" };
-/** One colour per taste family, for the small dot on each choice. */
-const FLAVOUR_DOT: Record<FlavourId, string> = { fruity: "#b8325a", citrus: "#d9a400", floral: "#a77bd0", caramel: "#c98a3a", nutty: "#9a6b3f", chocolate: "#5a3622", bold: "#2e2a28" };
 
 const today = () => new Date().toISOString().slice(0, 10);
 const longDate = (iso: string) => {
@@ -81,7 +79,7 @@ export function SetupDialog() {
         <div className="sheet-h">
           <h2 id="suH" tabIndex={-1} ref={titleRef}>Your coffee setup</h2>
           <button type="button" className="x" aria-label="Close without saving" onClick={closeSetup}>
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" /></svg>
+            <Icon name="close" />
           </button>
         </div>
         <div className="sheet-b" id="setupBody" ref={bodyRef}>
@@ -135,7 +133,7 @@ export function SetupDialog() {
                   <input type="radio" name="suFlavour" value={x.id} checked={draft.flavour === x.id}
                     onChange={() => setDraft((d) => ({ ...d, flavour: x.id, activeBean: "" }))} />
                   <span className="tp-b">
-                    <span className={"dot" + (x.id ? "" : " none")} style={x.id ? { background: FLAVOUR_DOT[x.id] } : undefined} aria-hidden="true" />
+                    {x.id ? <TasteMark id={x.id} /> : <span className="dot none" aria-hidden="true" />}
                     {x.label}
                   </span>
                 </label>

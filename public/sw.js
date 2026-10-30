@@ -1,7 +1,7 @@
 /* Brew Card offline support.
    Pages: network first, falling back to the cached copy (so recipes you've opened work offline).
    Build assets (/_next/static, fonts, icons): cache first — their names change when they change. */
-const VERSION = "brewcard-v1";
+const VERSION = "brewcard-v2";
 const PRECACHE = ["/", "/guides/", "/manifest.webmanifest", "/icon.svg"];
 
 self.addEventListener("install", (e) => {

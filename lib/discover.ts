@@ -1,3 +1,4 @@
+import type { IconName } from "./icons";
 import { ALL, IDX, houseById } from "./catalog";
 import { canInvert, suits } from "./brew";
 import type { Entry, FlavourId, GroupId, Roast } from "./types";
@@ -43,20 +44,20 @@ export interface FacetGroup {
   label: string;
   hint?: string;
   of: (e: Entry) => string[];
-  opts: { id: string; label: string; emoji: string }[];
+  opts: { id: string; label: string; icon: IconName }[];
 }
 export const FGROUPS: FacetGroup[] = [
   { id: "brewer", label: "Brewer", of: brewersOf, hint: "Coffee drinks count under every brewer that can make their base.",
-    opts: [{ id: "aeropress", label: "AeroPress", emoji: "☕" }, { id: "moka", label: "Moka pot", emoji: "🔥" }, { id: "coldbrew", label: "Cold brew jar", emoji: "🫙" }] },
+    opts: [{ id: "aeropress", label: "AeroPress", icon: "aeropress" }, { id: "moka", label: "Moka pot", icon: "moka" }, { id: "coldbrew", label: "Cold brew jar", icon: "jar" }] },
   { id: "orient", label: "AeroPress orientation", of: orientOf, hint: "Your methods with an inverted switch count as both.",
-    opts: [{ id: "standard", label: "On the mug", emoji: "☕" }, { id: "inverted", label: "Inverted", emoji: "🔄" }] },
+    opts: [{ id: "standard", label: "On the mug", icon: "aeropress" }, { id: "inverted", label: "Inverted", icon: "inverted" }] },
   { id: "serve", label: "Served", of: serveOf,
-    opts: [{ id: "hot", label: "Hot", emoji: "♨️" }, { id: "iced", label: "Iced or cold", emoji: "🧊" }] },
+    opts: [{ id: "hot", label: "Hot", icon: "hot" }, { id: "iced", label: "Iced or cold", icon: "iced" }] },
   { id: "type", label: "Drink type", of: typesOf,
-    opts: [{ id: "black", label: "Black", emoji: "☕" }, { id: "milk", label: "With milk", emoji: "🥛" }, { id: "sweet", label: "Sweet treat", emoji: "🍨" },
-      { id: "mixer", label: "Mixer & soda", emoji: "🥤" }, { id: "cocktail", label: "With alcohol", emoji: "🍸" }] },
+    opts: [{ id: "black", label: "Black", icon: "cup" }, { id: "milk", label: "With milk", icon: "milk" }, { id: "sweet", label: "Sweet treat", icon: "sweet" },
+      { id: "mixer", label: "Mixer & soda", icon: "soda" }, { id: "cocktail", label: "With alcohol", icon: "alcohol" }] },
   { id: "strength", label: "Strength", of: strengthOf,
-    opts: [{ id: "full", label: "Full cup", emoji: "🫖" }, { id: "conc", label: "Concentrate or shot", emoji: "⚡" }] },
+    opts: [{ id: "full", label: "Full cup", icon: "mug" }, { id: "conc", label: "Concentrate or shot", icon: "concentrate" }] },
 ];
 export const FACETS: Record<string, Record<GroupKey, string[]>> = {};
 for (const e of ALL) {
@@ -64,9 +65,8 @@ for (const e of ALL) {
   for (const g of FGROUPS) f[g.id] = g.of(e);
   FACETS[e.id] = f;
 }
-export function optLabel(g: GroupKey, v: string) {
-  const o = FGROUPS.find((x) => x.id === g)!.opts.find((x) => x.id === v)!;
-  return o.emoji + " " + o.label;
+export function optOf(g: GroupKey, v: string) {
+  return FGROUPS.find((x) => x.id === g)!.opts.find((x) => x.id === v)!;
 }
 
 /* ---------------- match my coffee ---------------- */
@@ -87,11 +87,11 @@ export function matchBadge(e: Entry, c: Coffee, mode: MatchMode): string {
   if (mode === "off") return "";
   const r = suits(e, c.roast), i = flIdx(e, c);
   if (c.flavour) {
-    if (r && i !== -1) return "✓ Roast & flavour match";
-    if (i !== -1) return "✓ Flavour match";
+    if (r && i !== -1) return "Roast & flavour match";
+    if (i !== -1) return "Flavour match";
     return "";
   }
-  return r ? "✓ Roast match" : "";
+  return r ? "Roast match" : "";
 }
 
 /* ---------------- filtering ---------------- */

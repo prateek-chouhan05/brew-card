@@ -15,6 +15,8 @@ import { RecipeArt } from "./DrinkArt";
 import { BrewCanvas } from "./BrewCanvas";
 import { HandsFree, RateBrew } from "./BrewExtras";
 import { beanStatus } from "@/lib/journal";
+import type { IconName } from "@/lib/icons";
+import { Icon, TasteMark } from "./Icon";
 import { useState } from "react";
 
 const CHAMBER_ML = 250;
@@ -31,7 +33,7 @@ export function BrewConsole({ id }: { id: string }) {
   const dose = entry.kind === "house" ? prefs.dose(entry) : 0;
   const tbKey = `${brew.id}|${brew.inv ? 1 : 0}|${dose}`;
   const timerBrew = useMemo<TimerBrew | null>(
-    () => (brew.timed ? { id: brew.id, name: brew.name, emoji: brew.emoji, segs: brew.segs, o: brew.o, key: tbKey } : null),
+    () => (brew.timed ? { id: brew.id, name: brew.name, icon: brew.icon, segs: brew.segs, o: brew.o, key: tbKey } : null),
     [brew, tbKey],
   );
   useSpaceToggle(timerBrew);
@@ -56,21 +58,21 @@ export function BrewConsole({ id }: { id: string }) {
     <section className={"console" + (brew.timed ? " has-timer" : "")} id="console" aria-labelledby="rName">
       {showReturn && returnDrink && (
         <div className="returnbar" id="returnBar">
-          <span><b>{returnDrink.emoji} Making {returnDrink.name}</b> — brew this base (skip any milk or mixer it lists; the drink tells you what to add), then go back to finish it.</span>
-          <button type="button" id="returnBtn" onClick={() => { prefs.setReturnTo(null); go(returnDrink.id); }}>↩ Back to {returnDrink.name}</button>
+          <span><b>Making {returnDrink.name}</b> — brew this base (skip any milk or mixer it lists; the drink tells you what to add), then go back to finish it.</span>
+          <button type="button" id="returnBtn" onClick={() => { prefs.setReturnTo(null); go(returnDrink.id); }}><Icon name="back" />Back to {returnDrink.name}</button>
         </div>
       )}
       <div className="console-head with-art">
         <RecipeArt entry={entry} className="head-art" />
         <h2><span id="rName">{brew.name}</span></h2>
         <button type="button" className="fav" id="favBtn" aria-pressed={prefs.favs.includes(entry.id)} onClick={() => prefs.toggleFav(entry.id)}>
-          {prefs.favs.includes(entry.id) ? "★ Saved" : "☆ Save"}
+          {prefs.favs.includes(entry.id) ? <><Icon name="saved" />Saved</> : <><Icon name="save" />Save</>}
         </button>
         {entry.kind !== "house" && <p className="byline" id="rByline">{entrySub(entry)}{entry.kind === "drink" ? " · " + entry.time : ""}</p>}
         {entry.kind === "library" && (
           <p className="cite" id="rCite">
-            📖 Recipe by <b>{entry.author}</b> · cited from{" "}
-            <a href={entry.url} target="_blank" rel="noopener">{hostOf(entry.url)} ↗</a>
+            <Icon name="guides" />Recipe by <b>{entry.author}</b> · cited from{" "}
+            <a href={entry.url} target="_blank" rel="noopener">{hostOf(entry.url)}<Icon name="external" className="trail" /></a>
           </p>
         )}
         {brew.notes && <p className="notes" id="rNotes">{brew.notes}</p>}
@@ -80,8 +82,8 @@ export function BrewConsole({ id }: { id: string }) {
 
       {canInvert(entry) && (
         <div className="orient-switch" id="orientSwitch" role="group" aria-label="Brew orientation">
-          <button type="button" id="oStd" aria-pressed={!brew.inv} onClick={() => prefs.setInverted(entry.id, false)}>☕ On the mug</button>
-          <button type="button" id="oInv" className="inv" aria-pressed={brew.inv} onClick={() => prefs.setInverted(entry.id, true)}>🔄 Inverted</button>
+          <button type="button" id="oStd" aria-pressed={!brew.inv} onClick={() => prefs.setInverted(entry.id, false)}><Icon name="aeropress" />On the mug</button>
+          <button type="button" id="oInv" className="inv" aria-pressed={brew.inv} onClick={() => prefs.setInverted(entry.id, true)}><Icon name="inverted" />Inverted</button>
         </div>
       )}
       <OrientSetup brew={brew} />
@@ -123,7 +125,7 @@ export function BrewConsole({ id }: { id: string }) {
       }
     } else {
       const e = entry, lg = libGrind(e, grinder);
-      cells.push([lg.native ? "Grind ★" : "Grind", lg.num, lg.unit], ["Temp", String(e.temp), "°C"], ["Dose", g1(e.dose ?? 0), "g"], ["Water", String(e.water), "g"]);
+      cells.push([lg.native ? "Author's grind" : "Grind", lg.num, lg.unit], ["Temp", String(e.temp), "°C"], ["Dose", g1(e.dose ?? 0), "g"], ["Water", String(e.water), "g"]);
       if (e.bypT && e.bypT !== "none") {
         const lab = ({ "hot water": "Bypass", "cold water": "Bypass", ice: "Ice", milk: "Milk", condensed: "Cond. milk", mixer: cap1(e.mix || "") } as Record<string, string>)[e.bypT] || "Bypass";
         if (e.bypT === "condensed") cells.push([lab, e.add || "taste", ""]);
@@ -160,34 +162,34 @@ export function BrewConsole({ id }: { id: string }) {
   }
 
   function Warnings({ entry, brew, dose }: { entry: Entry; brew: Brew; dose: number }) {
-    const msgs: string[] = [];
+    const msgs: [IconName, string][] = [];
     if (activeBean && entry.kind !== "drink") {
       const st = beanStatus(activeBean);
-      if (st.tone === "rest") msgs.push(`🫘 Your ${activeBean.name} is still resting (day ${st.day}). Expect a muted, uneven cup until about ${st.label.replace(/^Resting · ready in /, "")} from now.`);
+      if (st.tone === "rest") msgs.push(["bean", `Your ${activeBean.name} is still resting (day ${st.day}). Expect a muted, uneven cup until about ${st.label.replace(/^Resting · ready in /, "")} from now.`]);
     }
     if (entry.kind === "drink") {
-      if (entry.alcohol) msgs.push("🍸 Contains alcohol.");
-      if (entry.warn) msgs.push(entry.warn);
+      if (entry.alcohol) msgs.push(["alcohol", "Contains alcohol."]);
+      if (entry.warn) msgs.push(["warning", entry.warn]);
     } else if (entry.kind === "library") {
       const n = roastNudge(entry, roast);
-      if (n) msgs.push(n);
+      if (n) msgs.push(["tip", n]);
       if (!entry.link && entry.water) {
-        if (entry.water > 270) msgs.push(`ℹ️ ${entry.water} g is more than the chamber holds at once — this recipe pours in stages while it drains.`);
-        else if (entry.water > CHAMBER_ML) msgs.push(`ℹ️ ${entry.water} g fills the chamber to the brim — pour carefully, or use an AeroPress XL.`);
+        if (entry.water > 270) msgs.push(["info", `${entry.water} g is more than the chamber holds at once — this recipe pours in stages while it drains.`]);
+        else if (entry.water > CHAMBER_ML) msgs.push(["info", `${entry.water} g fills the chamber to the brim — pour carefully, or use an AeroPress XL.`]);
       }
     } else {
       if (entry.timed) {
         const w = hWater(entry, dose);
-        if (w > CHAMBER_ML) msgs.push(`⚠️ ${w} ml won't fit the chamber (about ${CHAMBER_ML} ml). Drop the dose, or brew half and dilute.`);
-        else if (brew.inv && w > 230) msgs.push("⚠️ Inverted holds a little less with the plunger in — about 230 ml. Pour slowly and leave a finger's width at the top.");
+        if (w > CHAMBER_ML) msgs.push(["warning", `${w} ml won't fit the chamber (about ${CHAMBER_ML} ml). Drop the dose, or brew half and dilute.`]);
+        else if (brew.inv && w > 230) msgs.push(["warning", "Inverted holds a little less with the plunger in — about 230 ml. Pour slowly and leave a finger's width at the top."]);
       }
       if (!entry.bestFor.includes(roast.id)) {
         const names = entry.bestFor.map((r) => roastById(r)?.label.toLowerCase() ?? r).join(", ");
-        msgs.push(`💡 This method is built for ${names} roasts. It still works — just expect a different cup.`);
+        msgs.push(["tip", `This method is built for ${names} roasts. It still works — just expect a different cup.`]);
       }
     }
     if (!msgs.length) return null;
-    return <div className="warnbar" id="warnBar">{msgs.map((m, i) => <span key={i}>{i > 0 && <br />}{m}</span>)}</div>;
+    return <div className="warnbar" id="warnBar">{msgs.map(([ic, m], i) => <p className="wl" key={i}><Icon name={ic} /><span>{m}</span></p>)}</div>;
   }
 
   function Prep({ entry, onBase, onLoad }: { entry: Entry; onBase: (id: string) => void; onLoad: (id: string) => void }) {
@@ -202,7 +204,7 @@ export function BrewConsole({ id }: { id: string }) {
                 const h = houseById(b.id)!;
                 return (
                   <button type="button" className="basebtn" key={b.id} data-base={b.id} onClick={() => onBase(b.id)}>
-                    <span className="emoji">{h.emoji}</span>
+                    <Icon name={h.icon} />
                     <span><b>{h.name}{i === 0 && entry.base.length > 1 ? " · best" : ""}</b><small>{b.amt}</small></span>
                     <span className="go">Brew ›</span>
                   </button>
@@ -225,25 +227,25 @@ export function BrewConsole({ id }: { id: string }) {
       const host = hostOf(entry.url), near = closestHouse(entry);
       body = (
         <>
-          <b>📖 This recipe lives on {host}.</b> Open it there for the dose, water, temperature and steps — {entry.o === "inverted" ? "it's brewed 🔄 inverted." : "it's brewed ☕ on the mug."}
-          <br /><a className="btn primary linkbtn" href={entry.url} target="_blank" rel="noopener">Open on {host} ↗</a>
+          <b><Icon name="guides" />This recipe lives on {host}.</b> Open it there for the dose, water, temperature and steps — {entry.o === "inverted" ? "it's brewed inverted." : "it's brewed on the mug."}
+          <br /><a className="btn primary linkbtn" href={entry.url} target="_blank" rel="noopener">Open on {host}<Icon name="external" className="trail" /></a>
           {near && (
-            <><br /><span className="near">⏱ Want the timer? Your closest own method is{" "}
-              <button type="button" className="nearbtn" data-load={near.id} onClick={() => onLoad(near.id)}>{near.emoji} {near.name}</button></span></>
+            <><br /><span className="near"><Icon name="timer" />Want the timer? Your closest own method is{" "}
+              <button type="button" className="nearbtn" data-load={near.id} onClick={() => onLoad(near.id)}><Icon name={near.icon} />{near.name}</button></span></>
           )}
         </>
       );
     } else if (entry.kind === "house") {
       const text = entry.prep.replace(/\{\{c:(\d+)\}\}/g, (_m, v) => grindText(+v, grinder));
-      body = <><b>📋 Before you start.</b> {text}</>;
+      body = <><b><Icon name="prep" />Before you start.</b> {text}</>;
     } else {
       const lg = libGrind(entry, grinder);
       body = (
         <>
-          {entry.pre && <><b>📋 Before you start.</b> {entry.pre}<br /></>}
-          <b>🧻 Filter:</b> {entry.filter}.<br />
-          <b>⚙️ Grind as written:</b> <q>{entry.grind}</q> → {lg.native
-            ? <><b>{lg.num} {lg.unit}</b> ★ — the author&apos;s own setting on your {grinder.name}.</>
+          {entry.pre && <><b><Icon name="prep" />Before you start.</b> {entry.pre}<br /></>}
+          <b><Icon name="filter" />Filter:</b> {entry.filter}.<br />
+          <b><Icon name="grind" />Grind as written:</b> <q>{entry.grind}</q> → {lg.native
+            ? <><b>{lg.num} {lg.unit}</b> — the author&apos;s own setting on your {grinder.name}.</>
             : <>about <b>{lg.num} {lg.unit}</b> on your {grinder.name}.</>}
         </>
       );
@@ -255,7 +257,7 @@ export function BrewConsole({ id }: { id: string }) {
     if (entry.kind !== "library" || entry.link || !entry.segs) return null;
     return (
       <div className="provenance" id="provenance">
-        <a href={entry.url} target="_blank" rel="noopener">🔗 Source: {entry.name} by {entry.author}, on {hostOf(entry.url)} ↗</a>
+        <a href={entry.url} target="_blank" rel="noopener">Source: {entry.name} by {entry.author}, on {hostOf(entry.url)}<Icon name="external" className="trail" /></a>
         {entry.issues && <details><summary>Transcription notes</summary><p>{entry.issues}</p></details>}
       </div>
     );
@@ -279,13 +281,13 @@ export function BrewConsole({ id }: { id: string }) {
                     if (all) prefs.recordBrew(brew.id);
                   }
                 }}>
-                <span className="box" aria-hidden="true">✓</span>
-                <span><span className="lbl">{sg.ic && <span className="emoji">{sg.ic}</span>} {sg.lbl}</span>{sg.det && <span className="det">{sg.det}</span>}</span>
+                <span className="box" aria-hidden="true"><Icon name="check" /></span>
+                <span><span className="lbl">{sg.ic && <Icon name={sg.ic} />}{sg.lbl}</span>{sg.det && <span className="det">{sg.det}</span>}</span>
               </button>
             );
           })}
         </div>
-        {src.kind === "drink" && src.tips.length > 0 && <div className="finish" id="finishNote"><b>💡 Tips.</b> {src.tips.join(" ")}</div>}
+        {src.kind === "drink" && src.tips.length > 0 && <div className="finish" id="finishNote"><b><Icon name="tip" />Tips.</b> {src.tips.join(" ")}</div>}
       </>
     );
   }
@@ -302,7 +304,7 @@ function OrientSetup({ brew }: { brew: Brew }) {
       <div className="setup inv" id="rSetup">
         <span className="setup-art"><InvArt /></span>
         <div>
-          <h3>🔄 Inverted — not on the mug yet</h3>
+          <h3><Icon name="inverted" />Inverted — not on the mug yet</h3>
           <ol>
             <li>Push the plunger in just past the rubber, and stand the brewer upside-down on your scale. Rinse the paper in the filter cap and keep it beside you — it goes on at the flip.</li>
             <li>Add the coffee and brew in it like a cup.</li>
@@ -321,7 +323,7 @@ function OrientSetup({ brew }: { brew: Brew }) {
     <div className="setup" id="rSetup">
       <span className="setup-art"><StdArt /></span>
       <div>
-        <h3>☕ Directly on the mug</h3>
+        <h3><Icon name="aeropress" />Directly on the mug</h3>
         <ol>
           <li>Paper filter in the cap, cap on, brewer sitting on your mug or server.</li>
           <li>It stays there the whole brew — pour, wait, press. No flipping.</li>
@@ -337,14 +339,14 @@ function Pairing({ entry, flavour }: { entry: Entry; flavour: string }) {
   const f = flavour ? FL[flavour as keyof typeof FL] : null;
   return (
     <div className="pairing" id="rPair">
-      <p className="pl">🎯 Best with beans that taste</p>
+      <p className="pl"><Icon name="match" />Best with beans that taste</p>
       <div className="fltags">
-        {entry.fl.map((id) => <span key={id} className={"fltag" + (id === flavour ? " on" : "")}><span className="emoji">{FL[id].emoji}</span>{FL[id].label}</span>)}
+        {entry.fl.map((id) => <span key={id} className={"fltag" + (id === flavour ? " on" : "")}><TasteMark id={id} />{FL[id].label}</span>)}
       </div>
       <p className="why"><b>Why:</b> {entry.why}</p>
       {f && (entry.fl.includes(f.id)
-        ? <p className="match yes">✓ A good match for your {f.emoji} {f.label.toLowerCase()} bean.</p>
-        : <p className="match no">Not the best match for a {f.emoji} {f.label.toLowerCase()} bean. It still works — Recipes ranks better matches first.</p>)}
+        ? <p className="match yes"><Icon name="check" />A good match for your {f.label.toLowerCase()} bean.</p>
+        : <p className="match no">Not the best match for a {f.label.toLowerCase()} bean. It still works — Recipes ranks better matches first.</p>)}
     </div>
   );
 }
@@ -378,11 +380,11 @@ function TimerPanel({ tb, finish, water }: { tb: TimerBrew; finish: string; wate
   const status = s.finished ? "Done" : !s.startedAt ? KIND_LABEL[tb.segs[0].k] + " first" : (s.running ? "" : "Paused · ") + KIND_LABEL[sg.k];
   const secs = s.finished ? 0 : !s.startedAt ? tb.segs[0].dur : Math.ceil(left);
   const nxt = tb.segs[s.idx + 1];
-  let up = "", alert = false;
+  let up = "", alert = false, upIc: IconName | null = null;
   if (s.finished) up = "";
-  else if (!s.startedAt) up = tb.o === "inverted" ? "🔄 Brewer upside-down on the scale — not on the mug yet" : "☕ Brewer on the mug — press start as you pour";
+  else if (!s.startedAt) { upIc = tb.o === "inverted" ? "inverted" : "aeropress"; up = tb.o === "inverted" ? "Brewer upside-down on the scale — not on the mug yet" : "Brewer on the mug — press start as you pour"; }
   else if (nxt && nxt.k === "flip" && Math.ceil(s.marks[s.idx + 1] - s.clamped) <= 10) {
-    up = `🔄 Flip in ${Math.ceil(s.marks[s.idx + 1] - s.clamped)}s — get the cap and mug ready`; alert = true;
+    upIc = "flip"; up = `Flip in ${Math.ceil(s.marks[s.idx + 1] - s.clamped)}s — get the cap and mug ready`; alert = true;
   } else if (nxt) up = `Then — ${KIND_LABEL[nxt.k]}: ${nxt.lbl}`;
   else up = "Last phase";
   const finishText = finish.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").trim();
@@ -390,7 +392,7 @@ function TimerPanel({ tb, finish, water }: { tb: TimerBrew; finish: string; wate
   return (
     <div id="timerUI">
       {other && (
-        <p className="other-run">⏱ {other.emoji} {other.name} is {timer.running ? "brewing" : "paused"} ({mmss(timer.elapsed())}). <Link href={`/recipes/${other.id}`}>Go to it</Link> — starting here replaces it.</p>
+        <p className="other-run"><Icon name="timer" />{other.name} is {timer.running ? "brewing" : "paused"} ({mmss(timer.elapsed())}). <Link href={`/recipes/${other.id}`}>Go to it</Link> — starting here replaces it.</p>
       )}
       {/* Brew line: what's in the brewer and the mug over the whole brew */}
       <div className="brewline" id="timeline">
@@ -405,18 +407,18 @@ function TimerPanel({ tb, finish, water }: { tb: TimerBrew; finish: string; wate
         </div>
         <p className="now" id="now" aria-live="polite">{s.finished ? "Brew complete" : sg.lbl}</p>
         <p className="now-detail" id="nowDetail">{s.finished ? finishText : sg.det}</p>
-        <p className={"upnext" + (alert ? " alert" : "")} id="upnext">{up}</p>
+        <p className={"upnext" + (alert ? " alert" : "")} id="upnext">{upIc && <Icon name={upIc} />}{up}</p>
       </div>
       <div className="controls">
         <button className="btn primary" id="go" type="button" onClick={() => (s.running ? timer.pause() : timer.start(tb))}>
-          {s.running ? "Pause" : s.startedAt && !s.finished ? "Resume" : "Start"}
+          <Icon name={s.running ? "pause" : "play"} />{s.running ? "Pause" : s.startedAt && !s.finished ? "Resume" : "Start"}
         </button>
-        <button className="btn" id="reset" type="button" onClick={() => { if (s.owns) timer.reset(); }}>Reset</button>
+        <button className="btn" id="reset" type="button" onClick={() => { if (s.owns) timer.reset(); }}><Icon name="reset" />Reset</button>
         <button className="btn icon" id="mute" type="button" title="Cue volume — tap to change"
-          onClick={() => { prefs.cycleVolume(); setTimeout(testTone, 0); }}>{VOLUMES[prefs.volIdx].label}</button>
+          onClick={() => { prefs.cycleVolume(); setTimeout(testTone, 0); }}><Icon name={VOLUMES[prefs.volIdx].icon} />{VOLUMES[prefs.volIdx].label}</button>
         <button className="btn icon" id="voice" type="button" aria-pressed={prefs.voice} title="Spoken cues for each phase"
-          onClick={() => prefs.setVoice(!prefs.voice)}>{prefs.voice ? "🗣️ Voice" : "🔇 Voice"}</button>
-        <button className="btn ghost hf-open" id="handsFreeBtn" type="button" onClick={() => setHandsFree(true)}>⛶ Hands-free</button>
+          onClick={() => prefs.setVoice(!prefs.voice)}><Icon name={prefs.voice ? "voice" : "voiceOff"} />Voice</button>
+        <button className="btn ghost hf-open" id="handsFreeBtn" type="button" onClick={() => setHandsFree(true)}><Icon name="handsfree" />Hands-free</button>
       </div>
       {handsFree && <HandsFree tb={tb} water={water} onClose={() => setHandsFree(false)} />}
     </div>
@@ -434,7 +436,7 @@ function TimedSteps({ tb }: { tb: TimerBrew }) {
         else if (s.finished || (s.startedAt && i < s.idx)) cls += " done";
         return (
           <div className={cls} key={i} id={"step-" + i}>
-            <span className="ic emoji">{ICON[sg.k] || ""}</span>
+            <span className="st-ic"><Icon name={ICON[sg.k]} /></span>
             <span className="at">{mmss(s.marks[i])}–{mmss(s.marks[i] + sg.dur)}</span>
             <span>
               <span className="lbl">{sg.lbl}</span><span className="kind">{sg.dur >= 60 ? mmss(sg.dur) : sg.dur + "s"}</span>

@@ -2,14 +2,15 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { previousPath } from "./AppShell";
+import { Icon } from "./Icon";
 
-/** "← Recipes": goes back in history when you came from the list, so your scroll position and filters return. */
+/** "Back to Recipes": goes back in history when you came from the list, so your scroll position and filters return. */
 export function BackLink() {
   const router = useRouter();
   return (
     <Link href="/" className="back" id="backBtn"
       onClick={(e) => { if (previousPath() === "/") { e.preventDefault(); router.back(); } }}>
-      ← Recipes
+      <Icon name="back" />Recipes
     </Link>
   );
 }

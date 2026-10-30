@@ -8,6 +8,7 @@ import { testTone } from "@/lib/audio";
 import type { Entry, HouseMethod } from "@/lib/types";
 import { BrewCanvas } from "./BrewCanvas";
 import { useBrewPrefs, useSetup } from "./providers";
+import { Icon, ScaleMark, StrengthMark } from "./Icon";
 
 const fmtDate = (iso: string) => new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "short" });
 
@@ -45,15 +46,15 @@ export function RateBrew({ entry, tb, grindNow, dose }: { entry: Entry; tb: Time
   return (
     <details className="rate" id="rate" ref={ref} open={open} onToggle={(e) => setOpen((e.target as HTMLDetailsElement).open)}>
       <summary>
-        <span className="emoji" aria-hidden="true">📝</span> How was it?
-        {last && <span className="rate-last">Last: {fmtDate(last.at)} · {TASTES.find((x) => x.id === last.taste)?.emoji} {last.taste}</span>}
+        <Icon name="note" />How was it?
+        {last && <span className="rate-last">Last: {fmtDate(last.at)} · {last.taste}</span>}
       </summary>
       {result ? (
         <div className="rate-result" role="status">
           <p><b>Next time:</b> {result.text}</p>
           {result.apply && h && (
             applied
-              ? <p className="rate-applied">✓ Saved — this recipe will show the new setting.</p>
+              ? <p className="rate-applied"><Icon name="check" />Saved — this recipe will show the new setting.</p>
               : <button type="button" className="btn primary" onClick={() => { prefs.tweak(h.id, result.apply!.tweak, h); setApplied(true); }}>{result.apply.label}</button>
           )}
           <button type="button" className="linkbtn" onClick={() => { setResult(null); setTaste(null); setStrength(null); setNote(""); }}>Rate another cup</button>
@@ -65,7 +66,7 @@ export function RateBrew({ entry, tb, grindNow, dose }: { entry: Entry; tb: Time
             <div className="rate-opts">
               {TASTES.map((o) => (
                 <label key={o.id} className="rate-opt"><input type="radio" name="taste" value={o.id} checked={taste === o.id} onChange={() => setTaste(o.id)} />
-                  <span><span className="emoji" aria-hidden="true">{o.emoji}</span>{o.label}</span></label>
+                  <span><ScaleMark pos={o.pos} />{o.label}</span></label>
               ))}
             </div>
           </fieldset>
@@ -74,7 +75,7 @@ export function RateBrew({ entry, tb, grindNow, dose }: { entry: Entry; tb: Time
             <div className="rate-opts">
               {STRENGTHS.map((o) => (
                 <label key={o.id} className="rate-opt"><input type="radio" name="strength" value={o.id} checked={strength === o.id} onChange={() => setStrength(o.id)} />
-                  <span><span className="emoji" aria-hidden="true">{o.emoji}</span>{o.label}</span></label>
+                  <span><StrengthMark k={o.k} />{o.label}</span></label>
               ))}
             </div>
           </fieldset>
@@ -89,7 +90,7 @@ export function RateBrew({ entry, tb, grindNow, dose }: { entry: Entry; tb: Time
           {history.slice(0, 4).map((l, i) => (
             <li key={i}>
               <span>{fmtDate(l.at)}</span>
-              <span>{TASTES.find((x) => x.id === l.taste)?.emoji} {l.taste} · {STRENGTHS.find((x) => x.id === l.strength)?.label.toLowerCase()}</span>
+              <span>{l.taste} · {STRENGTHS.find((x) => x.id === l.strength)?.label.toLowerCase()}</span>
               <span className="muted">{[l.grind, l.dose ? l.dose + " g" : "", l.bean].filter(Boolean).join(" · ")}{l.note ? ` — “${l.note}”` : ""}</span>
             </li>
           ))}
@@ -161,8 +162,8 @@ export function HandsFree({ tb, water, onClose }: { tb: TimerBrew; water?: numbe
   return (
     <div className="handsfree" ref={ref} role="dialog" aria-modal="true" aria-label={`Hands-free: ${tb.name}`}>
       <div className="hf-top">
-        <span className="hf-name">{tb.emoji} {tb.name}</span>
-        <button type="button" className="x" aria-label="Exit hands-free" onClick={onClose}>×</button>
+        <span className="hf-name"><Icon name={tb.icon} />{tb.name}</span>
+        <button type="button" className="x" aria-label="Exit hands-free" onClick={onClose}><Icon name="close" /></button>
       </div>
       <div className="hf-main">
         {/* the Chamber clock, large: countdown, the brewer, the mug and the scale with its reading */}
@@ -185,11 +186,11 @@ export function HandsFree({ tb, water, onClose }: { tb: TimerBrew; water?: numbe
       </div>
       <div className="hf-controls">
         <button type="button" className="btn primary hf-go" onClick={() => (running ? timer.pause() : timer.start(tb))}>
-          {running ? "Pause" : started && !finished ? "Resume" : "Start"}
+          <Icon name={running ? "pause" : "play"} />{running ? "Pause" : started && !finished ? "Resume" : "Start"}
         </button>
-        <button type="button" className="btn" onClick={() => { if (owns) timer.reset(); }}>Reset</button>
-        <button type="button" className="btn icon" aria-pressed={prefs.voice} onClick={() => prefs.setVoice(!prefs.voice)}>{prefs.voice ? "🗣️ Voice on" : "🔇 Voice off"}</button>
-        <button type="button" className="btn icon" onClick={() => { prefs.cycleVolume(); setTimeout(testTone, 0); }}>{VOLUMES[prefs.volIdx].label}</button>
+        <button type="button" className="btn" onClick={() => { if (owns) timer.reset(); }}><Icon name="reset" />Reset</button>
+        <button type="button" className="btn icon" aria-pressed={prefs.voice} onClick={() => prefs.setVoice(!prefs.voice)}><Icon name={prefs.voice ? "voice" : "voiceOff"} />{prefs.voice ? "Voice on" : "Voice off"}</button>
+        <button type="button" className="btn icon" onClick={() => { prefs.cycleVolume(); setTimeout(testTone, 0); }}><Icon name={VOLUMES[prefs.volIdx].icon} />{VOLUMES[prefs.volIdx].label}</button>
       </div>
       <p className="hf-hint">Space starts and pauses · Esc exits · the screen stays on while it runs</p>
     </div>

@@ -2,13 +2,13 @@
 import type { Flavour, FlavourId } from '../types';
 
 export const FLAVOURS: Flavour[] = [
-  {id:"fruity",    emoji:"🍓", label:"Fruity",          notes:"berries, grape, plum, tropical, jammy, winey",  beans:"Naturals, anaerobic and co-ferments — like your Yelnoorkhan",         brew:"Bypass and cooler-water recipes keep fruit juicy instead of sour; great iced."},
-  {id:"citrus",    emoji:"🍋", label:"Citrus",          notes:"lemon, orange, lime, grapefruit, bright",      beans:"Washed Kenyan, Ethiopian, Colombian",                                 brew:"High ratio, clean filters, 80–90 °C. Pairs with tonic and orange."},
-  {id:"floral",    emoji:"🌸", label:"Floral",          notes:"jasmine, bergamot, black tea, honeysuckle",    beans:"Washed Ethiopian, Geisha, very light Nordic roasts",                  brew:"Lean, gentle, clean recipes — Hoffmann, Wendelboe, V60-style."},
-  {id:"caramel",   emoji:"🍯", label:"Caramel & sweet", notes:"brown sugar, honey, toffee, jaggery, dates",   beans:"Honey-process and balanced mediums",                                  brew:"Everyday cups and concentrates with bypass; brown sugar and condensed milk."},
-  {id:"nutty",     emoji:"🥜", label:"Nutty",           notes:"almond, hazelnut, peanut, walnut, malt",       beans:"Brazils and Indian washed mediums",                                   brew:"Everyday cups and milk drinks; coconut and condensed milk."},
-  {id:"chocolate", emoji:"🍫", label:"Chocolaty",       notes:"cocoa, dark chocolate, fudge, cacao nibs",     beans:"Medium-dark and espresso roasts — like your Truffle Twilight",        brew:"Milk, moka, concentrates, Coke Zero and Vietnamese-style."},
-  {id:"bold",      emoji:"🔥", label:"Bold & smoky",    notes:"smoky, roasty, woody, bittersweet",            beans:"Dark roasts, robusta, Vietnamese blends",                             brew:"Cooler water, a coarser grind, and something sweet or milky."}
+  {id:"fruity",  label:"Fruity",          notes:"berries, grape, plum, tropical, jammy, winey",  beans:"Naturals, anaerobic and co-ferments — like your Yelnoorkhan",         brew:"Bypass and cooler-water recipes keep fruit juicy instead of sour; great iced."},
+  {id:"citrus",  label:"Citrus",          notes:"lemon, orange, lime, grapefruit, bright",      beans:"Washed Kenyan, Ethiopian, Colombian",                                 brew:"High ratio, clean filters, 80–90 °C. Pairs with tonic and orange."},
+  {id:"floral",  label:"Floral",          notes:"jasmine, bergamot, black tea, honeysuckle",    beans:"Washed Ethiopian, Geisha, very light Nordic roasts",                  brew:"Lean, gentle, clean recipes — Hoffmann, Wendelboe, V60-style."},
+  {id:"caramel",  label:"Caramel & sweet", notes:"brown sugar, honey, toffee, jaggery, dates",   beans:"Honey-process and balanced mediums",                                  brew:"Everyday cups and concentrates with bypass; brown sugar and condensed milk."},
+  {id:"nutty",  label:"Nutty",           notes:"almond, hazelnut, peanut, walnut, malt",       beans:"Brazils and Indian washed mediums",                                   brew:"Everyday cups and milk drinks; coconut and condensed milk."},
+  {id:"chocolate",  label:"Chocolaty",       notes:"cocoa, dark chocolate, fudge, cacao nibs",     beans:"Medium-dark and espresso roasts — like your Truffle Twilight",        brew:"Milk, moka, concentrates, Coke Zero and Vietnamese-style."},
+  {id:"bold",  label:"Bold & smoky",    notes:"smoky, roasty, woody, bittersweet",            beans:"Dark roasts, robusta, Vietnamese blends",                             brew:"Cooler water, a coarser grind, and something sweet or milky."}
 ];
 
 export const HOUSE_PAIR: Record<string, [FlavourId[], string]> = {

@@ -1,6 +1,7 @@
 import { HOUSE, houseById } from "./catalog";
-import { LIB_ROAST_RANK, LIB_ROAST_EMOJI } from "./data/roasts";
-import { GROUP_EMOJI } from "./data/labels";
+import { LIB_ROAST_RANK } from "./data/roasts";
+import { GROUP_ICON } from "./data/labels";
+import type { IconName } from "./icons";
 import { grindText, libGrind } from "./grind";
 import type { Brew, CheckSeg, Entry, Grinder, HouseMethod, LibraryEntry, Roast, TimedSeg } from "./types";
 
@@ -28,9 +29,9 @@ export function roastNudge(e: LibraryEntry, roast: Roast): string {
   if (r === undefined) return "";
   const diff = roast.rank - r;
   const built = e.roast + " roasts";
-  const bag = roast.emoji + " " + roast.label.toLowerCase();
-  if (diff >= 2) return `💡 Built for ${built}. With your ${bag} bag, drop the water 3–5 °C and go 1–2 steps coarser.`;
-  if (diff <= -2) return `💡 Built for ${built}. With your ${bag} bag, raise the water 2–4 °C (up to 99) and go a step finer.`;
+  const bag = roast.label.toLowerCase();
+  if (diff >= 2) return `Built for ${built}. With your ${bag} bag, drop the water 3–5 °C and go 1–2 steps coarser.`;
+  if (diff <= -2) return `Built for ${built}. With your ${bag} bag, raise the water 2–4 °C (up to 99) and go a step finer.`;
   return "";
 }
 
@@ -80,20 +81,20 @@ function libFlipAt(e: LibraryEntry): number | null {
   return null;
 }
 /** The orientation pill shown on cards: label text and whether it's the inverted style. */
-export function orientPill(e: Entry, inverted: boolean): { text: string; inv: boolean } {
-  if (e.kind === "drink") return { text: `🥄 Assemble · ${e.temp === "hot" ? "hot" : "iced"}${e.alcohol ? " · 🍸 alcohol" : ""}`, inv: false };
-  if (e.o === "moka") return { text: "🔥 Stovetop", inv: false };
-  if (e.o === "jar") return { text: "🫙 Jar · overnight", inv: false };
+export function orientPill(e: Entry, inverted: boolean): { icon: IconName; text: string; inv: boolean } {
+  if (e.kind === "drink") return { icon: "assemble", text: `Assemble · ${e.temp === "hot" ? "hot" : "iced"}${e.alcohol ? " · alcohol" : ""}`, inv: false };
+  if (e.o === "moka") return { icon: "stovetop", text: "Stovetop", inv: false };
+  if (e.o === "jar") return { icon: "jar", text: "Jar · overnight", inv: false };
   if (e.kind === "library" && e.o === "inverted") {
     const f = libFlipAt(e);
-    return { text: "🔄 Inverted" + (f != null ? " · flip at " + mmss(f) : ""), inv: true };
+    return { icon: "inverted", text: "Inverted" + (f != null ? " · flip at " + mmss(f) : ""), inv: true };
   }
   if (canInvert(e)) {
     return inverted
-      ? { text: "🔄 Inverted · flip at " + mmss(flipAtSegs(invertSegs(e.segs as TimedSeg[])) ?? 0), inv: true }
-      : { text: "☕ On the mug · or inverted", inv: false };
+      ? { icon: "inverted", text: "Inverted · flip at " + mmss(flipAtSegs(invertSegs(e.segs as TimedSeg[])) ?? 0), inv: true }
+      : { icon: "aeropress", text: "On the mug · or inverted", inv: false };
   }
-  return { text: "☕ On the mug", inv: false };
+  return { icon: "aeropress", text: "On the mug", inv: false };
 }
 
 /** For a link-only library entry: the closest of your own timed methods by flavour and drink style. */
@@ -116,7 +117,7 @@ export function closestHouse(e: Entry): HouseMethod | null {
 export function buildBrew(e: Entry, inverted: boolean): Brew {
   if (e.kind === "drink") {
     return {
-      id: e.id, name: e.name, emoji: e.emoji, notes: e.desc, timed: false, segs: [],
+      id: e.id, name: e.name, icon: "drinks", notes: e.desc, timed: false, segs: [],
       checks: e.steps.map((t, i) => ({ ic: "", lbl: `${i + 1}. ${t}`, det: "" })),
       finish: "", o: "none", inv: false, src: e,
     };
@@ -124,14 +125,14 @@ export function buildBrew(e: Entry, inverted: boolean): Brew {
   if (e.kind === "house") {
     const inv = canInvert(e) && inverted;
     return {
-      id: e.id, name: e.name, emoji: e.emoji, notes: e.notes, timed: e.timed,
+      id: e.id, name: e.name, icon: e.icon, notes: e.notes, timed: e.timed,
       segs: e.timed ? (inv ? invertSegs(e.segs as TimedSeg[]) : (e.segs as TimedSeg[])) : [],
       checks: e.timed ? [] : (e.segs as CheckSeg[]),
       finish: e.finish || "", o: inv ? "inverted" : e.o, inv, src: e,
     };
   }
   if (e.link || !e.segs) {
-    return { id: e.id, name: e.name, emoji: GROUP_EMOJI[e.g], notes: "", timed: false, segs: [], checks: [], finish: "", o: e.o, inv: false, src: e };
+    return { id: e.id, name: e.name, icon: GROUP_ICON[e.g], notes: "", timed: false, segs: [], checks: [], finish: "", o: e.o, inv: false, src: e };
   }
   const segs = e.segs.map(([k, text, dur]) => ({
     k,
@@ -139,10 +140,9 @@ export function buildBrew(e: Entry, inverted: boolean): Brew {
     det: k === "flip" ? FLIP_HINT : "",
     dur,
   }));
-  const icon = e.bypT === "milk" || e.bypT === "condensed" ? "🥛" : e.bypT === "ice" ? "🧊" : e.bypT === "mixer" ? "🥤" : "💦";
   return {
-    id: e.id, name: e.name, emoji: GROUP_EMOJI[e.g], notes: e.notes || "", timed: true, segs, checks: [],
-    finish: e.fin ? `<b>${icon} After pressing.</b> ${esc(e.fin)}` : "", o: e.o, inv: false, src: e,
+    id: e.id, name: e.name, icon: GROUP_ICON[e.g], notes: e.notes || "", timed: true, segs, checks: [],
+    finish: e.fin ? `<b>After pressing.</b> ${esc(e.fin)}` : "", o: e.o, inv: false, src: e,
   };
 }
 
@@ -155,12 +155,12 @@ export interface Ctx { grinder: Grinder; roast: Roast; dose: (h: HouseMethod) =>
 
 export function entryStats(e: Entry, c: Ctx): string {
   if (e.kind === "drink") {
-    const bs = e.base.map((b) => { const h = houseById(b.id); return h ? h.emoji + " " + h.name.replace(" Concentrate", "") : ""; }).filter(Boolean);
+    const bs = e.base.map((b) => { const h = houseById(b.id); return h ? h.name.replace(" Concentrate", "") : ""; }).filter(Boolean);
     const bpart = bs.length ? "Base: " + bs.slice(0, 2).join(" or ") : "Instant coffee";
     const extra = e.ing.filter((i) => i[0] !== "optional").slice(0, 2).map((i) => shortItem(i[1]));
     return bpart + (extra.length ? " · + " + extra.join(", ") : "");
   }
-  if (e.kind === "library" && (e.link || !e.segs)) return "Full recipe on " + hostOf(e.url) + " ↗";
+  if (e.kind === "library" && (e.link || !e.segs)) return "Full recipe on " + hostOf(e.url);
   if (e.kind === "house") {
     const gr = grindText(hGrind(e, c.roast, c.grindAdj?.(e.id) ?? 0), c.grinder);
     if (!e.timed) return gr + " · " + (e.statsNote || "");
@@ -177,7 +177,7 @@ export function entryStats(e: Entry, c: Ctx): string {
   if (e.bypT === "condensed") vol2 = `${water} g + condensed milk`;
   if (e.bypT === "mixer") vol2 = `${water} g + ${e.byp ? e.byp + " ml " : ""}${e.mix}`;
   const lg = libGrind(e, c.grinder);
-  return `${g1(e.dose ?? 0)} g → ${vol2} · ${e.temp} °C · ${lg.num} ${lg.unit}${lg.native ? " ★" : ""}`;
+  return `${g1(e.dose ?? 0)} g → ${vol2} · ${e.temp} °C · ${lg.num} ${lg.unit}${lg.native ? " (author's)" : ""}`;
 }
 
 export function entrySub(e: Entry): string {
@@ -192,14 +192,8 @@ export function entrySub(e: Entry): string {
 
 export function entryTime(e: Entry): string {
   if (e.kind === "drink") return e.time;
-  if (e.kind === "library") return e.link || !e.total ? "↗" : mmss(e.total);
+  if (e.kind === "library") return e.link || !e.total ? "" : mmss(e.total);
   return e.timed ? mmss(hTotal(e)) : "—";
-}
-
-export function entryRoastIcon(e: Entry, roast: Roast): string {
-  if (e.kind === "drink") return e.temp === "hot" ? "♨️" : "🧊";
-  if (e.kind === "house") return roast.emoji;
-  return LIB_ROAST_EMOJI[e.roast] || LIB_ROAST_EMOJI.any;
 }
 
 export function entryRoastTitle(e: Entry): string {
@@ -208,6 +202,6 @@ export function entryRoastTitle(e: Entry): string {
   return e.roast === "any" ? "Any roast" : e.roast + " roast";
 }
 
-export function entryIcon(e: Entry): string {
-  return e.kind === "library" ? GROUP_EMOJI[e.g] : e.emoji;
+export function entryIcon(e: Entry): IconName {
+  return e.kind === "library" ? GROUP_ICON[e.g] : e.kind === "drink" ? "drinks" : e.icon;
 }
