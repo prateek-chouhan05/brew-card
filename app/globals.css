@@ -154,16 +154,17 @@ h1{font-size:33px;line-height:1.1;font-weight:700;letter-spacing:-.02em}
 .setup ol{margin:0;padding-left:18px;font-size:13.5px;line-height:1.45;display:flex;flex-direction:column;gap:3px}
 .setup .why{color:var(--muted);font-size:12.5px;margin-top:6px}
 .setup > div{min-width:0}
-.ap-line{fill:var(--surface);stroke:var(--fg);stroke-width:2;stroke-linejoin:round}
-.ap-open{fill:var(--surface);stroke:var(--fg);stroke-width:2;stroke-linejoin:round}
-.ap-coffee{fill:var(--coffee)}
-.ap-cap{fill:var(--fg)}
-.ap-mug{fill:var(--accent-soft);stroke:var(--accent);stroke-width:2}
-.ap-handle{fill:none;stroke:var(--accent);stroke-width:2.5}
+.ap-line{fill:#fffdfa;stroke:var(--da-ink);stroke-width:2.4;stroke-linejoin:round}
+.ap-open{fill:#fffdfa;stroke:var(--da-ink);stroke-width:2.4;stroke-linejoin:round}
+.ap-coffee{fill:#3f2416}
+.ap-crema{fill:#c99a63}
+.ap-cap{fill:var(--da-ink)}
+.ap-mug{fill:#fffdfa;stroke:var(--da-ink);stroke-width:2.4}
+.ap-handle{fill:none;stroke:var(--da-ink);stroke-width:2.4;stroke-linecap:round}
 .ap-arrow{fill:none;stroke:var(--flag);stroke-width:2.5;stroke-linecap:round}
 .ap-arrowhead{fill:var(--flag)}
-.ap-scale{fill:var(--muted)}
-.ap-ghost{fill:none;stroke:var(--fg);stroke-width:1.5;stroke-dasharray:3 2.5}
+.ap-scale{fill:var(--da-ink)}
+.ap-ghost{fill:none;stroke:var(--da-ink);stroke-width:1.5;stroke-dasharray:3 2.5}
 .orient-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
 .orient-card{border:1px solid var(--line);border-radius:10px;padding:13px;display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:start}
 .orient-card > div{min-width:0}
@@ -617,23 +618,21 @@ html:has(dialog[open]){overflow:hidden}
 /* ---------- drink & method illustrations ---------- */
 .recipe-art{display:block;line-height:0}
 .recipe-art svg{width:100%;height:auto;display:block}
-.da-line{stroke:#5b4a50;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.da-saucer{fill:#fffdf9;stroke:#5b4a50;stroke-width:2}
-.da-body{stroke:#5b4a50;stroke-width:2;stroke-linejoin:round}
-.da-glass{stroke:#8f8086;stroke-width:2;stroke-linejoin:round;fill:rgba(255,255,255,.35)}
-path.da-glass{fill:none}
-.da-sheen{stroke:rgba(255,255,255,.55);stroke-width:1.2;stroke-dasharray:2 7}
-.da-ice{fill:rgba(255,255,255,.42);stroke:rgba(255,255,255,.85);stroke-width:1}
-.da-steam path{fill:none;stroke:#bcaeb3;stroke-width:2;stroke-linecap:round;opacity:.75}
+/* one ink outline, flat coffee fills, the logo's crema band on coffee; steam moves only on the recipe's own picture */
+:root{--da-ink:#2d2226;--da-steam:#b9a9ae}
+.da-ink{stroke:var(--da-ink);stroke-linecap:round;stroke-linejoin:round}
+.da-glass{fill:rgba(255,255,255,.72);stroke:none}
+.da-ice{fill:rgba(255,255,255,.6);stroke:var(--da-ink);stroke-opacity:.45;stroke-width:1.6}
+.da-steam path{fill:none;stroke:var(--da-steam);stroke-linecap:round}
 .ap-mini{display:block;width:78%;margin:0 auto}
 @media (prefers-reduced-motion:no-preference){
-  .da-steam path{animation:daSteam 2.8s ease-in-out infinite}
-  .da-steam path:nth-child(2){animation-delay:.6s}
-  .da-steam path:nth-child(3){animation-delay:1.2s}
-  .da-flame{animation:daFlame 1.2s ease-in-out infinite alternate}
+  .head-art .da-steam path{animation:daSteam 2.8s ease-in-out infinite}
+  .head-art .da-steam path:nth-child(2){animation-delay:.6s}
+  .head-art .da-steam path:nth-child(3){animation-delay:1.2s}
+  .head-art .da-flame{animation:daFlame 1.2s ease-in-out infinite alternate}
 }
-@keyframes daSteam{0%{opacity:0;transform:translateY(4px)}40%{opacity:.75}100%{opacity:0;transform:translateY(-6px)}}
-@keyframes daFlame{from{opacity:.65}to{opacity:1}}
+@keyframes daSteam{0%{opacity:0;transform:translateY(4px)}40%{opacity:1}100%{opacity:0;transform:translateY(-6px)}}
+@keyframes daFlame{from{opacity:.7}to{opacity:1}}
 
 .card{grid-template-columns:52px minmax(0,1fr) auto}
 .card .c-ic{width:52px;height:52px;border-radius:12px;background:var(--raised);display:grid;place-items:center;overflow:hidden;padding:3px}

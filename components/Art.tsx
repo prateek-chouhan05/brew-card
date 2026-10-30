@@ -4,6 +4,7 @@ export function StdArt() {
     <svg viewBox="0 0 80 100" role="img" aria-label="AeroPress sitting on a mug">
       <rect className="ap-line" x="20" y="22" width="40" height="44" rx="2" />
       <rect className="ap-coffee" x="22" y="40" width="36" height="24" />
+      <rect className="ap-crema" x="22" y="40" width="36" height="3.5" />
       <rect className="ap-line" x="24" y="8" width="32" height="20" />
       <rect className="ap-line" x="18" y="4" width="44" height="5" rx="2" />
       <rect className="ap-cap" x="17" y="64" width="46" height="5" rx="1.5" />
@@ -20,6 +21,7 @@ export function InvArt() {
       <rect className="ap-ghost" x="17" y="22" width="46" height="5" rx="1.5" />
       <path className="ap-open" d="M20 33 V82 H60 V33" />
       <rect className="ap-coffee" x="22" y="40" width="36" height="24" />
+      <rect className="ap-crema" x="22" y="40" width="36" height="3.5" />
       <rect className="ap-line" x="24" y="64" width="32" height="25" />
       <rect className="ap-line" x="18" y="88" width="44" height="5" rx="2" />
       <rect className="ap-scale" x="8" y="94" width="64" height="4" rx="2" />
