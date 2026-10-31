@@ -192,7 +192,7 @@ test("the interface uses drawn icons, not emoji", async ({ page: p }) => {
 test("footer credits the builder with LinkedIn and Buy Me a Coffee", async ({ page: p }) => {
   await skipSetup(p);
   const credit = p.locator(".site-foot .credit");
-  await expect(credit).toContainText("Built by Prateek");
+  await expect(credit).toContainText("Built by Prateek Chouhan");
   await expect(credit.getByRole("link", { name: "LinkedIn" })).toHaveAttribute("href", "https://www.linkedin.com/in/prateek9144/");
   await expect(credit.getByRole("link", { name: "Buy me a coffee" })).toHaveAttribute("href", "https://buymeacoffee.com/prateek01");
 });

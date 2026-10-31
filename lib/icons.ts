@@ -10,6 +10,7 @@ export const ICONS = {
   back: '<path d="M19 12H5M11 6l-6 6 6 6"/>',
   close: '<path d="M6 6l12 12M18 6L6 18"/>',
   external: '<path d="M14 4.5h5.5V10M19.5 4.5L11 13M18 14v4.5a1 1 0 0 1-1 1H5.5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1H10"/>',
+  profile: '<rect x="4" y="4" width="16" height="16" rx="3.5"/><circle cx="12" cy="10" r="2.8"/><path d="M7.4 17.6c.9-2.1 2.6-3.2 4.6-3.2s3.7 1.1 4.6 3.2"/>',
   install: '<path d="M12 4v10.5M7.5 10l4.5 4.5 4.5-4.5M5 19.5h14"/>',
   recent: '<circle cx="12" cy="12" r="8"/><path d="M12 7.8V12l2.8 1.9"/>',
   refine: '<path d="M4 6h16M7 12h10M10 18h4"/>',
