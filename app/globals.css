@@ -938,4 +938,10 @@ td .sym .mark{width:26px;height:10px}
 .credit-links a{display:inline-flex;align-items:center;gap:7px;min-height:36px;font-size:13.5px;font-weight:600;text-decoration:none;color:var(--accent)}
 .credit-links a:hover{text-decoration:underline;text-underline-offset:3px}
 .credit-links .ic{width:17px;height:17px;margin:0}
-@media (max-width:560px){ .site-foot .credit{flex-direction:column;align-items:flex-start;gap:4px} }
+@media (max-width:560px){
+  .site-foot .credit{flex-wrap:nowrap;gap:12px}
+  .credit-by{line-height:1.3}
+  .credit-by b{display:block}
+  .credit-links{flex-wrap:nowrap;gap:14px}
+  .credit-links a{font-size:13px;gap:6px}
+}
