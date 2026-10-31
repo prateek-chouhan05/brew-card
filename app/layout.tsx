@@ -43,7 +43,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <div className="credit">
                 <p className="credit-by">Built by <b>Prateek Chouhan</b></p>
                 <p className="credit-links">
-                  <a href="https://www.linkedin.com/in/prateek9144/" target="_blank" rel="noopener"><Icon name="profile" />LinkedIn</a>
+                  <a href="https://www.linkedin.com/in/prateek9144/" target="_blank" rel="noopener"><img src="/linkedin-logo.png" alt="" width={17} height={17} className="brand-logo" />LinkedIn</a>
                   <a href="https://buymeacoffee.com/prateek01" target="_blank" rel="noopener"><Icon name="cup" />Buy me a coffee</a>
                 </p>
               </div>
