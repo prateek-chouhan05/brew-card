@@ -5,6 +5,7 @@ import "./globals.css";
 import { Providers } from "@/components/providers";
 import { AppShell } from "@/components/AppShell";
 import { InstallButton } from "@/components/Pwa";
+import { Icon } from "@/components/Icon";
 
 export const metadata: Metadata = {
   title: { default: "Brew Card", template: "%s · Brew Card" },
@@ -39,6 +40,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <a href="https://brewmark.io/grinders" target="_blank" rel="noopener">brewmark.io</a>&apos;s published charts. The Clean &amp; Clear method
                 follows James Hoffmann&apos;s Ultimate AeroPress recipe, with water temperature set by your roast. Every setting is a starting point, not a rule.
               </p>
+              <div className="credit">
+                <p>Built by <b>Prateek</b></p>
+                <p className="credit-links">
+                  <a href="https://www.linkedin.com/in/prateek9144/" target="_blank" rel="noopener">LinkedIn<Icon name="external" className="trail" /></a>
+                  <a href="https://buymeacoffee.com/prateek01" target="_blank" rel="noopener"><Icon name="cup" />Buy me a coffee</a>
+                </p>
+              </div>
             </footer>
           </AppShell>
         </Providers>

@@ -14,7 +14,15 @@ test("every recipe card has an illustration", async ({ page: p }) => {
   const n = await cards.count();
   expect(await p.locator("#cards li .c-ic svg").count()).toBe(n);
   await p.goto("/recipes/affogato/");
-  await expect(p.locator(".console-head .head-art svg")).toBeVisible();
+  await expect(p.locator(".console-head .head-art .recipe-art svg")).toBeVisible();
+  // tapping the picture opens it with every part named
+  await p.click(".console-head .head-art");
+  const dlg = p.locator("dialog.artdlg");
+  await expect(dlg).toBeVisible();
+  await expect(dlg.locator(".art-open")).toContainText("Vanilla ice cream");
+  await p.keyboard.press("Escape");
+  await expect(dlg).toBeHidden();
+  await expect(p.locator(".console-head .head-art")).toBeFocused();
 });
 
 test("favourites appear on the shelf and on cards", async ({ page: p }) => {
@@ -179,4 +187,12 @@ test("the interface uses drawn icons, not emoji", async ({ page: p }) => {
     const text = await p.locator("body").innerText();
     expect(text.match(/\p{Extended_Pictographic}/gu), url).toBeNull();
   }
+});
+
+test("footer credits the builder with LinkedIn and Buy Me a Coffee", async ({ page: p }) => {
+  await skipSetup(p);
+  const credit = p.locator(".site-foot .credit");
+  await expect(credit).toContainText("Built by Prateek");
+  await expect(credit.getByRole("link", { name: "LinkedIn" })).toHaveAttribute("href", "https://www.linkedin.com/in/prateek9144/");
+  await expect(credit.getByRole("link", { name: "Buy me a coffee" })).toHaveAttribute("href", "https://buymeacoffee.com/prateek01");
 });

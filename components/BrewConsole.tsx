@@ -11,7 +11,7 @@ import { timer, useTimer, type TimerBrew } from "@/lib/timer";
 import type { Brew, Entry, HouseMethod } from "@/lib/types";
 import { useBrewPrefs, useSetup } from "./providers";
 import { StdArt, InvArt } from "./Art";
-import { RecipeArt } from "./DrinkArt";
+import { HeadArt } from "./HeadArt";
 import { BrewCanvas } from "./BrewCanvas";
 import { HandsFree, RateBrew } from "./BrewExtras";
 import { beanStatus } from "@/lib/journal";
@@ -63,7 +63,7 @@ export function BrewConsole({ id }: { id: string }) {
         </div>
       )}
       <div className="console-head with-art">
-        <RecipeArt entry={entry} className="head-art" />
+        <HeadArt entry={entry} />
         <h2><span id="rName">{brew.name}</span></h2>
         <button type="button" className="fav" id="favBtn" aria-pressed={prefs.favs.includes(entry.id)} onClick={() => prefs.toggleFav(entry.id)}>
           {prefs.favs.includes(entry.id) ? <><Icon name="saved" />Saved</> : <><Icon name="save" />Save</>}

@@ -618,13 +618,9 @@ html:has(dialog[open]){overflow:hidden}
 /* ---------- drink & method illustrations ---------- */
 .recipe-art{display:block;line-height:0}
 .recipe-art svg{width:100%;height:auto;display:block}
-/* one ink outline, flat coffee fills, the logo's crema band on coffee; steam moves only on the recipe's own picture */
-:root{--da-ink:#2d2226;--da-steam:#b9a9ae}
-.da-ink{stroke:var(--da-ink);stroke-linecap:round;stroke-linejoin:round}
-.da-glass{fill:rgba(255,255,255,.72);stroke:none}
-.da-ice{fill:rgba(255,255,255,.6);stroke:var(--da-ink);stroke-opacity:.45;stroke-width:1.6}
-.da-steam path{fill:none;stroke:var(--da-steam);stroke-linecap:round}
-.ap-mini{display:block;width:78%;margin:0 auto}
+/* three-quarter drawings, cut open (lib/art.ts); steam and flame move only on the recipe's own picture */
+:root{--da-ink:#2d2226}
+.da-steam path{fill:none;stroke:#b9a9ae;stroke-linecap:round}
 @media (prefers-reduced-motion:no-preference){
   .head-art .da-steam path{animation:daSteam 2.8s ease-in-out infinite}
   .head-art .da-steam path:nth-child(2){animation-delay:.6s}
@@ -637,10 +633,18 @@ html:has(dialog[open]){overflow:hidden}
 .card{grid-template-columns:52px minmax(0,1fr) auto}
 .card .c-ic{width:52px;height:52px;border-radius:12px;background:var(--raised);display:grid;place-items:center;overflow:hidden;padding:3px}
 .card .c-ic .recipe-art{width:100%}
-.console-head.with-art{display:grid;grid-template-columns:minmax(0,1fr) 108px;gap:4px 14px;align-items:start}
+.console-head.with-art{display:grid;grid-template-columns:minmax(0,1fr) 136px;gap:4px 14px;align-items:start}
 .console-head.with-art > *{grid-column:1}
-.console-head.with-art > .head-art{grid-column:2;grid-row:1 / span 4;width:108px;align-self:center}
-@media (max-width:420px){ .console-head.with-art{grid-template-columns:minmax(0,1fr) 84px} .console-head.with-art > .head-art{width:84px} }
+.console-head.with-art > .head-art{grid-column:2;grid-row:1 / span 4;width:136px;align-self:center}
+@media (max-width:420px){ .console-head.with-art{grid-template-columns:minmax(0,1fr) 108px} .console-head.with-art > .head-art{width:108px} }
+.head-art{border:0;background:var(--raised);border-radius:16px;padding:6px 6px 7px;display:flex;flex-direction:column;align-items:stretch;gap:3px;cursor:zoom-in;color:var(--muted);transition:background-color .15s ease}
+.head-art:hover{background:var(--accent-soft);color:var(--accent)}
+.ha-hint{display:inline-flex;align-items:center;justify-content:center;gap:5px;font-size:11.5px;font-weight:600;line-height:1.2}
+.ha-hint .ic{width:13px;height:13px;margin:0}
+.artdlg .sheet-b{display:flex;flex-direction:column;gap:12px}
+.art-open{background:var(--raised);border-radius:14px;padding:8px}
+.art-open svg{width:100%;height:auto;display:block}
+.art-note{margin:0;color:var(--muted);font-size:14px;max-width:60ch}
 
 /* ---------- Chamber clock ---------- */
 .clock-wrap{position:relative;width:min(100%,380px);aspect-ratio:10 / 9;margin:0 auto}
@@ -924,3 +928,12 @@ td .sym{display:flex;align-items:center;height:18px;margin-bottom:4px;color:var(
 td .sym .ic{width:17px;height:17px;margin:0}
 td .sym .mark{width:26px;height:10px}
 .tp-b .ic{width:18px;height:18px}
+
+/* footer credit: who built it on the left, where to find them on the right */
+.site-foot .credit{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px 16px;border-top:1px solid var(--line);margin-top:12px;padding-top:12px}
+.site-foot .credit p{margin:0}
+.site-foot .credit b{color:var(--fg);font-weight:600}
+.credit-links{display:flex;flex-wrap:wrap;gap:6px 18px}
+.credit-links a{display:inline-flex;align-items:center;min-height:32px;font-weight:600;text-decoration:none;color:var(--accent)}
+.credit-links a:hover{text-decoration:underline;text-underline-offset:3px}
+.credit-links .ic:not(.trail){width:16px;height:16px}
