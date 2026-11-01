@@ -24,6 +24,7 @@ const CHAMBER_ML = 250;
 export function BrewConsole({ id }: { id: string }) {
   const entry = entryById(id) as Entry;
   const prefs = useBrewPrefs();
+  const [favTouched, setFavTouched] = useState(false);
   const { grinder, roast, flavour, activeBean } = useSetup();
   const grindAdj = prefs.grindAdj(entry.id);
   const router = useRouter();
@@ -65,8 +66,10 @@ export function BrewConsole({ id }: { id: string }) {
       <div className="console-head with-art">
         <HeadArt entry={entry} />
         <h2><span id="rName">{brew.name}</span></h2>
-        <button type="button" className="fav" id="favBtn" aria-pressed={prefs.favs.includes(entry.id)} onClick={() => prefs.toggleFav(entry.id)}>
-          {prefs.favs.includes(entry.id) ? <><Icon name="saved" />Saved</> : <><Icon name="save" />Save</>}
+        <button type="button" className="fav" id="favBtn" aria-pressed={prefs.favs.includes(entry.id)} onClick={() => { setFavTouched(true); prefs.toggleFav(entry.id); }}>
+          {prefs.favs.includes(entry.id)
+            ? <span className={"fav-c" + (favTouched ? " just" : "")} key="saved"><Icon name="saved" />Saved</span>
+            : <span className={"fav-c" + (favTouched ? " just" : "")} key="save"><Icon name="save" />Save</span>}
         </button>
         {entry.kind !== "house" && <p className="byline" id="rByline">{entrySub(entry)}{entry.kind === "drink" ? " · " + entry.time : ""}</p>}
         {entry.kind === "library" && (

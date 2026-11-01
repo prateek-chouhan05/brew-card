@@ -131,6 +131,8 @@ for (const [w, h] of WIDTHS) {
     await p.keyboard.press("Enter");
     await expect(p.locator("#setupDlg[open]")).toBeVisible();
     await expect(p.locator("#suCancel")).toHaveText("Cancel");
+    // the sheet rises from the bottom edge; let it land before tapping inside it
+    await p.waitForFunction(() => document.getAnimations().every((a) => !(a.effect as KeyframeEffect | null)?.target?.closest?.("dialog") || a.playState !== "running"));
     await p.locator('#suRoast input[value="dark"]').check({ force: true });
     await p.keyboard.press("Escape");
     await expect(p.locator("#setupDlg[open]")).toHaveCount(0);

@@ -109,7 +109,7 @@ h1{font-size:33px;line-height:1.1;font-weight:700;letter-spacing:-.02em}
   padding:12px 16px;border:0;border-bottom:1px solid var(--line);background:none;text-align:left;width:100%;
   transition:background .12s;
 }
-.hit:hover{background:var(--raised)}
+@media (hover:hover) and (pointer:fine){ .hit:hover{background:var(--raised)} }
 .hit[aria-current="true"]{background:var(--accent-soft)}
 .hit-ic{font-size:18px;line-height:1.3}
 .hit-body{display:flex;flex-direction:column;gap:2px;min-width:0}
@@ -215,7 +215,7 @@ h1{font-size:33px;line-height:1.1;font-weight:700;letter-spacing:-.02em}
 .dk-h:first-child{margin-top:0}
 .dk-bases{display:flex;flex-direction:column;gap:7px}
 .basebtn{display:grid;grid-template-columns:26px 1fr auto;gap:10px;align-items:center;text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 12px;width:100%}
-.basebtn:hover{border-color:var(--accent)}
+@media (hover:hover) and (pointer:fine){ .basebtn:hover{border-color:var(--accent)} }
 .basebtn b{font-weight:600;display:block;font-size:14px}
 .basebtn small{display:block;color:var(--muted);font-size:12.5px;line-height:1.35}
 .basebtn .go{font-weight:700;color:var(--accent);font-size:13px;white-space:nowrap}
@@ -247,7 +247,7 @@ h1{font-size:33px;line-height:1.1;font-weight:700;letter-spacing:-.02em}
 /* ---- controls ---- */
 .controls{display:flex;gap:8px;padding:2px 18px 18px;flex-wrap:wrap;justify-content:center}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid var(--line);background:var(--raised);border-radius:10px;padding:11px 18px;font-weight:600;font-size:14.5px;min-width:96px;transition:filter .12s}
-.btn:hover{filter:brightness(.97)}
+@media (hover:hover) and (pointer:fine){ .btn:hover{filter:brightness(.97)} }
 .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;min-width:124px}
 .btn.icon{min-width:0;padding:11px 13px;font-family:var(--mono);font-size:13px}
 
@@ -324,13 +324,13 @@ body{min-height:100vh;min-height:100dvh}
   border:1px solid var(--flag-line);background:var(--flag-soft);border-radius:999px;padding:2px 7px;font-weight:600}
 .mainnav{display:none;gap:4px;margin-left:12px}
 .mainnav a{border:0;background:none;text-decoration:none;display:inline-flex;align-items:center;border-radius:8px;padding:0 14px;min-height:40px;font-weight:600;font-size:14.5px;color:var(--muted)}
-.mainnav a:hover{color:var(--fg);background:var(--raised)}
+@media (hover:hover) and (pointer:fine){ .mainnav a:hover{color:var(--fg);background:var(--raised)} }
 .mainnav a[aria-current="page"]{color:var(--fg);background:var(--raised);box-shadow:inset 0 -2px 0 var(--accent)}
 .setup-chip{margin-left:auto;display:flex;align-items:center;gap:8px;min-height:40px;padding:0 12px 0 10px;border:1px solid var(--line);
   border-radius:999px;background:var(--surface);font-size:13px;font-weight:600;color:var(--fg);min-width:0;max-width:62vw}
 .setup-chip .sc-txt{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
 .setup-chip .sc-lbl{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
-.setup-chip:hover{border-color:var(--accent)}
+@media (hover:hover) and (pointer:fine){ .setup-chip:hover{border-color:var(--accent)} }
 
 /* ---------- phone tab bar ---------- */
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:repeat(3,1fr);
@@ -363,7 +363,7 @@ main{padding-bottom:calc(var(--tabbar-h) + env(safe-area-inset-bottom,0px) + 24p
 .search input:focus{border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 .search input::-webkit-search-cancel-button{display:none}
 .s-clear{position:absolute;right:6px;width:40px;height:40px;border:0;border-radius:10px;background:none;font-size:20px;color:var(--muted)}
-.s-clear:hover{background:var(--raised);color:var(--fg)}
+@media (hover:hover) and (pointer:fine){ .s-clear:hover{background:var(--raised);color:var(--fg)} }
 .suggest{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;margin-top:8px;font-size:13px;color:var(--muted)}
 .suggest button{border:0;background:none;color:var(--accent);font-weight:600;padding:6px 4px;min-height:32px;text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--accent-soft)}
 
@@ -435,14 +435,14 @@ main{padding-bottom:calc(var(--tabbar-h) + env(safe-area-inset-bottom,0px) + 24p
   background:var(--accent-soft);color:var(--accent);font-size:13px;font-weight:600;max-width:100%}
 .achip .at{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
 .achip button{border:0;background:none;color:var(--accent);width:26px;height:26px;border-radius:999px;font-size:15px;line-height:1;flex:0 0 auto}
-.achip button:hover{background:var(--surface)}
+@media (hover:hover) and (pointer:fine){ .achip button:hover{background:var(--surface)} }
 .clearall{border:0;background:none;color:var(--fg);font-weight:600;font-size:13px;padding:6px 6px;min-height:34px;text-decoration:underline;text-underline-offset:3px}
 
 .cards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:10px}
 @media (min-width:760px){ .cards{grid-template-columns:repeat(2,minmax(0,1fr))} }
 .card{text-decoration:none;color:inherit;width:100%;height:100%;text-align:left;display:grid;grid-template-columns:30px minmax(0,1fr) auto;gap:10px;align-items:start;
   padding:14px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);transition:border-color .12s, background .12s}
-.card:hover{border-color:color-mix(in srgb, var(--accent) 45%, var(--line))}
+@media (hover:hover) and (pointer:fine){ .card:hover{border-color:color-mix(in srgb, var(--accent) 45%, var(--line))} }
 .card[aria-current="true"]{border-color:var(--accent);background:var(--accent-soft)}
 .card > span{min-width:0}
 .c-ic{font-size:20px;line-height:1.25}
@@ -490,10 +490,6 @@ dialog.sheetdlg::backdrop{background:rgba(28,22,25,.42)}
   dialog.sheetdlg[open]{display:grid;place-items:center}
   .sheet{position:relative;width:min(640px, calc(100vw - 48px));max-height:min(86vh, 820px);border-radius:16px;box-shadow:0 20px 60px rgba(28,22,25,.25)}
 }
-@media (prefers-reduced-motion:no-preference){
-  dialog.sheetdlg[open] .sheet{animation:sheetIn .18s ease-out}
-  @keyframes sheetIn{from{transform:translateY(16px);opacity:.6}to{transform:none;opacity:1}}
-}
 
 /* ---------- brew view ---------- */
 .brew-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
@@ -520,7 +516,7 @@ dialog.sheetdlg::backdrop{background:rgba(28,22,25,.42)}
   .guides{display:grid;grid-template-columns:220px minmax(0,760px);gap:32px;align-items:start}
   .toc{position:sticky;top:calc(var(--header-h) + 16px);flex-direction:column;flex-wrap:nowrap}
   .toc button{text-align:left;border-color:transparent;background:none;padding:0 10px}
-  .toc button:hover{background:var(--raised)}
+  @media (hover:hover) and (pointer:fine){ .toc button:hover{background:var(--raised)} }
 }
 
 .site-foot{color:var(--muted);font-size:12.5px;line-height:1.6;border-top:1px solid var(--line);margin-top:28px;padding-top:14px}
@@ -638,7 +634,7 @@ html:has(dialog[open]){overflow:hidden}
 .console-head.with-art > .head-art{grid-column:2;grid-row:1 / span 4;width:136px;align-self:center}
 @media (max-width:420px){ .console-head.with-art{grid-template-columns:minmax(0,1fr) 108px} .console-head.with-art > .head-art{width:108px} }
 .head-art{border:0;background:var(--raised);border-radius:16px;padding:6px 6px 7px;display:flex;flex-direction:column;align-items:stretch;gap:3px;cursor:zoom-in;color:var(--muted);transition:background-color .15s ease}
-.head-art:hover{background:var(--accent-soft);color:var(--accent)}
+@media (hover:hover) and (pointer:fine){ .head-art:hover{background:var(--accent-soft);color:var(--accent)} }
 .ha-hint{display:inline-flex;align-items:center;justify-content:center;gap:5px;font-size:11.5px;font-weight:600;line-height:1.2}
 .ha-hint .ic{width:13px;height:13px;margin:0}
 .artdlg .sheet-b{display:flex;flex-direction:column;gap:12px}
@@ -679,7 +675,7 @@ html:has(dialog[open]){overflow:hidden}
 .shelf-track{list-style:none;margin:0;padding:0 0 4px;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
 .shelf-track::-webkit-scrollbar{display:none}
 .shelf-item{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;width:78px;padding:7px 5px;border:1px solid var(--line);border-radius:12px;background:var(--surface);text-decoration:none;color:var(--fg)}
-.shelf-item:hover{border-color:var(--accent)}
+@media (hover:hover) and (pointer:fine){ .shelf-item:hover{border-color:var(--accent)} }
 .shelf-art{width:42px;height:42px;display:grid;place-items:center}
 .shelf-badge{position:absolute;top:6px;right:6px;color:#c99a2e}
 .shelf-art .recipe-art{width:100%}
@@ -746,7 +742,7 @@ html:has(dialog[open]){overflow:hidden}
 .su .sheet-h{padding:12px 12px 10px 18px}
 .su .sheet-h h2{font-size:19px;outline:none}
 .su .sheet-h .x{width:40px;height:40px;border-radius:999px;background:transparent;color:var(--muted);display:grid;place-items:center;transition:background-color .15s ease,color .15s ease}
-.su .sheet-h .x:hover{background:var(--raised);color:var(--fg)}
+@media (hover:hover) and (pointer:fine){ .su .sheet-h .x:hover{background:var(--raised);color:var(--fg)} }
 .su .sheet-b{padding:14px 18px 6px}
 .su .sheet-intro{font-size:14.5px;color:var(--fg);margin-bottom:18px}
 .su .fs{margin-bottom:24px}
@@ -767,7 +763,7 @@ html:has(dialog[open]){overflow:hidden}
 .rs-b{display:flex;flex-direction:column;align-items:center;gap:6px;padding:10px 2px 8px;border:1px solid var(--line);border-radius:12px;background:var(--surface);transition:border-color .15s ease}
 .rs-sw{width:30px;height:30px;border-radius:999px;box-shadow:inset 0 0 0 1px rgba(0,0,0,.12)}
 .rs-l{font-size:12.5px;font-weight:600;color:var(--muted);text-align:center;line-height:1.2}
-.rs:hover .rs-b{border-color:var(--muted)}
+@media (hover:hover) and (pointer:fine){ .rs:hover .rs-b{border-color:var(--muted)} }
 .rs input:checked + .rs-b{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
 .rs input:checked + .rs-b .rs-l{color:var(--fg);font-weight:700}
 .rs input:focus-visible + .rs-b,.tp input:focus-visible + .tp-b{outline:2px solid var(--accent);outline-offset:2px}
@@ -778,7 +774,7 @@ html:has(dialog[open]){overflow:hidden}
 .tps{display:flex;flex-wrap:wrap;gap:8px}
 .tp{position:relative;display:block}
 .tp-b{display:inline-flex;align-items:center;gap:8px;min-height:40px;padding:0 14px;border:1px solid var(--line);border-radius:999px;background:var(--surface);font-size:14px;font-weight:600;white-space:nowrap;transition:border-color .15s ease}
-.tp:hover .tp-b{border-color:var(--muted)}
+@media (hover:hover) and (pointer:fine){ .tp:hover .tp-b{border-color:var(--muted)} }
 .tp input:checked + .tp-b{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
 .dot{width:10px;height:10px;border-radius:999px;flex:0 0 auto}
 .dot.none{border:1.5px solid var(--muted)}
@@ -798,7 +794,7 @@ input:focus-visible + .radio{outline:2px solid var(--accent);outline-offset:2px}
 .sw{display:inline-block;width:10px;height:10px;border-radius:999px;flex:0 0 auto;box-shadow:inset 0 0 0 1px rgba(0,0,0,.15)}
 .su .bag-acts{display:flex;flex-direction:column;gap:2px;padding:8px 10px 8px 0;align-items:stretch}
 .mini{border:0;background:transparent;color:var(--accent);font-weight:600;font-size:13px;min-height:32px;padding:0 10px;border-radius:8px;cursor:pointer}
-.mini:hover{background:var(--accent-soft)}
+@media (hover:hover) and (pointer:fine){ .mini:hover{background:var(--accent-soft)} }
 .mini:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
 .no-bag{position:relative;display:flex;align-items:center;gap:10px;padding:6px 2px 2px 14px;font-size:14px;color:var(--muted);cursor:pointer}
 
@@ -936,7 +932,7 @@ td .sym .mark{width:26px;height:10px}
 .credit-by b{color:var(--fg);font-weight:600}
 .credit-links{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px}
 .credit-links a{display:inline-flex;align-items:center;gap:7px;min-height:36px;font-size:13.5px;font-weight:600;text-decoration:none;color:var(--accent)}
-.credit-links a:hover{text-decoration:underline;text-underline-offset:3px}
+@media (hover:hover) and (pointer:fine){ .credit-links a:hover{text-decoration:underline;text-underline-offset:3px} }
 .credit-links .ic{width:17px;height:17px;margin:0}
 .credit-links .brand-logo{width:18px;height:18px;flex:none;display:block}
 @media (max-width:560px){
@@ -945,4 +941,53 @@ td .sym .mark{width:26px;height:10px}
   .credit-by b{display:block}
   .credit-links{flex-wrap:nowrap;gap:14px}
   .credit-links a{font-size:13px;gap:6px}
+}
+
+/* ===== Motion and touch: press feedback on everything tappable, hover only where there is a pointer,
+   sheets that rise from the bottom edge on phones and settle in place on wider screens. Exits are faster than entries. */
+:root{--ease-out:cubic-bezier(.23,1,.32,1);--ease-drawer:cubic-bezier(.32,.72,0,1)}
+a,button,summary,label,[role="button"]{-webkit-tap-highlight-color:transparent}
+
+@media (prefers-reduced-motion:no-preference){
+  /* press: a small scale says "heard you"; cards and big tiles move less */
+  .btn{transition:filter .12s ease,transform 160ms var(--ease-out)}
+  .card{transition:border-color .12s ease,background-color .12s ease,transform 160ms var(--ease-out)}
+  .head-art{transition:background-color .15s ease,color .15s ease,transform 160ms var(--ease-out)}
+  .su .sheet-h .x{transition:background-color .15s ease,color .15s ease,transform 160ms var(--ease-out)}
+  .rs-b,.su .bag-row{transition:border-color .15s ease,transform 160ms var(--ease-out)}
+  .tp-b{transition:border-color .15s ease,box-shadow .15s ease,transform 160ms var(--ease-out)}
+  .basebtn,.console-head .fav,.setup-chip,.shelf-item,.back,.nearbtn,.returnbar button,.more,.panel-act,.toc button,.filters-btn,
+  .s-clear,.sheet-h .x,.hf-top .x,.achip button,.mini,.orient-switch button,.rate-opt > span,.check .box,.suggest button,.tabbar a .ic,.mainnav a,
+  .credit-links a,.fchip > span,.seg-opt > span,.stepper button{transition:transform 160ms var(--ease-out)}
+
+  .btn:active,.basebtn:active,.console-head .fav:active,.setup-chip:active,.back:active,.nearbtn:active,.returnbar button:active,
+  .more:active,.panel-act:active,.toc button:active,.filters-btn:active,.s-clear:active,.sheet-h .x:active,.hf-top .x:active,
+  .achip button:active,.mini:active,.orient-switch button:active,.suggest button:active,.mainnav a:active,.credit-links a:active,
+  .stepper button:active,.fchip:active > span,.seg-opt:active > span,.rs:active .rs-b,.tp:active .tp-b,.rate-opt:active > span,
+  .check:active .box,.tabbar a:active .ic{transform:scale(.97)}
+  .card:active,.head-art:active,.shelf-item:active,.su .bag-row:active{transform:scale(.985)}
+
+  /* sheets: phone = drawer from the bottom edge, opening on an iOS-like curve, closing quicker */
+  dialog.sheetdlg{transition:display 180ms allow-discrete,overlay 180ms allow-discrete}
+  dialog.sheetdlg::backdrop{transition:background-color 200ms ease,display 180ms allow-discrete,overlay 180ms allow-discrete}
+  dialog.sheetdlg:not([open])::backdrop{background-color:transparent}
+  @starting-style{ dialog.sheetdlg[open]::backdrop{background-color:transparent} }
+  .sheet{transition:transform 180ms var(--ease-out)}
+  dialog.sheetdlg:not([open]) .sheet{transform:translateY(100%)}
+  dialog.sheetdlg[open] .sheet{transform:none;transition:transform 340ms var(--ease-drawer)}
+  @starting-style{ dialog.sheetdlg[open] .sheet{transform:translateY(100%)} }
+}
+@media (prefers-reduced-motion:no-preference) and (min-width:760px){
+  /* wider screens: a centred dialog settles in place rather than sliding */
+  .sheet{transition:transform 150ms var(--ease-out),opacity 150ms var(--ease-out)}
+  dialog.sheetdlg:not([open]) .sheet{transform:scale(.96);opacity:0}
+  dialog.sheetdlg[open] .sheet{transform:none;opacity:1;transition:transform 220ms var(--ease-out),opacity 220ms var(--ease-out)}
+  @starting-style{ dialog.sheetdlg[open] .sheet{transform:scale(.96);opacity:0} }
+}
+
+/* Save ↔ Saved: the new state arrives with a short blur-in instead of a hard swap */
+.fav-c{display:inline-flex;align-items:center;gap:6px}
+@media (prefers-reduced-motion:no-preference){
+  .fav-c.just{transition:opacity 160ms ease,filter 160ms ease}
+  @starting-style{ .fav-c.just{opacity:0;filter:blur(2px)} }
 }
