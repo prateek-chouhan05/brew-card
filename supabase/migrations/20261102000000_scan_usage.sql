@@ -25,3 +25,4 @@ begin
   return mine <= p_per and total <= p_total;
 end $$;
 revoke all on function public.bump_scan(text, int, int) from public, anon, authenticated;
+grant execute on function public.bump_scan(text, int, int) to service_role;
