@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { KIND_LABEL, VOLUMES } from "@/lib/data/labels";
+import { VOLUMES, segWord } from "@/lib/data/labels";
 import { mmss } from "@/lib/brew";
 import { advise, STRENGTHS, TASTES, type Advice, type Strength, type Taste } from "@/lib/journal";
 import { timer, useTimer, type Cue, type TimerBrew } from "@/lib/timer";
@@ -166,21 +166,21 @@ export function HandsFree({ tb, water, onClose }: { tb: TimerBrew; water?: numbe
         <button type="button" className="x" aria-label="Exit hands-free" onClick={onClose}><Icon name="close" /></button>
       </div>
       <div className="hf-main">
-        {/* the Chamber clock, large: countdown, the brewer, the mug and the scale with its reading */}
+        {/* the brew clock, large: countdown, the brewer, the mug and the scale with its reading */}
         <div className="hf-clock">
           <BrewCanvas tb={tb} kind="clock" water={water}
             label={finished ? "Done" : `${started ? left : tb.segs[0].dur} seconds left`} />
         </div>
         <div className="hf-info">
           {(() => {
-            const kind = finished ? "Done" : started ? (running ? KIND_LABEL[sg.k] : "Paused · " + KIND_LABEL[sg.k]) : KIND_LABEL[tb.segs[0].k] + " first";
+            const kind = finished ? "Done" : started ? (running ? segWord(sg) : "Paused · " + segWord(sg)) : segWord(tb.segs[0]) + " first";
             const now = finished ? "Brew complete" : sg.lbl;
             // skip the small label when it would only repeat the step ("Press" over "Press")
             return kind.toLowerCase() === now.toLowerCase() ? null : <p className="hf-kind">{kind}</p>;
           })()}
           <p className="hf-now" aria-live="polite">{finished ? "Brew complete" : sg.lbl}</p>
           {!finished && sg.det && <p className="hf-det">{sg.det}</p>}
-          {!finished && nxt && started && <p className="hf-next">Then — {KIND_LABEL[nxt.k]}: {nxt.lbl}</p>}
+          {!finished && nxt && started && <p className="hf-next">Then — {segWord(nxt)}: {nxt.lbl}</p>}
           <p className="hf-total">{mmss(clamped)} / {mmss(total)}</p>
         </div>
       </div>

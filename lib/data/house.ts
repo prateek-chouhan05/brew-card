@@ -117,6 +117,70 @@ export const HOUSE: RawHouse[] = [
     ]
   },
   {
+    id:"my-frenchpress", icon:"frenchpress", name:"French Press",
+    tagline:"James Hoffmann's no-sludge method",
+    notes:"James Hoffmann's technique: a long steep, break the crust, skim the foam, then leave it to settle for five minutes. Patience instead of pressure, so you get the press's full body without the mud. Pour 500 g into a 1-litre press; halve the dose for a small one.",
+    grindBase:20, dose:30, doseMin:15, doseMax:40, ratios:{water:16.67},
+    bestFor:["medlight","medium","meddark","dark"], o:"press", st:["black"],
+    prep:"Grind a touch finer than a classic press grind — the long settle keeps it clean. Preheat the press with hot water, tip it out, put the press on the scale and zero it. Have two spoons ready.",
+    timed:true,
+    segs:[
+      {k:"pour",  lbl:"Pour all the water",                det:"Quickly, straight onto the grounds. Make sure everything is wet.", dur:10, to:1},
+      {k:"wait",  lbl:"Steep",                             det:"Lid off, hands off. A crust of grounds forms on top.",             dur:230},
+      {k:"stir",  lbl:"Break the crust",                   det:"Stir just the top with a spoon. Most of the grounds drop.",       dur:15, short:"Break"},
+      {k:"stir",  lbl:"Skim off the foam",                 det:"Scoop the foam and floating bits away with two spoons. This is what makes it clean.", dur:30, short:"Skim"},
+      {k:"wait",  lbl:"Let it settle",                     det:"Five minutes, up to eight. The fine grounds sink — the longer, the cleaner.",         dur:300, short:"Settle"},
+      {k:"press", lbl:"Plunger to the surface, then pour", det:"Lower the plunger only until it touches the coffee — don't push it down. Pour slowly; the mesh just strains.", dur:20, short:"Pour"}
+    ],
+    finish:"<b>Done.</b> Leave the last few millimetres in the press — that's the silt. Bitter means one step coarser; thin means one step finer."
+  },
+  {
+    id:"my-v60", icon:"v60", name:"V60 One Cup",
+    tagline:"James Hoffmann's five-pour V60",
+    notes:"James Hoffmann's “better one-cup” V60: a bloom, then four equal pours ten seconds apart, so a small dose still brews evenly. Clean and bright — the clearest cup on this card. Pour to the gram targets on your scale.",
+    grindBase:15, dose:15, doseMin:12, doseMax:20, ratios:{water:16.67},
+    bestFor:["light","medlight","medium"], o:"pourover", st:["black"],
+    prep:"Rinse the paper filter with hot water and tip the rinse out of the server. Add the coffee, give it a shake to level it, and press a small dip in the middle. V60 and server on the scale, zeroed.",
+    timed:true,
+    segs:[
+      {k:"pour",  lbl:"Bloom: pour to {{w:0.2}} g", det:"Just enough to wet all the grounds.",                         dur:10, to:0.2},
+      {k:"swirl", lbl:"Swirl",                      det:"A gentle swirl so no dry clumps are left.",                   dur:5},
+      {k:"wait",  lbl:"Let it bloom",               det:"The bed puffs up as the gas escapes.",                        dur:30, short:"Bloom"},
+      {k:"pour",  lbl:"Pour to {{w:0.4}} g",        det:"Slow circles in the middle; keep off the paper.",             dur:15, to:0.4},
+      {k:"wait",  lbl:"Pause",                      det:"Let it drop a little.",                                       dur:10, short:"Pause"},
+      {k:"pour",  lbl:"Pour to {{w:0.6}} g",        det:"Same gentle circles.",                                        dur:10, to:0.6},
+      {k:"wait",  lbl:"Pause",                      det:"Let it drop a little.",                                       dur:10, short:"Pause"},
+      {k:"pour",  lbl:"Pour to {{w:0.8}} g",        det:"Same gentle circles.",                                        dur:10, to:0.8},
+      {k:"wait",  lbl:"Pause",                      det:"Let it drop a little.",                                       dur:10, short:"Pause"},
+      {k:"pour",  lbl:"Pour to {{w:1}} g",          det:"The last pour.",                                              dur:10, to:1},
+      {k:"swirl", lbl:"Swirl once",                 det:"Gently, so the bed settles flat and drains evenly.",          dur:5},
+      {k:"wait",  lbl:"Drawdown",                   det:"Let it drain through. It should finish around 3:00.",         dur:55, short:"Drain"}
+    ],
+    finish:"<b>Done.</b> Drained well before 3:00 and tastes sour or thin? One step finer. Still dripping after 3:30 and tastes bitter? One step coarser."
+  },
+  {
+    id:"my-46", icon:"v60", name:"4:6 Method",
+    tagline:"Tetsu Kasuya's five equal pours",
+    notes:"World Brewers Cup champion Tetsu Kasuya's method, as Hario publishes it. The first 40% of the water sets the taste — a smaller first pour is sweeter, a bigger one brighter — and the last 60% sets the strength. Coarse grind, no stirring, very hard to get wrong.",
+    grindBase:19, dose:20, doseMin:15, doseMax:25, ratios:{water:15},
+    bestFor:["light","medlight","medium"], o:"pourover", st:["black"],
+    prep:"Rinse the paper filter with hot water and tip the rinse out of the server. Add the coffee and level it. V60 and server on the scale, zeroed.",
+    timed:true,
+    segs:[
+      {k:"pour", lbl:"Pour to {{w:0.1667}} g", det:"The first 40% sets the taste. This smaller first pour leans sweet.",  dur:10, to:0.1667},
+      {k:"wait", lbl:"Let it drain",           det:"Hands off.",                                                       dur:35, short:"Drain"},
+      {k:"pour", lbl:"Pour to {{w:0.4}} g",    det:"The second pour finishes the 40%.",                                dur:10, to:0.4},
+      {k:"wait", lbl:"Let it drain",           det:"Hands off.",                                                       dur:35, short:"Drain"},
+      {k:"pour", lbl:"Pour to {{w:0.6}} g",    det:"The last 60% sets the strength: three pours of {{w:0.2}} g.",      dur:10, to:0.6},
+      {k:"wait", lbl:"Let it drain",           det:"Hands off.",                                                       dur:30, short:"Drain"},
+      {k:"pour", lbl:"Pour to {{w:0.8}} g",    det:"Fourth pour.",                                                     dur:10, to:0.8},
+      {k:"wait", lbl:"Let it drain",           det:"Hands off.",                                                       dur:20, short:"Drain"},
+      {k:"pour", lbl:"Pour to {{w:1}} g",      det:"Last pour.",                                                       dur:10, to:1},
+      {k:"wait", lbl:"Drawdown",               det:"Lift the V60 off at 3:30, even if a little water is left.",        dur:40, short:"Drain"}
+    ],
+    finish:"<b>Done.</b> Want it sweeter? Make the first pour smaller and the second bigger. Stronger? Split the last 60% into four pours; lighter, into two."
+  },
+  {
     id:"my-coke", icon:"soda", name:"Coffee & Coke Zero",
     tagline:"Iced · concentrate over cola",
     notes:"A small, strong concentrate chilled on ice, then floated on Coke Zero. Cola's caramel and vanilla turn a chocolaty bean into something like a mocha-cola.",

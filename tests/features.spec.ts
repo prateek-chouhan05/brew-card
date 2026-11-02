@@ -224,6 +224,58 @@ test("scanning a bag fills the form to check; a bad photo offers typing", async 
   await expect(p.locator("#bfTitle")).toHaveText("Type it in");
 });
 
+test("French press, V60 and instant: filters, gram targets that follow the dose, and their own clocks", async ({ page: p }) => {
+  await p.clock.install();
+  await skipSetup(p, "/");
+  // the brewer filter finds each brewer's recipes, and the coffee drinks they can make
+  await p.setViewportSize({ width: 1280, height: 900 });
+  const titles = () => p.locator("#cards .c-title").allTextContents();
+  await p.click("label:has(#d-brewer-frenchpress)");
+  await expect.poll(titles).toEqual(expect.arrayContaining(["French Press", "Café au Lait"]));
+  await p.click("label:has(#d-brewer-frenchpress)");
+  await p.click("label:has(#d-brewer-v60)");
+  await expect.poll(titles).toEqual(expect.arrayContaining(["V60 One Cup", "4:6 Method"]));
+  await p.click("label:has(#d-brewer-v60)");
+  await p.click("label:has(#d-brewer-instant)");
+  await expect.poll(async () => (await titles()).sort()).toEqual(["Beaten Coffee", "Dalgona Coffee", "Instant, Done Right"]);
+
+  // V60: the pours are gram targets on the scale, and they follow the dose
+  await p.goto("/recipes/my-v60/");
+  await p.clock.runFor(500);
+  await expect(p.locator("#step-3 .lbl")).toHaveText("Pour to 100 g");
+  await expect(p.locator("#step-9 .lbl")).toHaveText("Pour to 250 g");
+  await p.click("#doseUp");
+  await expect(p.locator("#step-9 .lbl")).toHaveText("Pour to 267 g");
+  await p.click("#doseDown");
+  await expect(p.locator("#warnBar")).toHaveCount(0); // no AeroPress chamber warning here
+  const clock = p.locator("#clock canvas");
+  await p.click("#go");
+  await p.clock.runFor(2000);
+  await expect(clock).toHaveAttribute("data-phase", "pour");
+  await expect(p.locator("#badge")).toHaveText("Pour");
+  await p.clock.fastForward(20_000); await p.clock.runFor(200);
+  await expect(p.locator("#badge")).toHaveText("Bloom");
+  await p.clock.fastForward(170_000); await p.clock.runFor(200);
+  await expect(clock).toHaveAttribute("data-phase", "done");
+  await p.keyboard.press("Escape");
+
+  // French press: break, skim and settle, then the plunger only goes to the surface
+  await p.goto("/recipes/my-frenchpress/");
+  await p.clock.runFor(500);
+  await expect(p.locator("#upnext")).toContainText("Press on the scale");
+  await p.click("#go");
+  await p.clock.fastForward(242_000); await p.clock.runFor(200);
+  await expect(p.locator("#badge")).toHaveText("Break");
+  await p.clock.fastForward(30_000); await p.clock.runFor(200);
+  await expect(p.locator("#badge")).toHaveText("Skim");
+  await p.clock.fastForward(30_000); await p.clock.runFor(200);
+  await expect(p.locator("#badge")).toHaveText("Settle");
+  await p.clock.fastForward(300_000); await p.clock.runFor(200);
+  await expect(p.locator("#now")).toHaveText("Plunger to the surface, then pour");
+  await p.clock.fastForward(30_000); await p.clock.runFor(200);
+  await expect(clock).toHaveAttribute("data-phase", "done");
+});
+
 test("hands-free mode and voice toggle", async ({ page: p }) => {
   await skipSetup(p, "/recipes/my-clean/");
   await p.click("#handsFreeBtn");

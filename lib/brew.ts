@@ -49,6 +49,14 @@ export function totalOf(e: Entry): number {
   return 0;
 }
 
+/** Gram targets written into a recipe's steps as {{w:0.4}}: that share of the water, rounded. */
+export const withGrams = (text: string, water: number) => text.replace(/\{\{w:([\d.]+)\}\}/g, (_m, f) => String(Math.round(water * +f)));
+export function gramSegs(segs: TimedSeg[], water: number): TimedSeg[] {
+  return segs.some((s) => s.lbl.includes("{{") || s.det.includes("{{"))
+    ? segs.map((s) => ({ ...s, lbl: withGrams(s.lbl, water), det: withGrams(s.det, water) }))
+    : segs;
+}
+
 /* ---------------- orientation ---------------- */
 export const FLIP_HINT = "Filter cap on, mug upside-down on top. Hold both and turn over in one smooth motion, then press.";
 export function canInvert(e: Entry | undefined): e is HouseMethod {
@@ -85,6 +93,8 @@ export function orientPill(e: Entry, inverted: boolean): { icon: IconName; text:
   if (e.kind === "drink") return { icon: "assemble", text: `Assemble · ${e.temp === "hot" ? "hot" : "iced"}${e.alcohol ? " · alcohol" : ""}`, inv: false };
   if (e.o === "moka") return { icon: "stovetop", text: "Stovetop", inv: false };
   if (e.o === "jar") return { icon: "jar", text: "Jar · overnight", inv: false };
+  if (e.o === "press") return { icon: "frenchpress", text: "French press", inv: false };
+  if (e.o === "pourover") return { icon: "v60", text: "V60 · paper filter", inv: false };
   if (e.kind === "library" && e.o === "inverted") {
     const f = libFlipAt(e);
     return { icon: "inverted", text: "Inverted" + (f != null ? " · flip at " + mmss(f) : ""), inv: true };
@@ -101,7 +111,7 @@ export function orientPill(e: Entry, inverted: boolean): { icon: IconName; text:
 export function closestHouse(e: Entry): HouseMethod | null {
   let best: HouseMethod | null = null, bestScore = -1;
   for (const h of HOUSE) {
-    if (!h.timed) continue;
+    if (!h.timed || h.o !== "standard") continue; // library recipes are all AeroPress
     let sc = 0;
     (e.fl || []).forEach((f, i) => { if (h.fl.includes(f)) sc += 3 - Math.min(i, 2); });
     for (const k of ["milk", "iced", "mixer", "concentrate"]) {

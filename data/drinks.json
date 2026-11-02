@@ -972,6 +972,14 @@
    {
     "id": "my-bypass",
     "amt": "120 ml"
+   },
+   {
+    "id": "my-frenchpress",
+    "amt": "120 ml · pour a cup from the press"
+   },
+   {
+    "id": "my-v60",
+    "amt": "120 ml · half the cup"
    }
   ],
   "ing": [
@@ -1232,6 +1240,63 @@
   "baseNote": ""
  },
  {
+  "id": "instant-coffee",
+  "name": "Instant, Done Right",
+  "aka": "A better cup of instant",
+  "origin": "Everywhere",
+  "temp": "hot",
+  "time": "3 min",
+  "st": [
+   "black"
+  ],
+  "fl": [
+   "chocolate",
+   "caramel",
+   "bold"
+  ],
+  "bestFor": [
+   "light",
+   "medlight",
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "Instant is coffee that's already brewed and dried, so the water is the only thing you control. Off-the-boil water and a cold start keep it from tasting burnt.",
+  "desc": "A heaped teaspoon dissolved in a splash of cold water first, then topped up with water just off the boil.",
+  "base": [],
+  "baseNote": "Uses instant coffee — no brewer and no grinder.",
+  "ing": [
+   [
+    "1 heaped tsp",
+    "instant coffee (about 1.8 g)"
+   ],
+   [
+    "1 tsp",
+    "cold water"
+   ],
+   [
+    "200 ml",
+    "water just off the boil, about 85 °C"
+   ],
+   [
+    "optional",
+    "milk or sugar"
+   ]
+  ],
+  "steps": [
+   "Boil the kettle, then leave it for about 2 minutes so it drops to around 85 °C.",
+   "Put a heaped teaspoon of instant in the mug with a teaspoon of cold water.",
+   "Stir it into a smooth paste, with no dry lumps left.",
+   "Pour in the hot water slowly while you stir. Add milk or sugar to taste."
+  ],
+  "tips": [
+   "Nescafé's own starting point is 1.8 g per 200 ml at 85 °C — use more powder for a stronger cup, never hotter water.",
+   "Iced: dissolve it in two spoons of hot water, then pour over ice and cold milk."
+  ],
+  "warn": "",
+  "alcohol": false
+ },
+ {
   "id": "dalgona",
   "name": "Dalgona Coffee",
   "aka": "Whipped coffee",
@@ -1285,6 +1350,68 @@
   ],
   "tips": [
    "India's 'beaten coffee' is the same trick, stirred into hot milk."
+  ],
+  "warn": "",
+  "alcohol": false
+ },
+ {
+  "id": "beaten-coffee",
+  "name": "Beaten Coffee",
+  "aka": "Phenti hui coffee · Indian cappuccino",
+  "origin": "India",
+  "temp": "hot",
+  "time": "8 min",
+  "st": [
+   "milk",
+   "dessert"
+  ],
+  "fl": [
+   "caramel",
+   "chocolate"
+  ],
+  "bestFor": [
+   "light",
+   "medlight",
+   "medium",
+   "meddark",
+   "dark"
+  ],
+  "why": "Made with instant coffee, so your bean doesn't matter here — beating it with sugar turns it into a sweet, caramel-coloured foam.",
+  "desc": "Instant coffee and sugar beaten with a little hot water until pale and frothy, then topped with boiling milk.",
+  "base": [],
+  "baseNote": "Uses instant coffee — brewed coffee won't foam like this.",
+  "ing": [
+   [
+    "1½ tsp",
+    "instant coffee"
+   ],
+   [
+    "1½ tbsp",
+    "sugar"
+   ],
+   [
+    "3 tbsp",
+    "hot water"
+   ],
+   [
+    "240 ml",
+    "milk"
+   ],
+   [
+    "optional",
+    "cocoa or cinnamon to dust"
+   ]
+  ],
+  "steps": [
+   "Put the instant coffee and sugar in a mug and add the hot water.",
+   "Beat it hard with a spoon for 3–4 minutes, until it turns pale and frothy.",
+   "Bring the milk to a boil.",
+   "Pour in about a third of the milk and stir, then pour the rest from a height so it froths.",
+   "Dust with cocoa or cinnamon if you like."
+  ],
+  "tips": [
+   "Less water foams faster and thicker — start with less and add drops if it's too stiff to beat.",
+   "The same foam spooned over iced milk is Dalgona."
   ],
   "warn": "",
   "alcohol": false
@@ -1490,6 +1617,10 @@
    {
     "id": "my-moka",
     "amt": "60 ml topped up with 60 ml hot water"
+   },
+   {
+    "id": "my-frenchpress",
+    "amt": "240 ml · half the press"
    }
   ],
   "ing": [
@@ -1582,6 +1713,10 @@
    {
     "id": "my-moka",
     "amt": "60 ml + 120 ml of the spiced water"
+   },
+   {
+    "id": "my-frenchpress",
+    "amt": "steep the coffee in the spiced water below"
    }
   ],
   "ing": [

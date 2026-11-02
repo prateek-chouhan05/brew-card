@@ -5,6 +5,8 @@ import type { IconName } from '../icons';
 export const ICON: Record<SegKind | "serve", IconName> = {pour:"pour", wait:"wait", swirl:"swirl", stir:"stir", press:"press", flip:"flip", serve:"done"};
 
 export const KIND_LABEL: Record<SegKind | "serve", string> = {pour:"Pour", wait:"Wait", swirl:"Swirl", stir:"Stir", press:"Press", flip:"Flip", serve:"Serve"};
+/** The one-word name of a step: its own short name ("Bloom", "Drain") if it has one, else its kind's. */
+export const segWord = (s: { k: SegKind; short?: string }) => s.short ?? KIND_LABEL[s.k];
 
 export const GROUPS: { id: GroupId | ""; label: string; icon: IconName | "" }[] = [
   {id:"",      label:"All",               icon:""},

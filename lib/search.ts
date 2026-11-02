@@ -7,7 +7,7 @@ export const HAY: Record<string, string> = {};
 for (const e of ALL) {
   const bits: (string | number | null | undefined | false)[] = [e.name, e.g, (e.st || []).join(" ")];
   if (e.kind !== "drink") bits.push(e.notes);
-  bits.push(e.o === "inverted" ? "inverted upside down flip" : e.o === "standard" ? "standard on the mug direct" : e.o === "moka" ? "stovetop" : "");
+  bits.push(e.o === "inverted" ? "inverted upside down flip" : e.o === "standard" ? "standard on the mug direct" : e.o === "moka" ? "stovetop" : e.o === "press" ? "french press cafetiere plunger immersion" : e.o === "pourover" ? "v60 hario pour over pourover filter drip cone" : "");
   for (const id of e.fl || []) bits.push(id, FL[id].label);
   if (e.kind === "library" && e.mix) bits.push(e.mix);
   if (e.kind === "house" && e.mixerName) bits.push(e.mixerName, "cola coke soda");
@@ -18,6 +18,7 @@ for (const e of ALL) {
     e.ing.forEach((i) => bits.push(i[1]));
     e.steps.forEach((t) => bits.push(t));
     e.base.forEach((b) => { const h = houseById(b.id); if (h) bits.push(h.name); });
+    if (!e.base.length && e.ing.some((i) => /instant coffee/i.test(i[1]))) bits.push("instant nescafe soluble no brewer");
   } else {
     bits.push(e.author, e.source, e.country, e.year, e.o, e.roast + " roast", e.filter, e.grind, e.fin, e.kw, e.pre);
     if (e.g === "champ") bits.push("champion championship competition wac");

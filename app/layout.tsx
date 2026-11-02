@@ -10,7 +10,7 @@ import { Icon } from "@/components/Icon";
 export const metadata: Metadata = {
   title: { default: "Brew Card", template: "%s · Brew Card" },
   description:
-    "AeroPress and moka pot brew card: recipes matched to your bean's roast and flavour, grind settings for 16 grinders, and a phase-by-phase timer.",
+    "Brew card for AeroPress, French press, V60, moka pot and instant: recipes matched to your bean's roast and flavour, grind settings for 16 grinders, and a phase-by-phase timer.",
   appleWebApp: { capable: true, title: "Brew Card", statusBarStyle: "default" },
   manifest: "/manifest.webmanifest",
   icons: { icon: [{ url: "/icon.svg", type: "image/svg+xml" }, { url: "/icon-192.png", sizes: "192x192", type: "image/png" }], apple: "/apple-touch-icon.png" },
@@ -38,7 +38,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 <a href="https://aeroprecipe.com/recipes" target="_blank" rel="noopener">aeroprecipe.com</a> (or aeropress.com) — each recipe links to
                 its original page. The steps are summarised in Brew Card&apos;s own words. The flavour tags and notes are my own. Grinder settings are derived from{" "}
                 <a href="https://brewmark.io/grinders" target="_blank" rel="noopener">brewmark.io</a>&apos;s published charts. The Clean &amp; Clear method
-                follows James Hoffmann&apos;s Ultimate AeroPress recipe, with water temperature set by your roast. Every setting is a starting point, not a rule.
+                follows James Hoffmann&apos;s Ultimate AeroPress recipe, with water temperature set by your roast. The French press and V60 One Cup
+                methods follow James Hoffmann&apos;s published techniques, and the 4:6 Method follows Tetsu Kasuya&apos;s recipe as Hario publishes it. Every setting is a starting point, not a rule.
               </p>
               <div className="credit">
                 <p className="credit-by">Built by <b>Prateek Chouhan</b></p>

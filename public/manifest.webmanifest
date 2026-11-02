@@ -1,7 +1,7 @@
 {
   "name": "Brew Card",
   "short_name": "Brew Card",
-  "description": "AeroPress and moka pot recipes matched to your beans, grind settings for 16 grinders, and a phase-by-phase brew timer.",
+  "description": "AeroPress, French press, V60, moka pot and instant recipes matched to your beans, grind settings for 16 grinders, and a phase-by-phase brew timer.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",

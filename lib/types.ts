@@ -41,6 +41,10 @@ export interface TimedSeg {
   lbl: string;
   det: string;
   dur: number;
+  /** pours only: share of the recipe's water on the scale when this pour ends (0–1) */
+  to?: number;
+  /** a one-word name for the brew line and status, when the kind's own word is wrong ("Bloom", "Drain") */
+  short?: string;
 }
 /** An untimed checklist step (moka pot, cold brew, drinks) */
 export interface CheckSeg {
@@ -63,7 +67,7 @@ export interface RawHouse {
   ratios: { water?: number; bypass?: number; milk?: number; mixer?: number };
   mixerName?: string;
   bestFor: RoastId[];
-  o: "standard" | "moka" | "jar";
+  o: "standard" | "moka" | "jar" | "press" | "pourover";
   st: string[];
   specs?: [string, string, string][];
   statsNote?: string;
@@ -144,7 +148,7 @@ export interface LibraryEntry {
 
 export type Entry = HouseMethod | Drink | LibraryEntry;
 
-export type Orientation = "standard" | "inverted" | "moka" | "jar" | "none";
+export type Orientation = "standard" | "inverted" | "moka" | "jar" | "press" | "pourover" | "none";
 
 /** A recipe normalised for the brew console */
 export interface Brew {

@@ -3,9 +3,9 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, type ReactNode } from "react";
 import { DRINKS, FL, entryById, houseById, roastById } from "@/lib/catalog";
-import { ICON, KIND_LABEL, VOLUMES } from "@/lib/data/labels";
+import { ICON, VOLUMES, segWord } from "@/lib/data/labels";
 import { grindText, libGrind, numG, toGrinder, unitG } from "@/lib/grind";
-import { buildBrew, canInvert, cap1, closestHouse, entrySub, flipAtSegs, g1, hBypass, hGrind, hMilk, hMixer, hWater, hostOf, mmss, roastNudge } from "@/lib/brew";
+import { buildBrew, canInvert, cap1, closestHouse, entrySub, flipAtSegs, g1, gramSegs, hBypass, hGrind, hMilk, hMixer, hWater, hostOf, mmss, roastNudge } from "@/lib/brew";
 import { tickTone, testTone, ensureAudio } from "@/lib/audio";
 import { timer, useTimer, type TimerBrew } from "@/lib/timer";
 import type { Brew, Entry, HouseMethod } from "@/lib/types";
@@ -33,12 +33,12 @@ export function BrewConsole({ id }: { id: string }) {
   const brew = useMemo(() => buildBrew(entry, inverted), [entry, inverted]);
   const dose = entry.kind === "house" ? prefs.dose(entry) : 0;
   const tbKey = `${brew.id}|${brew.inv ? 1 : 0}|${dose}`;
+  const brewWater = entry.kind === "house" ? (entry.timed ? Math.round(hWater(entry, dose)) : undefined) : entry.kind === "library" ? entry.water : undefined;
   const timerBrew = useMemo<TimerBrew | null>(
-    () => (brew.timed ? { id: brew.id, name: brew.name, icon: brew.icon, segs: brew.segs, o: brew.o, key: tbKey } : null),
-    [brew, tbKey],
+    () => (brew.timed ? { id: brew.id, name: brew.name, icon: brew.icon, segs: gramSegs(brew.segs, brewWater ?? 0), o: brew.o, key: tbKey } : null),
+    [brew, tbKey, brewWater],
   );
   useSpaceToggle(timerBrew);
-  const brewWater = entry.kind === "house" ? (entry.timed ? Math.round(hWater(entry, dose)) : undefined) : entry.kind === "library" ? entry.water : undefined;
 
   // remember the last recipe opened, for the Brew tab
   const { rememberEntry } = prefs;
@@ -181,7 +181,7 @@ export function BrewConsole({ id }: { id: string }) {
         else if (entry.water > CHAMBER_ML) msgs.push(["info", `${entry.water} g fills the chamber to the brim — pour carefully, or use an AeroPress XL.`]);
       }
     } else {
-      if (entry.timed) {
+      if (entry.timed && entry.o === "standard") {
         const w = hWater(entry, dose);
         if (w > CHAMBER_ML) msgs.push(["warning", `${w} ml won't fit the chamber (about ${CHAMBER_ML} ml). Drop the dose, or brew half and dilute.`]);
         else if (brew.inv && w > 230) msgs.push(["warning", "Inverted holds a little less with the plunger in — about 230 ml. Pour slowly and leave a finger's width at the top."]);
@@ -370,6 +370,14 @@ function phaseState(tb: TimerBrew) {
   return { owns, marks, total, startedAt, finished, running, clamped, idx };
 }
 
+/** What to have in place before pressing start, per brewer. */
+const READY: Partial<Record<TimerBrew["o"], [IconName, string]>> = {
+  standard: ["aeropress", "Brewer on the mug — press start as you pour"],
+  inverted: ["inverted", "Brewer upside-down on the scale — not on the mug yet"],
+  press: ["frenchpress", "Press on the scale, zeroed — press start as you pour"],
+  pourover: ["v60", "V60 on the server and scale, zeroed — press start as you pour"],
+};
+
 function TimerPanel({ tb, finish, water }: { tb: TimerBrew; finish: string; water?: number }) {
   useTimer();
   const prefs = useBrewPrefs();
@@ -380,15 +388,18 @@ function TimerPanel({ tb, finish, water }: { tb: TimerBrew; finish: string; wate
   const left = Math.max(0, sg.dur - into);
   const other = timer.active && !s.owns ? timer.brew : null;
 
-  const status = s.finished ? "Done" : !s.startedAt ? KIND_LABEL[tb.segs[0].k] + " first" : (s.running ? "" : "Paused · ") + KIND_LABEL[sg.k];
+  const status = s.finished ? "Done" : !s.startedAt ? segWord(tb.segs[0]) + " first" : (s.running ? "" : "Paused · ") + segWord(sg);
   const secs = s.finished ? 0 : !s.startedAt ? tb.segs[0].dur : Math.ceil(left);
   const nxt = tb.segs[s.idx + 1];
   let up = "", alert = false, upIc: IconName | null = null;
   if (s.finished) up = "";
-  else if (!s.startedAt) { upIc = tb.o === "inverted" ? "inverted" : "aeropress"; up = tb.o === "inverted" ? "Brewer upside-down on the scale — not on the mug yet" : "Brewer on the mug — press start as you pour"; }
+  else if (!s.startedAt) {
+    const ready = READY[tb.o] ?? READY.standard!;
+    upIc = ready[0]; up = ready[1];
+  }
   else if (nxt && nxt.k === "flip" && Math.ceil(s.marks[s.idx + 1] - s.clamped) <= 10) {
     upIc = "flip"; up = `Flip in ${Math.ceil(s.marks[s.idx + 1] - s.clamped)}s — get the cap and mug ready`; alert = true;
-  } else if (nxt) up = `Then — ${KIND_LABEL[nxt.k]}: ${nxt.lbl}`;
+  } else if (nxt) up = `Then — ${segWord(nxt)}: ${nxt.lbl}`;
   else up = "Last phase";
   const finishText = finish.replace(/<[^>]+>/g, "").replace(/&amp;/g, "&").trim();
 
@@ -403,7 +414,7 @@ function TimerPanel({ tb, finish, water }: { tb: TimerBrew; finish: string; wate
           label={`Brew line: phase ${s.idx + 1} of ${tb.segs.length}, ${mmss(s.clamped)} of ${mmss(s.total)}`} />
       </div>
       <div className="dial-zone">
-        {/* Chamber clock: the AeroPress with its moulded numbers lighting up, and the countdown */}
+        {/* the brew clock: the brewer with its quarter markers lighting up, and the countdown */}
         <div className="clock-wrap" id="clock">
           <BrewCanvas tb={tb} kind="clock" water={water} label={`${status}${s.finished ? "" : `, ${secs} seconds left`}`} />
           <span className="sr-only" id="badge">{status}</span>

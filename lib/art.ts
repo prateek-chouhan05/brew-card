@@ -32,7 +32,7 @@ const NAMES: Record<Fill, string> = {
 };
 
 type Vessel = "demitasse" | "cup" | "mug" | "latte" | "rocks" | "highball" | "cortado" | "bowl" | "martini" | "irish" | "kaapi" | "jar" | "olla";
-type Prop = "beans" | "sugar" | "jug" | "bottle" | "shaker" | "glass" | "demi" | "bag" | "lemon" | "cinnamon" | "cocoa" | "egg" | "can" | "cola" | "whiskey" | "ice";
+type Prop = "beans" | "sugar" | "jug" | "bottle" | "shaker" | "glass" | "demi" | "bag" | "lemon" | "cinnamon" | "cocoa" | "egg" | "can" | "cola" | "whiskey" | "ice" | "instant";
 interface Spec {
   v: Vessel;
   layers: [Fill, number][];
@@ -66,6 +66,8 @@ const DRINK: Record<string, Spec> = {
   "egg-coffee": { v: "cup", layers: [["coffee", 0.55], ["egg", 0.45]], art: "dust", steam: true, prop: "egg" },
   "filter-kaapi": { v: "kaapi", layers: [["kaapi", 1]], art: "swirl", steam: true, prop: "beans" },
   dalgona: { v: "latte", layers: [["milk", 0.6], ["frappe", 0.26]], ice: true, prop: "sugar" },
+  "instant-coffee": { v: "mug", layers: [["coffee", 1]], steam: true, prop: "instant" },
+  "beaten-coffee": { v: "mug", layers: [["kaapi", 0.78], ["foam", 0.22]], art: "dust", steam: true, prop: "instant" },
   "cold-brew-drink": { v: "highball", layers: [["coldbrew", 0.86]], ice: true, prop: "ice" },
   "sweet-cream-cold-brew": { v: "highball", layers: [["coldbrew", 0.6], ["cream", 0.24]], ice: true, straw: true, prop: "jug" },
   "coffee-lemonade": { v: "highball", layers: [["lemonade", 0.5], ["coffee", 0.32]], ice: true, garnish: "lemon", prop: "lemon" },
@@ -74,7 +76,7 @@ const DRINK: Record<string, Spec> = {
   "cafe-de-olla": { v: "olla", layers: [["coffee", 1]], garnish: "cinnamon", steam: true, prop: "cinnamon" },
   "coffee-frappe": { v: "highball", layers: [["frappe", 0.82]], whip: true, straw: true, prop: "ice" },
 };
-const HOUSE: Record<string, Spec | "moka"> = {
+const HOUSE: Record<string, Spec | "moka" | "press" | "v60"> = {
   "my-clean": { v: "cup", layers: [["light", 1]], steam: true, prop: "bag" },
   "my-everyday": { v: "mug", layers: [["coffee", 1]], steam: true, prop: "beans" },
   "my-bypass": { v: "latte", layers: [["coffee", 0.8]], steam: true, prop: "bag" },
@@ -82,6 +84,9 @@ const HOUSE: Record<string, Spec | "moka"> = {
   "my-espresso": { v: "demitasse", layers: [["espresso", 1]], steam: true, prop: "sugar" },
   "my-moka": "moka",
   "my-coldbrew": { v: "jar", layers: [["coldbrew", 0.82]], prop: "glass" },
+  "my-frenchpress": "press",
+  "my-v60": "v60",
+  "my-46": "v60",
   "my-coke": { v: "highball", layers: [["cola", 0.55], ["coffee", 0.26]], ice: true, prop: "cola" },
 };
 
@@ -267,6 +272,41 @@ const AERO_INV: Geo = { vb: [-2, 2, 116], foot: 108, cx: 54, draw: () => {
     marks: [[14, "Filter cap goes on at the flip"], [42, "Coffee steeping"], [78, "Plunger seal"], [96, "Plunger, on the table"]], bottom: 104, rx: 28 };
 } };
 
+/** A French press with the plunger lowered to the surface, the way the recipe leaves it. */
+const PRESS: Geo = { vb: [0, 0, 120], foot: 106, cx: 58, draw: () => {
+  const k = .28, cx = 58, r = 20, ri = 17.6;
+  return { o:
+      ln("M79 40 c17 0 17 46 0 46", 6) + ln("M79 40 c17 0 17 46 0 46", 2.4).replace(INK, X.steelLight) +
+      `<path d="${body(cx, 30, 100, r, r, k)}" fill="${X.glass}"/>` +
+      `<path d="${band(cx, 46, 98, ri, ri, k)}" fill="${C.coffee}"/>` + ell(cx, 46, ri, ri * k, C.coffee, `stroke="${C.crema}" stroke-width="2"`) +
+      `<path d="${band(cx, 91, 98, ri, ri, k)}" fill="${X.grounds}"/>` +
+      ln(`M${cx} 12 V43`, 3.4) + ell(cx, 43, ri, ri * k, X.steelLight) +
+      `<path d="${body(cx, 30, 100, r, r, k)}" fill="none" ${K()}/>` +
+      `<path d="${body(cx, 95, 102, r + 1.5, r + 1.5, k)}" fill="${X.steel}" ${K()}/>` +
+      `<path d="M${cx - r} 30 L${cx - r - 7} 26 L${cx - r + 2} 33 Z" fill="${X.steel}" ${K(2)}/>` +
+      `<path d="${body(cx, 24, 31, r + 1.5, r + 1.5, k)}" fill="${X.steel}" ${K()}/>` + ell(cx, 24, r + 1.5, (r + 1.5) * k, X.steelLight) +
+      `<circle cx="${cx}" cy="10" r="4.6" fill="${INK}"/>`,
+    marks: [[10, "Plunger, kept up while it brews"], [43, "Mesh, lowered just to the surface"], [64, "Coffee"], [94, "Grounds settled on the bottom"]], bottom: 98, rx: 31 };
+} };
+
+/** A V60 cone, cut open to show the bed in the paper, on a glass server. */
+const V60: Geo = { vb: [0, 0, 120], foot: 107, cx: 60, draw: (id) => {
+  const k = .28, cx = 60, at = (y: number) => rAt(y, 23, 64, 27, 6.5);
+  const server = `<path d="${body(cx, 72, 104, 22, 19, k)}" fill="${X.glass}"/>` +
+    `<path d="${band(cx, 88, 101, rAt(88, 72, 104, 22, 19) - 2.4, 16.6, k)}" fill="${C.coffee}"/>` +
+    ell(cx, 88, rAt(88, 72, 104, 22, 19) - 2.4, (rAt(88, 72, 104, 22, 19) - 2.4) * k, C.crema, "") +
+    `<path d="${body(cx, 72, 104, 22, 19, k)}" fill="none" ${K()}/>` + ell(cx, 72, 22, 22 * k, "none") + ln("M82 78 c9 1 9 16 -2 17");
+  const cone = cut(id, { cx, y1: 22, y2: 64, r1: 30, r2: 8, k, fill: X.ceramic },
+    `<path d="${body(cx, 23, 64, 27, 6.5, k)}" fill="#fbf6ec"/>` +
+    `<path d="${band(cx, 38, 64, at(38), 6.5, k)}" fill="${C.light}"/>` +
+    `<path d="${band(cx, 50, 64, at(50), 6.5, k)}" fill="${X.grounds}"/>` +
+    ell(cx, 38, at(38), at(38) * k, C.light, `stroke="${C.crema}" stroke-width="2"`) +
+    `<path d="M${cx - 2} 64 v4 M${cx + 1} 70 v3" stroke="${C.coffee}" stroke-width="2" stroke-linecap="round"/>`);
+  return { o: server + `<path d="${body(cx, 64, 69, 21, 21, k)}" fill="${X.ceramic}" ${K()}/>` + ell(cx, 64, 21, 21 * k, X.ceramic) +
+      ln("M88 30 c13 2 11 22 -8 22", 5) + cone,
+    marks: [[38, "Water drawing down"], [52, "Coffee bed in a paper filter"], [88, "Coffee in the server"]], bottom: 101, rx: 28 };
+} };
+
 /* ---------------- companions for the table scene ---------------- */
 const P = 2.4, PK = K(P);
 const bean = (x: number, y: number, a: number) => `<g transform="rotate(${a} ${x} ${y})"><ellipse cx="${x}" cy="${y}" rx="4.6" ry="3.1" fill="${X.bean}"/><path d="M${x - 3} ${y} q3 -1.4 6 0" stroke="#7a5236" stroke-width="1" fill="none"/></g>`;
@@ -290,6 +330,7 @@ const PROPS: Record<Prop, string> = {
   can: cyl(93, 82, 104, 10, "#ffffff") + `<path d="M83 90 H103 V98 H83 Z" fill="${C.condensed}"/>` + `<path d="${body(93, 82, 104, 10, 10, .3)}" fill="none" ${PK}/>`,
   cola: cyl(93, 76, 104, 9, "#c8ccd0") + `<path d="M84 82 H102 V100 H84 Z" fill="#2d2226"/><path d="M84 90 H102" stroke="#e33" stroke-width="2"/>` + `<path d="${body(93, 76, 104, 9, 9, .3)}" fill="none" ${PK}/>`,
   whiskey: cyl(93, 78, 104, 10, "#7a4a22") + `<path d="M85 78 Q85 72 90 69 V60 h6 v9 Q101 72 101 78" fill="#7a4a22" ${PK}/><rect x="89" y="56" width="8" height="5" rx="1" fill="${INK}"/><path d="M84 86 H102 V96 H84 Z" fill="#f3e6cf" ${K(1.6)}/>`,
+  instant: cyl(93, 82, 104, 10, C.chocolate) + `<path d="M83 88 H103 V98 H83 Z" fill="#ffffff" ${K(1.6)}/>` + `<path d="${body(93, 82, 104, 10, 10, .3)}" fill="none" ${PK}/>` + cyl(93, 76, 82, 11, X.wine),
   ice: cube(82, 96, 6.5, "rgba(255,255,255,.85)", "rgba(255,255,255,.6)", "rgba(230,240,246,.8)") + cube(96, 99, 6, "rgba(255,255,255,.85)", "rgba(255,255,255,.6)", "rgba(230,240,246,.8)"),
 };
 
@@ -298,6 +339,8 @@ function geoFor(e: Entry): { g: Geo; prop: Prop } {
   if (e.kind === "library") return { g: e.o === "inverted" ? AERO_INV : AERO, prop: "bag" };
   const s = e.kind === "drink" ? DRINK[e.id] : HOUSE[e.id];
   if (s === "moka") return { g: MOKA, prop: "demi" };
+  if (s === "press") return { g: PRESS, prop: "beans" };
+  if (s === "v60") return { g: V60, prop: "bag" };
   const spec: Spec = s ?? { v: "mug", layers: [["coffee", 1]], prop: "beans" };
   return { g: vessel(spec), prop: spec.prop };
 }

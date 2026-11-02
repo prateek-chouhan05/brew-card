@@ -4,7 +4,7 @@ import { canInvert, suits } from "./brew";
 import type { Entry, FlavourId, GroupId, Roast } from "./types";
 
 /* ---------------- facets, derived from data the card already has ---------------- */
-const BREWER_OF_O: Record<string, string> = { standard: "aeropress", inverted: "aeropress", moka: "moka", jar: "coldbrew" };
+const BREWER_OF_O: Record<string, string> = { standard: "aeropress", inverted: "aeropress", moka: "moka", jar: "coldbrew", press: "frenchpress", pourover: "v60" };
 
 function brewersOf(e: Entry): string[] {
   if (e.kind === "drink") {
@@ -14,6 +14,7 @@ function brewersOf(e: Entry): string[] {
       const br = h && BREWER_OF_O[h.o];
       if (br && !out.includes(br)) out.push(br);
     }
+    if (!e.base.length && e.ing.some((i) => /instant coffee/i.test(i[1]))) out.push("instant");
     return out;
   }
   return BREWER_OF_O[e.o] ? [BREWER_OF_O[e.o]] : [];
@@ -48,7 +49,8 @@ export interface FacetGroup {
 }
 export const FGROUPS: FacetGroup[] = [
   { id: "brewer", label: "Brewer", of: brewersOf, hint: "Coffee drinks count under every brewer that can make their base.",
-    opts: [{ id: "aeropress", label: "AeroPress", icon: "aeropress" }, { id: "moka", label: "Moka pot", icon: "moka" }, { id: "coldbrew", label: "Cold brew jar", icon: "jar" }] },
+    opts: [{ id: "aeropress", label: "AeroPress", icon: "aeropress" }, { id: "frenchpress", label: "French press", icon: "frenchpress" }, { id: "v60", label: "V60 pour-over", icon: "v60" },
+      { id: "moka", label: "Moka pot", icon: "moka" }, { id: "coldbrew", label: "Cold brew jar", icon: "jar" }, { id: "instant", label: "Instant coffee", icon: "instant" }] },
   { id: "orient", label: "AeroPress orientation", of: orientOf, hint: "Your methods with an inverted switch count as both.",
     opts: [{ id: "standard", label: "On the mug", icon: "aeropress" }, { id: "inverted", label: "Inverted", icon: "inverted" }] },
   { id: "serve", label: "Served", of: serveOf,

@@ -121,7 +121,7 @@ export function Discover() {
     <section className="view" id="view-recipes" aria-labelledby="recH">
       <div className="view-h">
         <h1 id="recH" tabIndex={-1}>Find a recipe</h1>
-        <p>Your own methods, 30 classic coffee drinks and {ALL.filter((e) => e.kind === "library").length} AeroPress recipes — ranked for the coffee you&apos;re brewing.</p>
+        <p>Your own methods, {ALL.filter((e) => e.kind === "drink").length} classic coffee drinks and {ALL.filter((e) => e.kind === "library").length} AeroPress recipes — ranked for the coffee you&apos;re brewing.</p>
       </div>
 
       <div className="search" role="search">

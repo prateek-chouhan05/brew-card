@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import { timer, type TimerBrew } from "@/lib/timer";
-import { drawBrewLine, drawChamberClock, moment, readPalette, type DrawEnv, type Moment, type Palette } from "@/lib/brewDraw";
+import { drawBrewLine, drawClock, moment, readPalette, type DrawEnv, type Moment, type Palette } from "@/lib/brewDraw";
 
 export type BrewCanvasKind = "clock" | "line";
 
@@ -47,7 +47,7 @@ export function BrewCanvas({ tb, kind, water, className, label }: { tb: TimerBre
     const now = (): Moment => {
       const b = tbRef.current, owns = timer.owns(b);
       return moment(b.segs, b.o === "inverted", owns ? timer.elapsed() : 0, {
-        started: owns && timer.startedAt > 0, finished: owns && timer.finished, running: owns && timer.running, reduced,
+        started: owns && timer.startedAt > 0, finished: owns && timer.finished, running: owns && timer.running, reduced, drip: b.o === "pourover",
       });
     };
     const draw = () => {
@@ -57,7 +57,7 @@ export function BrewCanvas({ tb, kind, water, className, label }: { tb: TimerBre
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       ctx.globalCompositeOperation = "source-over";
       ctx.clearRect(0, 0, w, h);
-      if (kind === "clock") drawChamberClock(ctx, w, h, m, env);
+      if (kind === "clock") drawClock(ctx, w, h, m, env, tbRef.current.o);
       else drawBrewLine(ctx, w, h, m, env, water);
       const phase = m.finished ? "done" : m.started ? m.seg.k : "ready";
       if (cv.dataset.phase !== phase) cv.dataset.phase = phase;
