@@ -6,29 +6,25 @@ import { FLAVOURS } from "@/lib/data/flavours";
 import { DEFAULT_ENTRY_ID, FL, grinderById, houseById, roastById } from "@/lib/catalog";
 import { hGrind } from "@/lib/brew";
 import { numG, toGrinder, unitG } from "@/lib/grind";
-import { beanStatus, newId, type Bean } from "@/lib/journal";
+import { beanStatus, type Bean } from "@/lib/journal";
 import type { FlavourId, RoastId } from "@/lib/types";
 import { useSetup, type SetupDraft } from "./providers";
 import { useModal } from "./useModal";
 import { ROAST_SWATCH } from "@/lib/icons";
 import { Icon, TasteMark } from "./Icon";
+import { BagFlow } from "./BagFlow";
+import { toast } from "./Toast";
 
 const BRANDS = Array.from(new Set(GRINDERS.map((g) => g.brand)));
 
 const ROAST_SHORT: Record<RoastId, string> = { light: "Light", medlight: "Med-light", medium: "Medium", meddark: "Med-dark", dark: "Dark" };
 
-const today = () => new Date().toISOString().slice(0, 10);
-const longDate = (iso: string) => {
-  try { return new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", year: "numeric" }).format(new Date(iso + "T00:00:00")); }
-  catch { return iso; }
-};
-const daysAgo = (iso: string) => Math.round((Date.now() - new Date(iso + "T00:00:00").getTime()) / 86_400_000);
 
 /** Grinder, roast, taste and your bean bags. Changes apply only on Save; Cancel, ×, Esc and the backdrop discard them. */
 export function SetupDialog() {
   const { grinder, roast, flavour, beans, activeBean, dialog, apply, closeSetup } = useSetup();
   const [draft, setDraft] = useState<SetupDraft>({ grinder: grinder.id, roast: roast.id, flavour, beans, activeBean: activeBean?.id ?? "" });
-  const [form, setForm] = useState<{ id: string; name: string; roasted: string; rest: string } | null>(null);
+  const [bagFlow, setBagFlow] = useState<{ edit: Bean | null } | null>(null);
   const ref = useModal(dialog.open, closeSetup);
   const bodyRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -36,7 +32,7 @@ export function SetupDialog() {
   useEffect(() => {
     if (!dialog.open) return;
     setDraft({ grinder: grinder.id, roast: roast.id, flavour, beans, activeBean: activeBean?.id ?? "" });
-    setForm(null);
+    setBagFlow(null);
     if (bodyRef.current) bodyRef.current.scrollTop = 0;
     // focus the title, not a control, so nothing looks selected or in error when the sheet opens
     try { titleRef.current?.focus({ preventScroll: true }); } catch {}
@@ -53,29 +49,32 @@ export function SetupDialog() {
     const b = d.beans.find((x) => x.id === id);
     return b ? { ...d, activeBean: id, roast: b.roast, flavour: b.flavour } : { ...d, activeBean: "" };
   });
-  /** the draft with the bag being edited folded in: a bag keeps the roast and taste picked above */
-  const withBag = (d: SetupDraft): SetupDraft => {
-    if (!form || !form.name.trim()) return d;
-    const rest = parseInt(form.rest, 10);
-    const bag: Bean = {
-      id: form.id, name: form.name.trim(), roast: d.roast as RoastId, flavour: d.flavour as FlavourId | "",
-      roasted: form.roasted || undefined, rest: rest > 0 ? rest : undefined,
-    };
-    return { ...d, activeBean: bag.id, beans: d.beans.some((x) => x.id === bag.id) ? d.beans.map((x) => (x.id === bag.id ? bag : x)) : [...d.beans, bag] };
-  };
-  const saveBag = () => { setDraft(withBag); setForm(null); };
   const removeBag = (id: string) => setDraft((d) => ({ ...d, beans: d.beans.filter((b) => b.id !== id), activeBean: d.activeBean === id ? "" : d.activeBean }));
-  const editBag = (b: Bean) => { pickBean(b.id); setForm({ id: b.id, name: b.name, roasted: b.roasted ?? "", rest: b.rest ? String(b.rest) : "" }); };
+  /** a bag from the add/edit flow: saved, made active, applied at once (with Undo) */
+  const saveBag = (bag: Bean) => {
+    const before: SetupDraft = { grinder: grinder.id, roast: roast.id, flavour, beans, activeBean: activeBean?.id ?? "" };
+    const isNew = !draft.beans.some((x) => x.id === bag.id);
+    const next: SetupDraft = {
+      ...draft, roast: bag.roast, flavour: bag.flavour, activeBean: bag.id,
+      beans: isNew ? [...draft.beans, bag] : draft.beans.map((x) => (x.id === bag.id ? bag : x)),
+    };
+    apply(next);
+    closeSetup();
+    toast(isNew ? "Bag saved. Recipes are ranked for it now." : "Bag updated.", { label: "Undo", run: () => apply(before) });
+  };
 
   return (
     <dialog className="sheetdlg su" id="setupDlg" aria-labelledby="suH" ref={ref}>
       <form className="sheet" id="setupForm" noValidate onSubmit={(e) => {
         e.preventDefault();
         const by = (e.nativeEvent as SubmitEvent).submitter;
-        if (form && by?.id !== "suSave") { saveBag(); return; } // Enter inside the bag form saves the bag
-        apply(withBag(draft));
+        if (bagFlow || by?.id !== "suSave") return; // Enter inside a field never saves the whole setup
+        apply(draft);
         closeSetup();
       }}>
+        {bagFlow ? (
+          <BagFlow key={bagFlow.edit?.id ?? "new"} grinder={g} edit={bagFlow.edit} onSave={saveBag} onExit={() => setBagFlow(null)} />
+        ) : (<>
         <div className="sheet-h">
           <h2 id="suH" tabIndex={-1} ref={titleRef}>Your coffee setup</h2>
           <button type="button" className="x" aria-label="Close without saving" onClick={closeSetup}>
@@ -166,7 +165,7 @@ export function SetupDialog() {
                         </span>
                       </label>
                       <div className="bag-acts">
-                        <button type="button" className="mini" aria-label={`Edit ${b.name}`} onClick={() => editBag(b)}>Edit</button>
+                        <button type="button" className="mini" aria-label={`Edit ${b.name}`} onClick={() => setBagFlow({ edit: b })}>Edit</button>
                         <button type="button" className="mini" aria-label={`Remove ${b.name}`} onClick={() => removeBag(b.id)}>Remove</button>
                       </div>
                     </div>
@@ -179,38 +178,7 @@ export function SetupDialog() {
                 </label>
               </div>
             )}
-            {form ? (
-              <div className="bag-form">
-                <label className="f">
-                  <span className="f-l">Name</span>
-                  <input type="text" value={form.name} autoComplete="off" placeholder="e.g. Rossette Yelnoorkhan" enterKeyHint="done"
-                    onChange={(e) => setForm({ ...form, name: e.target.value })} autoFocus />
-                </label>
-                <div className="bag-form-row">
-                  <label className="f">
-                    <span className="f-l">Roasted on</span>
-                    <input type="date" value={form.roasted} max={today()} aria-describedby="suRoastedHint" onChange={(e) => setForm({ ...form, roasted: e.target.value })} />
-                    <span className="f-h" id="suRoastedHint">{form.roasted ? `${longDate(form.roasted)} · ${daysAgo(form.roasted)} days ago` : "The date on the bag"}</span>
-                  </label>
-                  <label className="f">
-                    <span className="f-l">Rest days</span>
-                    <input type="number" inputMode="numeric" min={0} max={60} value={form.rest} placeholder="e.g. 7" aria-describedby="suRestHint"
-                      onChange={(e) => setForm({ ...form, rest: e.target.value })} />
-                    <span className="f-h" id="suRestHint">Only if the bag says</span>
-                  </label>
-                </div>
-                <p className="bag-keeps">
-                  <span className="sw" style={{ background: ROAST_SWATCH[r.id] }} aria-hidden="true" />
-                  Saved with <b>{r.label}{fl ? ` · ${fl.label}` : ""}</b> from above.
-                </p>
-                <div className="bag-form-acts">
-                  <button type="button" className="btn ghost" onClick={() => setForm(null)}>Cancel</button>
-                  <button type="button" className="btn primary" disabled={!form.name.trim()} onClick={saveBag}>Save bag</button>
-                </div>
-              </div>
-            ) : (
-              <button type="button" className="panel-act add-bag" onClick={() => setForm({ id: newId(), name: "", roasted: "", rest: "" })}>+ Add a bag</button>
-            )}
+            <button type="button" className="panel-act add-bag" onClick={() => setBagFlow({ edit: null })}>+ Add a bag</button>
           </fieldset>
         </div>
         <div className="sheet-f">
@@ -226,6 +194,7 @@ export function SetupDialog() {
             <button type="submit" className="btn primary" id="suSave">Save setup</button>
           </div>
         </div>
+        </>)}
       </form>
     </dialog>
   );

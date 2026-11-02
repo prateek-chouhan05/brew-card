@@ -10,6 +10,10 @@ export interface Bean {
   roasted?: string;
   /** rest days printed on the bag, if any */
   rest?: number;
+  /** tasting notes as printed on the bag */
+  notes?: string[];
+  /** origin, process, varietal and altitude from the label, for display */
+  origin?: string;
 }
 
 /**

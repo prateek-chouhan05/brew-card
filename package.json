@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:test": "NEXT_PUBLIC_SCAN_URL=https://scan.test/functions/v1/scan-bag next build",
     "start": "serve out",
     "typecheck": "tsc --noEmit",
     "test": "playwright test"

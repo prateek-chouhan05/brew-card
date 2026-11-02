@@ -8,6 +8,7 @@ import { mmss } from "@/lib/brew";
 import { useTimer } from "@/lib/timer";
 import { useBrewPrefs, useSetup } from "./providers";
 import { SetupDialog } from "./SetupDialog";
+import { Toaster } from "./Toast";
 import { VoiceCues } from "./BrewExtras";
 import { useServiceWorker } from "./Pwa";
 import { BrandMark, Icon, RoastSwatch, TasteMark } from "./Icon";
@@ -103,6 +104,7 @@ export function AppShell({ children }: { children: ReactNode }) {
         ))}
       </nav>
       <SetupDialog />
+      <Toaster />
       <VoiceCues />
     </>
   );
