@@ -1,7 +1,8 @@
 /* Brew Card offline support.
    Pages: network first, falling back to the cached copy (so recipes you've opened work offline).
-   Build assets (/_next/static, fonts, icons): cache first — their names change when they change. */
-const VERSION = "brewcard-v2";
+   Build assets (/_next/static, fonts, icons) and the label reader (/ocr/): cache first — their
+   names change when they change. */
+const VERSION = "brewcard-v3";
 const PRECACHE = ["/", "/guides/", "/manifest.webmanifest", "/icon.svg"];
 
 self.addEventListener("install", (e) => {
@@ -21,7 +22,7 @@ self.addEventListener("fetch", (e) => {
   const url = new URL(req.url);
   if (url.origin !== self.location.origin) return;
 
-  const immutable = url.pathname.startsWith("/_next/static/") || /\.(woff2?|png|svg|webmanifest)$/.test(url.pathname);
+  const immutable = url.pathname.startsWith("/_next/static/") || url.pathname.startsWith("/ocr/") || /\.(woff2?|png|svg|webmanifest)$/.test(url.pathname);
   if (immutable) {
     e.respondWith(
       caches.match(req).then((hit) => hit || fetch(req).then((res) => {

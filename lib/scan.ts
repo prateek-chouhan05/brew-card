@@ -1,17 +1,17 @@
 /* ------------------------------------------------------------------------------------------
-   Scan a bag: shrink the photo on the phone, send it to the scan function, and turn what the
-   model read into the bag form. The model only reads the label; the taste family is decided
-   on the phone by lib/tasting.ts, the same way as for typed notes.
+   Scan a bag: read the label on the phone (lib/ocr.ts), pick out the fields (lib/labelText.ts),
+   and turn them into the bag form. The taste family is then decided by lib/tasting.ts, the same
+   way as for typed notes. Nothing is sent anywhere.
    ------------------------------------------------------------------------------------------ */
 import type { RoastId } from "./types";
 import { readBagDate, readRoast, splitNotes, type Hints } from "./tasting";
+import { readLabel } from "./labelText";
+import { OcrError, readBag, type OcrStage } from "./ocr";
 
-/** Set at build time (Vercel env). Without it, scanning is not offered. */
-export const SCAN_URL = process.env.NEXT_PUBLIC_SCAN_URL || "";
-const SCAN_KEY = process.env.NEXT_PUBLIC_SCAN_KEY || "";
-export const scanAvailable = () => !!SCAN_URL;
+/** Scanning needs WebAssembly and workers; every current phone browser has both. */
+export const scanAvailable = () => typeof WebAssembly === "object" && typeof Worker === "function";
 
-/** What the scan function returns: the label as printed, nothing interpreted. */
+/** What was read off the label, as printed: nothing interpreted yet. */
 export interface LabelRead {
   isCoffeeBag: boolean;
   name?: string | null; roaster?: string | null;
@@ -20,47 +20,28 @@ export interface LabelRead {
   origin?: string | null; process?: string | null; varietal?: string | null; altitude?: string | null;
   bitterness?: string | null; acidity?: string | null;
 }
-export type ScanError = "offline" | "unreadable" | "not_coffee" | "limit" | "unavailable" | "timeout";
+export type ScanError = "unreadable" | "not_coffee" | "load" | "timeout";
 export type ScanResult = { ok: true; label: LabelRead } | { ok: false; error: ScanError };
+export type ScanStage = OcrStage;
 
-/** Straighten (EXIF) and shrink to 1600 px on the long edge as a JPEG: fast to send, cheap to read. */
-export async function preparePhoto(file: Blob, max = 1600): Promise<string> {
-  let src: ImageBitmap | HTMLImageElement;
-  try { src = await createImageBitmap(file, { imageOrientation: "from-image" } as ImageBitmapOptions); }
-  catch {
-    src = await new Promise<HTMLImageElement>((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = URL.createObjectURL(file); });
-  }
-  const w = "naturalWidth" in src ? src.naturalWidth : src.width, h = "naturalHeight" in src ? src.naturalHeight : src.height;
-  const k = Math.min(1, max / Math.max(w, h));
-  const c = document.createElement("canvas");
-  c.width = Math.round(w * k); c.height = Math.round(h * k);
-  c.getContext("2d")!.drawImage(src, 0, 0, c.width, c.height);
-  return c.toDataURL("image/jpeg", 0.82).split(",")[1];
-}
-
-export async function scanLabel(jpegBase64: string, signal?: AbortSignal): Promise<ScanResult> {
-  if (typeof navigator !== "undefined" && navigator.onLine === false) return { ok: false, error: "offline" };
-  if (!SCAN_URL) return { ok: false, error: "unavailable" };
-  const timer = new AbortController();
-  const t = setTimeout(() => timer.abort(), 25_000);
-  signal?.addEventListener("abort", () => timer.abort());
+export async function scanBag(file: Blob, opts: { signal?: AbortSignal; onStage?: (s: ScanStage) => void } = {}): Promise<ScanResult> {
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), 90_000);
+  const outer = opts.signal;
+  outer?.addEventListener("abort", () => ctrl.abort());
   try {
-    const res = await fetch(SCAN_URL, {
-      method: "POST", signal: timer.signal,
-      headers: { "content-type": "application/json", ...(SCAN_KEY ? { authorization: `Bearer ${SCAN_KEY}`, apikey: SCAN_KEY } : {}) },
-      body: JSON.stringify({ image: jpegBase64, mediaType: "image/jpeg" }),
-    });
-    const j = await res.json().catch(() => null);
-    if (res.status === 429) return { ok: false, error: "limit" };
-    if (!res.ok || !j) return { ok: false, error: "unavailable" };
-    if (j.ok === false) return { ok: false, error: (["unreadable", "not_coffee", "limit"].includes(j.error) ? j.error : "unavailable") as ScanError };
-    const label = j.label as LabelRead;
-    if (!label?.isCoffeeBag) return { ok: false, error: "not_coffee" };
+    const lines = await readBag(file, { signal: ctrl.signal, onStage: opts.onStage });
+    const label = readLabel(lines);
+    // for tuning on real bags: localStorage.setItem("brewcard.debugScan", "1") logs what was read
+    try { if (localStorage.getItem("brewcard.debugScan")) console.info("brewcard scan", JSON.stringify({ lines, label })); } catch {}
+    const anyText = lines.some((l) => l.conf >= 60 && /[A-Za-z]{3}/.test(l.text));
+    if (!label.isCoffeeBag) return { ok: false, error: anyText ? "not_coffee" : "unreadable" };
     if (!label.notes?.length && !label.name && !label.roast) return { ok: false, error: "unreadable" };
     return { ok: true, label };
-  } catch {
-    if (signal?.aborted) return { ok: false, error: "unavailable" };
-    return { ok: false, error: typeof navigator !== "undefined" && navigator.onLine === false ? "offline" : "timeout" };
+  } catch (e) {
+    if (e instanceof OcrError && e.kind === "load") return { ok: false, error: "load" };
+    if (ctrl.signal.aborted && !outer?.aborted) return { ok: false, error: "timeout" };
+    return { ok: false, error: "unreadable" };
   } finally { clearTimeout(t); }
 }
 

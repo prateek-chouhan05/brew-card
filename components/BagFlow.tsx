@@ -8,7 +8,8 @@ import { numG, toGrinder, unitG } from "@/lib/grind";
 import { ROAST_SWATCH } from "@/lib/icons";
 import { beanStatus, daysSince, newId, type Bean } from "@/lib/journal";
 import { splitNotes, suggest, tasteFamily, type Hints } from "@/lib/tasting";
-import { fromLabel, preparePhoto, scanAvailable, scanLabel, type ScanError } from "@/lib/scan";
+import { fromLabel, scanAvailable, scanBag, type ScanError, type ScanStage } from "@/lib/scan";
+import { ocrReady } from "@/lib/ocr";
 import type { FlavourId, Grinder, RoastId } from "@/lib/types";
 import { Icon, TasteMark } from "./Icon";
 
@@ -33,12 +34,10 @@ const fromBean = (b: Bean): Form => ({
 });
 
 const ERRORS: Record<ScanError, { title: string; text: string }> = {
-  unreadable: { title: "We couldn't read the label", text: "The photo was too blurry, dark or far away to make out the tasting notes. Nothing was saved." },
-  not_coffee: { title: "This doesn't look like a coffee bag", text: "Try the side of the bag with the tasting notes and roast date." },
-  offline: { title: "Scanning needs a connection", text: "You're offline. Type the notes from the bag instead; it works without internet." },
-  limit: { title: "That's today's scans", text: "Type the notes in, or scan again tomorrow." },
-  timeout: { title: "That took too long", text: "The connection may be slow. Try again, or type the notes in." },
-  unavailable: { title: "Scanning isn't working right now", text: "Type the notes from the bag instead. Nothing was saved." },
+  unreadable: { title: "We couldn't read the label", text: "The photo was too blurry, dark, shiny or far away to make out the tasting notes. Nothing was saved." },
+  not_coffee: { title: "This doesn't look like a coffee label", text: "Try the side of the bag with the tasting notes and roast date." },
+  load: { title: "Couldn't get the label reader", text: "The first scan downloads the reader (about 4 MB), so it needs the internet once. Check your connection and try again, or type the notes in." },
+  timeout: { title: "That took too long", text: "Try a closer photo of just the label, or type the notes in." },
 };
 
 /** Before a roast is picked, the date alone: how long ago it was roasted. */
@@ -56,19 +55,14 @@ export function BagFlow({ grinder, edit, onSave, onExit }: { grinder: Grinder; e
   const [form, setForm] = useState<Form>(() => (edit ? fromBean(edit) : blank()));
   const [changing, setChanging] = useState(false);
   const [photo, setPhoto] = useState("");
-  const [stage, setStage] = useState<"prep" | "read">("prep");
+  const [stage, setStage] = useState<ScanStage>("prep");
+  const [firstLoad, setFirstLoad] = useState(false);
   const [err, setErr] = useState<ScanError>("unreadable");
-  const [online, setOnline] = useState(true);
   const fileRef = useRef<HTMLInputElement>(null);
   const noteRef = useRef<HTMLInputElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const abort = useRef<AbortController | null>(null);
 
-  useEffect(() => {
-    const on = () => setOnline(navigator.onLine !== false);
-    on(); window.addEventListener("online", on); window.addEventListener("offline", on);
-    return () => { window.removeEventListener("online", on); window.removeEventListener("offline", on); };
-  }, []);
   useEffect(() => { try { titleRef.current?.focus({ preventScroll: true }); } catch {} }, [view]);
   useEffect(() => () => abort.current?.abort(), []);
   useEffect(() => () => { if (photo) URL.revokeObjectURL(photo); }, [photo]);
@@ -104,14 +98,10 @@ export function BagFlow({ grinder, edit, onSave, onExit }: { grinder: Grinder; e
     e.target.value = "";
     if (!file) return;
     setPhoto(URL.createObjectURL(file));
-    setView("scanning"); setStage("prep");
+    setView("scanning"); setStage("prep"); setFirstLoad(!ocrReady());
     abort.current?.abort();
     const ctrl = new AbortController(); abort.current = ctrl;
-    let b64 = "";
-    try { b64 = await preparePhoto(file); } catch { setErr("unreadable"); setView("error"); return; }
-    if (ctrl.signal.aborted) return;
-    setStage("read");
-    const r = await scanLabel(b64, ctrl.signal);
+    const r = await scanBag(file, { signal: ctrl.signal, onStage: setStage });
     if (ctrl.signal.aborted) return;
     if (!r.ok) { setErr(r.error); setView("error"); return; }
     const v = fromLabel(r.label);
@@ -152,7 +142,7 @@ export function BagFlow({ grinder, edit, onSave, onExit }: { grinder: Grinder; e
         <h2 tabIndex={-1} ref={titleRef} id="bfTitle">{title}</h2>
         {view === "form" && source === "scan" && photo && <img className="bf-thumb" src={photo} alt="Your photo of the bag" />}
         {view === "form" && source === "type" && canScan && (
-          <button type="button" className="bf-switch" onClick={startScan} disabled={!online}><Icon name="camera" />Scan instead</button>
+          <button type="button" className="bf-switch" onClick={startScan}><Icon name="camera" />Scan instead</button>
         )}
       </div>
       <input ref={fileRef} type="file" accept="image/*" className="sr-only" tabIndex={-1} aria-hidden="true" onChange={onFile} id="bfFile" />
@@ -161,7 +151,7 @@ export function BagFlow({ grinder, edit, onSave, onExit }: { grinder: Grinder; e
         {view === "choose" && (
           <div className="bf-choose">
             <p className="bf-lede">Fill it in from the label on the bag. You can change anything before you save.</p>
-            <button type="button" className="bf-opt main" id="bfScan" onClick={startScan} disabled={!online}>
+            <button type="button" className="bf-opt main" id="bfScan" onClick={startScan}>
               <span className="bf-ic"><Icon name="camera" /></span>
               <span className="bf-t"><b>Scan the bag</b><small>Take or choose a photo of the label. We read the tasting notes, roast and roast date.</small></span>
               <Icon name="chevron" />
@@ -172,7 +162,7 @@ export function BagFlow({ grinder, edit, onSave, onExit }: { grinder: Grinder; e
               <Icon name="chevron" />
             </button>
             <p className="bf-fine"><Icon name="info" />
-              {online ? "Scanning needs a connection. The photo is read and then thrown away; nothing is kept." : "You're offline, so scanning is off. Typing works without internet."}
+              Read on your phone: the photo never leaves it. The first scan downloads the label reader, about 4 MB.
             </p>
           </div>
         )}
@@ -185,10 +175,12 @@ export function BagFlow({ grinder, edit, onSave, onExit }: { grinder: Grinder; e
               <span className="bf-pill"><span className="bf-spin" aria-hidden="true" />Reading the label…</span>
             </div>
             <div className="bf-steps" role="status" aria-live="polite">
-              <p className={stage === "prep" ? "now" : "done"}>{stage === "prep" ? <span className="bf-dot" aria-hidden="true" /> : <Icon name="check" />}<span>Straightening and resizing your photo</span></p>
-              <p className={stage === "read" ? "now" : ""}>{stage === "read" ? <span className="bf-dot" aria-hidden="true" /> : <span className="bf-dot off" aria-hidden="true" />}<span>Reading the name, tasting notes, roast and roast date</span></p>
+              {([["prep", "Straightening your photo"], ...(firstLoad ? [["load", "Getting the label reader ready · first time only, about 4 MB"]] : []), ["read", "Reading the name, tasting notes, roast and roast date"]] as [ScanStage, string][]).map(([k, label], i, all) => {
+                const at = all.findIndex(([x]) => x === stage), now = i === at, done = i < at;
+                return <p key={k} className={now ? "now" : done ? "done" : ""}>{done ? <Icon name="check" /> : <span className={"bf-dot" + (now ? "" : " off")} aria-hidden="true" />}<span>{label}</span></p>;
+              })}
             </div>
-            <p className="bf-fine">Usually takes 2–5 seconds. You&apos;ll check everything before it&apos;s saved.</p>
+            <p className="bf-fine">Usually takes 3–8 seconds, on your phone. You&apos;ll check everything before it&apos;s saved.</p>
           </div>
         )}
 
@@ -238,6 +230,9 @@ export function BagFlow({ grinder, edit, onSave, onExit }: { grinder: Grinder; e
                   if (e.key === "Backspace" && !form.draft && form.notes.length) set({ notes: form.notes.slice(0, -1) });
                 }}
                 onBlur={() => { if (form.draft.trim().length > 1) commit(form.draft); }} />
+              {source === "type" && !form.notes.length && !form.draft && (
+                <p className="bf-fine bf-livetext">On iPhone you can also long-press the text in a photo of the bag, copy it, and paste it here.</p>
+              )}
               {ideas.length > 0 && (
                 <p className="bf-ideas"><span>Did you mean</span>{ideas.map((w) => <button type="button" key={w} onMouseDown={(e) => e.preventDefault()} onClick={() => pickIdea(w)}>{w}</button>)}</p>
               )}
@@ -329,7 +324,7 @@ export function BagFlow({ grinder, edit, onSave, onExit }: { grinder: Grinder; e
       {view === "error" && (
         <div className="sheet-f"><div className="sheet-f-acts">
           <button type="button" className="btn ghost" onClick={typeIt}>Type it in</button>
-          {err !== "limit" && err !== "offline" && <button type="button" className="btn primary" onClick={startScan}>Take another photo</button>}
+          <button type="button" className="btn primary" onClick={startScan}>{err === "load" ? "Try again" : "Take another photo"}</button>
         </div></div>
       )}
       {view === "form" && (

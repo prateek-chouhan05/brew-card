@@ -186,42 +186,44 @@ test("typing the bag's notes picks the taste family and explains it", async ({ p
   await expect(p.locator("#bfFamily")).toHaveText("Nutty");
 });
 
-const LABEL = { isCoffeeBag: true, name: "Kalledevarapura Estate", notes: ["Brown sugar", "Roasted almond", "Raisin"], roast: "Medium",
-  roastedOn: "05-10-2026", origin: "Chikmagalur (KA)", process: "PULP_SUN_DRIED", varietal: "Arabica S795", bitterness: "Low", acidity: "Medium" };
 const PNG = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==", "base64");
 
-test("scanning a bag fills the form to check; a bad photo offers typing", async ({ page: p }) => {
+test("scanning a bag reads it on the phone: a sideways label fills the form to check", async ({ page: p }) => {
+  test.setTimeout(150_000);
   await skipSetup(p);
   await p.click("#setupBtn");
   await p.getByRole("button", { name: "+ Add a bag" }).click();
-  test.skip(!(await p.locator("#bfScan").count()), "scanning is not configured in this build (NEXT_PUBLIC_SCAN_URL)");
-  let answer: object = { ok: true, label: LABEL };
-  await p.route("https://scan.test/**", (r) => r.request().method() === "OPTIONS"
-    ? r.fulfill({ status: 204, headers: { "access-control-allow-origin": "*", "access-control-allow-headers": "*" } })
-    : r.fulfill({ status: 200, contentType: "application/json", headers: { "access-control-allow-origin": "*" }, body: JSON.stringify(answer) }));
-  await p.setInputFiles("#bfFile", { name: "bag.png", mimeType: "image/png", buffer: PNG });
-  await expect(p.locator("#bfTitle")).toHaveText("Check what we read");
+  await expect(p.locator("#bfScan")).toBeVisible();
+  await expect(p.locator(".bf-choose")).toContainText("photo never leaves it");
+  const sent: string[] = [];
+  p.on("request", (r) => { const u = r.url(); if (/^https?:/.test(u) && !u.startsWith("http://127.0.0.1")) sent.push(u); });
+  await p.setInputFiles("#bfFile", `${__dirname}/fixtures/bag-kalledevarapura.jpg`);
+  await expect(p.locator(".bf-steps")).toContainText("first time only");
+  await expect(p.locator("#bfTitle")).toHaveText("Check what we read", { timeout: 120_000 });
   await expect(p.locator("#bfName")).toHaveValue("Kalledevarapura Estate");
-  await expect(p.locator(".bf-chips li")).toHaveCount(3);
+  await expect(p.locator(".bf-chips li")).toHaveText(["brown sugar", "roasted almond", "raisin"]);
   await expect(p.locator("#bfFamily")).toHaveText("Caramel & sweet");
   await expect(p.locator('#bfRoast input[value="medium"]')).toBeChecked();
-  // 05-10-2026 is asked, not guessed
+  // 05-10-2026 could be either way round: asked, not guessed
   await expect(p.locator(".bf-ask")).toBeVisible();
-  await expect(p.locator("#bfSave")).toBeDisabled();
   await p.locator(".bf-ask button.yes").click();
   await expect(p.locator("#bfRoasted")).toHaveValue("2026-10-05");
-  await expect(p.locator(".bf-origin")).toContainText("Chikmagalur");
   await p.click("#bfSave");
   expect(await p.evaluate(() => localStorage.getItem("brewcard.flavour"))).toBe("caramel");
   await expect(p.locator(".mb-tag.bean")).toContainText("Kalledevarapura");
-  // an unreadable photo: nothing saved, and typing is one tap away
-  answer = { ok: false, error: "unreadable" };
+  expect(sent, "the photo and the reader stay on this site").toEqual([]);
+});
+
+test("a photo that isn't a label: nothing saved, and typing is one tap away", async ({ page: p }) => {
+  test.setTimeout(150_000);
+  await skipSetup(p);
   await p.click("#setupBtn");
   await p.getByRole("button", { name: "+ Add a bag" }).click();
-  await p.setInputFiles("#bfFile", { name: "blurry.png", mimeType: "image/png", buffer: PNG });
-  await expect(p.locator(".bf-err")).toContainText("couldn't read the label");
+  await p.setInputFiles("#bfFile", { name: "blank.png", mimeType: "image/png", buffer: PNG });
+  await expect(p.locator(".bf-err")).toContainText("couldn't read the label", { timeout: 120_000 });
   await p.locator(".sheet-f").getByRole("button", { name: "Type it in" }).click();
   await expect(p.locator("#bfTitle")).toHaveText("Type it in");
+  await expect(p.locator(".bf-livetext")).toBeVisible();
 });
 
 test("French press, V60 and instant: filters, gram targets that follow the dose, and their own clocks", async ({ page: p }) => {
