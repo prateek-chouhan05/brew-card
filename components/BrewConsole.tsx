@@ -13,7 +13,7 @@ import { useBrewPrefs, useSetup } from "./providers";
 import { StdArt, InvArt } from "./Art";
 import { HeadArt } from "./HeadArt";
 import { BrewCanvas } from "./BrewCanvas";
-import { HandsFree, RateBrew } from "./BrewExtras";
+import { HandsFree, RateBrew, VoicePicker } from "./BrewExtras";
 import { beanStatus } from "@/lib/journal";
 import type { IconName } from "@/lib/icons";
 import { Icon, TasteMark } from "./Icon";
@@ -434,6 +434,7 @@ function TimerPanel({ tb, finish, water }: { tb: TimerBrew; finish: string; wate
           onClick={() => prefs.setVoice(!prefs.voice)}><Icon name={prefs.voice ? "voice" : "voiceOff"} />Voice</button>
         <button className="btn ghost hf-open" id="handsFreeBtn" type="button" onClick={() => setHandsFree(true)}><Icon name="handsfree" />Hands-free</button>
       </div>
+      {prefs.voice && VOLUMES[prefs.volIdx].gain > 0 && <VoicePicker />}
       {handsFree && <HandsFree tb={tb} water={water} onClose={() => setHandsFree(false)} />}
     </div>
   );

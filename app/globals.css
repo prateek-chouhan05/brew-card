@@ -199,6 +199,7 @@ h1{font-size:33px;line-height:1.1;font-weight:700;letter-spacing:-.02em}
 .stepper{display:flex;align-items:center;border:1px solid var(--line);border-radius:9px;overflow:hidden;background:var(--surface)}
 .stepper button{border:0;background:none;padding:6px 13px;font-size:17px;font-weight:600;line-height:1;color:var(--accent)}
 .stepper button:disabled{color:var(--line);cursor:default}
+.btn:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
 .stepper .val{font-family:var(--mono);font-size:14px;font-weight:700;padding:6px 8px;min-width:48px;text-align:center;font-variant-numeric:tabular-nums;border-inline:1px solid var(--line)}
 .dosebar .hint{color:var(--muted)}
 .warnbar{padding:10px 18px;background:var(--flag-soft);border-bottom:1px solid var(--line);font-size:13px;color:var(--flag)}
@@ -1053,6 +1054,12 @@ a,button,summary,label,[role="button"]{-webkit-tap-highlight-color:transparent}
 .bf-form .f-l{font-size:13px;font-weight:600;color:var(--muted)}
 .bf-form .f-h{font-size:12.5px;color:var(--muted)}
 .bf-form input[type=text],.bf-form input[type=date],.bf-form input[type=number]{min-height:var(--tap);border:1px solid var(--line);border-radius:10px;padding:0 12px;font-size:16px;background:var(--surface);color:var(--fg);width:100%;min-width:0}
+/* iOS Safari draws a date field by its own rules: centred text, its own height, and a minimum width that
+   pushes it into the next column. Make it sit, size and align like the fields beside it. */
+.bf-form input[type=text],.bf-form input[type=date],.bf-form input[type=number]{height:var(--tap);max-width:100%;margin:0}
+.bf-form input[type=date]{-webkit-appearance:none;appearance:none;display:block;line-height:calc(var(--tap) - 2px);text-align:left}
+.bf-form input[type=date]::-webkit-date-and-time-value{text-align:left;margin:0}
+.bf-form input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 auto;opacity:.6}
 .bf-form #bfName{font-weight:600}
 .bf-form input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
 .bf-chips{list-style:none;margin:0 0 2px;padding:0;display:flex;flex-wrap:wrap;gap:6px}
@@ -1101,3 +1108,10 @@ a,button,summary,label,[role="button"]{-webkit-tap-highlight-color:transparent}
   .toast{transition:transform 220ms var(--ease-out),opacity 220ms var(--ease-out)}
   @starting-style{ .toast{transform:translateY(12px);opacity:0} }
 }
+
+/* voice for spoken cues */
+.voice-pick{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;margin:4px 18px 0;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.voice-pick label{display:flex;align-items:center;gap:10px;flex:1 1 220px;min-width:0;font-size:13.5px;font-weight:600;color:var(--muted)}
+.voice-pick select{flex:1;min-width:0;min-height:40px;border:1px solid var(--line);border-radius:10px;padding:0 10px;font:inherit;font-size:15px;font-weight:500;color:var(--fg);background:var(--bg)}
+.voice-pick .btn{min-height:40px}
+.voice-tip{flex-basis:100%;margin:0;font-size:12.5px;color:var(--muted);line-height:1.4}

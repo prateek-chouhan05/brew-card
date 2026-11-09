@@ -6,7 +6,7 @@ import { DEFAULT_ENTRY_ID, FL, houseById } from "@/lib/catalog";
 import { hGrind } from "@/lib/brew";
 import { numG, toGrinder, unitG } from "@/lib/grind";
 import { ROAST_SWATCH } from "@/lib/icons";
-import { beanStatus, newId, type Bean } from "@/lib/journal";
+import { beanStatus, daysSince, newId, type Bean } from "@/lib/journal";
 import { splitNotes, suggest, tasteFamily, type Hints } from "@/lib/tasting";
 import { fromLabel, preparePhoto, scanAvailable, scanLabel, type ScanError } from "@/lib/scan";
 import type { FlavourId, Grinder, RoastId } from "@/lib/types";
@@ -40,6 +40,13 @@ const ERRORS: Record<ScanError, { title: string; text: string }> = {
   timeout: { title: "That took too long", text: "The connection may be slow. Try again, or type the notes in." },
   unavailable: { title: "Scanning isn't working right now", text: "Type the notes from the bag instead. Nothing was saved." },
 };
+
+/** Before a roast is picked, the date alone: how long ago it was roasted. */
+function roastedAgo(iso: string) {
+  const d = daysSince(iso);
+  if (d < 0) return "That date is in the future";
+  return d === 0 ? "Roasted today" : `Roasted ${d} day${d === 1 ? "" : "s"} ago`;
+}
 
 /** Add or edit a bag: scan the label, or type the notes, then check and save. Lives inside the setup sheet. */
 export function BagFlow({ grinder, edit, onSave, onExit }: { grinder: Grinder; edit: Bean | null; onSave: (b: Bean) => void; onExit: () => void }) {
@@ -298,7 +305,7 @@ export function BagFlow({ grinder, edit, onSave, onExit }: { grinder: Grinder; e
                 <label className="f">
                   <span className="f-l">Roasted on</span>
                   <input type="date" id="bfRoasted" value={form.roasted} max={today()} onChange={(e) => set({ roasted: e.target.value })} />
-                  <span className={"f-h" + (status ? " bean-st " + status.tone : "")}>{status ? status.label : "Optional. Shows when it's ready."}</span>
+                  <span className={"f-h" + (status ? " bean-st " + status.tone : "")}>{status ? status.label : form.roasted ? roastedAgo(form.roasted) : "Optional. Shows when it's ready."}</span>
                 </label>
                 <label className="f">
                   <span className="f-l">Rest days</span>

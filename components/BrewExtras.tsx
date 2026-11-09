@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { VOLUMES, segWord } from "@/lib/data/labels";
 import { mmss } from "@/lib/brew";
 import { advise, STRENGTHS, TASTES, type Advice, type Strength, type Taste } from "@/lib/journal";
-import { timer, useTimer, type Cue, type TimerBrew } from "@/lib/timer";
+import { timer, useTimer, type TimerBrew } from "@/lib/timer";
+import { cueLine, currentVoice, englishVoices, hasNaturalVoice, saveVoice, speak, subscribeVoices, voicesVersion } from "@/lib/speech";
 import { testTone } from "@/lib/audio";
 import type { Entry, HouseMethod } from "@/lib/types";
 import { BrewCanvas } from "./BrewCanvas";
@@ -102,26 +103,40 @@ export function RateBrew({ entry, tb, grindNow, dose }: { entry: Entry; tb: Time
 }
 
 /* ============ spoken cues ============ */
-function say(text: string) {
-  try {
-    const s = window.speechSynthesis;
-    if (!s) return;
-    s.cancel();
-    const u = new SpeechSynthesisUtterance(text);
-    u.rate = 1.02;
-    s.speak(u);
-  } catch {}
-}
-const cueText = (c: Cue) =>
-  c.type === "flipSoon" ? "Flip in ten seconds. Get the cap and mug ready."
-  : c.type === "done" ? "Done. Enjoy your coffee."
-  : `${c.seg.lbl}. ${c.seg.dur >= 60 ? Math.round(c.seg.dur / 60 * 10) / 10 + " minutes" : c.seg.dur + " seconds"}.`;
-
 /** Speaks each phase when voice cues are on and the volume isn't off. Mounted once in the app shell. */
 export function VoiceCues() {
   const { voice, volIdx } = useBrewPrefs();
-  useEffect(() => timer.onCue((c) => { if (voice && VOLUMES[volIdx].gain > 0) say(cueText(c)); }), [voice, volIdx]);
+  useEffect(() => timer.onCue((c) => {
+    const gain = VOLUMES[volIdx].gain;
+    if (voice && gain > 0) speak(cueLine(c), Math.min(1, 0.4 + gain));
+  }), [voice, volIdx]);
   return null;
+}
+
+const SAMPLE = "Pour to 100 grams, 15 seconds. Slow circles in the middle.";
+const isApple = () => typeof navigator !== "undefined" && (/iPhone|iPad|iPod|Macintosh/.test(navigator.userAgent));
+
+/** Under the timer while voice cues are on: which voice speaks, and a sample to hear it. */
+export function VoicePicker() {
+  useSyncExternalStore(subscribeVoices, voicesVersion, () => "");
+  const voices = englishVoices();
+  const cur = currentVoice();
+  if (!voices.length) return null;
+  const label = (v: SpeechSynthesisVoice) => `${v.name.replace(/\s*\((?:English|en)[^)]*\)/i, "")} · ${v.lang.replace("_", "-")}`;
+  return (
+    <div className="voice-pick" id="voicePick">
+      <label>
+        <span>Voice</span>
+        <select value={cur?.voiceURI ?? ""} onChange={(e) => { saveVoice(e.target.value); speak(SAMPLE); }}>
+          {voices.slice(0, 12).map((v) => <option key={v.voiceURI} value={v.voiceURI}>{label(v)}</option>)}
+        </select>
+      </label>
+      <button type="button" className="btn ghost" onClick={() => speak(SAMPLE)}><Icon name="voice" />Hear it</button>
+      {!hasNaturalVoice() && isApple() && (
+        <p className="voice-tip">For a more natural voice, download one marked Enhanced or Premium on your iPhone: Settings › Accessibility › Spoken Content › Voices › English. It shows up here after.</p>
+      )}
+    </div>
+  );
 }
 
 /* ============ hands-free: full screen, big type, the animation ============ */

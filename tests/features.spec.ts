@@ -276,6 +276,42 @@ test("French press, V60 and instant: filters, gram targets that follow the dose,
   await expect(clock).toHaveAttribute("data-phase", "done");
 });
 
+test("spoken cues: the most natural voice by default, phrased like a person, and a voice picker", async ({ page: p }) => {
+  await p.addInitScript(() => {
+    const said: string[] = [];
+    (window as unknown as { __said: string[] }).__said = said;
+    const voices = [
+      { name: "Samantha", lang: "en-US", voiceURI: "samantha", localService: true, default: true },
+      { name: "Eddy (English (US))", lang: "en-US", voiceURI: "eddy", localService: true, default: false },
+      { name: "Rishi", lang: "en-IN", voiceURI: "rishi", localService: true, default: false },
+      { name: "Ava (Premium)", lang: "en-US", voiceURI: "ava", localService: true, default: false },
+      { name: "Thomas", lang: "fr-FR", voiceURI: "thomas", localService: true, default: false },
+    ];
+    const fake = { speaking: false, pending: false, getVoices: () => voices, cancel() {}, speak(u: { text: string; voice: { name: string } | null }) { said.push((u.voice?.name ?? "-") + "|" + u.text); },
+      addEventListener() {}, removeEventListener() {} };
+    Object.defineProperty(window, "speechSynthesis", { value: fake, configurable: true });
+    (window as unknown as { SpeechSynthesisUtterance: unknown }).SpeechSynthesisUtterance = class { text: string; constructor(t: string) { this.text = t; } };
+  });
+  await p.clock.install();
+  await skipSetup(p, "/recipes/my-frenchpress/");
+  await p.clock.runFor(500);
+  const sel = p.locator("#voicePick select");
+  await expect(sel.locator("option")).toHaveText(["Ava (Premium) · en-US", "Samantha · en-US", "Rishi · en-IN"]); // the novelty voice is left out
+  await expect(sel).toHaveValue("ava");
+  await p.click("#go");
+  await p.clock.runFor(1000);
+  const said = () => p.evaluate(() => (window as unknown as { __said: string[] }).__said);
+  expect((await said())[0]).toBe("Ava (Premium)|Pour all the water, 10 seconds.");
+  await p.clock.fastForward(12_000); await p.clock.runFor(1200);
+  expect((await said()).at(-1)).toBe("Ava (Premium)|Steep, 3 minutes 50. Lid off, hands off.");
+  await p.clock.fastForward(220_000); await p.clock.runFor(1500); // 4 s before the break
+  expect((await said()).at(-1)).toBe("Ava (Premium)|Coming up: break the crust.");
+  // picking another voice is remembered, and it says a sample in that voice
+  await sel.selectOption("rishi");
+  expect((await said()).at(-1)).toMatch(/^Rishi\|Pour to 100 grams/);
+  expect(await p.evaluate(() => localStorage.getItem("brewcard.voicePick"))).toBe("rishi");
+});
+
 test("hands-free mode and voice toggle", async ({ page: p }) => {
   await skipSetup(p, "/recipes/my-clean/");
   await p.click("#handsFreeBtn");

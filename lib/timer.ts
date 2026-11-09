@@ -4,7 +4,7 @@ import { acquireWake, endTone, ensureAudio, releaseWake, tickTone, toneFor } fro
 import type { Orientation, TimedSeg } from "./types";
 import type { IconName } from "./icons";
 
-export interface Cue { type: "phase" | "flipSoon" | "done"; seg: TimedSeg; idx: number }
+export interface Cue { type: "phase" | "flipSoon" | "soon" | "done"; seg: TimedSeg; idx: number }
 
 /** What the timer is running: a snapshot of one recipe's phases. */
 export interface TimerBrew {
@@ -38,6 +38,7 @@ class TimerEngine {
   private finishers = new Set<(id: string) => void>();
   private cueFns = new Set<(c: Cue) => void>();
   private flipWarned = false;
+  private soonIdx = -1;
   /** called with the recipe id when a run completes */
   onFinish = (fn: (id: string) => void) => { this.finishers.add(fn); return () => { this.finishers.delete(fn); }; };
   /** phase changes, the flip warning and the end — for spoken cues */
@@ -71,7 +72,7 @@ class TimerEngine {
     this.total = 0;
     for (const s of b.segs) { this.marks.push(this.total); this.total += s.dur; }
     this.running = false; this.finished = false; this.startedAt = 0; this.pausedAccum = 0; this.pausedAt = 0;
-    this.firedIdx = -1; this.lastCountdown = -1; this.flipWarned = false;
+    this.firedIdx = -1; this.lastCountdown = -1; this.flipWarned = false; this.soonIdx = -1;
     releaseWake();
   }
 
@@ -121,6 +122,11 @@ class TimerEngine {
     if (!this.flipWarned && nxt && nxt.k === "flip" && this.marks[idx + 1] - t <= 10 && this.marks[idx + 1] - t > 0) {
       this.flipWarned = true;
       this.cue({ type: "flipSoon", seg: nxt, idx: idx + 1 });
+    }
+    // after a long wait, a heads-up a few seconds before you need to act
+    if (nxt && nxt.k !== "flip" && b.segs[idx].k === "wait" && b.segs[idx].dur >= 45 && this.soonIdx < idx + 1) {
+      const until = this.marks[idx + 1] - t;
+      if (until <= 6 && until > 0) { this.soonIdx = idx + 1; this.cue({ type: "soon", seg: nxt, idx: idx + 1 }); }
     }
     if (!this.finished && t < this.total) {
       const sg = b.segs[idx], left = Math.ceil(this.marks[idx] + sg.dur - t);
