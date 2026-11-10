@@ -19,7 +19,7 @@ import { Icon, RoastSwatch, TasteMark } from "./Icon";
 const SUGGEST = ["affogato", "vietnamese", "tonic", "hoffmann", "quick"];
 
 export function Discover() {
-  const { grinder, roast, flavour, openSetup, activeBean } = useSetup();
+  const { grinder, roast, flavour, tastes, openSetup, activeBean } = useSetup();
   const { filters, setFilters, mode, setMode, shown, setShown } = useDiscover();
   const brewPrefs = useBrewPrefs();
   const [qText, setQText] = useState(filters.q);
@@ -46,7 +46,7 @@ export function Discover() {
   }, []);
 
   const scores = useMemo(() => searchScores(filters.q), [filters.q]);
-  const coffee = useMemo(() => ({ roast, flavour }), [roast, flavour]);
+  const coffee = useMemo(() => ({ roast, flavour, tastes }), [roast, flavour, tastes]);
   const query: Query = useMemo(() => ({ filters, scores, mode, coffee }), [filters, scores, mode, coffee]);
   const list = useMemo(() => results(query), [query]);
   const blocked = orientBlocked(filters);
@@ -179,6 +179,11 @@ export function Discover() {
                 {activeBean && <span className={"mb-tag bean " + beanStatus(activeBean).tone} title={beanStatus(activeBean).detail}><Icon name="bean" />{activeBean.name} · {beanStatus(activeBean).label}</span>}
                 <span className="mb-tag"><RoastSwatch id={roast.id} />{roast.label}</span>
                 {f ? <span className="mb-tag"><TasteMark id={f.id} />{f.label}</span> : <span className="mb-tag muted">Any flavour</span>}
+                {f && tastes.length > 1 && (
+                  <span className="mb-tag also" title="The bag's other notes count too when ranking recipes">
+                    also {tastes.slice(1).map((t) => <span key={t} className="mb-also"><TasteMark id={t} />{FL[t].label.split(" ")[0].toLowerCase()}</span>)}
+                  </span>
+                )}
               </span>
               <button type="button" className="linkbtn" aria-label="Edit coffee setup" onClick={() => openSetup(false)}>Edit<span className="wide">&nbsp;setup</span></button>
             </div>

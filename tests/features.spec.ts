@@ -278,6 +278,32 @@ test("French press, V60 and instant: filters, gram targets that follow the dose,
   await expect(clock).toHaveAttribute("data-phase", "done");
 });
 
+test("all of a bag's notes count: recipes that suit two of its tastes say so and rank higher", async ({ page: p }) => {
+  await p.goto("/guides/");
+  await p.evaluate(() => {
+    localStorage.setItem("brewcard.setupDone", "1"); localStorage.setItem("brewcard.grinder", "c3s");
+    localStorage.setItem("brewcard.roast", "light"); localStorage.setItem("brewcard.flavour", "citrus");
+    localStorage.setItem("brewcard.beans", JSON.stringify([{ id: "k1", name: "Kerehaklu Estate", roast: "light", flavour: "citrus", notes: ["mosambi", "toffee", "green grape"] }]));
+    localStorage.setItem("brewcard.activeBean", "k1");
+  });
+  await p.goto("/");
+  // the headline taste, and the bag's other tastes beside it
+  await expect(p.locator(".mb-tag.also")).toHaveText(/also\s*caramel\s*fruity/);
+  const card = (name: string) => p.locator("#cards li").filter({ has: p.locator(".c-title", { hasText: new RegExp(`^${name}$`) }) });
+  await expect(card("Bypass Brew").locator(".mbadge")).toHaveText("Roast match · citrus + caramel");
+  // fitting all three tastes puts it near the top, ahead of methods that only fit the citrus
+  const titles = await p.locator("#cards .c-title").allTextContents();
+  expect(titles.slice(0, 5)).toContain("Bypass Brew");
+  // on the recipe: every one of the bag's tastes lights up
+  await p.goto("/recipes/my-46/");
+  await expect(p.locator("#rPair .fltag.on")).toHaveCount(3);
+  await expect(p.locator("#rPair .match.yes")).toContainText("A good match for your citrus bean, and its");
+  // the bag form says the other notes count too
+  await p.click("#setupBtn");
+  await p.locator(".bag-acts").getByRole("button", { name: /Edit/ }).first().click();
+  await expect(p.locator("#bfAlso")).toContainText("caramel & sweet and fruity notes count too");
+});
+
 test("spoken cues: the most natural voice by default, phrased like a person, and a voice picker", async ({ page: p }) => {
   await p.addInitScript(() => {
     const said: string[] = [];

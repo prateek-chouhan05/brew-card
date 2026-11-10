@@ -10,6 +10,7 @@ import { KEYS, load, loadJSON, save } from "@/lib/storage";
 import type { FlavourId, Grinder, HouseMethod, Roast } from "@/lib/types";
 import type { Bean, LogEntry } from "@/lib/journal";
 import { timer } from "@/lib/timer";
+import { bagTastes } from "@/lib/tasting";
 
 /* ============ coffee setup: persistent facts about what you're brewing ============ */
 export interface Setup { grinder: Grinder; roast: Roast; flavour: FlavourId | "" }
@@ -19,6 +20,8 @@ interface SetupCtx extends Setup {
   /** saved bags, and the one you're brewing now ("" = none) */
   beans: Bean[];
   activeBean: Bean | null;
+  /** every taste the bag points to, headline first (just the headline when there's no bag with notes) */
+  tastes: FlavourId[];
   apply: (next: SetupDraft) => void;
   dialog: { open: boolean; firstRun: boolean };
   openSetup: (firstRun?: boolean) => void;
@@ -186,8 +189,9 @@ export function Providers({ children }: { children: ReactNode }) {
   }), [invPref, doses, checked, returnTo, lastEntry, volIdx, grindAdjs, favs, recent, recordBrew, log, voice]);
 
   const activeBean = beans.find((b) => b.id === activeBeanId) ?? null;
-  const setup = useMemo<SetupCtx>(() => ({ grinder, roast, flavour, hydrated, beans, activeBean, apply, dialog, openSetup, closeSetup }),
-    [grinder, roast, flavour, hydrated, beans, activeBean, apply, dialog, openSetup, closeSetup]);
+  const tastes = useMemo(() => bagTastes(activeBean?.notes, flavour), [activeBean, flavour]);
+  const setup = useMemo<SetupCtx>(() => ({ grinder, roast, flavour, hydrated, beans, activeBean, tastes, apply, dialog, openSetup, closeSetup }),
+    [grinder, roast, flavour, hydrated, beans, activeBean, tastes, apply, dialog, openSetup, closeSetup]);
   const discover = useMemo<DiscoverCtx>(() => ({ filters, setFilters, mode, setMode, shown, setShown }), [filters, mode, setMode, shown]);
 
   return (

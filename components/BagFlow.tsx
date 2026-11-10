@@ -7,7 +7,7 @@ import { hGrind } from "@/lib/brew";
 import { numG, toGrinder, unitG } from "@/lib/grind";
 import { ROAST_SWATCH } from "@/lib/icons";
 import { beanStatus, daysSince, newId, type Bean } from "@/lib/journal";
-import { splitNotes, suggest, tasteFamily, type Hints } from "@/lib/tasting";
+import { bagTastes, splitNotes, suggest, tasteFamily, type Hints } from "@/lib/tasting";
 import { fromLabel, scanAvailable, scanBag, type ScanError, type ScanStage } from "@/lib/scan";
 import { ocrReady } from "@/lib/ocr";
 import type { FlavourId, Grinder, RoastId } from "@/lib/types";
@@ -262,6 +262,10 @@ export function BagFlow({ grinder, edit, onSave, onExit }: { grinder: Grinder; e
                 </dl>
               )}
               {taste.hint && !changing && <p className="bf-hint">{taste.hint}</p>}
+              {flavour && !changing && (() => {
+                const others = bagTastes(form.notes, flavour).slice(1);
+                return others.length ? <p className="bf-hint bf-also" id="bfAlso">Its {others.map((t) => FL[t].label.toLowerCase()).join(" and ")} notes count too: recipes that suit them rank higher.</p> : null;
+              })()}
               {changing && (
                 <div className="tps bf-pick" role="radiogroup" aria-label="Taste family">
                   {FLAVOURS.map((x) => (

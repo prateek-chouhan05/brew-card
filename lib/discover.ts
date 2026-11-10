@@ -73,27 +73,40 @@ export function optOf(g: GroupKey, v: string) {
 
 /* ---------------- match my coffee ---------------- */
 export type MatchMode = "first" | "only" | "off";
-export interface Coffee { roast: Roast; flavour: FlavourId | "" }
+/** The coffee being brewed: its roast, its headline taste, and every taste its notes point to. */
+export interface Coffee { roast: Roast; flavour: FlavourId | ""; tastes?: FlavourId[] }
 
-const flIdx = (e: Entry, c: Coffee) => (c.flavour ? (e.fl || []).indexOf(c.flavour) : -1);
+const tastesOf = (c: Coffee): FlavourId[] => (c.tastes?.length ? c.tastes.slice(0, 3) : c.flavour ? [c.flavour] : []);
+/**
+ * How well a recipe's flavour tags fit the bag. Each shared taste counts by where it sits on
+ * both lists: the bag's first taste and the recipe's first tag weigh most (3 × 3 / 3 = 3).
+ */
+function tasteFit(e: Entry, c: Coffee): { score: number; shared: FlavourId[] } {
+  const fl = e.fl || [];
+  let score = 0; const shared: FlavourId[] = [];
+  tastesOf(c).forEach((t, i) => { const j = fl.indexOf(t); if (j !== -1) { score += ((3 - i) * (3 - j)) / 3; shared.push(t); } });
+  return { score, shared };
+}
 export function isMatch(e: Entry, c: Coffee) {
   const r = suits(e, c.roast);
-  return c.flavour ? r && flIdx(e, c) !== -1 : r;
+  return tastesOf(c).length ? r && tasteFit(e, c).shared.length > 0 : r;
 }
 export function matchScore(e: Entry, c: Coffee) {
-  const i = flIdx(e, c);
-  return (suits(e, c.roast) ? 2 : 0) + (i !== -1 ? 3 - i : 0);
+  return (suits(e, c.roast) ? 2 : 0) + tasteFit(e, c).score;
 }
-/** Badges describe the data, they don't promise a result. */
+const SHORT: Record<FlavourId, string> = { fruity: "fruity", citrus: "citrus", floral: "floral", caramel: "caramel", nutty: "nutty", chocolate: "chocolate", bold: "bold" };
+/** Badges describe the data, they don't promise a result. Two shared tastes are named. */
 export function matchBadge(e: Entry, c: Coffee, mode: MatchMode): string {
   if (mode === "off") return "";
-  const r = suits(e, c.roast), i = flIdx(e, c);
-  if (c.flavour) {
-    if (r && i !== -1) return "Roast & flavour match";
-    if (i !== -1) return "Flavour match";
-    return "";
+  const r = suits(e, c.roast);
+  if (!tastesOf(c).length) return r ? "Roast match" : "";
+  const { shared } = tasteFit(e, c);
+  if (!shared.length) return "";
+  if (shared.length >= 2) {
+    const both = `${SHORT[shared[0]]} + ${SHORT[shared[1]]}`;
+    return r ? `Roast match · ${both}` : both.charAt(0).toUpperCase() + both.slice(1);
   }
-  return r ? "Roast match" : "";
+  return r ? "Roast & flavour match" : "Flavour match";
 }
 
 /* ---------------- filtering ---------------- */

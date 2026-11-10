@@ -61,6 +61,15 @@ export function tasteFamily(notes: string[], hints: Hints = {}): TasteResult {
   return { best: ranked[0]?.id ?? null, ranked, notes: matched, hint };
 }
 
+/**
+ * Every taste on the bag, most important first, at most three: the headline family (picked by
+ * hand or suggested) and then the others its notes point to. All of them count when ranking.
+ */
+export function bagTastes(notes: string[] | undefined, headline: FlavourId | ""): FlavourId[] {
+  const ranked = notes?.length ? tasteFamily(notes).ranked.map((r) => r.id) : [];
+  return [...(headline ? [headline] : []), ...ranked.filter((id) => id !== headline)].slice(0, 3);
+}
+
 /** Lexicon words that start with what's being typed: "rai" → raisin. */
 export function suggest(partial: string, n = 3): string[] {
   const p = partial.trim().toLowerCase();

@@ -8,7 +8,7 @@ import { grindText, libGrind, numG, toGrinder, unitG } from "@/lib/grind";
 import { buildBrew, canInvert, cap1, closestHouse, entrySub, flipAtSegs, g1, gramSegs, hBypass, hGrind, hMilk, hMixer, hWater, hostOf, mmss, roastNudge } from "@/lib/brew";
 import { tickTone, testTone, ensureAudio } from "@/lib/audio";
 import { timer, useTimer, type TimerBrew } from "@/lib/timer";
-import type { Brew, Entry, HouseMethod } from "@/lib/types";
+import type { Brew, Entry, FlavourId, HouseMethod } from "@/lib/types";
 import { useBrewPrefs, useSetup } from "./providers";
 import { StdArt, InvArt } from "./Art";
 import { HeadArt } from "./HeadArt";
@@ -25,7 +25,7 @@ export function BrewConsole({ id }: { id: string }) {
   const entry = entryById(id) as Entry;
   const prefs = useBrewPrefs();
   const [favTouched, setFavTouched] = useState(false);
-  const { grinder, roast, flavour, activeBean } = useSetup();
+  const { grinder, roast, flavour, tastes, activeBean } = useSetup();
   const grindAdj = prefs.grindAdj(entry.id);
   const router = useRouter();
 
@@ -81,7 +81,7 @@ export function BrewConsole({ id }: { id: string }) {
         {brew.notes && <p className="notes" id="rNotes">{brew.notes}</p>}
       </div>
 
-      <Pairing entry={entry} flavour={flavour} />
+      <Pairing entry={entry} flavour={flavour} tastes={tastes} />
 
       {canInvert(entry) && (
         <div className="orient-switch" id="orientSwitch" role="group" aria-label="Brew orientation">
@@ -337,19 +337,23 @@ function OrientSetup({ brew }: { brew: Brew }) {
 }
 
 /* ---------------- flavour pairing ---------------- */
-function Pairing({ entry, flavour }: { entry: Entry; flavour: string }) {
+function Pairing({ entry, flavour, tastes }: { entry: Entry; flavour: string; tastes: FlavourId[] }) {
   if (!entry.fl) return null;
-  const f = flavour ? FL[flavour as keyof typeof FL] : null;
+  const f = flavour ? FL[flavour as FlavourId] : null;
+  const fits = tastes.filter((t) => entry.fl.includes(t));
+  const name = (t: FlavourId) => FL[t].label.toLowerCase();
   return (
     <div className="pairing" id="rPair">
       <p className="pl"><Icon name="match" />Best with beans that taste</p>
       <div className="fltags">
-        {entry.fl.map((id) => <span key={id} className={"fltag" + (id === flavour ? " on" : "")}><TasteMark id={id} />{FL[id].label}</span>)}
+        {entry.fl.map((id) => <span key={id} className={"fltag" + (id === flavour ? " on" : tastes.includes(id) ? " on also" : "")}><TasteMark id={id} />{FL[id].label}</span>)}
       </div>
       <p className="why"><b>Why:</b> {entry.why}</p>
-      {f && (entry.fl.includes(f.id)
-        ? <p className="match yes"><Icon name="check" />A good match for your {f.label.toLowerCase()} bean.</p>
-        : <p className="match no">Not the best match for a {f.label.toLowerCase()} bean. It still works — Recipes ranks better matches first.</p>)}
+      {f && (fits.includes(f.id)
+        ? <p className="match yes"><Icon name="check" />A good match for your {name(f.id)} bean{fits.length > 1 ? `, and its ${fits.filter((t) => t !== f.id).map(name).join(" and ")} side too` : ""}.</p>
+        : fits.length
+          ? <p className="match yes"><Icon name="check" />Suits the {fits.map(name).join(" and ")} side of your bean.</p>
+          : <p className="match no">Not the best match for a {name(f.id)} bean. It still works — Recipes ranks better matches first.</p>)}
     </div>
   );
 }
