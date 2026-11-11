@@ -580,7 +580,6 @@ html:has(dialog[open]){overflow:hidden}
 @media (max-width:759px){
   .view{padding-top:14px}
   .view-h{margin-bottom:10px}
-  #view-recipes .view-h p{display:none}
   .suggest{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin-inline:calc(var(--gutter) * -1);padding-inline:var(--gutter);white-space:nowrap}
   .suggest::-webkit-scrollbar{display:none}
   .suggest button{flex:0 0 auto}
