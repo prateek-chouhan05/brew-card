@@ -1,5 +1,5 @@
-import { Discover } from "@/components/Discover";
+import { RecipesHome } from "@/components/Welcome";
 
 export default function RecipesPage() {
-  return <Discover />;
+  return <RecipesHome />;
 }

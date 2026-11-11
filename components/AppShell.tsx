@@ -39,16 +39,16 @@ function useNav() {
 }
 
 function SetupChip() {
-  const { grinder, roast, flavour, openSetup } = useSetup();
+  const { grinder, roast, flavour, words, openSetup } = useSetup();
   const f = flavour ? FL[flavour] : null;
-  const label = `Coffee setup: ${grinder.name}, ${roast.label} roast${f ? ", " + f.label + " beans" : ", no flavour preference"}. Change setup`;
+  const label = `Coffee setup: ${words ? "ready-ground coffee" : grinder.name}, ${roast.label} roast${f ? ", " + f.label + " beans" : ", no flavour preference"}. Change setup`;
   return (
-    <button type="button" className="setup-chip" id="setupBtn" aria-haspopup="dialog" aria-label={label} onClick={() => openSetup(false)}>
+    <button type="button" className="setup-chip" id="setupBtn" aria-haspopup="dialog" aria-label={label} onClick={() => openSetup()}>
       <Icon name="setup" />
       <span className="sc-txt">
         <span className="sc-lbl">Setup</span>{" "}
         <span id="setupSum">
-          {grinderShort(grinder)} · <RoastSwatch id={roast.id} />
+          {words ? "Ground" : grinderShort(grinder)} · <RoastSwatch id={roast.id} />
           <span className="sc-long"> {roast.label}</span>
           {f && (<> · <TasteMark id={f.id} /><span className="sc-long"> {f.label}</span></>)}
         </span>

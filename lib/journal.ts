@@ -75,7 +75,10 @@ export interface Advice {
 }
 
 /** One change at a time: fix taste first (grind), then strength (dose). */
-export function advise(taste: Taste, strength: Strength, h: HouseMethod | null, dose: number, grindNow?: string): Advice {
+export function advise(taste: Taste, strength: Strength, h: HouseMethod | null, dose: number, grindNow?: string, ground = false): Advice {
+  // ready-ground coffee can't be ground finer or coarser, so the fix is time or temperature
+  if (ground && taste === "sour") return { text: "Under-extracted. Next time steep 15–30 s longer or use slightly hotter water. When you buy more, ask for a slightly finer grind." };
+  if (ground && taste === "bitter") return { text: "Over-extracted. Next time steep 15–30 s less or use slightly cooler water. When you buy more, ask for a slightly coarser grind." };
   if (taste === "sour") {
     return h
       ? { text: `Under-extracted. Go one step finer next time${grindNow ? ` (you used ${grindNow})` : ""}, keep everything else the same.`,

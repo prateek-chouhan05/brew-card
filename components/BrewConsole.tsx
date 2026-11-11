@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, type ReactNode } from "react";
 import { DRINKS, FL, entryById, houseById, roastById } from "@/lib/catalog";
 import { ICON, VOLUMES, segWord } from "@/lib/data/labels";
-import { grindText, libGrind, numG, toGrinder, unitG } from "@/lib/grind";
+import { grindText, grindWordText, grindWords, libGrind, numG, toGrinder, unitG } from "@/lib/grind";
 import { buildBrew, canInvert, cap1, closestHouse, entrySub, flipAtSegs, g1, gramSegs, hBypass, hGrind, hMilk, hMixer, hWater, hostOf, mmss, roastNudge } from "@/lib/brew";
 import { tickTone, testTone, ensureAudio } from "@/lib/audio";
 import { timer, useTimer, type TimerBrew } from "@/lib/timer";
@@ -25,7 +25,7 @@ export function BrewConsole({ id }: { id: string }) {
   const entry = entryById(id) as Entry;
   const prefs = useBrewPrefs();
   const [favTouched, setFavTouched] = useState(false);
-  const { grinder, roast, flavour, tastes, activeBean } = useSetup();
+  const { grinder, roast, flavour, tastes, activeBean, words } = useSetup();
   const grindAdj = prefs.grindAdj(entry.id);
   const router = useRouter();
 
@@ -108,15 +108,16 @@ export function BrewConsole({ id }: { id: string }) {
 
   /* ---------------- pieces (plain render helpers, so they don't remount and lose focus) ---------------- */
   function grindLabel(): string {
-    if (entry.kind === "house") return numG(toGrinder(hGrind(entry, roast, grindAdj), grinder), grinder) + " " + unitG(grinder);
-    if (entry.kind === "library" && !entry.link) { const lg = libGrind(entry, grinder); return lg.num + " " + lg.unit; }
+    if (entry.kind === "house") return words ? grindWordText(hGrind(entry, roast, grindAdj)) : numG(toGrinder(hGrind(entry, roast, grindAdj), grinder), grinder) + " " + unitG(grinder);
+    if (entry.kind === "library" && !entry.link) { const lg = libGrind(entry, grinder); return words ? grindWordText(entry.clicks ?? 15) : lg.num + " " + lg.unit; }
     return "";
   }
   function Specs({ entry, dose }: { entry: Entry; dose: number }) {
     if (entry.kind === "drink" || (entry.kind === "library" && (entry.link || !entry.segs))) return null;
     const cells: [string, string, string][] = [];
     if (entry.kind === "house") {
-      cells.push([grindAdj ? `Grind · dialled ${grindAdj > 0 ? "coarser" : "finer"}` : "Grind", numG(toGrinder(hGrind(entry, roast, grindAdj), grinder), grinder), unitG(grinder)]);
+      if (words) { const w = grindWords(hGrind(entry, roast, grindAdj)); cells.push(["Grind", w.word, w.like]); }
+      else cells.push([grindAdj ? `Grind · dialled ${grindAdj > 0 ? "coarser" : "finer"}` : "Grind", numG(toGrinder(hGrind(entry, roast, grindAdj), grinder), grinder), unitG(grinder)]);
       if (entry.timed) {
         cells.push(["Temp", String(roast.temp), "°C"], ["Dose", String(dose), "g"], ["Water", String(hWater(entry, dose)), "ml"]);
         if (hBypass(entry, dose)) cells.push(["Bypass", String(hBypass(entry, dose)), "ml"]);
@@ -128,7 +129,8 @@ export function BrewConsole({ id }: { id: string }) {
       }
     } else {
       const e = entry, lg = libGrind(e, grinder);
-      cells.push([lg.native ? "Author's grind" : "Grind", lg.num, lg.unit], ["Temp", String(e.temp), "°C"], ["Dose", g1(e.dose ?? 0), "g"], ["Water", String(e.water), "g"]);
+      const w = grindWords(e.clicks ?? 15);
+      cells.push(words ? ["Grind", w.word, w.like] : [lg.native ? "Author's grind" : "Grind", lg.num, lg.unit], ["Temp", String(e.temp), "°C"], ["Dose", g1(e.dose ?? 0), "g"], ["Water", String(e.water), "g"]);
       if (e.bypT && e.bypT !== "none") {
         const lab = ({ "hot water": "Bypass", "cold water": "Bypass", ice: "Ice", milk: "Milk", condensed: "Cond. milk", mixer: cap1(e.mix || "") } as Record<string, string>)[e.bypT] || "Bypass";
         if (e.bypT === "condensed") cells.push([lab, e.add || "taste", ""]);
@@ -239,17 +241,19 @@ export function BrewConsole({ id }: { id: string }) {
         </>
       );
     } else if (entry.kind === "house") {
-      const text = entry.prep.replace(/\{\{c:(\d+)\}\}/g, (_m, v) => grindText(+v, grinder));
-      body = <><b><Icon name="prep" />Before you start.</b> {text}</>;
+      const text = entry.prep.replace(/\{\{c:(\d+)\}\}/g, (_m, v) => (words ? grindWords(+v).word.toLowerCase() : grindText(+v, grinder)));
+      const w = grindWords(hGrind(entry, roast, grindAdj));
+      body = <><b><Icon name="prep" />Before you start.</b> {text}
+        {words && <><br /><b><Icon name="grind" />Buying it ground?</b> Ask for a {w.word.toLowerCase()} grind, {w.like}.</>}</>;
     } else {
       const lg = libGrind(entry, grinder);
       body = (
         <>
           {entry.pre && <><b><Icon name="prep" />Before you start.</b> {entry.pre}<br /></>}
           <b><Icon name="filter" />Filter:</b> {entry.filter}.<br />
-          <b><Icon name="grind" />Grind as written:</b> <q>{entry.grind}</q> → {lg.native
+          <b><Icon name="grind" />Grind as written:</b> <q>{entry.grind}</q>{words ? "." : <> → {lg.native
             ? <><b>{lg.num} {lg.unit}</b> — the author&apos;s own setting on your {grinder.name}.</>
-            : <>about <b>{lg.num} {lg.unit}</b> on your {grinder.name}.</>}
+            : <>about <b>{lg.num} {lg.unit}</b> on your {grinder.name}.</>}</>}
         </>
       );
     }

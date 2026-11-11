@@ -16,7 +16,7 @@ const fmtDate = (iso: string) => new Date(iso).toLocaleDateString(undefined, { d
 /* ============ rate the cup → a specific fix for next time ============ */
 export function RateBrew({ entry, tb, grindNow, dose }: { entry: Entry; tb: TimerBrew | null; grindNow: string; dose: number }) {
   const prefs = useBrewPrefs();
-  const { activeBean } = useSetup();
+  const { activeBean, words } = useSetup();
   const t = useTimer();
   const [taste, setTaste] = useState<Taste | null>(null);
   const [strength, setStrength] = useState<Strength | null>(null);
@@ -38,7 +38,7 @@ export function RateBrew({ entry, tb, grindNow, dose }: { entry: Entry; tb: Time
 
   const submit = () => {
     if (!taste || !strength) return;
-    const a = advise(taste, strength, h, dose, grindNow);
+    const a = advise(taste, strength, h, dose, grindNow, words);
     prefs.addLog({ id: entry.id, at: new Date().toISOString(), taste, strength, note: note.trim() || undefined, grind: grindNow, dose: h ? dose : undefined, bean: activeBean?.name });
     prefs.recordBrew(entry.id);
     setResult(a);

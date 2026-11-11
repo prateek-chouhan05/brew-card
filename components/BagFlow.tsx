@@ -4,7 +4,7 @@ import { ROASTS } from "@/lib/data/roasts";
 import { FLAVOURS } from "@/lib/data/flavours";
 import { DEFAULT_ENTRY_ID, FL, houseById } from "@/lib/catalog";
 import { hGrind } from "@/lib/brew";
-import { numG, toGrinder, unitG } from "@/lib/grind";
+import { grindWordText, numG, toGrinder, unitG } from "@/lib/grind";
 import { ROAST_SWATCH } from "@/lib/icons";
 import { beanStatus, daysSince, newId, type Bean } from "@/lib/journal";
 import { bagTastes, splitNotes, suggest, tasteFamily, type Hints } from "@/lib/tasting";
@@ -48,7 +48,7 @@ function roastedAgo(iso: string) {
 }
 
 /** Add or edit a bag: scan the label, or type the notes, then check and save. Lives inside the setup sheet. */
-export function BagFlow({ grinder, edit, onSave, onExit }: { grinder: Grinder; edit: Bean | null; onSave: (b: Bean) => void; onExit: () => void }) {
+export function BagFlow({ grinder, words = false, edit, onSave, onExit }: { grinder: Grinder; words?: boolean; edit: Bean | null; onSave: (b: Bean) => void; onExit: () => void }) {
   const canScan = scanAvailable();
   const [view, setView] = useState<View>(edit ? "form" : canScan ? "choose" : "form");
   const [source, setSource] = useState<Source>(edit ? "edit" : "type");
@@ -125,7 +125,7 @@ export function BagFlow({ grinder, edit, onSave, onExit }: { grinder: Grinder; e
   };
   const roastObj = ROASTS.find((x) => x.id === form.roast);
   const everyday = houseById(DEFAULT_ENTRY_ID);
-  const grindNow = everyday && roastObj ? `${numG(toGrinder(hGrind(everyday, roastObj), grinder), grinder)} ${unitG(grinder)}` : "";
+  const grindNow = !everyday || !roastObj ? "" : words ? grindWordText(hGrind(everyday, roastObj)) : `${numG(toGrinder(hGrind(everyday, roastObj), grinder), grinder)} ${unitG(grinder)}`;
   const status = form.roasted && form.roast ? beanStatus({ id: form.id, name: form.name, roast: form.roast, flavour, roasted: form.roasted, rest: parseInt(form.rest, 10) || undefined }) : null;
 
   const back = () => {

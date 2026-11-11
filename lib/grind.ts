@@ -45,6 +45,20 @@ export function grindText(c3s: number, g: Grinder): string {
   return numG(toGrinder(c3s, g), g) + " " + unitG(g);
 }
 
+/** How fine to grind, in words, for coffee bought ready-ground (or no grinder picked). Bands on the C3S scale. */
+export function grindWords(c3s: number): { word: string; like: string } {
+  if (c3s < 10) return { word: "Very fine", like: "like powdered sugar" };
+  if (c3s < 12.5) return { word: "Fine", like: "like table salt" };
+  if (c3s < 15.5) return { word: "Medium-fine", like: "like fine sand" };
+  if (c3s < 19.5) return { word: "Medium", like: "like coarse sand" };
+  if (c3s < 24) return { word: "Coarse", like: "like sea salt" };
+  return { word: "Extra coarse", like: "like cracked pepper" };
+}
+export function grindWordText(c3s: number): string {
+  const w = grindWords(c3s);
+  return w.word.toLowerCase() + ", " + w.like;
+}
+
 /** Where a recipe's author gave a setting for a specific grinder, show their number on that grinder. */
 export function libGrind(e: LibraryEntry, g: Grinder): { num: string; unit: string; native: boolean } {
   const n = NATIVE[e.id]?.[g.id];

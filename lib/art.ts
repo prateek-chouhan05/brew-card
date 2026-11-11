@@ -83,6 +83,7 @@ const HOUSE: Record<string, Spec | "moka" | "press" | "v60"> = {
   "my-milk": { v: "latte", layers: [["latte", 0.7], ["foam", 0.12]], steam: true, prop: "jug" },
   "my-espresso": { v: "demitasse", layers: [["espresso", 1]], steam: true, prop: "sugar" },
   "my-moka": "moka",
+  "my-kaapi": { v: "kaapi", layers: [["kaapi", 1]], steam: true, prop: "beans" },
   "my-coldbrew": { v: "jar", layers: [["coldbrew", 0.82]], prop: "glass" },
   "my-frenchpress": "press",
   "my-v60": "v60",

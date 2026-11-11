@@ -388,3 +388,89 @@ test("footer credits the builder with LinkedIn and Buy Me a Coffee", async ({ pa
   await expect(credit.getByRole("link", { name: "LinkedIn" })).toHaveAttribute("href", "https://www.linkedin.com/in/prateek9144/");
   await expect(credit.getByRole("link", { name: "Buy me a coffee" })).toHaveAttribute("href", "https://buymeacoffee.com/prateek01");
 });
+
+test("first visit: French press + already ground → only what you can make, Start here, grind in words", async ({ page: p }) => {
+  await p.goto("/");
+  await expect(p.locator("#wH")).toHaveText(/what you already have/);
+  await expect(p.locator("#wNext")).toBeDisabled();
+  await p.click('[data-brewer="frenchpress"]');
+  await expect(p.locator('[data-brewer="frenchpress"]')).toHaveAttribute("aria-pressed", "true");
+  await p.click("#wNext");
+  await expect(p.locator("#wH")).toHaveText("How do you get your coffee?");
+  await p.click("#wGround");
+  await p.click("#wDone");
+  const first = p.locator("#cards li").first();
+  await expect(first).toContainText("French Press");
+  await expect(first.locator(".pill.start")).toHaveText("Start here");
+  await expect(p.locator("#active")).toContainText("French press");
+  await expect(first.locator(".c-stats")).toContainText("coarse, like sea salt");
+  await expect(p.locator("#cards .c-stats").filter({ hasText: /clicks/ })).toHaveCount(0);
+  // the picks are remembered, and the welcome doesn't come back
+  await p.reload();
+  await expect(p.locator("#cards li").first().locator(".pill.start")).toBeVisible();
+  await expect(p.locator("#wH")).toHaveCount(0);
+  // the recipe page: words, no clicks, and what to ask for when buying ground
+  await p.goto("/recipes/my-frenchpress/");
+  await expect(p.locator("#rSpecs")).toContainText("Coarse");
+  await expect(p.locator("#rSpecs")).not.toContainText("clicks");
+  await expect(p.locator("#rPrep")).toContainText("Ask for a coarse grind");
+});
+
+test("first visit: instant only asks nothing more", async ({ page: p }) => {
+  await p.goto("/");
+  await p.click('[data-brewer="instant"]');
+  await p.click("#wNext");
+  await expect(p.locator("#wH")).toHaveCount(0);
+  await expect(p.locator("#cards li").first()).toContainText("Instant, Done Right");
+  await expect(p.locator("#cards li").first().locator(".pill.start")).toBeVisible();
+});
+
+test("first visit: whole beans picks the grinder and keeps exact settings", async ({ page: p }) => {
+  await p.goto("/");
+  await p.click('[data-brewer="v60"]');
+  await p.click("#wNext");
+  await expect(p.locator("#wDone")).toBeDisabled();
+  await p.click("#wBeans");
+  await p.selectOption("#wGrinder", "c40");
+  await p.click("#wDone");
+  await expect(p.locator("#cards li").first()).toContainText("V60 One Cup");
+  await expect(p.locator("#cards li").first().locator(".c-stats")).toContainText("clicks");
+  await expect(p.locator("#setupSum")).toContainText("C40");
+  expect(await p.evaluate(() => localStorage.getItem("brewcard.coffeeForm"))).toBe("beans");
+});
+
+test("first visit: just browsing shows everything, grind in words", async ({ page: p }) => {
+  await p.goto("/");
+  await p.click("#wBrowse");
+  await expect(p.locator("#active")).toHaveCount(0);
+  await expect(p.locator("#cards .pill.start")).toHaveCount(0);
+  await expect(p.locator("#setupSum")).toContainText("Ground");
+  await p.goto("/recipes/my-everyday/");
+  await expect(p.locator("#rSpecs")).not.toContainText("clicks");
+  // sour with ready-ground coffee: no "grind finer" button, a time/temperature fix instead
+  await p.click("#rate summary");
+  await p.locator('#rate input[value="sour"]').check({ force: true });
+  await p.locator('#rate input[value="right"]').check({ force: true });
+  await p.locator("#rate .rate-form button.primary").click();
+  await expect(p.locator(".rate-result")).toContainText("steep 15–30 s longer");
+  await expect(p.locator(".rate-result")).not.toContainText("step finer");
+});
+
+test("a shared recipe link opens the recipe, not the welcome", async ({ page: p }) => {
+  await p.goto("/recipes/latte/");
+  await expect(p.locator("#rName")).toHaveText(/Latte/);
+  await expect(p.locator("#wH")).toHaveCount(0);
+});
+
+test("South Indian filter coffee is made in a South Indian filter", async ({ page: p }) => {
+  await skipSetup(p, "/recipes/filter-kaapi/");
+  await expect(p.locator(".basebtn").first()).toContainText("Filter Kaapi Decoction");
+  await p.locator(".basebtn").first().click();
+  await expect(p).toHaveURL(/\/recipes\/my-kaapi\/$/);
+  await expect(p.locator("#rSpecs")).toContainText("18");
+  await expect(p.locator("#stepList")).toContainText("don't press");
+  await p.goto("/");
+  await p.click('label:has(#d-brewer-southindian)');
+  await expect(p.locator("#cards li").first()).toContainText("South Indian Filter Coffee");
+  await expect(p.locator("#cards li").first().locator(".pill.start")).toBeVisible();
+});

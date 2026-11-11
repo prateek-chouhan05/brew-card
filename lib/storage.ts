@@ -41,4 +41,8 @@ export const KEYS = {
   beans: "brewcard.beans",
   activeBean: "brewcard.activeBean",
   voice: "brewcard.voice",
+  /** brewers picked on the welcome screen (or later under Refine → Brewer); empty = all */
+  brewers: "brewcard.brewers",
+  /** "ground" (grind in words) | "beans" (grinder settings) | "" (saved before this existed: grinder settings) */
+  coffeeForm: "brewcard.coffeeForm",
 } as const;

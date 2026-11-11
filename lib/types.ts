@@ -67,7 +67,7 @@ export interface RawHouse {
   ratios: { water?: number; bypass?: number; milk?: number; mixer?: number };
   mixerName?: string;
   bestFor: RoastId[];
-  o: "standard" | "moka" | "jar" | "press" | "pourover";
+  o: "standard" | "moka" | "filter" | "jar" | "press" | "pourover";
   st: string[];
   specs?: [string, string, string][];
   statsNote?: string;
@@ -148,7 +148,7 @@ export interface LibraryEntry {
 
 export type Entry = HouseMethod | Drink | LibraryEntry;
 
-export type Orientation = "standard" | "inverted" | "moka" | "jar" | "press" | "pourover" | "none";
+export type Orientation = "standard" | "inverted" | "moka" | "filter" | "jar" | "press" | "pourover" | "none";
 
 /** A recipe normalised for the brew console */
 export interface Brew {

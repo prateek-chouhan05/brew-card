@@ -18,12 +18,20 @@ for (const [w, h] of WIDTHS) {
     p.on("console", (m) => { if (m.type() === "error") errors.push(m.text()); });
     await p.goto("/");
 
-    // first run: setup dialog with defaults, fits the screen, scrolls internally
+    // first run: the welcome, no dialog; "Just browsing" goes straight to every recipe
+    await expect(p.locator("#wH")).toBeVisible();
+    await expect(p.locator("#setupDlg[open]")).toHaveCount(0);
+    expect(await overflow(p)).toBeLessThanOrEqual(0);
+    await p.click("#wBrowse");
+    await expect(p.locator("#cards li").first()).toBeVisible();
+
+    // setup sheet: fits the screen, scrolls internally
+    await p.click("#setupBtn");
     await expect(p.locator("#setupDlg[open]")).toBeVisible();
     await p.waitForTimeout(300); // let the sheet's slide-in finish before measuring
     const box = (await p.locator("#setupDlg .sheet").boundingBox())!;
     expect(box.x >= 0 && box.y >= 0 && box.x + box.width <= w + 0.5 && box.y + box.height <= h + 0.5).toBe(true);
-    await expect(p.locator("#suCancel")).toHaveText("Skip for now");
+    await p.locator('#suForm input[value="beans"]').check({ force: true });
     await p.locator('#suRoast input[value="medlight"]').check({ force: true });
     await p.locator('#suFlavour input[value="fruity"]').check({ force: true });
     await p.selectOption("#suGrinder", "c40");
@@ -150,7 +158,7 @@ for (const [w, h] of WIDTHS) {
 
 test("drink → base → back to the drink", async ({ page: p }) => {
   await p.goto("/");
-  await p.click("#suCancel");
+  await p.click("#wBrowse");
   await p.goto("/recipes/affogato/");
   await p.locator(".basebtn").first().click();
   await expect(p).toHaveURL(/\/recipes\/my-espresso\/$/);
@@ -162,7 +170,6 @@ test("drink → base → back to the drink", async ({ page: p }) => {
 
 test("library recipes show the full recipe and cite the source", async ({ page: p }) => {
   await p.goto("/recipes/wac-2023-1st/");
-  await p.click("#suCancel");
   await expect(p.locator("#rCite a")).toHaveAttribute("href", /aeroprecipe\.com/);
   await expect(p.locator("#rCite")).toContainText("Tay Wipvasutt");
   await expect(p.locator("#rPrep")).toContainText("Grind as written");
@@ -172,7 +179,6 @@ test("library recipes show the full recipe and cite the source", async ({ page: 
 
 test("inverted switch adds a flip and is remembered", async ({ page: p }) => {
   await p.goto("/recipes/my-everyday/");
-  await p.click("#suCancel");
   await p.click("#oInv");
   await expect(p.locator("#stepList")).toContainText("flip onto your mug");
   await expect(p.locator("#rSetup")).toContainText("Inverted");
@@ -184,7 +190,7 @@ test("resize, zoom and keyboard", async ({ browser }) => {
   const ctx = await browser.newContext({ viewport: { width: 375, height: 740 } });
   const p = await ctx.newPage();
   await p.goto("/");
-  await p.click("#suCancel");
+  await p.click("#wBrowse");
   expect(await p.evaluate(() => localStorage.getItem("brewcard.setupDone"))).toBe("1");
   await p.click("#filtersBtn");
   await p.setViewportSize({ width: 1280, height: 800 });
@@ -215,11 +221,15 @@ test("resize, zoom and keyboard", async ({ browser }) => {
   await ctx.close();
 });
 
-test("existing users keep their setup and skip the first-run dialog", async ({ page: p }) => {
+test("existing users keep their setup and skip the welcome", async ({ page: p }) => {
   await p.goto("/guides/");
   await p.evaluate(() => { localStorage.clear(); localStorage.setItem("brewcard.grinder", "c3s"); localStorage.setItem("brewcard.flavour", "citrus"); });
   await p.reload();
+  await p.goto("/");
   await p.waitForTimeout(400);
   await expect(p.locator("#setupDlg[open]")).toHaveCount(0);
+  await expect(p.locator("#wH")).toHaveCount(0);
+  await expect(p.locator("#cards li").first()).toBeVisible();
   expect(await p.getAttribute("#setupBtn", "aria-label")).toContain("Citrus");
+  expect(await p.getAttribute("#setupBtn", "aria-label")).toContain("Timemore");
 });

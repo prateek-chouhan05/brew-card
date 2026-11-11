@@ -100,6 +100,24 @@ export const HOUSE: RawHouse[] = [
     ]
   },
   {
+    id:"my-kaapi", icon:"filter", name:"Filter Kaapi Decoction",
+    tagline:"Steel filter, about 10 minutes",
+    notes:"The South Indian steel filter: hot water drips slowly through fine coffee into a strong decoction for milky kaapi. It runs itself, so there is no clock — tap each step as you go.",
+    grindBase:11, dose:0, ratios:{},
+    bestFor:["medium","meddark","dark"], o:"filter", st:["milk"],
+    specs:[["Coffee","18","g"],["Water","100","ml"],["Drip","10","min"],["Milk","~1:1","decoction"]], statsNote:"steel filter · water just off the boil",
+    prep:"You need a South Indian steel filter (the top chamber with holes, its pressing disc and lid) and filter coffee powder. A chicory blend gives the classic taste.",
+    timed:false,
+    segs:[
+      {ic:"grind", lbl:"Put 18 g of coffee in the top chamber", det:"About 3 tablespoons. Tap the filter so it sits level."},
+      {ic:"press", lbl:"Rest the disc on top, don't press",     det:"It only levels the coffee. Pressing hard slows the drip to a crawl."},
+      {ic:"pour", lbl:"Pour 100 ml of water just off the boil",   det:"Let the kettle sit about a minute after boiling, then pour around the disc and close the lid."},
+      {ic:"wait", lbl:"Leave it to drip, about 10 minutes",      det:"Don't lift the lid. If it's still dripping after 15 minutes, the powder is too fine or pressed too hard."},
+      {ic:"milk", lbl:"Mix with hot milk and sugar",             det:"About 50 ml of decoction to 60 ml of hot milk for one cup. More milk makes it milder."}
+    ],
+    finish:"<b>Leftover decoction</b> keeps in the fridge for up to 3 days."
+  },
+  {
     id:"my-coldbrew", icon:"jar", name:"Cold Brew Concentrate",
     tagline:"Overnight in the fridge",
     notes:"Coarse coffee steeped in cold water for 12–18 hours, then filtered. Smooth, sweet and low in acidity, and it keeps for about a week — the base for quick iced drinks.",

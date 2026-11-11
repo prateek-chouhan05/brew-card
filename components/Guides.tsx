@@ -45,7 +45,7 @@ export function Guides() {
           <section className="panel" id="g-flavour">
             <h2><Icon name="bean" /><span>Bean flavour guide</span></h2>
             <p className="lede">Read the tasting notes on your bag and pick the closest family in your coffee setup. Every recipe is tagged with the families it brings out best, with the reason. The tags are my judgement from each recipe&apos;s temperature, ratio and agitation, and the beans its author used.</p>
-            <button type="button" className="panel-act" onClick={() => openSetup(false)}>Set your bean flavour</button>
+            <button type="button" className="panel-act" onClick={() => openSetup()}>Set your bean flavour</button>
             <div className="fl-guide" id="flTable">
               {FLAVOURS.map((f) => {
                 const n = ALL.filter((e) => (e.fl || []).includes(f.id)).length;
@@ -88,7 +88,7 @@ export function Guides() {
               </table>
             </div>
             <p className="lede">Timings assume a kettle in a normal room, lid off. Calibrate once if you ever get a thermometer.</p>
-            <button type="button" className="panel-act" onClick={() => openSetup(false)}>Change roast</button>
+            <button type="button" className="panel-act" onClick={() => openSetup()}>Change roast</button>
           </section>
 
           <section className="panel" id="g-grinder">
@@ -117,7 +117,7 @@ export function Guides() {
               </table>
             </div>
             <p className="lede">Your methods&apos; grind settings are converted between grinders by matching brew methods on brewmark.io&apos;s shared grind scale. Treat every number as a starting point and expect to move a step or two.</p>
-            <button type="button" className="panel-act" onClick={() => openSetup(false)}>Change grinder</button>
+            <button type="button" className="panel-act" onClick={() => openSetup()}>Change grinder</button>
           </section>
 
           <section className="panel" id="g-orient">

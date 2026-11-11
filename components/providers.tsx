@@ -5,16 +5,20 @@ import { GRINDERS } from "@/lib/data/grinders";
 import { ROASTS } from "@/lib/data/roasts";
 import { VOLUMES } from "@/lib/data/labels";
 import { setVolume } from "@/lib/audio";
-import { emptyRefine, type Filters, type MatchMode } from "@/lib/discover";
+import { FGROUPS, emptyRefine, type Filters, type MatchMode } from "@/lib/discover";
 import { KEYS, load, loadJSON, save } from "@/lib/storage";
 import type { FlavourId, Grinder, HouseMethod, Roast } from "@/lib/types";
 import type { Bean, LogEntry } from "@/lib/journal";
 import { timer } from "@/lib/timer";
 import { bagTastes } from "@/lib/tasting";
 
+const BREWERS = FGROUPS.find((g) => g.id === "brewer")!.opts.map((o) => o.id);
+
 /* ============ coffee setup: persistent facts about what you're brewing ============ */
+export type CoffeeForm = "ground" | "beans" | "";
 export interface Setup { grinder: Grinder; roast: Roast; flavour: FlavourId | "" }
-export interface SetupDraft { grinder: string; roast: string; flavour: string; beans: Bean[]; activeBean: string }
+export interface SetupDraft { grinder: string; roast: string; flavour: string; beans: Bean[]; activeBean: string; form: CoffeeForm }
+export interface WelcomeAnswers { brewers: string[]; form: CoffeeForm; grinder?: string }
 interface SetupCtx extends Setup {
   hydrated: boolean;
   /** saved bags, and the one you're brewing now ("" = none) */
@@ -23,8 +27,14 @@ interface SetupCtx extends Setup {
   /** every taste the bag points to, headline first (just the headline when there's no bag with notes) */
   tastes: FlavourId[];
   apply: (next: SetupDraft) => void;
-  dialog: { open: boolean; firstRun: boolean };
-  openSetup: (firstRun?: boolean) => void;
+  /** how the coffee comes: ready-ground shows grind in words, never grinder settings */
+  form: CoffeeForm;
+  words: boolean;
+  /** first visit with nothing saved: the welcome screen replaces Recipes until it's answered */
+  welcome: boolean;
+  finishWelcome: (a: WelcomeAnswers) => void;
+  dialog: { open: boolean };
+  openSetup: () => void;
   closeSetup: () => void;
 }
 const SetupContext = createContext<SetupCtx | null>(null);
@@ -75,9 +85,11 @@ export function Providers({ children }: { children: ReactNode }) {
   const [roast, setRoast] = useState<Roast>(ROASTS[2]);
   const [flavour, setFlavour] = useState<FlavourId | "">("");
   const [hydrated, setHydrated] = useState(false);
-  const [dialog, setDialog] = useState({ open: false, firstRun: false });
+  const [dialog, setDialog] = useState({ open: false });
   const [beans, setBeans] = useState<Bean[]>([]);
   const [activeBeanId, setActiveBeanId] = useState("");
+  const [form, setForm] = useState<CoffeeForm>("");
+  const [welcome, setWelcome] = useState(false);
 
   /* ---- discovery ---- */
   const [filters, setFilters] = useState<Filters>({ q: "", col: "", f: emptyRefine() });
@@ -121,18 +133,35 @@ export function Providers({ children }: { children: ReactNode }) {
     setBeans(loadJSON<Bean[]>(KEYS.beans, []));
     setActiveBeanId(load(KEYS.activeBean, ""));
     setVoiceState(load(KEYS.voice, "1") !== "0");
+    const fm = load(KEYS.coffeeForm, "");
+    setForm(fm === "ground" || fm === "beans" ? fm : "");
+    const brewers = loadJSON<string[]>(KEYS.brewers, []).filter((b) => BREWERS.includes(b));
+    if (brewers.length) setFilters((f) => ({ ...f, f: { ...f.f, brewer: brewers } }));
     setHydrated(true);
-    // First run: nothing saved yet → ask, with sensible defaults preselected.
-    if (load(KEYS.setupDone, "") !== "1" && load(KEYS.grinder, "") === "") {
-      setTimeout(() => setDialog({ open: true, firstRun: true }), 250);
-    }
+    // First run: nothing saved yet → the welcome screen asks what you brew with.
+    if (load(KEYS.setupDone, "") !== "1" && load(KEYS.grinder, "") === "") setWelcome(true);
+  }, []);
+
+  // the Brewer filter is remembered, so the brewers you picked stay picked
+  const brewerKey = filters.f.brewer.join(",");
+  useEffect(() => { if (hydrated) save(KEYS.brewers, JSON.stringify(brewerKey ? brewerKey.split(",") : [])); }, [hydrated, brewerKey]);
+
+  const finishWelcome = useCallback((a: WelcomeAnswers) => {
+    setForm(a.form); save(KEYS.coffeeForm, a.form);
+    const g = a.grinder ? grinderById(a.grinder) : undefined;
+    if (g) { setGrinder(g); save(KEYS.grinder, g.id); }
+    setFilters((f) => ({ ...f, f: { ...f.f, brewer: a.brewers, orient: a.brewers.includes("aeropress") ? f.f.orient : [] } }));
+    setShown(PAGE);
+    save(KEYS.setupDone, "1");
+    setWelcome(false);
   }, []);
 
   const apply = useCallback((next: SetupDraft) => {
     const g = grinderById(next.grinder) ?? GRINDERS[0];
     const r = roastById(next.roast) ?? ROASTS[2];
     const f: FlavourId | "" = next.flavour in FL ? (next.flavour as FlavourId) : "";
-    setGrinder(g); setRoast(r); setFlavour(f);
+    setGrinder(g); setRoast(r); setFlavour(f); setForm(next.form);
+    save(KEYS.coffeeForm, next.form);
     save(KEYS.grinder, g.id); save(KEYS.roast, r.id); save(KEYS.flavour, f); save(KEYS.setupDone, "1");
     // the active bag follows whatever roast and flavour you saved
     const bs = next.beans.map((b) => (b.id === next.activeBean ? { ...b, roast: r.id, flavour: f } : b));
@@ -140,8 +169,8 @@ export function Providers({ children }: { children: ReactNode }) {
     setBeans(bs); setActiveBeanId(active);
     save(KEYS.beans, JSON.stringify(bs)); save(KEYS.activeBean, active);
   }, []);
-  const openSetup = useCallback((firstRun = false) => setDialog({ open: true, firstRun }), []);
-  const closeSetup = useCallback(() => { save(KEYS.setupDone, "1"); setDialog({ open: false, firstRun: false }); }, []);
+  const openSetup = useCallback(() => setDialog({ open: true }), []);
+  const closeSetup = useCallback(() => { save(KEYS.setupDone, "1"); setDialog({ open: false }); }, []);
 
   const setMode = useCallback((m: MatchMode) => { setModeState(m); save(KEYS.matchMode, m); }, []);
 
@@ -190,8 +219,8 @@ export function Providers({ children }: { children: ReactNode }) {
 
   const activeBean = beans.find((b) => b.id === activeBeanId) ?? null;
   const tastes = useMemo(() => bagTastes(activeBean?.notes, flavour), [activeBean, flavour]);
-  const setup = useMemo<SetupCtx>(() => ({ grinder, roast, flavour, hydrated, beans, activeBean, tastes, apply, dialog, openSetup, closeSetup }),
-    [grinder, roast, flavour, hydrated, beans, activeBean, tastes, apply, dialog, openSetup, closeSetup]);
+  const setup = useMemo<SetupCtx>(() => ({ grinder, roast, flavour, hydrated, beans, activeBean, tastes, apply, form, words: form === "ground", welcome, finishWelcome, dialog, openSetup, closeSetup }),
+    [grinder, roast, flavour, hydrated, beans, activeBean, tastes, apply, form, welcome, finishWelcome, dialog, openSetup, closeSetup]);
   const discover = useMemo<DiscoverCtx>(() => ({ filters, setFilters, mode, setMode, shown, setShown }), [filters, mode, setMode, shown]);
 
   return (

@@ -2,7 +2,7 @@ import { HOUSE, houseById } from "./catalog";
 import { LIB_ROAST_RANK } from "./data/roasts";
 import { GROUP_ICON } from "./data/labels";
 import type { IconName } from "./icons";
-import { grindText, libGrind } from "./grind";
+import { grindText, grindWordText, libGrind } from "./grind";
 import type { Brew, CheckSeg, Entry, Grinder, HouseMethod, LibraryEntry, Roast, TimedSeg } from "./types";
 
 /* ---------------- formatting ---------------- */
@@ -92,6 +92,7 @@ function libFlipAt(e: LibraryEntry): number | null {
 export function orientPill(e: Entry, inverted: boolean): { icon: IconName; text: string; inv: boolean } {
   if (e.kind === "drink") return { icon: "assemble", text: `Assemble · ${e.temp === "hot" ? "hot" : "iced"}${e.alcohol ? " · alcohol" : ""}`, inv: false };
   if (e.o === "moka") return { icon: "stovetop", text: "Stovetop", inv: false };
+  if (e.o === "filter") return { icon: "filter", text: "South Indian filter", inv: false };
   if (e.o === "jar") return { icon: "jar", text: "Jar · overnight", inv: false };
   if (e.o === "press") return { icon: "frenchpress", text: "French press", inv: false };
   if (e.o === "pourover") return { icon: "v60", text: "V60 · paper filter", inv: false };
@@ -161,7 +162,7 @@ export function esc(s: unknown): string {
 }
 
 /* ---------------- card text ---------------- */
-export interface Ctx { grinder: Grinder; roast: Roast; dose: (h: HouseMethod) => number; grindAdj?: (id: string) => number }
+export interface Ctx { grinder: Grinder; roast: Roast; dose: (h: HouseMethod) => number; grindAdj?: (id: string) => number; words?: boolean }
 
 export function entryStats(e: Entry, c: Ctx): string {
   if (e.kind === "drink") {
@@ -172,7 +173,8 @@ export function entryStats(e: Entry, c: Ctx): string {
   }
   if (e.kind === "library" && (e.link || !e.segs)) return "Full recipe on " + hostOf(e.url);
   if (e.kind === "house") {
-    const gr = grindText(hGrind(e, c.roast, c.grindAdj?.(e.id) ?? 0), c.grinder);
+    const c3s = hGrind(e, c.roast, c.grindAdj?.(e.id) ?? 0);
+    const gr = c.words ? grindWordText(c3s) : grindText(c3s, c.grinder);
     if (!e.timed) return gr + " · " + (e.statsNote || "");
     const d = c.dose(e), w = hWater(e, d), b = hBypass(e, d), m = hMilk(e, d), x = hMixer(e, d);
     let vol = w + (b ? "+" + b : "") + " g";
@@ -187,7 +189,8 @@ export function entryStats(e: Entry, c: Ctx): string {
   if (e.bypT === "condensed") vol2 = `${water} g + condensed milk`;
   if (e.bypT === "mixer") vol2 = `${water} g + ${e.byp ? e.byp + " ml " : ""}${e.mix}`;
   const lg = libGrind(e, c.grinder);
-  return `${g1(e.dose ?? 0)} g → ${vol2} · ${e.temp} °C · ${lg.num} ${lg.unit}${lg.native ? " (author's)" : ""}`;
+  const lgr = c.words ? grindWordText(e.clicks ?? 15) : `${lg.num} ${lg.unit}${lg.native ? " (author's)" : ""}`;
+  return `${g1(e.dose ?? 0)} g → ${vol2} · ${e.temp} °C · ${lgr}`;
 }
 
 export function entrySub(e: Entry): string {

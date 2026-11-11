@@ -7,7 +7,7 @@ export const HAY: Record<string, string> = {};
 for (const e of ALL) {
   const bits: (string | number | null | undefined | false)[] = [e.name, e.g, (e.st || []).join(" ")];
   if (e.kind !== "drink") bits.push(e.notes);
-  bits.push(e.o === "inverted" ? "inverted upside down flip" : e.o === "standard" ? "standard on the mug direct" : e.o === "moka" ? "stovetop" : e.o === "press" ? "french press cafetiere plunger immersion" : e.o === "pourover" ? "v60 hario pour over pourover filter drip cone" : "");
+  bits.push(e.o === "inverted" ? "inverted upside down flip" : e.o === "standard" ? "standard on the mug direct" : e.o === "moka" ? "stovetop" : e.o === "filter" ? "south indian filter kaapi decoction dabara tumbler steel" : e.o === "press" ? "french press cafetiere plunger immersion" : e.o === "pourover" ? "v60 hario pour over pourover filter drip cone" : "");
   for (const id of e.fl || []) bits.push(id, FL[id].label);
   if (e.kind === "library" && e.mix) bits.push(e.mix);
   if (e.kind === "house" && e.mixerName) bits.push(e.mixerName, "cola coke soda");

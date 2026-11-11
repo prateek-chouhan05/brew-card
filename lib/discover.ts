@@ -4,7 +4,7 @@ import { canInvert, suits } from "./brew";
 import type { Entry, FlavourId, GroupId, Roast } from "./types";
 
 /* ---------------- facets, derived from data the card already has ---------------- */
-const BREWER_OF_O: Record<string, string> = { standard: "aeropress", inverted: "aeropress", moka: "moka", jar: "coldbrew", press: "frenchpress", pourover: "v60" };
+const BREWER_OF_O: Record<string, string> = { standard: "aeropress", inverted: "aeropress", moka: "moka", filter: "southindian", jar: "coldbrew", press: "frenchpress", pourover: "v60" };
 
 function brewersOf(e: Entry): string[] {
   if (e.kind === "drink") {
@@ -50,7 +50,7 @@ export interface FacetGroup {
 export const FGROUPS: FacetGroup[] = [
   { id: "brewer", label: "Brewer", of: brewersOf, hint: "Coffee drinks count under every brewer that can make their base.",
     opts: [{ id: "aeropress", label: "AeroPress", icon: "aeropress" }, { id: "frenchpress", label: "French press", icon: "frenchpress" }, { id: "v60", label: "V60 pour-over", icon: "v60" },
-      { id: "moka", label: "Moka pot", icon: "moka" }, { id: "coldbrew", label: "Cold brew jar", icon: "jar" }, { id: "instant", label: "Instant coffee", icon: "instant" }] },
+      { id: "moka", label: "Moka pot", icon: "moka" }, { id: "southindian", label: "South Indian filter", icon: "filter" }, { id: "coldbrew", label: "Cold brew jar", icon: "jar" }, { id: "instant", label: "Instant coffee", icon: "instant" }] },
   { id: "orient", label: "AeroPress orientation", of: orientOf, hint: "Your methods with an inverted switch count as both.",
     opts: [{ id: "standard", label: "On the mug", icon: "aeropress" }, { id: "inverted", label: "Inverted", icon: "inverted" }] },
   { id: "serve", label: "Served", of: serveOf,
@@ -61,6 +61,11 @@ export const FGROUPS: FacetGroup[] = [
   { id: "strength", label: "Strength", of: strengthOf,
     opts: [{ id: "full", label: "Full cup", icon: "mug" }, { id: "conc", label: "Concentrate or shot", icon: "concentrate" }] },
 ];
+/** The one recipe to try first with each brewer: shown on top, marked "Start here", when the Brewer filter is set. */
+export const STARTER: Record<string, string> = {
+  instant: "instant-coffee", southindian: "filter-kaapi", frenchpress: "my-frenchpress", v60: "my-v60",
+  moka: "my-moka", aeropress: "my-everyday", coldbrew: "my-coldbrew",
+};
 export const FACETS: Record<string, Record<GroupKey, string[]>> = {};
 for (const e of ALL) {
   const f = {} as Record<GroupKey, string[]>;

@@ -5,7 +5,7 @@ import { ALL, FL } from "@/lib/catalog";
 import { GROUPS } from "@/lib/data/labels";
 import { grinderShort } from "@/lib/grind";
 import { entryRoastTitle, entryStats, entrySub, entryTime, orientPill } from "@/lib/brew";
-import { FACETS, FGROUPS, activeRefineCount, countWhere, emptyRefine, matchBadge, optOf, orientBlocked, results, type GroupKey, type MatchMode, type Query } from "@/lib/discover";
+import { FACETS, FGROUPS, STARTER, activeRefineCount, countWhere, emptyRefine, matchBadge, optOf, orientBlocked, results, type GroupKey, type MatchMode, type Query } from "@/lib/discover";
 import { searchScores } from "@/lib/search";
 import type { Entry } from "@/lib/types";
 import { PAGE, useBrewPrefs, useDiscover, useSetup } from "./providers";
@@ -48,7 +48,13 @@ export function Discover() {
   const scores = useMemo(() => searchScores(filters.q), [filters.q]);
   const coffee = useMemo(() => ({ roast, flavour, tastes }), [roast, flavour, tastes]);
   const query: Query = useMemo(() => ({ filters, scores, mode, coffee }), [filters, scores, mode, coffee]);
-  const list = useMemo(() => results(query), [query]);
+  // with brewers picked (and no search), the first brewer's starter recipe leads the list
+  const starter = !filters.q && filters.f.brewer.length ? STARTER[filters.f.brewer[0]] ?? "" : "";
+  const list = useMemo(() => {
+    const out = results(query);
+    const i = starter ? out.findIndex((e) => e.id === starter) : -1;
+    return i > 0 ? [out[i], ...out.slice(0, i), ...out.slice(i + 1)] : out;
+  }, [query, starter]);
   const blocked = orientBlocked(filters);
   const nRefine = activeRefineCount(filters);
   const ctx = { grinder, roast, dose: brewPrefs.dose };
@@ -185,7 +191,7 @@ export function Discover() {
                   </span>
                 )}
               </span>
-              <button type="button" className="linkbtn" aria-label="Edit coffee setup" onClick={() => openSetup(false)}>Edit<span className="wide">&nbsp;setup</span></button>
+              <button type="button" className="linkbtn" aria-label="Edit coffee setup" onClick={() => openSetup()}>Edit<span className="wide">&nbsp;setup</span></button>
             </div>
             <fieldset className="modes" id="modes">
               <legend>How your setup affects results</legend>
@@ -228,7 +234,7 @@ export function Discover() {
           )}
 
           <ul className="cards" id="cards" aria-label="Recipes" ref={cardsRef}>
-            {list.slice(0, shown).map((e) => <Card key={e.id} e={e} badge={matchBadge(e, coffee, mode)} current={e.id === brewPrefs.lastEntry} />)}
+            {list.slice(0, shown).map((e) => <Card key={e.id} e={e} badge={matchBadge(e, coffee, mode)} current={e.id === brewPrefs.lastEntry} start={e.id === starter} />)}
           </ul>
 
           {list.length === 0 && (
@@ -272,8 +278,8 @@ export function Discover() {
   );
 }
 
-function Card({ e, badge, current }: { e: Entry; badge: string; current: boolean }) {
-  const { grinder, roast } = useSetup();
+function Card({ e, badge, current, start }: { e: Entry; badge: string; current: boolean; start: boolean }) {
+  const { grinder, roast, words } = useSetup();
   const prefs = useBrewPrefs();
   const pill = orientPill(e, prefs.inverted(e.id));
   const fl = e.fl || [];
@@ -286,10 +292,11 @@ function Card({ e, badge, current }: { e: Entry; badge: string; current: boolean
           <span className="c-title">{e.name}</span>
           <span className="c-sub">{entrySub(e)}</span>
           <span className="c-tags">
+            {start && <span className="pill start"><Icon name="play" />Start here</span>}
             <span className={"pill" + (pill.inv ? " inv" : "")}><Icon name={pill.icon} />{pill.text}</span>
             {badge && <span className="mbadge"><Icon name="check" />{badge}</span>}
           </span>
-          <span className="c-stats">{entryStats(e, { grinder, roast, dose: prefs.dose, grindAdj: prefs.grindAdj })}</span>
+          <span className="c-stats">{entryStats(e, { grinder, roast, dose: prefs.dose, grindAdj: prefs.grindAdj, words })}</span>
         </span>
         <span className="c-side">
           <span className="c-time">{prefs.favs.includes(e.id) && <Icon name="saved" className="c-fav" label="Saved" />}{entryTime(e) ? <><span className="sr-only">Time </span>{entryTime(e)}</> : <Icon name="external" label="Recipe on its original site" />}</span>

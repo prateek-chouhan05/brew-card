@@ -1204,8 +1204,12 @@
   "desc": "Strong coffee decoction with boiled milk and sugar, frothed by pouring between a tumbler and dabara.",
   "base": [
    {
+    "id": "my-kaapi",
+    "amt": "50 ml decoction from the steel filter"
+   },
+   {
     "id": "my-moka",
-    "amt": "60 ml — the closest thing to decoction"
+    "amt": "50 ml — if you don't have a filter"
    },
    {
     "id": "my-espresso",
