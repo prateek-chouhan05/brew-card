@@ -39,19 +39,20 @@ function useNav() {
 }
 
 function SetupChip() {
-  const { grinder, roast, flavour, words, openSetup } = useSetup();
+  const { grinder, roast, flavour, words, welcome, openSetup } = useSetup();
   const f = flavour ? FL[flavour] : null;
-  const label = `Coffee setup: ${words ? "ready-ground coffee" : grinder.name}, ${roast.label} roast${f ? ", " + f.label + " beans" : ", no flavour preference"}. Change setup`;
+  // a first visit hasn't picked anything yet, so show no defaults as if they had
+  const label = welcome ? "Coffee setup: not set yet. Set up" : `Coffee setup: ${words ? "ready-ground coffee" : grinder.name}, ${roast.label} roast${f ? ", " + f.label + " beans" : ", no flavour preference"}. Change setup`;
   return (
     <button type="button" className="setup-chip" id="setupBtn" aria-haspopup="dialog" aria-label={label} onClick={() => openSetup()}>
       <Icon name="setup" />
       <span className="sc-txt">
         <span className="sc-lbl">Setup</span>{" "}
-        <span id="setupSum">
+        {welcome ? <span id="setupSum">Not set yet</span> : <span id="setupSum">
           {words ? "Ground" : grinderShort(grinder)} · <RoastSwatch id={roast.id} />
           <span className="sc-long"> {roast.label}</span>
           {f && (<> · <TasteMark id={f.id} /><span className="sc-long"> {f.label}</span></>)}
-        </span>
+        </span>}
       </span>
     </button>
   );

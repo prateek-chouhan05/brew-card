@@ -151,15 +151,20 @@ export function Discover() {
       <fieldset className="collections">
         <legend>Collection</legend>
         <div className="seg-track" id="colTrack">
-          {GROUPS.map((gr) => (
-            <label className="seg-opt" key={gr.id || "all"}>
-              <input type="radio" name="collection" value={gr.id} checked={filters.col === gr.id} onChange={() => update((x) => ({ ...x, col: gr.id }))} />
-              <span>
-                {gr.icon && <Icon name={gr.icon} />}
-                {gr.label} <small>{countWhere(query, "col", (e) => !gr.id || e.g === gr.id)}</small>
-              </span>
-            </label>
-          ))}
+          {GROUPS.map((gr) => {
+            const n = countWhere(query, "col", (e) => !gr.id || e.g === gr.id);
+            // a collection with nothing in it (say, after picking French press) only adds noise
+            if (gr.id && !n && filters.col !== gr.id) return null;
+            return (
+              <label className="seg-opt" key={gr.id || "all"}>
+                <input type="radio" name="collection" value={gr.id} checked={filters.col === gr.id} onChange={() => update((x) => ({ ...x, col: gr.id }))} />
+                <span>
+                  {gr.icon && <Icon name={gr.icon} />}
+                  {gr.label} <small>{n}</small>
+                </span>
+              </label>
+            );
+          })}
         </div>
       </fieldset>
 

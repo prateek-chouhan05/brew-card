@@ -392,6 +392,8 @@ test("footer credits the builder with LinkedIn and Buy Me a Coffee", async ({ pa
 test("first visit: French press + already ground → only what you can make, Start here, grind in words", async ({ page: p }) => {
   await p.goto("/");
   await expect(p.locator("#wH")).toHaveText(/what you already have/);
+  // nothing picked yet, so the Setup button doesn't claim a grinder or roast
+  await expect(p.locator("#setupSum")).toHaveText("Not set yet");
   await expect(p.locator("#wNext")).toBeDisabled();
   await p.click('[data-brewer="frenchpress"]');
   await expect(p.locator('[data-brewer="frenchpress"]')).toHaveAttribute("aria-pressed", "true");
@@ -405,6 +407,9 @@ test("first visit: French press + already ground → only what you can make, Sta
   await expect(p.locator("#active")).toContainText("French press");
   await expect(first.locator(".c-stats")).toContainText("coarse, like sea salt");
   await expect(p.locator("#cards .c-stats").filter({ hasText: /clicks/ })).toHaveCount(0);
+  // collections with nothing for a French press are hidden, not shown as "0"
+  await expect(p.locator('#colTrack input[value="champ"]')).toHaveCount(0);
+  await expect(p.locator('#colTrack input[value="mine"]')).toHaveCount(1);
   // the picks are remembered, and the welcome doesn't come back
   await p.reload();
   await expect(p.locator("#cards li").first().locator(".pill.start")).toBeVisible();
