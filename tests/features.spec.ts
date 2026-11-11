@@ -59,7 +59,7 @@ test("the chamber clock and brew line follow the timer, and a finished brew asks
   await expect(p.locator("#badge")).toHaveText("Done");
   await expect(p.locator("#rate")).toHaveAttribute("open", "");
   await p.goto("/");
-  await expect(p.locator(".shelf")).toContainText("Espresso-Style Concentrate");
+  await expect(p.locator("#brewAgain")).toContainText("Espresso-Style Concentrate");
 });
 
 test("inverted brew: the whole flow end to end, with the flip", async ({ page: p }) => {
@@ -473,4 +473,24 @@ test("South Indian filter coffee is made in a South Indian filter", async ({ pag
   await p.click('label:has(#d-brewer-southindian)');
   await expect(p.locator("#cards li").first()).toContainText("South Indian Filter Coffee");
   await expect(p.locator("#cards li").first().locator(".pill.start")).toBeVisible();
+});
+
+test("Brew again: the last brew sits on top of Recipes, one tap from brewing it", async ({ page: p }) => {
+  await skipSetup(p, "/");
+  await expect(p.locator("#brewAgain")).toHaveCount(0); // nothing brewed yet
+  await p.evaluate(() => {
+    const y = new Date(); y.setDate(y.getDate() - 1);
+    localStorage.setItem("brewcard.recent", JSON.stringify([{ id: "my-bypass", at: y.toISOString() }, { id: "latte", at: "2026-01-01T08:00:00.000Z" }]));
+  });
+  await p.reload();
+  const again = p.locator("#brewAgain");
+  await expect(again).toContainText("Brew again: Bypass Brew");
+  await expect(again).toContainText("Yesterday");
+  await expect(p.locator(".shelf")).not.toContainText("Bypass Brew"); // not shown twice
+  await expect(p.locator(".shelf")).toContainText("Latte");
+  await p.fill("#q", "tonic");
+  await expect(again).toHaveCount(0); // out of the way while searching
+  await p.fill("#q", "");
+  await again.click();
+  await expect(p).toHaveURL(/\/recipes\/my-bypass\/$/);
 });

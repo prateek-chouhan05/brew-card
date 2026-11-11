@@ -129,6 +129,8 @@ export function Discover() {
         <h1 id="recH" tabIndex={-1}>Find a recipe</h1>
       </div>
 
+      {!filters.q && <BrewAgain />}
+
       <div className="search" role="search">
         <Icon name="search" className="s-ic" />
         <input id="q" ref={qRef} type="search" autoComplete="off" enterKeyHint="search" spellCheck={false}
@@ -333,9 +335,36 @@ function Empty({ filters, mode, nRefine, onFix }: { filters: { q: string; col: s
 }
 
 
+/** "Yesterday", "3 days ago": how long since a brew, in words. */
+function since(iso: string): string {
+  const day = (d: Date) => Math.floor((d.getTime() - d.getTimezoneOffset() * 60000) / 86400000);
+  const n = day(new Date()) - day(new Date(iso));
+  return n <= 0 ? "Today" : n === 1 ? "Yesterday" : n < 7 ? `${n} days ago` : new Date(iso).toLocaleDateString(undefined, { day: "numeric", month: "short" });
+}
+
+/** The last thing you brewed, one tap from brewing it again. */
+function BrewAgain() {
+  const { recent } = useBrewPrefs();
+  const last = recent[0];
+  const e = last && entryById(last.id);
+  if (!e) return null;
+  const t = entryTime(e);
+  return (
+    <Link href={`/recipes/${e.id}`} className="again" id="brewAgain">
+      <span className="again-go" aria-hidden="true"><Icon name="play" /></span>
+      <span className="again-txt">
+        <b>Brew again: {e.name}</b>
+        <span>{since(last.at)}{t ? ` · ${t}` : ""}</span>
+      </span>
+      <span className="again-art" aria-hidden="true"><RecipeArt entry={e} /></span>
+    </Link>
+  );
+}
+
 /** Your favourites and what you brewed lately, one tap away — one compact row. */
 function Shelf() {
-  const { favs, recent } = useBrewPrefs();
+  const { favs, recent: all } = useBrewPrefs();
+  const recent = all.slice(1); // the latest brew already has its own Brew again row
   const items: { id: string; fav: boolean }[] = favs.map((id) => ({ id, fav: true }));
   for (const r of recent) if (!favs.includes(r.id)) items.push({ id: r.id, fav: false });
   if (!items.length) return null;
