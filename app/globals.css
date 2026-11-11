@@ -352,9 +352,9 @@ main{padding-bottom:calc(var(--tabbar-h) + env(safe-area-inset-bottom,0px) + 24p
 
 /* ---------- views ---------- */
 .view{padding-top:18px}
-.view-h{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.view-h{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
 .view-h h1{font-size:clamp(24px, 5vw, 30px);line-height:1.1;font-weight:700;letter-spacing:-.02em}
-.view-h p{color:var(--muted);font-size:14px;max-width:60ch}
+.view-h p{color:var(--muted);font-size:15px;line-height:1.45;max-width:62ch;text-wrap:pretty}
 
 /* ---------- search ---------- */
 .search{position:relative;display:flex;align-items:center}
