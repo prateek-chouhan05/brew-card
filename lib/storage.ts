@@ -45,4 +45,6 @@ export const KEYS = {
   brewers: "brewcard.brewers",
   /** "ground" (grind in words) | "beans" (grinder settings) | "" (saved before this existed: grinder settings) */
   coffeeForm: "brewcard.coffeeForm",
+  /** coffee of the day picks of the last week, by local date, so the same recipe doesn't come back too soon */
+  dailyPicks: "brewcard.dailyPicks",
 } as const;

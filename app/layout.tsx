@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource-variable/archivo";
+import "@fontsource-variable/archivo/wdth.css"; // weight and width axes: the greeting is set wide
 import "@fontsource-variable/jetbrains-mono";
 import "./globals.css";
 import { Providers } from "@/components/providers";

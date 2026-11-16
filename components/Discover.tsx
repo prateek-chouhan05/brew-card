@@ -13,6 +13,8 @@ import { useModal } from "./useModal";
 import { RecipeArt } from "./DrinkArt";
 import { entryById } from "@/lib/catalog";
 import { beanStatus } from "@/lib/journal";
+import { dayKey, today as pickToday, type Today } from "@/lib/daily";
+import { KEYS, loadJSON, save } from "@/lib/storage";
 import type { IconName } from "@/lib/icons";
 import { Icon, RoastSwatch, TasteMark } from "./Icon";
 
@@ -22,6 +24,7 @@ export function Discover() {
   const { grinder, roast, flavour, tastes, openSetup, activeBean } = useSetup();
   const { filters, setFilters, mode, setMode, shown, setShown } = useDiscover();
   const brewPrefs = useBrewPrefs();
+  const today = useToday(filters.f.brewer, brewPrefs.recent.length === 0);
   const [qText, setQText] = useState(filters.q);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [announce, setAnnounce] = useState("");
@@ -125,11 +128,14 @@ export function Discover() {
 
   return (
     <section className="view" id="view-recipes" aria-labelledby="recH">
-      <div className="view-h">
-        <h1 id="recH" tabIndex={-1}>Find a recipe</h1>
+      <div className={"hello" + (today ? " has-pick" : "")}>
+        <div className="view-h">
+          <h1 id="recH" tabIndex={-1} className={today ? "greet" : undefined}>{today ? today.greeting : "Find a recipe"}</h1>
+          {today?.line && <p className="hello-line">{today.line}</p>}
+        </div>
+        {!filters.q && today && <CoffeeOfDay t={today} />}
+        {!filters.q && <BrewAgain />}
       </div>
-
-      {!filters.q && <BrewAgain />}
 
       <div className="search" role="search">
         <Icon name="search" className="s-ic" />
@@ -339,6 +345,53 @@ function Empty({ filters, mode, nRefine, onFix }: { filters: { q: string; col: s
   );
 }
 
+
+/** Today's greeting and pick, worked out on the phone once it has loaded, and again when you come back to the tab. */
+function useToday(brewers: string[], firstVisit: boolean): Today | null {
+  const { hydrated } = useSetup();
+  const [now, setNow] = useState<Date | null>(null);
+  useEffect(() => {
+    setNow(new Date());
+    const on = () => { if (document.visibilityState === "visible") setNow(new Date()); };
+    document.addEventListener("visibilitychange", on);
+    return () => document.removeEventListener("visibilitychange", on);
+  }, []);
+  const brewerKey = brewers.join(",");
+  const t = useMemo(() => {
+    if (!now || !hydrated) return null;
+    const key = dayKey(now);
+    const log = loadJSON<Record<string, string[]>>(KEYS.dailyPicks, {});
+    const earlier = Object.entries(log).filter(([d]) => d !== key).flatMap(([, ids]) => ids);
+    return pickToday(now, brewerKey ? brewerKey.split(",") : [], earlier, firstVisit);
+  }, [now, hydrated, brewerKey, firstVisit]);
+  // remember today's pick for a week, so it isn't picked again tomorrow
+  useEffect(() => {
+    if (!t || !now) return;
+    const key = dayKey(now);
+    const log = loadJSON<Record<string, string[]>>(KEYS.dailyPicks, {});
+    if ((log[key] || []).includes(t.entry.id)) return;
+    log[key] = [...(log[key] || []), t.entry.id];
+    const keep = Object.keys(log).sort().reverse().slice(0, 7);
+    save(KEYS.dailyPicks, JSON.stringify(Object.fromEntries(keep.map((k) => [k, log[k]]))));
+  }, [t, now]);
+  return t;
+}
+
+/** One recipe for this part of the day, on a ground the colour of the hour. */
+function CoffeeOfDay({ t }: { t: Today }) {
+  return (
+    <section className="cod" data-part={t.part} aria-labelledby="codH" id="cod">
+      <div className="cod-txt">
+        <p className="cod-lbl">Coffee of the day</p>
+        <h2 id="codH">{t.entry.name}</h2>
+        <p className="cod-why">{t.why}</p>
+        <p className="cod-facts">{t.facts}</p>
+        <Link href={`/recipes/${t.entry.id}`} className="cod-go" id="codGo"><Icon name="play" />{t.cta}</Link>
+      </div>
+      <span className="cod-art" aria-hidden="true"><RecipeArt entry={t.entry} level="scene" /></span>
+    </section>
+  );
+}
 
 /** "Yesterday", "3 days ago": how long since a brew, in words. */
 function since(iso: string): string {

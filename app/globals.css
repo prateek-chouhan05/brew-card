@@ -1160,3 +1160,34 @@ a,button,summary,label,[role="button"]{-webkit-tap-highlight-color:transparent}
 .again-art svg{width:100%;height:100%;display:block}
 @media (min-width:760px){ .again{max-width:520px} }
 @media (prefers-reduced-motion:reduce){ .again:active{transform:none} }
+
+/* ===== Welcome back: the greeting and the coffee of the day ===== */
+.view-h h1.greet{font-size:clamp(34px, 10vw, 40px);line-height:1.04;font-weight:800;font-stretch:118%;letter-spacing:-.015em}
+.hello-line{color:var(--muted);font-size:15.5px;max-width:42ch}
+.cod{--cod-bg:#f8e2cc;--cod-fg:var(--fg);--cod-sub:#6a4a33;--cod-btn:var(--accent);--cod-btn-fg:#fff;
+  display:flex;align-items:flex-end;gap:6px;margin-bottom:12px;padding:18px 14px 16px 18px;border-radius:22px;background:var(--cod-bg);color:var(--cod-fg);overflow:hidden}
+.cod[data-part="afternoon"]{--cod-bg:#d9ebe2;--cod-sub:#3c5a4c}
+.cod[data-part="evening"]{--cod-bg:#e6ddef;--cod-sub:#54476a}
+.cod[data-part="night"]{--cod-bg:#2a2131;--cod-fg:#f6eef2;--cod-sub:#c9b8cf;--cod-btn:#f6eef2;--cod-btn-fg:#2a2131}
+.cod-txt{flex:1 1 0;min-width:0;display:flex;flex-direction:column;gap:8px;align-self:stretch}
+.cod-lbl{font-size:13.5px;font-weight:600;color:var(--cod-sub)}
+.cod h2{font-size:24px;line-height:1.08;font-weight:800;font-stretch:106%;text-wrap:balance}
+.cod-why{font-size:14.5px;line-height:1.4}
+.cod-facts{font-size:13.5px;line-height:1.4;color:var(--cod-sub)}
+.cod-go{margin-top:auto;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 18px;border-radius:12px;background:var(--cod-btn);color:var(--cod-btn-fg);font-size:15.5px;font-weight:700;text-decoration:none;transition:transform .16s ease-out}
+.cod-go:hover{color:var(--cod-btn-fg);filter:brightness(1.08)}
+.cod-go:active{transform:scale(.97)}
+.cod-go .ic{width:15px;height:15px;fill:currentColor}
+.cod-art{flex:none;width:clamp(120px, 38vw, 150px);aspect-ratio:1;margin:0 -6px -8px 0}
+.cod-art .recipe-art,.cod-art svg{display:block;width:100%;height:100%}
+@media (prefers-reduced-motion:reduce){ .cod-go:active{transform:none} }
+@media (min-width:1024px){
+  .hello.has-pick{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);grid-template-areas:"head cod" "again cod";column-gap:40px;align-items:end;margin-bottom:24px}
+  .hello.has-pick .view-h{grid-area:head;margin-bottom:24px}
+  .hello.has-pick .cod{grid-area:cod;margin:0}
+  .hello.has-pick .again{grid-area:again;margin:0;max-width:none}
+  .hello.has-pick .view-h h1.greet{font-size:64px}
+  .hello.has-pick .cod h2{font-size:30px}
+  .hello.has-pick .cod-why{font-size:16px}
+  .hello.has-pick .cod-art{width:210px}
+}

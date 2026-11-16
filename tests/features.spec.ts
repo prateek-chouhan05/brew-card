@@ -499,3 +499,21 @@ test("Brew again: the last brew sits on top of Recipes, one tap from brewing it"
   await again.click();
   await expect(p).toHaveURL(/\/recipes\/my-bypass\/$/);
 });
+
+test("Recipes greets you and shows a coffee of the day for the hour", async ({ page: p }) => {
+  await p.clock.setFixedTime(new Date("2026-07-16T22:30:00"));
+  await skipSetup(p, "/");
+  await expect(p.locator("#recH")).toHaveText("Up late?");
+  const cod = p.locator("#cod");
+  await expect(cod).toHaveAttribute("data-part", "night");
+  await expect(cod).toContainText("Cold Brew Concentrate");
+  await expect(p.locator("#codGo")).toHaveText("Start tonight");
+  // the pick is remembered so it isn't picked again tomorrow
+  expect(await p.evaluate(() => localStorage.getItem("brewcard.dailyPicks"))).toContain("my-coldbrew");
+  // out of the way while searching
+  await p.fill("#q", "tonic");
+  await expect(cod).toHaveCount(0);
+  await p.fill("#q", "");
+  await p.click("#codGo");
+  await expect(p).toHaveURL(/\/recipes\/my-coldbrew\/$/);
+});
