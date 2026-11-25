@@ -33,18 +33,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             {children}
             <footer className="site-foot">
               <InstallButton />
-              <p>
-                AeroPress library recipes are credited to their authors and cited from{" "}
-                <a href="https://aeroprecipe.com/recipes" target="_blank" rel="noopener">aeroprecipe.com</a> (or aeropress.com) — each recipe links to
-                its original page. The steps are summarised in Brew Card&apos;s own words. The flavour tags and notes are my own. Grinder settings are derived from{" "}
-                <a href="https://brewmark.io/grinders" target="_blank" rel="noopener">brewmark.io</a>&apos;s published charts. The Clean &amp; Clear method
-                follows James Hoffmann&apos;s Ultimate AeroPress recipe, with water temperature set by your roast. The French press and V60 One Cup
-                methods follow James Hoffmann&apos;s published techniques, and the 4:6 Method follows Tetsu Kasuya&apos;s recipe as Hario publishes it. Every setting is a starting point, not a rule.
-              </p>
+              <div className="src">
+                <h2>Where the recipes come from</h2>
+                <p>
+                  AeroPress library recipes are credited to their authors and cited from{" "}
+                  <a href="https://aeroprecipe.com/recipes" target="_blank" rel="noopener">aeroprecipe.com</a> (or aeropress.com), and each recipe links to
+                  its original page. The steps are summarised in Brew Card&apos;s own words. The flavour tags and notes are my own.
+                </p>
+                <p>
+                  Grinder settings are derived from <a href="https://brewmark.io/grinders" target="_blank" rel="noopener">brewmark.io</a>&apos;s published
+                  charts. Clean &amp; Clear follows James Hoffmann&apos;s Ultimate AeroPress recipe, with water temperature set by your roast. The French
+                  press and V60 One Cup methods follow James Hoffmann&apos;s published techniques, and the 4:6 Method follows Tetsu Kasuya&apos;s recipe as
+                  Hario publishes it. Every setting is a starting point, not a rule.
+                </p>
+              </div>
               <div className="credit">
                 <p className="credit-by">Built by <b>Prateek Chouhan</b></p>
                 <p className="credit-links">
-                  <a href="https://www.linkedin.com/in/prateek9144/" target="_blank" rel="noopener"><img src="/linkedin-logo.svg" alt="" width={18} height={18} className="brand-logo" />LinkedIn</a>
+                  <a href="https://www.linkedin.com/in/prateek9144/" target="_blank" rel="noopener"><Icon name="linkedin" />LinkedIn</a>
                   <a href="https://buymeacoffee.com/prateek01" target="_blank" rel="noopener"><Icon name="cup" />Buy me a coffee</a>
                 </p>
               </div>

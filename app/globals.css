@@ -520,7 +520,6 @@ dialog.sheetdlg::backdrop{background:rgba(28,22,25,.42)}
   @media (hover:hover) and (pointer:fine){ .toc button:hover{background:var(--raised)} }
 }
 
-.site-foot{color:var(--muted);font-size:12.5px;line-height:1.6;border-top:1px solid var(--line);margin-top:28px;padding-top:14px}
 
 /* ---------- additions wired to the prototype markup ---------- */
 [hidden]{display:none!important}
@@ -558,7 +557,6 @@ html:has(dialog[open]){overflow:hidden}
 .guide-col .panel{scroll-margin-top:calc(var(--header-h) + 12px)}
 .guide-col .aside{margin:0}
 .brew-top .linkbtn{margin-left:auto}
-.site-foot p{margin:0 0 8px}
 .proto-note{color:var(--flag)}
 .fs h3{margin:0}
 .fs h3 label{cursor:pointer}
@@ -734,8 +732,6 @@ html:has(dialog[open]){overflow:hidden}
 .hf-controls .hf-go{min-width:160px}
 .hf-hint{text-align:center;font-size:12px;color:var(--muted);margin-top:8px}
 
-.install{margin:0 0 10px}
-.install-how{display:block;margin-top:6px}
 .mb-top .mb-chips{order:3;flex-basis:100%}
 
 /* ---------- coffee setup sheet ---------- */
@@ -925,23 +921,6 @@ td .sym .ic{width:17px;height:17px;margin:0}
 td .sym .mark{width:26px;height:10px}
 .tp-b .ic{width:18px;height:18px}
 
-/* footer credit: who built it on one side, where to find them on the other; stacks on phones */
-.site-foot .credit{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 24px;border-top:1px solid var(--line);margin-top:14px;padding-top:14px}
-.site-foot .credit p{margin:0}
-.credit-by{font-size:13.5px}
-.credit-by b{color:var(--fg);font-weight:600}
-.credit-links{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px}
-.credit-links a{display:inline-flex;align-items:center;gap:7px;min-height:36px;font-size:13.5px;font-weight:600;text-decoration:none;color:var(--accent)}
-@media (hover:hover) and (pointer:fine){ .credit-links a:hover{text-decoration:underline;text-underline-offset:3px} }
-.credit-links .ic{width:17px;height:17px;margin:0}
-.credit-links .brand-logo{width:18px;height:18px;flex:none;display:block}
-@media (max-width:560px){
-  .site-foot .credit{flex-wrap:nowrap;gap:12px}
-  .credit-by{line-height:1.3}
-  .credit-by b{display:block}
-  .credit-links{flex-wrap:nowrap;gap:14px}
-  .credit-links a{font-size:13px;gap:6px}
-}
 
 /* ===== Motion and touch: press feedback on everything tappable, hover only where there is a pointer,
    sheets that rise from the bottom edge on phones and settle in place on wider screens. Exits are faster than entries. */
@@ -1120,30 +1099,6 @@ a,button,summary,label,[role="button"]{-webkit-tap-highlight-color:transparent}
 .mb-also{display:inline-flex;align-items:center;gap:4px;color:var(--fg);font-weight:600}
 .fltag.on.also{opacity:.85}
 
-/* ===== first visit: welcome and "your coffee" ===== */
-.welcome{max-width:560px;margin-inline:auto;padding-block:8px 24px}
-.welcome h1{font-size:clamp(26px, 6.5vw, 32px);line-height:1.12;font-weight:800;letter-spacing:-.02em;outline:none;text-wrap:balance}
-.w-lead{margin-top:10px;color:var(--muted);font-size:15.5px;line-height:1.45;max-width:46ch}
-.w-q{margin-top:26px;font-size:18px;font-weight:700}
-.w-help{margin-top:4px;color:var(--muted);font-size:13.5px}
-.w-opts{display:grid;grid-template-columns:repeat(2, minmax(0, 1fr));gap:8px;margin-top:12px}
-.w-opt{display:flex;align-items:center;gap:10px;min-height:56px;padding:0 14px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);font-size:15px;font-weight:600;text-align:left;color:var(--fg);transition:transform .16s ease-out}
-.w-opt .ic{width:24px;height:24px;flex:none}
-.w-opt[aria-pressed="true"]{border:2px solid var(--accent);padding:0 13px;background:var(--accent-soft)}
-.w-forms{display:grid;gap:8px;margin-top:20px}
-.w-form{display:flex;flex-direction:column;align-items:flex-start;gap:3px;padding:14px 16px;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);text-align:left;color:var(--fg);transition:transform .16s ease-out}
-.w-form b{font-size:16px}
-.w-form span{font-size:13.5px;color:var(--muted);line-height:1.4}
-.w-form[aria-checked="true"]{border:2px solid var(--accent);padding:13px 15px;background:var(--accent-soft)}
-.w-opt:active,.w-form:active{transform:scale(.97)}
-.w-grinder{margin-top:16px;display:grid;gap:6px}
-.w-grinder label{font-weight:700;font-size:15px}
-.w-grinder select{appearance:none;-webkit-appearance:none;width:100%;min-height:48px;padding:0 40px 0 14px;border:1px solid var(--line);border-radius:10px;background:var(--surface);font-size:15.5px;color:var(--fg)}
-.w-acts{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin-top:24px}
-.w-acts .btn.primary{min-height:52px;padding-inline:24px;font-size:16px}
-.w-acts .linkbtn{display:inline-flex;align-items:center;gap:4px;font-size:15px}
-.w-acts .linkbtn .ic{width:16px;height:16px}
-@media (prefers-reduced-motion:reduce){ .w-opt:active,.w-form:active{transform:none} }
 #suForm .seg-opt{flex:1 1 0}
 #suForm .seg-opt > span{justify-content:center}
 .pill.start{background:var(--accent);border-color:var(--accent);color:#fff}
@@ -1191,3 +1146,121 @@ a,button,summary,label,[role="button"]{-webkit-tap-highlight-color:transparent}
   .hello.has-pick .cod-why{font-size:16px}
   .hello.has-pick .cod-art{width:210px}
 }
+
+/* ===== first visit: welcome and "your coffee" =====
+   Headline and example brew card side by side on desktop, every brewer drawn, numbers in mono. */
+.welcome{--w-line:color-mix(in srgb, var(--fg) 16%, transparent);display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"head" "pick" "acts" "card";padding-block:16px 24px}
+.w-head{grid-area:head}
+.welcome h1{font-size:36px;line-height:40px;font-weight:500;font-stretch:110%;letter-spacing:-.02em;max-width:14ch;outline:none;text-wrap:balance}
+.w-lead{margin-top:16px;max-width:36rem;color:var(--muted);font-size:17px;line-height:26px}
+.w-pick{grid-area:pick;margin-top:40px;min-width:0}
+.w-q{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 12px;margin-bottom:16px}
+.w-q h2{font-size:20px;line-height:28px;font-weight:500}
+.w-help{color:var(--muted);font-size:14px;line-height:20px}
+.w-opts{display:grid;grid-template-columns:minmax(0,1fr);gap:8px}
+.w-opt{position:relative;display:grid;grid-template-columns:56px minmax(0,1fr) 20px;align-items:center;gap:12px;width:100%;min-height:72px;padding:8px 16px 8px 8px;border:1px solid var(--w-line);border-radius:12px;background:var(--surface);color:var(--fg);font-size:15px;line-height:20px;font-weight:500;text-align:left;transition:border-color .15s ease,transform .16s var(--ease-out)}
+.w-art{display:grid;place-items:center;width:56px;height:56px;border-radius:8px;background:var(--raised)}
+.w-art .recipe-art,.w-art svg{width:48px;height:48px;display:block}
+.w-art > .ic{width:28px;height:28px}
+.w-box{display:grid;place-items:center;width:20px;height:20px;border:1.5px solid var(--w-line);border-radius:6px;background:var(--surface);transition:background-color .15s ease,border-color .15s ease}
+.w-box .ic{width:12px;height:12px;margin:0;color:#fff;stroke-width:3;opacity:0;transition:opacity .15s ease}
+.w-opt[aria-pressed="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.w-opt[aria-pressed="true"] .w-box{background:var(--accent);border-color:var(--accent)}
+.w-opt[aria-pressed="true"] .w-box .ic{opacity:1}
+.w-acts{grid-area:acts;display:flex;align-items:center;flex-wrap:wrap;gap:16px;margin-top:24px}
+.w-acts .btn.primary{min-height:48px;padding-inline:20px;font-size:16px;font-weight:500}
+.w-acts .btn.primary:disabled{opacity:1;background:var(--raised);border-color:var(--line);color:var(--muted)}
+.w-count{font-family:var(--mono);font-size:13px;opacity:.8;margin-left:8px}
+.w-acts .linkbtn{display:inline-flex;align-items:center;gap:4px;font-size:15px;font-weight:500;color:var(--muted);text-decoration-color:var(--w-line);text-underline-offset:4px}
+.w-acts .linkbtn .ic{width:16px;height:16px}
+.w-status{flex-basis:100%;color:var(--muted);font-size:14px;line-height:20px}
+/* the example brew card */
+.w-card{grid-area:card;margin-top:48px}
+.ex{background:var(--surface);border:1px solid var(--w-line);border-radius:16px;box-shadow:0 8px 24px rgba(28,22,25,.06);overflow:hidden}
+.ex-h{display:grid;grid-template-columns:minmax(0,1fr) 72px;align-items:center;gap:16px;padding:16px 16px 16px 20px}
+.ex-h h3{font-size:20px;line-height:28px;font-weight:500;font-stretch:108%}
+.ex-h p{margin-top:4px;color:var(--muted);font-size:14px;line-height:20px}
+.ex-art{display:grid;place-items:center;width:72px;height:72px;border-radius:8px;background:var(--raised)}
+.ex-art .recipe-art,.ex-art svg{width:64px;height:64px;display:block}
+.ex-specs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin:0;border-block:1px solid var(--line)}
+.ex-specs > div{min-width:0;padding:12px 20px}
+.ex-specs > div + div{border-left:1px solid var(--line)}
+.ex-specs dt{color:var(--muted);font-size:13px;line-height:16px}
+.ex-specs dd{margin:4px 0 0;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:18px;line-height:24px;font-weight:500;white-space:nowrap}
+.ex-specs dd small{margin-left:2px;color:var(--muted);font-size:13px;font-weight:400}
+.ex-timer{display:flex;align-items:baseline;justify-content:space-between;gap:12px;padding:16px 20px 8px}
+.ex-now{color:var(--muted);font-size:14px;line-height:20px}
+.ex-clock{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:28px;line-height:32px;font-weight:500}
+.ex-clock span{color:var(--muted);font-size:16px}
+.ex-bar{height:4px;margin:0 20px 12px;border-radius:2px;background:var(--raised);overflow:hidden}
+.ex-bar i{display:block;width:54%;height:100%;border-radius:2px;background:var(--accent)}
+.ex-steps{list-style:none;margin:0;padding:0 8px 8px}
+.ex-steps li{display:grid;grid-template-columns:48px minmax(0,1fr);gap:8px;align-items:baseline;padding:4px 12px;border-radius:8px;font-size:15px;line-height:24px}
+.ex-steps .t{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted)}
+.ex-steps .done{color:var(--muted)}
+.ex-steps .on{background:var(--accent-soft)}
+.ex-steps .on .t{color:var(--accent)}
+@media (max-width:479px){
+  .ex-specs{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .ex-specs > div:nth-child(3){border-left:0}
+  .ex-specs > div:nth-child(n+3){border-top:1px solid var(--line)}
+}
+@media (min-width:1024px){
+  .welcome{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:32px;align-items:center;padding-top:32px;grid-template-areas:
+    "head head head head head head head card card card card card"
+    "pick pick pick pick pick pick pick pick pick pick pick pick"
+    "acts acts acts acts acts acts acts acts acts acts acts acts"}
+  .welcome h1{font-size:56px;line-height:60px;letter-spacing:-.03em}
+  .w-lead{margin-top:24px;font-size:19px;line-height:28px}
+  .w-card{margin-top:0}
+  .w-pick{margin-top:48px}
+  .w-opts{grid-template-columns:repeat(7,minmax(0,1fr));gap:12px}
+  .w-opt{grid-template-columns:1fr;justify-items:center;gap:12px;min-height:0;padding:12px 12px 16px;text-align:center}
+  .w-art{width:100%;height:auto;aspect-ratio:4/3}
+  .w-art .recipe-art,.w-art svg{width:72%;height:84%}
+  .w-box{position:absolute;top:16px;right:16px}
+  .w-status{flex-basis:auto}
+}
+/* step two: how you get your coffee */
+.w-forms{display:grid;gap:8px;margin-top:24px;max-width:560px}
+.w-form{display:flex;flex-direction:column;align-items:flex-start;gap:4px;padding:16px;border:1px solid var(--w-line);border-radius:12px;background:var(--surface);text-align:left;color:var(--fg);transition:border-color .15s ease,transform .16s var(--ease-out)}
+.w-form b{font-size:16px;font-weight:500}
+.w-form span{color:var(--muted);font-size:14px;line-height:20px}
+.w-form[aria-checked="true"]{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.w-grinder{display:grid;gap:8px;margin-top:16px;max-width:560px}
+.w-grinder label{font-size:15px;font-weight:500}
+.w-grinder select{appearance:none;-webkit-appearance:none;width:100%;min-height:48px;padding:0 40px 0 16px;border:1px solid var(--w-line);border-radius:10px;background:var(--surface);color:var(--fg);font-size:16px}
+.welcome:has(.w-forms){display:block;max-width:560px;margin-inline:auto}
+.welcome:has(.w-forms) .w-help{margin-top:12px}
+@media (hover:hover) and (pointer:fine){
+  .w-opt:hover,.w-form:hover{border-color:color-mix(in srgb, var(--accent) 40%, var(--w-line))}
+  .w-acts .linkbtn:hover{color:var(--fg);text-decoration-color:currentColor}
+}
+@media (prefers-reduced-motion:no-preference){ .w-opt:active,.w-form:active{transform:scale(.98)} }
+
+/* ===== footer: install, where the recipes come from, who built it ===== */
+.site-foot{--f-line:color-mix(in srgb, var(--fg) 16%, transparent);display:grid;gap:24px;margin-top:80px;padding-top:24px;border-top:1px solid var(--line);color:var(--muted);font-size:13px;line-height:20px}
+.site-foot p{margin:0}
+.site-foot .install{grid-column:1/-1;display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding-bottom:24px;border-bottom:1px solid var(--line)}
+.site-foot .install .panel-act{min-height:44px;padding:0 20px 0 16px;font-size:15px}
+.site-foot .install-how{max-width:52ch;font-size:14px}
+.site-foot .install-how b{color:var(--fg);font-weight:500}
+.site-foot .src h2{margin-bottom:8px;color:var(--fg);font-size:14px;line-height:20px;font-weight:500}
+.site-foot .src p{max-width:64ch}
+.site-foot .src p + p{margin-top:8px}
+.site-foot .src a{color:var(--fg);text-decoration:underline;text-decoration-color:var(--f-line);text-underline-offset:3px}
+.site-foot .credit{display:flex;flex-direction:column;gap:12px}
+.credit-by{font-size:14px}
+.credit-by b{color:var(--fg);font-weight:500}
+.credit-links{display:flex;flex-wrap:wrap;gap:20px}
+.credit-links a{display:inline-flex;align-items:center;gap:8px;min-height:36px;color:var(--fg);font-size:14px;font-weight:500;text-decoration:none}
+.credit-links .ic{width:18px;height:18px;margin:0;color:var(--muted)}
+@media (hover:hover) and (pointer:fine){
+  .site-foot .src a:hover{text-decoration-color:currentColor}
+  .credit-links a:hover{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--f-line)}
+}
+@media (min-width:1024px){
+  .site-foot{grid-template-columns:minmax(0,1fr) auto;column-gap:64px;align-items:start}
+  .site-foot .credit{align-items:flex-end;text-align:right}
+}
+@media (min-width:1024px){ .welcome:has(.w-forms) h1{font-size:40px;line-height:48px;max-width:none} }

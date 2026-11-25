@@ -391,7 +391,7 @@ test("footer credits the builder with LinkedIn and Buy Me a Coffee", async ({ pa
 
 test("first visit: French press + already ground → only what you can make, Start here, grind in words", async ({ page: p }) => {
   await p.goto("/");
-  await expect(p.locator("#wH")).toHaveText(/what you already have/);
+  await expect(p.locator("#wH")).toHaveText(/the brewer you already own/);
   // nothing picked yet, so the Setup button doesn't claim a grinder or roast
   await expect(p.locator("#setupSum")).toHaveText("Not set yet");
   await expect(p.locator("#wNext")).toBeDisabled();
