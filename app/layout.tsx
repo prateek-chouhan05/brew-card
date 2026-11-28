@@ -6,6 +6,7 @@ import { Providers } from "@/components/providers";
 import { AppShell } from "@/components/AppShell";
 import { InstallButton } from "@/components/Pwa";
 import { Icon } from "@/components/Icon";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: { default: "Brew Card", template: "%s · Brew Card" },
@@ -57,6 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </footer>
           </AppShell>
         </Providers>
+        <Analytics />
       </body>
     </html>
   );
